@@ -1,0 +1,25 @@
+.EventTitle {
+    margin: 40px 0;
+}
+
+.EventTitle>h2 {
+    color: #24005C;
+    font-family: "Montserrat arm";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+.Allevents {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.33%;
+}
+
+
+@media screen and (max-width: 768px) {
+    .Allevents {
+        gap: 6%;
+    }
+}

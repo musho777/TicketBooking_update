@@ -1,0 +1,19 @@
+.outlet {
+    margin: auto;
+    /* display: flex; */
+    justify-content: center;
+    min-height: calc(100vh - 220px);
+}
+
+
+@media screen and (max-width: 1200px) {
+    .outlet {
+        /* padding: 0 60px; */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .outlet {
+        /* padding: 0 30px; */
+    }
+}

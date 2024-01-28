@@ -1,0 +1,40 @@
+.button {
+    width: 156px;
+    padding: 10px 0px;
+    border-radius: 10px;
+    background: #FFCE00;
+    border: none;
+    color: #24005C;
+    font-family: "Montserrat arm";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+/* .button:hover {
+    background-color: #FEE827;
+    border: 1px solid transparent;
+} */
+.ShowAllButton {
+    color: #24005C;
+    font-family: "Montserrat arm";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    width: 184px;
+    height: 46px;
+    border-radius: 61px;
+    border: 1px solid #24005C;
+    background-color: transparent;
+}
+
+@media screen and (max-width: 768px) {
+    .button {
+        width: 148px;
+        min-width: 120px !important;
+    }
+
+    .ShowAllButton {
+        border: none;
+    }
+}

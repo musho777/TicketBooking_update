@@ -1,0 +1,44 @@
+.mainAbout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+}
+
+.aboutTitle>h2 {
+    color: #333333;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.mainAbout>p {
+    color: #333333;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+@media screen and (max-width: 768px) {
+    .mainAbout {
+        padding: 0 20px !important;
+    }
+
+    .mainAbout>p {
+        font-size: 12px;
+        line-height: 30px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .mainAbout {
+        padding: 0 80px;
+    }
+}

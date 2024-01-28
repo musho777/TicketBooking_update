@@ -1,0 +1,21 @@
+.MenuMobile {
+    padding-top: 10px;
+}
+
+.MenuMobile>div {
+    padding: 0 20px;
+    color: #333333;
+    font-family: Kanit;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    height: 45px;
+    display: flex;
+    align-items: center;
+}
+
+.MenuMobile>div:hover {
+    background-color: #333333;
+    color: white;
+}

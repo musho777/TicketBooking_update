@@ -1,0 +1,259 @@
+.Category {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 2%;
+    margin-top: 60px;
+}
+
+.rdrDateDisplayWrapper {
+    display: none !important;
+}
+
+.CateogryButton {
+    border-radius: 40px;
+    background: white;
+    border: 2px solid black;
+
+    color: black;
+    min-width: 200px;
+    width: auto;
+    padding: 8px 20px;
+    font-family: Arian AMU Serif;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    /* border: none; */
+    margin-bottom: 5px;
+    cursor: pointer;
+    min-width: 150px;
+    font-size: 16px;
+}
+
+.notfound {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.notfound {
+    font-size: 30px;
+}
+
+.loadingCategory {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    /* height: calc(100vh - 220px); */
+    align-items: center;
+    display: flex;
+}
+
+.paginationDiv {
+    margin: 70px auto 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.mobileDate {
+    display: none;
+}
+
+.DateInput {
+    display: flex;
+    flex-direction: column;
+    margin: 0 40px;
+}
+
+.rdrInRange {
+    color: #333 !important;
+}
+
+.rdrStartEdge {
+    color: #333 !important;
+}
+
+.rdrEndEdge {
+    color: #333 !important;
+}
+
+.DataPickerDiv {
+    position: absolute;
+    z-index: 999;
+    top: 40px;
+    left: 227px;
+}
+
+#active {
+    background: #FEE827;
+    color: #333333 !important;
+    border: none;
+    border: 2px solid #FEE827;
+
+}
+
+.CategoryButtonWrapper {
+    display: flex;
+    gap: 20px;
+}
+
+
+/* .CateogryButton:hover {
+    background: #FEE827;
+    color: #333333;
+} */
+
+.FilterWrapper {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    /* justify-content: space-between; */
+    /* width: 50%; */
+}
+
+.FilterWrapper>div>img {
+    cursor: pointer;
+}
+
+.SelectorDivWrapper {
+    margin-left: 80px;
+}
+
+.mFilterWrapper {
+    display: none;
+}
+
+.MultyselectItemCategory {
+    position: absolute;
+    /* width: 300px; */
+    width: 95%;
+    margin-top: 10px;
+    max-height: 200px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+    background: #F8F8F8;
+    overflow-x: auto;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 10px;
+    color: #333333;
+    font-family: Kanit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+.MultyselectItemCategory>div {
+    padding: 20px;
+}
+
+.MultyselectItemCategory>div:hover {
+    background: #FEE827;
+}
+
+.css-19micn4-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+    background-color: #FEE827 !important;
+}
+
+@media screen and (max-width: 768px) {
+    .category {
+        padding: 0 0px !important;
+    }
+
+    .FilterWrapper {
+        display: none;
+    }
+
+    .mFilterWrapper {
+        padding: 0 20px;
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .CategoryButtonWrapper {
+        gap: 0 !important;
+
+        /* justify-content: flex-start !important; */
+    }
+
+    .mobileDate {
+        display: block;
+    }
+
+    .DateInput {
+        margin: 0 20px;
+    }
+
+    .CateogryButton {
+        min-width: 30% !important;
+        padding: 8px 7px !important;
+        font-size: 14px !important;
+        margin-left: 8px;
+    }
+}
+
+
+.rdrDefinedRangesWrapper {
+    display: none;
+}
+
+.rdrCalendarWrapper {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.FilterWrapperCalendar {
+    position: absolute;
+    top: 20px;
+    right: 0px;
+}
+
+
+.DateInput>input {
+    border: none;
+    border-bottom: 1px solid black;
+    width: 200px;
+    margin-top: 6px;
+}
+
+@media screen and (max-width: 1200px) {
+    .Category {
+        padding: 0 20px;
+    }
+
+    .CateogryButton {
+        min-width: 150px;
+        font-size: 16px;
+    }
+
+    .CategoryButtonWrapper {
+        flex-wrap: wrap;
+        padding: 0 20px;
+        gap: 10px;
+        margin-top: 40px;
+    }
+
+    .category {
+        padding: 0 60px;
+    }
+
+    .FilterWrapper {
+        padding: 0 20px;
+    }
+
+    .Category {
+        margin-top: 20px;
+    }
+
+
+}

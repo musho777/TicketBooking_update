@@ -1,0 +1,18 @@
+.mainPageText {
+    color: #24005C;
+    font-family: "Montserrat arm";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    margin: 15px 0;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .mainPageText {
+        font-size: 12px;
+        margin: 10px 0;
+    }
+}

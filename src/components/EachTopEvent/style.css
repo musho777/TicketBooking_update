@@ -1,0 +1,128 @@
+.eachTopEvent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex: 1;
+    max-width: 300px;
+    height: 500px;
+    cursor: pointer;
+}
+
+.ticketTitleCategoruDiv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.topEventImage {
+    width: 100%;
+    height: 400px;
+}
+
+.topEventImage>img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: fill;
+}
+
+.topEventDetails {
+    width: 90%;
+    /* padding: 10px; */
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.90);
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    border-bottom: none;
+    transition: height 0.8s ease;
+    height: 0px;
+}
+
+
+
+#hovertopEventDetails {
+    height: 170px;
+    padding: 10px;
+}
+
+.buttonEachEventDiv {
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 1);
+    padding: 10px;
+    border-radius: 4px;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    z-index: 999;
+    border-top: none;
+}
+
+
+.topEventDetails>h3 {
+    color: #333333;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    word-wrap: break-word;
+    /* min-height: 55px; */
+}
+
+.topEventDetailsInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.topEventDetails>span {
+    color: #333333;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.buttonEachEvent {
+    min-width: 180px;
+    padding: 10px;
+    color: #333333;
+    border: none;
+    border-radius: 4px;
+    font-family: Arian AMU Serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    cursor: pointer;
+    transition: 0.4s;
+    background-color: #FEE827;
+    ;
+}
+
+@media screen and (max-width: 768px) {
+    .buttonEachEvent {
+        min-width: 120px !important;
+        padding: 9px 12px !important;
+        font-size: 13px !important;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .eachTopEvent {
+        max-width: 230px;
+        height: 400px;
+    }
+
+    .topEventImage {
+        height: 300px;
+    }
+}
