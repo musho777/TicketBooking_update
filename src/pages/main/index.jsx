@@ -168,18 +168,17 @@ export const Main = () => {
         )
     }
     return (
+
         <div className='mainPage'>
             <div className='container'>
-                <p className='mainPageText'>Պատվիրելու համար զանգահարել +374 93 55 88 44</p>
                 <Carusel />
                 <TopEventsComponent />
-
             </div>
             <WeekEvents />
             <div className='container'>
                 <ALLEvents />
                 {/* <ExpectedEvents /> */}
             </div>
-        </div >
+        </div>
     )
 }

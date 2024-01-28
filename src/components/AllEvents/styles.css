@@ -22,4 +22,8 @@
     .Allevents {
         gap: 6%;
     }
+
+    .EventTitle>h2 {
+        font-size: 23px;
+    }
 }

@@ -87,13 +87,6 @@
     left: 227px;
 }
 
-#active {
-    background: #FEE827;
-    color: #333333 !important;
-    border: none;
-    border: 2px solid #FEE827;
-
-}
 
 .CategoryButtonWrapper {
     display: flex;

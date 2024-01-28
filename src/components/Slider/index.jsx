@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
-import { LocationSvg } from '../svg'
+import { BanerRightSvg, LocationSvg } from '../svg'
 import { useTranslation } from 'react-i18next'
 
 
@@ -115,14 +115,19 @@ export const Carusel = () => {
         setData(item)
     }, [general.events, language])
     return (
-        <AliceCarousel
-            disableButtonsControls={true}
-            autoPlay={data.length > 1}
-            mouseTracking
-            items={data}
-            infinite={data.length > 1}
-            touchMoveDefaultEvents
-            autoPlayInterval={5500}
-        />
+        <div>
+            {/* <div>
+                <BanerRightSvg />
+            </div> */}
+            <AliceCarousel
+                disableButtonsControls={true}
+                autoPlay={data.length > 1}
+                mouseTracking
+                items={data}
+                infinite={data.length > 1}
+                touchMoveDefaultEvents
+                autoPlayInterval={5500}
+            />
+        </div>
     );
 }

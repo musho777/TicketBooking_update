@@ -12,6 +12,7 @@
 .TopEvents>img {
     width: 100%;
     height: 100%;
+    border-radius: 10px;
 }
 
 .TypeTopDiv {
@@ -230,12 +231,16 @@
     .TopEvents {
         /* width: 23%; */
         width: 260px;
-
+        height: 350px;
     }
 
     .TopEventWrapper {
         /* gap: 2.6%; */
         gap: calc((100% - 1040px) / 3);
+    }
+
+    .TopEventsInfo {
+        gap: 16px;
     }
 }
 

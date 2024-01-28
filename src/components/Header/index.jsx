@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { SearchInput } from '../SearchInput'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { ArrowSvg, CloseSvg, MenuSvg, MobileMenu, PhonSvg, Search, SearchMobileSvg, SearchSvg, Translate, WorldSvg } from '../svg'
+import { ActiveArrowSvg, ArrowSvg, CloseSvg, MenuSvg, MobileMenu, PhonSvg, Search, SearchMobileSvg, SearchSvg, Translate, WorldSvg } from '../svg'
 import { ChangeLanguageAction, GetCategory, OpenCaldendar, OpenCategoryMenu, SearchAction } from '../../services/action/action'
 import { PuffLoader } from 'react-spinners'
 
@@ -51,10 +51,10 @@ export const Header = ({ open, menu }) => {
                             else if (elm._id === "6581e2425bf51638abd3f9ee") {
                                 bg = '#11AEF4'
                             }
-                            else if (elm._id === "6581e28f5bf51638abd3fa02") {
+                            else if (elm._id === "6581e26c5bf51638abd3f9f8") {
                                 bg = '#FFCE00'
                             }
-                            else if (elm._id === "6581e26c5bf51638abd3f9f8") {
+                            else if (elm._id === "6581e28f5bf51638abd3fa02") {
                                 bg = '#4DCF5F'
                             }
 
@@ -87,15 +87,38 @@ export const Header = ({ open, menu }) => {
                             </div>
                             <input placeholder='Փնտրել միջոցառում' className='SearchInput' />
                         </div>
-                        <button className='phonNumber'>
-                            <PhonSvg />
-                            ԱՆՎՃԱՐ ԱՌԱՔՈՒՄ
-                        </button>
+                        <div className='ButtonWrapperHeader'>
+                            <button className='phonNumber'>
+                                <PhonSvg />
+                                ԱՆՎՃԱՐ ԱՌԱՔՈՒՄ
+                            </button>
+                        </div>
                     </div>
-                    <div className='LanguageDiv'>
+                    <div
+                        id={openLanguage ? 'openLanguage' : ''}
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            e.preventDefault()
+                            setOpenLanguage(true)
+                        }
+                        } className='LanguageDiv'>
                         <WorldSvg />
-                        <p>ՀԱՅ</p>
-                        <ArrowSvg />
+                        {localStorage.getItem('lang') === 'am'
+                            ? <p>ՀԱՅ</p>
+                            : localStorage.getItem('lang') === 'en'
+                                ? <p>ENG</p>
+                                : <p>РУС</p>
+                        }
+                        {openLanguage ?
+
+                            <ActiveArrowSvg /> :
+                            <ArrowSvg />
+                        }
+                        {openLanguage && <div className='SelectLanguage'>
+                            <p onClick={() => dispatch(ChangeLanguageAction('am'))} >Հայերեն</p>
+                            <p onClick={() => dispatch(ChangeLanguageAction('ru'))} >Русский</p>
+                            <p onClick={() => dispatch(ChangeLanguageAction('en'))} >English</p>
+                        </div>}
                     </div>
                     <div className='MobileHeader'>
                         <SearchMobileSvg />
@@ -104,6 +127,6 @@ export const Header = ({ open, menu }) => {
                 </div>
             </div>
             <div className='LineHeader' />
-        </div>
+        </div >
     )
 }

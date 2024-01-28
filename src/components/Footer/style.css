@@ -114,4 +114,8 @@
         width: 100%;
         justify-content: space-between;
     }
+
+    .footerWrapper {
+        margin-top: 30px;
+    }
 }

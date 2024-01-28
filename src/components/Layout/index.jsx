@@ -13,7 +13,14 @@ export const Layout = () => {
         dispatch(EventValidity())
     }, [dispatch])
     return (<>
-        <Header open={(e) => setOpenMenu(e)} />
+        <div className='HeaderDiv'>
+            <Header open={(e) => setOpenMenu(e)} />
+        </div>
+        <div className='container'>
+            <div className='wrapper'>
+                <p className='mainPageText'>Պատվիրելու համար զանգահարել +374 93 55 88 44</p>
+            </div>
+        </div>
         <div className='outlet'>
             <Outlet />
         </div>

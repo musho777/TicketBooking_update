@@ -13,6 +13,8 @@ import AramKhachatryan from '../../components/photoMap/AramKhachatryanHall'
 import PhotoCoordinatesByColor from '../../components/photoMap'
 import KarenDemerchyanMec from '../../components/photoMap/Karendemrjyanmec'
 import { Hall } from '../../components/photoMap/Hall'
+import { LocationSvg } from '../../components/svg'
+import { TopEvents } from '../../components/TopEvents/TopEvents'
 
 export const Single = () => {
     const dispatch = useDispatch()
@@ -66,78 +68,83 @@ export const Single = () => {
     }, [getSinglPage])
     if (getSinglPage.loading) {
         return (
-            <div className='loading'>
-                <PuffLoader color="#FEE827" />
+            <div className='container'>
+                <div className='loading'>
+                    <PuffLoader color="#FEE827" />
+                </div>
             </div>
         )
     }
     return (
-        <div className='single'>
-            {openPopUp &&
-                <div className='ByTicketWrapper'>
-                    <CartPopup
-                        open={openPopUp}
-                        openBuy={openBuy}
-                        setOpen={setOpenPopUp}
-                        type='hall'
-                        openCard={() => {
-                            if (tickets.tickets.length) {
-                                setOpenBuy(true)
-                            }
-                        }}
-                    >
-                        {/* <Hall buy={() => setOpenBuy(true)} /> */}
-                        {event.sessions[0]?.hallId._id === '652a6e93cebdd7a4ac8fc020' &&
-                            <PhotoCoordinatesByColor eventId={getSinglPage.events.event?._id} sessionID={getSinglPage.events.event?.sessions[0]._id} soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets} secion={getSinglPage.events.event?.sessions[0]?.price} />
-                        }
-                        {event.sessions[0]?.hallId?._id === '653554d8709652928c006a15' &&
-                            <KarenDemerchyanMec eventId={getSinglPage.events.event?._id} sessionID={getSinglPage.events.event?.sessions[0]._id} soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets} secion={getSinglPage.events.event?.sessions[0]?.price} />
-                        }
-                        {event.sessions[0]?.hallId?._id === '6535520e0dc8b78f78b56997' &&
-                            <AramKhachatryan eventId={getSinglPage.events.event?._id} sessionID={getSinglPage.events.event?.sessions[0]._id} soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets} secion={getSinglPage.events.event?.sessions[0]?.price} />
-                        }
-                        {event.sessions[0]?.hallId?._id === '653563a0369cf9fb4627aaf8' &&
-                            <Hall buy={() => setOpenBuy(true)} section={getSinglPage.events.event?.sessions[0]?.price} />
-                        }
-
-                    </CartPopup>
-                </div>
-            }
-            {openBuy &&
-                <CartPopup
-                    open={openBuy}
-                    type='openBuy'
-                    setOpen={setOpenBuy}
-                >
-                    <BuyNow />
-                </CartPopup >
-
-            }
-            <div className='SinglDescription'>
-                <div className='singlImg'>
-                    <img src={`${process.env.REACT_APP_IMAGE}/${event?.image}`} alt='' />
-                </div>
-                <div className='singltextWrapper'>
-                    <div>
-                        <p className='dateDD'>{date}</p>
-                        <div>Karen Demerchyan</div>
-                        <p className='singlTitle'>{languageData?.title}</p >
-                    </div>
-                    <p className='singelText'>{languageData?.description}</p>
-                    <div className='buttonWrapperSingl'>
-                        <Button title={t('BuyNow')} onClick={() => setOpenPopUp(true)} />
+        <div id='singlPage' className='container'>
+            <div className='SinglCaruselItem'>
+                <div className='SinglBanerDiv' >
+                    <img className='SiglBanerImg2' src={require('../../assets/4.png')} />
+                    <div className='SinglBanerDivInfo'>
+                        <div className='SinglBanerPrimera'>
+                            <div className='SinglPrimera'>
+                                <p className='SinglPrimerap'>ՊՐԵՄԻԵՐԱ</p>
+                                <p className='SinglPrimeraDate'>ՀՈՒՆՎԱՐ 24 19։00</p>
+                            </div>
+                            <div className='SinglBanerLocation'>
+                                <LocationSvg />
+                                <p className='SinglBanerDivInfoPlace'>Arno Babajanyan Concert Hall</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p className='SinglBanerTitle'>միխայիլ շուֆուտինսկի</p>
+                            <div className='SinglBanerTextDiv'>
+                                <p className='SinglBanerText'>ՀՈԲԵԼՅԱՆԱԿԱՆ ՀԱՄԵՐԳ</p>
+                            </div>
+                        </div>
+                        <div className='SinglBanerPrimeraMobile'>
+                            <div className='Primera'>
+                                <p className='Primerap'>ՊՐԵՄԻԵՐԱ</p>
+                                <p className='PrimeraDate'>ՀՈՒՆՎԱՐ 24 19։00</p>
+                            </div>
+                            <div className='BanerLocation'>
+                                <LocationSvg />
+                                <p className='BanerDivInfoPlace'>Arno Babajanyan Concert Hall</p>
+                            </div>
+                        </div>
+                        <div className='SinglPriceDiv'>
+                            <p className='SinglBanerPrice'>1500-2000 AMD</p>
+                            <div className='SinglBanerButton'>
+                                <Button title={t('BuyNew')} />
+                                <p>տեսնել ավելին</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <img
+                    className='SinglBanerImg'
+                    src={require('../../assets/4.png')}
+                    alt='#'
+                />
             </div>
-            {
-                recomended?.length > 0 &&
-                <div className='EventTitle' style={{ flexDirection: 'column', marginBottom: 40 }}>
-                    <h2 style={{ margin: "50px  0" }}>{t('RecommendTickets')}</h2>
-                    <div className='topEventsMain'>
-                        <CardSlider data={recomended} />
+            <div>
+                {
+                    recomended?.length > 0 &&
+                    <div className='EventTitle'>
+                        <h2>{t('RecommendTickets')}</h2>
+                        <div className='RecDiv'>
+                            {recomended.map((elm, i) => {
+                                return <TopEvents
+                                    key={i}
+                                    image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
+                                    title={elm.title}
+                                    category={elm.category}
+                                    location={elm?.sessions[0]?.hallId?.location}
+                                    location_en={elm?.sessions[0]?.hallId?.location_en}
+                                    location_ru={elm?.sessions[0]?.hallId?.location_ru}
+                                    data={elm}
+                                    price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
+                                />
+                            })}
+                        </div>
                     </div>
-                </div>
-            }
-        </div >
+                }
+            </div>
+        </div>
     )
 }

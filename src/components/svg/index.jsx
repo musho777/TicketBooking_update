@@ -26,6 +26,13 @@ export const ArrowSvg = () => {
 
 }
 
+export const ActiveArrowSvg = () => {
+    return <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.5 6L0.73686 5.64421e-08L10.2631 8.89256e-07L5.5 6Z" fill="#FFCE00" />
+    </svg>
+
+}
+
 
 export const SearchMobileSvg = () => {
     return <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -100,6 +107,13 @@ export const LeftSvg = () => {
     return <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M29.4571 20.7071C29.8476 20.3166 29.8476 19.6834 29.4571 19.2929L23.0931 12.9289C22.7026 12.5384 22.0695 12.5384 21.6789 12.9289C21.2884 13.3195 21.2884 13.9526 21.6789 14.3431L27.3358 20L21.6789 25.6569C21.2884 26.0474 21.2884 26.6805 21.6789 27.0711C22.0695 27.4616 22.7026 27.4616 23.0931 27.0711L29.4571 20.7071ZM12.5 21H28.75V19H12.5V21Z" fill="#24005C" fill-opacity="0.5" />
         <circle cx="20" cy="20" r="19.5" stroke="#24005C" />
+    </svg>
+
+}
+
+export const BanerRightSvg = () => {
+    return <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="19.5" transform="rotate(-180 20 20)" stroke="black" stroke-opacity="0.5" />
     </svg>
 
 }

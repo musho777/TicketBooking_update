@@ -4,6 +4,10 @@
     justify-content: center;
 }
 
+.header {
+    margin-bottom: 100px;
+}
+
 .MainHeader {
     height: 80px;
     max-width: 1440px;
@@ -93,6 +97,32 @@
     font-size: 12px;
 }
 
+.ButtonWrapperHeader {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.ButtonWrapperHeader::before {
+    content: '';
+    position: absolute;
+    top: -10;
+    left: 0px;
+    width: 180px;
+    height: 50px;
+    border: 1px solid transparent;
+    /* Adding a transition for a smooth effect */
+}
+
+.ButtonWrapperHeader:hover::before {
+    border-image: linear-gradient(269.79deg, rgba(255, 200, 0, 0) 0.15%, #FFC800 48.56%, rgba(255, 200, 0, 0) 101.01%);
+    border-image-slice: 1;
+}
+
+
+
 .MobileHeader {
     display: none;
 }
@@ -101,6 +131,12 @@
     display: flex;
     gap: 10px;
     align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+#openLanguage>p {
+    color: white !important;
 }
 
 .LanguageDiv>p {
@@ -112,6 +148,39 @@
     line-height: 30px;
 }
 
+.SelectLanguage {
+    position: absolute;
+    width: 105px;
+    height: 138px;
+    background-color: white;
+    top: 40px;
+    right: 0px;
+    border-radius: 5px;
+    padding: 0 15px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.SelectLanguage>p {
+    color: #24005C;
+    font-family: "Montserrat arm";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    height: 32%;
+    text-align: center;
+    border-bottom: 1px solid rgba(36, 0, 92, 0.50);
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.SelectLanguage>p:hover {
+    font-weight: 600;
+}
+
+.SelectLanguage>p:last-child {
+    border: none;
+}
 
 .activeHeader {
     border-radius: 43px;
@@ -121,6 +190,7 @@
     justify-content: center;
     display: flex;
     align-items: center;
+    transition: 1500ms;
     margin-bottom: -3px;
 }
 
