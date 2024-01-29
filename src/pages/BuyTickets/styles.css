@@ -1,0 +1,281 @@
+.HallWrapper {
+    width: 55%;
+    position: relative;
+}
+
+
+.Hall {
+    width: 100%;
+    height: 80px;
+    border-radius: 10px;
+    border: 13px solid #E8E8E8;
+    height: 450px;
+    overflow: scroll;
+}
+
+.BuyTicketsCard {
+    padding: 20px;
+    background-color: #24005C;
+    max-width: 450px;
+    border-radius: 10px;
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.BuyTicketsCardInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.BuyTicketsCard>img {
+    height: 180px;
+    border-radius: 5px;
+}
+
+.BuyTicketsWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.BuyTicketTitle {
+    color: #FFCE00;
+    font-family: "Montserrat arm";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.BuyTickeDescription {
+    color: #FFF;
+    font-family: "Montserrat arm";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+    text-transform: uppercase;
+}
+
+.BuyTicketDate {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.BuyTicketDateLocation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.BuyTicketDateLocation>p {
+    color: #FFF;
+    font-family: "Montserrat arm";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    width: 200px;
+}
+
+.BuyTicketDateMonth {
+    color: #FFF;
+    font-family: "Montserrat arm";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.BuyTicketDateTime {
+    color: #FFCE00;
+    font-family: "Montserrat arm";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.Tickets {
+    border-radius: 10px;
+}
+
+.TicketsHeader {
+    background-color: #24005C;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.TicketsHeader>p {
+    width: 50%;
+    color: #FFF;
+    font-family: "Montserrat arm";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 30px;
+}
+
+.BuyTicketsCardWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.TicketInfoo {
+    width: 50%;
+}
+
+.TicketInfoo p {
+    color: #24005C;
+    font-family: "Montserrat arm";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 30px;
+}
+
+.TicketInfoo>div {
+    display: flex;
+    gap: 15px;
+}
+
+.TicketDiv {
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-radius: 5px;
+    background: rgba(77, 207, 95, 0.30);
+}
+
+.TicketPrcie {
+    color: #24005C;
+
+    font-family: "Montserrat arm";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+.ClewarTicet {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(36, 0, 92, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.TicketBody {
+    padding: 0 20px;
+    border-radius: 10px;
+    background: #E8E8E8;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    padding-bottom: 20px;
+}
+
+.TikcetsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+
+}
+
+.TotalPrice {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.ToatalPricep {
+    color: #24005C;
+    font-family: "Montserrat arm";
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.Totalp {
+    color: #24005C;
+    font-family: "Montserrat arm";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.totalLine {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, #24005C 15px, transparent 15px);
+    background-size: 30px 100%;
+    margin: 20px 0;
+}
+
+.BuyTicketButtonWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.BuyTicketButtonWrapper>button {
+    border-radius: 5px;
+    background: #24005C;
+    border: none;
+    color: #FFF;
+    font-family: "Montserrat arm";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    padding: 7px 27px;
+    cursor: pointer;
+
+}
+
+@media screen and (max-width: 768px) {
+    .BuyTicketsCard {}
+
+    .BuyTicketsWrapper {
+        flex-direction: column;
+    }
+
+    .BuyTicketsCard>img {
+        width: 100px;
+        height: 136px;
+    }
+
+    .BuyTicketTitle {
+        font-size: 14px;
+    }
+
+    .BuyTickeDescription {
+        font-size: 11px;
+    }
+
+    .BuyTicketDateMonth {
+        font-size: 11px;
+    }
+
+    .BuyTicketDateTime {
+        font-size: 11px;
+    }
+
+    .BuyTicketDate {
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .BuyTicketDateLocation>p {
+        font-size: 11px;
+    }
+}

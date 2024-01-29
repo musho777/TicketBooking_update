@@ -110,7 +110,9 @@ export const Single = () => {
                         <div className='SinglPriceDiv'>
                             <p className='SinglBanerPrice'>1500-2000 AMD</p>
                             <div className='SinglBanerButton'>
-                                <Button title={t('BuyNew')} />
+                                <Button
+                                    onClick={() => window.location = `/BuyTickets/${id}`}
+                                    title={t('BuyNew')} />
                                 <p>տեսնել ավելին</p>
                             </div>
                         </div>
