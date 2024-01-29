@@ -14,6 +14,7 @@ import { MD5 } from 'crypto-js'
 import { ExpectedEvents } from '../../components/ExpectedEvents'
 import { WeekEvents } from '../../components/WeekEvents'
 import { TopEventsComponent } from '../../components/TopEvents'
+import { BuyNow } from '../../components/BuyNow'
 
 
 export const Main = () => {
@@ -170,6 +171,13 @@ export const Main = () => {
     return (
 
         <div className='mainPage'>
+            {/* <CartPopup
+                open={true}
+                type='openBuy'
+                setOpen={{}}
+            >
+                <BuyNow />
+            </CartPopup > */}
             <div className='container'>
                 <Carusel />
                 <TopEventsComponent />

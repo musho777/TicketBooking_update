@@ -2,7 +2,7 @@ import './style.css'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CreateCurrentTicket, RemoveTicketsAction, StatusSuccessAction } from '../../services/action/action'
-import { CheckSvg, CheckedSvg, MobileSvg, SelectSvg, SelectedSvg } from '../svg'
+import { CheckSvg, CheckedSvg, SelectSvg, SelectedSvg } from '../svg'
 import axios from 'axios'
 import { PuffLoader } from 'react-spinners'
 import CryptoJS from 'crypto-js'
@@ -257,49 +257,22 @@ export const BuyNow = () => {
     }, [creatTicket])
 
     return (
-        <div className='BuyNow'>
-            <div className='BuyNowHeader'>
-                <p className='BuyNowHeaderTitle'>միխայիլ շուֆուտինսկի</p>
-                <p className='BuyNowHeaderDate'> 17.01.2024 19:00</p>
-            </div>
-            <div className='BuyNowBody'>
-                <p className='FreeDelivery'>{t('freeDelivery')}</p>
-                <div className='InputTextareWrapper'>
-                    <div className='InputWrapperBuy'>
-                        <input
-                            className='InputsBuy'
-                            placeholder={t('NameSurname')}
-                            id={error.name != '' ? 'errorInut' : 'inout'} value={name} onChange={(e) => setName(e.target.value)} />
-                        <input
-                            className='InputsBuy'
-                            value={number}
-                            placeholder={t('PhoneNumber')}
-                            onChange={phone => setNumber(phone)}
-                            id={error.phonNumber != '' ? 'errorInut' : 'inout'}
-                        />
-                        <input
-                            className='InputsBuy'
-                            placeholder={t('Email')} id={error.email != '' ? 'errorInut' : 'inout'} value={email} onChange={(e) => setEmail(e.target.value)} />
-                    </div>
-                    <textarea
-                        className='TextareBuy'
-                        placeholder={t('Notes')}
-                        value={additional} onChange={(e) => setAdditional(e.target.value)} />
-                    {true &&
-                        <input
-                            placeholder='Առաքման հասցե'
-                            className='InputsBuyDelvery' id={error.address != '' ? 'errorInut' : 'inout'} value={address} onChange={(e) => setAddress(e.target.value)} />
-                    }
-                </div>
-                <div className='selectPay' onClick={() => {
-                    setDelivery(false)
-                    Select(1)
-                }}>
-                    <div>
+        <div className='buyNowWrapper3'>
+            <div ref={scrollRef} className='buyNowWrapper2'>
+                <p className='deliverText'>
+                    {t('freeDelivery')}
+                </p>
+                <p className='buyNowTitle'>{title}</p>
+                <p className='buyNowDate'>{getSinglPage?.events?.event?.sessions[0]?.date.slice(0, 10)}  /  {getSinglPage?.events?.event?.sessions[0].time}</p>
+                <div className='BuyMethod'>
+                    <div className='selectPay' onClick={() => {
+                        setDelivery(false)
+                        Select(1)
+                    }}>
                         <div className='BuyMethodSelect'>
                             {selectPay == 1 ? <SelectedSvg /> : <SelectSvg />}
                         </div>
-                        <div className='BuyMethodSelectImg'>
+                        <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: 10, flexWrap: 'wrap' }}>
                             <img alt='' width={80} height={34} src={require('../../assets/MIR_logo.png')} />
                             <img alt='' width={55} height={34} src={require('../../assets/amex_logo.png')} />
                             <img alt='' width={55} height={34} src={require('../../assets/mastercard_logo.png')} />
@@ -307,52 +280,75 @@ export const BuyNow = () => {
                             <img alt='' width={55} height={34} src={require('../../assets/arca_logo.png')} />
                         </div>
                     </div>
-                    <p>{t('Youwillreceive')}</p>
-                </div>
-                <div className='selectPay' onClick={() => {
-                    Select(2)
-                    setDelivery(false)
-                }}>
-                    <div>
+                    <p className='ticketInfno'>{t('Youwillreceive')}</p>
+                    <div className='selectPay' onClick={() => {
+                        Select(2)
+                        setDelivery(false)
+                    }} style={{ cursor: 'pointer' }}>
                         <div className='BuyMethodSelect'>
                             {selectPay == 2 ? <SelectedSvg /> : <SelectSvg />}
                         </div>
                         <img alt='' width={65} height={34} src={require('../../assets/TelCell.png')} />
                     </div>
-                    <p>{t('Youwillreceive')}</p>
-                </div>
-                <div className='selectPay' onClick={() => {
-                    setDelivery(true)
-                    Select(3)
-                }} >
-                    <div>
+                    <p className='ticketInfno'>{t('Youwillreceive')}</p>
+
+                    <div className='selectPay' onClick={() => {
+                        setDelivery(true)
+                        Select(3)
+                    }} style={{ cursor: 'pointer' }}>
                         <div className='BuyMethodSelect'>
                             {selectPay == 3 ? <SelectedSvg /> : <SelectSvg />}
                         </div>
                         <img width={68} height={34} src={require('../../assets/22.png')} />
-                    </div>
-                    <p >{t('Shippingisfree')}</p>
 
-                </div>
-                <div className='BuyEndWrapper'>
-                    <div className='BuyEnd'>
-                        <div className='ReadAndAgree'>
-                            <div
-                                onClick={() => setChedker(!chedked)}>
-                                {chedked
-                                    ? <CheckedSvg />
-                                    : <CheckSvg error={error?.checked == ''} />
-                                }
-                            </div>
-                            <a className='textDD' style={{ color: 'black', }} href='https://shinetickets.com/PrivacyPolicy'>{t('Termsandconditions')}</a>
-                        </div>
-                        <div className='ReadAndAgree'>
-                            <div style={{ marginLeft: 1 }}>
-                                <MobileSvg />
-                            </div>
-                            <p>+374 93 55 88 44</p>
-                        </div>
                     </div>
+                    <p className='ticketInfno'>{t('Shippingisfree')}</p>
+                </div>
+                <div className='BuyInputsName'>
+                    <input
+                        className='InputsBuy'
+                        placeholder={t('NameSurname')}
+                        id={error.name != '' ? 'errorInut' : 'inout'} value={name} onChange={(e) => setName(e.target.value)} />
+                    <div>
+                        <PhoneInput
+                            country={'am'}
+                            value={number}
+                            placeholder={t('PhoneNumber')}
+                            onChange={phone => setNumber(phone)}
+                            isValid={error.phonNumber == ''}
+                        />
+                    </div>
+                    <input
+                        className='InputsBuy'
+
+                        placeholder={t('Email')} id={error.email != '' ? 'errorInut' : 'inout'} value={email} onChange={(e) => setEmail(e.target.value)} />
+                </div>
+
+                <div className='InputsBuy'>
+                    <textarea
+                        placeholder={t('Notes')}
+                        value={additional} onChange={(e) => setAdditional(e.target.value)} />
+                </div>
+                {delivery &&
+                    <div className='InputsBuy'>
+                        <label>{t('Deliveryaddress')} <span className='span'>*</span></label>
+                        <input id={error.address != '' ? 'errorInut' : 'inout'} value={address} onChange={(e) => setAddress(e.target.value)} />
+                    </div>
+                }
+
+
+                <div className='BuyCheck'>
+                    <div
+                        onClick={() => setChedker(!chedked)} style={{ cursor: 'pointer', height: 24 }}>
+                        {chedked
+                            ? <CheckedSvg />
+                            : <CheckSvg error={error?.checked == ''} />
+                        }
+                    </div>
+                    <a className='textDD' style={{ color: 'black', }} href='https://shinetickets.com/PrivacyPolicy'>{t('Termsandconditions')}</a>
+                </div>
+                <div className='BuyButton'>
+
                     <button
                         id={
                             disableButton &&
@@ -368,6 +364,8 @@ export const BuyNow = () => {
                         }
                     </button>
                 </div>
+
+                <div id='telcellForm' />
             </div>
         </div>
     )
