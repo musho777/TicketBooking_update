@@ -1,7 +1,7 @@
 import axios from "axios"
-import { StartCreatTicket, StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetRadnomEvents, StartGetSinglPage, StartGetTelStatus, StartSearch, StartSubCategory } from "./StartAction"
-import { ErrorCreatTicket, ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTelStatus, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
-import { SuccessCreatTicket, SuccessGetAllAds, SuccessGetCategoris, SuccessGetCategory, SuccessGetEventValidity, SuccessGetFeedback, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTellStatus, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage, eventValidity } from "./SuccessAction"
+import { StartCreatTicket, StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetRadnomEvents, StartGetSinglPage, StartGetTelStatus, StartSearch, StartSubCategory, StartWeekEvents } from "./StartAction"
+import { ErrorCreatTicket, ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTelStatus, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage, ErrorWeekEvents } from "./ErrorAction"
+import { SuccessCreatTicket, SuccessGetAllAds, SuccessGetCategoris, SuccessGetCategory, SuccessGetEventValidity, SuccessGetFeedback, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTellStatus, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage, SuccessWeekEvent, eventValidity } from "./SuccessAction"
 import { MD5 } from "crypto-js";
 
 
@@ -411,3 +411,24 @@ export const BuyTicketFromParonyan = () => {
         console.log(response, 'response222')
     }
 }
+
+export const WeekEvetntApi = () => {
+    return (dispatch) => {
+        dispatch(StartWeekEvents())
+        axios.get(`${process.env.REACT_APP_HOSTNAME}/getEventsOfTheWeek`).then((r) => {
+            if (r.data.success) {
+                console.log(r, '21111')
+                dispatch(SuccessWeekEvent(r.data.weeklyEvents))
+            }
+            else {
+                dispatch(ErrorWeekEvents())
+                // dispatch(ErrorGetTopEvents())
+            }
+        })
+            .catch((error) => {
+                dispatch(ErrorWeekEvents())
+                // dispatch(ErrorGetTopEvents())
+            })
+    }
+}
+// /getEventsOfTheWeek

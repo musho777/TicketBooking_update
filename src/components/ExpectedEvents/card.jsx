@@ -33,6 +33,9 @@ export const Card = () => {
                 <p className='eventType'>ԵՎՐՈ 2024 ՈՐԱԿԱՎՈՐՄԱՆ ՓՈՒԼ</p>
                 <p className='eventName'>ՀԱՅԱՍՏԱՆ - ԽՈՐՎԱԹԻԱ</p>
             </div>
+            <div className='MobilePrice'>
+                <p>1500-3000 AMD</p>
+            </div>
             <div className='ExpectedEventLine' />
             <div className='ExpectedEventPrice'>
                 <p>1500-3000 AMD</p>

@@ -6,9 +6,8 @@
     display: flex;
     position: relative;
     cursor: pointer;
-    /* height: 300px; */
     max-width: 682px;
-    min-width: 400px;
+    min-width: 471px;
 }
 
 .ExpectedEventsDiv>img {
@@ -49,7 +48,7 @@
     right: 0;
     margin: auto;
     border-radius: 10px;
-    padding: 15px 0;
+    /* padding: 15px 0; */
 }
 
 
@@ -64,6 +63,7 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .dateAndLocation {
@@ -205,4 +205,127 @@
     font-weight: 700;
 }
 
-@media screen and (max-width: 762px) {}
+.MobilePrice {
+    display: flex;
+    justify-content: center;
+}
+
+.MobilePrice>p {
+    color: #FFCE00;
+    font-family: Montserrat;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+@media screen and (max-width: 1180px) {
+    .ExpectedEventPrice {
+        padding: 10px 20px;
+    }
+}
+
+@media screen and (max-width: 1135px) {
+    .eventName {
+        font-size: 18px;
+    }
+
+    .ExpectedEventsInfo {
+        width: 100%;
+    }
+
+    .dayDate>p {
+        font-size: 25px;
+    }
+
+    .dayDate {
+        width: 47px;
+        height: 47px;
+    }
+
+    .LocationDiv {
+        margin-left: 10px;
+    }
+
+    .expectTime {
+        font-size: 20px;
+    }
+
+    .expectedDate {
+        margin-right: 10px;
+    }
+
+    .ExpectedEventInfo {
+        gap: 0px;
+        margin: 10px;
+    }
+
+    .button {
+        width: 130px;
+        padding: 7px;
+        font-size: 16px;
+    }
+}
+
+
+@media screen and (max-width: 1170px) {
+    .CardDiv {
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .ExpectedEventsDiv {
+        min-width: 100%;
+        /* width: 375px !important; */
+        height: 298px !important;
+    }
+
+    .dateAndLocation {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .expectedDateP {
+        margin: 0;
+    }
+
+    .LocationDiv {
+        margin: 0;
+        margin-top: 10px;
+    }
+
+    .eventName {
+        text-align: center;
+    }
+
+    .eventType {
+        text-align: center;
+    }
+
+
+    .ExpectedEventPrice>p {
+        display: none;
+    }
+
+    .ExpectedEventPrice {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .ExpectedEventsInfo {
+        padding: 15px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .eventName {
+        font-size: 13px;
+    }
+}

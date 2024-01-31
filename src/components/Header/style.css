@@ -19,6 +19,7 @@
 .Logo {
     width: 124px;
     height: 51px;
+    cursor: pointer;
 }
 
 .LineHeader {

@@ -20,7 +20,6 @@ export const TopEvents = ({
     const { t } = useTranslation();
     const [languageData, setLanguageData] = useState({ title: '', location: '', categorName: '', hall })
     const { language } = useSelector((st) => st.StaticReducer)
-    console.log(id, 'id')
     useEffect(() => {
         let item = { ...languageData }
         if (language === 'am') {

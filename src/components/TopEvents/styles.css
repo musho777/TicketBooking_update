@@ -1,7 +1,7 @@
 .TopEvents {
     border-radius: 10px;
     background: #DCDCDC;
-    padding: 7px;
+    padding: 10px 7px;
     display: flex;
     position: relative;
     min-width: 260px;
@@ -38,7 +38,7 @@
     background: linear-gradient(180deg, #24005C 0%, rgba(36, 0, 92, 0.00) 100%);
     backdrop-filter: blur(9.550000190734863px);
     width: calc(100% - 14px);
-    height: calc(100% - 14px);
+    height: calc(100% - 20px);
     top: 0;
     left: 0;
     bottom: 0;

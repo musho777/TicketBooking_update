@@ -7,7 +7,7 @@ import { ALLEvents } from '../../components/AllEvents'
 import { useDispatch, useSelector } from 'react-redux'
 import { CardSlider } from '../../components/CardSlider'
 import { SearchEvent } from '../../components/SearchEvent'
-import { BuyTicketFromParonyan, GetAllAds, GetGenerealEvents, GetParoninaSinglHallSeats, GetParonyanEvents } from '../../services/action/action'
+import { BuyTicketFromParonyan, GetAllAds, GetGenerealEvents, GetParoninaSinglHallSeats, GetParonyanEvents, WeekEvetntApi } from '../../services/action/action'
 import { HP85 } from '../../components/Halls/HP85'
 import { CartPopup } from '../../components/popup/cart'
 import { MD5 } from 'crypto-js'
@@ -154,6 +154,7 @@ export const Main = () => {
         dispatch(GetAllAds())
         dispatch(GetParonyanEvents())
         dispatch(GetParoninaSinglHallSeats())
+        dispatch(WeekEvetntApi())
         // dispatch(BuyTickets())
     }, [])
         ;
@@ -168,13 +169,6 @@ export const Main = () => {
     return (
 
         <div className='mainPage'>
-            {/* <CartPopup
-                open={true}
-                type='openBuy'
-                setOpen={{}}
-            >
-                <BuyNow />
-            </CartPopup > */}
             <div className='container'>
                 <Carusel />
                 <TopEventsComponent />
@@ -182,7 +176,7 @@ export const Main = () => {
             <WeekEvents />
             <div className='container'>
                 <ALLEvents />
-                {/* <ExpectedEvents /> */}
+                <ExpectedEvents />
             </div>
         </div>
     )

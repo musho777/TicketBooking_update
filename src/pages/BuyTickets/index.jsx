@@ -26,8 +26,6 @@ export const BuyTickets = () => {
     const tickets = useSelector((st) => st.tiketsForBuy)
     const [total, setTotal] = useState(0)
 
-    console.log(tickets, 'tickets')
-
     const handleZoomOut = () => {
         setScale(scale / 1.2);
     };
@@ -66,7 +64,6 @@ export const BuyTickets = () => {
         setData(item)
     }, [language, getSinglPage])
 
-    console.log(getSinglPage.events.event?.sessions[0].date, 'getSinglPage')
 
     function truncateText(text) {
         if (text?.length > 13) {
@@ -128,7 +125,6 @@ export const BuyTickets = () => {
                     <div className='TicketBody'>
                         {
                             tickets?.tickets?.map((elm, i) => {
-                                console.log(elm.row)
                                 return <div className='TikcetsWrapper'>
                                     <div className='TicketDiv'>
                                         <div className='TicketInfoo'>

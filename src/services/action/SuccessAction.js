@@ -97,3 +97,9 @@ export const SuccessCreatTicket = (data) => {
         data
     }
 }
+export const SuccessWeekEvent = (data) => {
+    return {
+        type: "SuccessWeekEvent",
+        data
+    }
+}

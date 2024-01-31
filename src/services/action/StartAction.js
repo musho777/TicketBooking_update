@@ -57,3 +57,9 @@ export const StartCreatTicket = () => {
         type: 'StartCreatTicket'
     }
 }
+
+export const StartWeekEvents = () => {
+    return {
+        type: 'StartWeekEvents'
+    }
+}

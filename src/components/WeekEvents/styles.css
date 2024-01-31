@@ -7,6 +7,7 @@
     gap: 30px;
     max-height: 185px;
     cursor: pointer;
+    min-width: 400px;
 }
 
 .WeekCard:hover .WeekcardLine {
@@ -21,6 +22,9 @@
     display: none;
 }
 
+.WeekcardLineSvgM {
+    display: none;
+}
 
 .WeekCardImg {
     padding: 10px 0;
@@ -106,4 +110,48 @@
     font-style: normal;
     font-weight: 700;
     line-height: 30px;
+}
+
+@media screen and (max-width: 768px) {
+    .WeekCard {
+        min-width: 312px;
+    }
+
+    .WeekCardImg>img {
+        width: 108px;
+        height: 127px;
+    }
+
+    .WeekcardIfnoTitle {
+        font-size: 16px;
+    }
+
+    .WeekCardDate {
+        font-size: 16px;
+    }
+
+    .WeekCard {
+        gap: 20px;
+    }
+
+    .WeekcardLine {
+        background-size: 100% 34px;
+    }
+
+    .WeekcardLineSvgM {
+        display: none;
+    }
+
+    .WeekcardLineSvg {
+        display: none;
+    }
+
+    .WeekCard:hover .WeekcardLineSvgM {
+        display: block;
+    }
+
+    .WeekCard:hover .WeekcardLineSvg {
+        display: none;
+    }
+
 }

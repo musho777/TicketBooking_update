@@ -152,14 +152,12 @@ export const BuyNow = () => {
             item.phonNumber = 'error'
         }
         else if (number.length < 11) {
-            console.log(number.length)
             item.phonNumber = 'error'
         }
         else if (number) {
             item.phonNumber = ''
         }
         if (!ValidateEmail(email)) {
-            console.log('email')
             item.email = 'error'
         }
         else if (ValidateEmail(email)) {

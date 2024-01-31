@@ -54,3 +54,9 @@ export const ErrorCreatTicket = () => {
         type: 'ErrorCreatTicket'
     }
 }
+
+export const ErrorWeekEvents = () => {
+    return {
+        type: "ErrorWeekEvents"
+    }
+}

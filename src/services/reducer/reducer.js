@@ -16,6 +16,7 @@ import { StatusReducer } from './StatusReducer'
 import { ByTicketDateReducer } from './ByTicketDateReducer'
 import { GetTelReducerStatus } from './GetTelReducerStatus'
 import { CreatTicketReducer } from './CreatTicketReducer'
+import { GetWeekEventReducer } from './GetWeekEventReducer'
 
 export default combineReducers({
     Ticket_reducer,
@@ -35,4 +36,5 @@ export default combineReducers({
     byTicketDate: ByTicketDateReducer,
     getTell: GetTelReducerStatus,
     creatTicket: CreatTicketReducer,
+    getWeekEvent: GetWeekEventReducer,
 })

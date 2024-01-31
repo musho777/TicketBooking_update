@@ -21,7 +21,6 @@ export const TopEventsComponent = () => {
         <div className="TopEventWrapper">
             {
                 topEvents?.events.length > 0 && topEvents?.events.map((elm, i) => {
-                    console.log(elm)
                     const dateObject = new Date(elm.sessions[0]?.date);
                     let day = dateObject.getDate();
                     let month = dateObject.getMonth() + 1;

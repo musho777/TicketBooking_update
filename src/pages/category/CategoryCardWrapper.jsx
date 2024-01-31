@@ -8,7 +8,6 @@ export const CategoryCardWrapper = ({ data }) => {
         <div className="TopEventWrapper">
             {
                 data.events.sessions?.length > 0 && data?.events?.sessions?.map((elm, i) => {
-                    console.log(elm.eventId._id)
                     const dateObject = new Date(elm?.date);
                     let day = dateObject.getDate();
                     let month = dateObject.getMonth() + 1;
