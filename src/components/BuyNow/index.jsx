@@ -102,7 +102,7 @@ export const BuyNow = () => {
 
         }
         else if (language === 'ru') {
-            setTitle(getSinglPage.events.event.title_ru)
+            setTitle(getSinglPage.events.event?.title_ru)
 
         }
     }, [language, getSinglPage])

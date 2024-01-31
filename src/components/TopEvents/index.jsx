@@ -14,6 +14,11 @@ export const TopEventsComponent = () => {
         dispatch(GetTopEvents())
     }, [])
 
+    var months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     return <div>
         <div className='EventTitle'>
             <h2>{t('TopEvents')}</h2>
@@ -23,16 +28,11 @@ export const TopEventsComponent = () => {
                 topEvents?.events.length > 0 && topEvents?.events.map((elm, i) => {
                     const dateObject = new Date(elm.sessions[0]?.date);
                     let day = dateObject.getDate();
-                    let month = dateObject.getMonth() + 1;
-                    if (day <= 9) {
-                        day = `0${day}`
-                    }
-                    if (month <= 9) {
-                        month = `0${month}`
-                    }
-
+                    let month = dateObject.getMonth();
+                    var currentDayOfWeek = daysOfWeek[dateObject.getDay()];
                     return <TopEvents
                         key={i}
+                        day={day}
                         id={elm?._id}
                         image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
                         title={elm.title}
@@ -41,6 +41,9 @@ export const TopEventsComponent = () => {
                         location_en={elm?.sessions[0]?.hallId?.location_en}
                         location_ru={elm?.sessions[0]?.hallId?.location_ru}
                         data={elm}
+                        time={elm?.sessions[0]?.time}
+                        months={months[month]}
+                        currentDayOfWeek={currentDayOfWeek}
                         price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
                     />
                 })}

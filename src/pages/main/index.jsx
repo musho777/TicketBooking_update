@@ -23,7 +23,7 @@ export const Main = () => {
     const { t } = useTranslation()
     const topEvents = useSelector((st) => st.topEvents)
     const general = useSelector((st) => st.general)
-    const { getAds } = useSelector((st) => st)
+
 
     const BuyTickets = () => {
 
@@ -148,11 +148,9 @@ export const Main = () => {
 
 
 
-
     useEffect(() => {
         dispatch(GetGenerealEvents())
         dispatch(GetAllAds())
-        dispatch(GetParonyanEvents())
         dispatch(GetParoninaSinglHallSeats())
         dispatch(WeekEvetntApi())
         // dispatch(BuyTickets())

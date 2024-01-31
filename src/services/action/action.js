@@ -1,7 +1,7 @@
 import axios from "axios"
-import { StartCreatTicket, StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetRadnomEvents, StartGetSinglPage, StartGetTelStatus, StartSearch, StartSubCategory, StartWeekEvents } from "./StartAction"
+import { StartCreatTicket, StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetParonyanEvents, StartGetRadnomEvents, StartGetSinglPage, StartGetTelStatus, StartSearch, StartSubCategory, StartWeekEvents } from "./StartAction"
 import { ErrorCreatTicket, ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTelStatus, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage, ErrorWeekEvents } from "./ErrorAction"
-import { SuccessCreatTicket, SuccessGetAllAds, SuccessGetCategoris, SuccessGetCategory, SuccessGetEventValidity, SuccessGetFeedback, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTellStatus, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage, SuccessWeekEvent, eventValidity } from "./SuccessAction"
+import { SuccessCreatTicket, SuccessGetAllAds, SuccessGetCategoris, SuccessGetCategory, SuccessGetEventValidity, SuccessGetFeedback, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetParonyanEvetns, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTellStatus, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage, SuccessWeekEvent, eventValidity } from "./SuccessAction"
 import { MD5 } from "crypto-js";
 
 
@@ -73,7 +73,6 @@ export const GetSinglPage = (id) => {
     return (dispatch) => {
         dispatch(StartGetSinglPage())
         axios.get(`${process.env.REACT_APP_HOSTNAME}/singleEvent/${id}`).then((r) => {
-            console.log(r.data)
             if (r.data.success) {
                 dispatch(SuccessSinglPage(r.data))
             } else {
@@ -81,7 +80,6 @@ export const GetSinglPage = (id) => {
             }
         })
             .catch((error) => {
-                console.log(error, 'error')
                 dispatch(ErrorSinglPage())
             })
     }
@@ -120,7 +118,6 @@ export const GetAllEvents = (page, data) => {
         dispatch(StartGetCategoris())
         axios.post(`${process.env.REACT_APP_HOSTNAME}/filterEvents?currentPage=${page}`, data).then((r) => {
             if (r.data.success) {
-                console.log(r.data)
                 dispatch(SuccessGetCategoris(r.data))
             }
             else {
@@ -333,8 +330,11 @@ export const GetParonyanEvents = () => {
         data: { ...sortedParams },
     };
     return async (dispatch) => {
+        dispatch(StartGetParonyanEvents())
+
         const response = await axios(options)
-        console.log(response.data)
+        console.log(response, 'response')
+        dispatch(SuccessGetParonyanEvetns(response.data))
     }
 }
 
@@ -344,8 +344,8 @@ export const GetParoninaSinglHallSeats = () => {
     const requestType = "getRow";
     const params = {
         group_id: "12",
-        timeline_id: "6750",
-        event_id: "92",
+        timeline_id: "6929",
+        event_id: "97",
     };
     const sortedParams = Object.fromEntries(Object.entries(params).sort());
     sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
@@ -363,6 +363,34 @@ export const GetParoninaSinglHallSeats = () => {
     return async (dispatch) => {
         const response = await axios(options)
         console.log(response, 'response')
+    }
+}
+
+export const GetSinglParonyan = () => {
+    const keys = "hYDepOnSarMi";
+    const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
+    const requestType = "getEvent";
+    const params = {
+        group_id: "12",
+        timeline_id: "6929",
+        event_id: "97",
+    };
+    const sortedParams = Object.fromEntries(Object.entries(params).sort());
+    sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
+
+    const options = {
+        method: 'POST',
+        url: `https://api.haytoms.am/sync/${secretKey}/${requestType}`,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        data: JSON.stringify(sortedParams),
+    };
+
+    return async (dispatch) => {
+        const response = await axios(options)
+        console.log(response, 'resp2onse')
     }
 }
 
@@ -417,7 +445,6 @@ export const WeekEvetntApi = () => {
         dispatch(StartWeekEvents())
         axios.get(`${process.env.REACT_APP_HOSTNAME}/getEventsOfTheWeek`).then((r) => {
             if (r.data.success) {
-                console.log(r, '21111')
                 dispatch(SuccessWeekEvent(r.data.weeklyEvents))
             }
             else {

@@ -31,7 +31,6 @@ export const ZoomMap = ({ scale, event, getSinglPage }) => {
     }
 
     useEffect(() => {
-        console.log(scale)
         if (scale == 1.2) {
             setPading(120)
         }

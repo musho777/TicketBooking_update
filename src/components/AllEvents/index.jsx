@@ -3,17 +3,27 @@ import { useEffect } from "react"
 import { EachTicket } from "../EachTicket"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { GetRandomEvents } from "../../services/action/action"
-import { Button } from '../Button'
+import { GetParonyanEvents, GetRandomEvents } from "../../services/action/action"
 import { ShowAllButton } from '../Button/ShowAllButton'
+import { useNavigate } from 'react-router-dom'
+import { SuccessSinglPage } from '../../services/action/SuccessAction'
 
 export const ALLEvents = () => {
     const dispatch = useDispatch()
     const { t } = useTranslation()
     const events = useSelector((st) => st.getRandomEvents)
+    const { paronyanEvents } = useSelector((st) => st)
+    const navigation = useNavigate()
+
     useEffect(() => {
         dispatch(GetRandomEvents(1))
+        dispatch(GetParonyanEvents())
     }, [dispatch])
+
+    const handleRemoveDiv = () => {
+        const divContent = document.querySelector('.hy_timeline')?.textContent;
+        return divContent
+    };
     return (
         <div>
             <div className='EventTitle'>
@@ -34,11 +44,51 @@ export const ALLEvents = () => {
                         <EachTicket
                             key={i}
                             id={elm?._id}
-                            data={elm}
+                            // data={elm}
+                            onClick={() => window.location = `/Single/${elm?._id}`}
+                            location={elm?.sessions[0]?.hallId?.location}
+                            location_en={elm?.sessions[0]?.hallId?.location_en}
+                            location_ru={elm?.sessions[0]?.hallId?.location_ru}
+                            title={elm?.title}
+                            title_ru={elm?.title_ru}
+                            title_en={elm?.title_en}
+                            category_en={elm?.category.name_en}
+                            category_ru={elm?.category.name_ru}
+                            category={elm?.category.name}
+                            time={elm?.sessions[0]?.time}
+                            image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
                             date={`${day}-${month}-${dateObject.getFullYear()}, ${elm.sessions[0]?.time}`}
                             price={`${elm?.sessions[0]?.priceStart} - ${elm?.sessions[0]?.priceEnd} AMD`}
                         />
                     )
+                })}
+                {paronyanEvents?.events?.result?.map((elm, i) => {
+                    return <EachTicket
+                        key={i}
+                        location={elm?.group_name}
+                        location_en={'H. Paronyan State Theater'}
+                        location_ru={'A.Государственный театр Пароняна'}
+                        title={elm?.name}
+                        onClick={() => {
+                            dispatch(SuccessSinglPage({
+                                location: elm?.group_name,
+                                location_en: 'H. Paronyan State Theater',
+                                location_ru: 'A.Государственный театр Пароняна',
+                                title: elm?.name,
+                                title_ru: elm?.name,
+                                title_en: elm?.name,
+                                date: elm.time.replace(/<div[^>]*>|<\/div>|<br>/g, ''),
+                                image: elm.img,
+                                id: elm?.id
+                            }))
+                            navigation(`/Single/paronyan${elm?.id}`)
+                        }}
+                        title_ru={elm?.name}
+                        title_en={elm?.name}
+                        date={elm.time.replace(/<div[^>]*>|<\/div>|<br>/g, '')}
+                        image={elm.img}
+                        price={``}
+                    />
                 })}
             </div>
             <div className="ShowAllButtonWrappr">

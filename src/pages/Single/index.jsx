@@ -1,53 +1,66 @@
 import './styles.css'
 import { useEffect, useState } from 'react'
 import { PuffLoader } from 'react-spinners'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation, } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { BuyNow } from '../../components/BuyNow'
 import { Button } from '../../components/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { CartPopup } from '../../components/popup/cart'
 import { CardSlider } from '../../components/CardSlider'
-import { GetSinglPage } from '../../services/action/action'
+import { GetSinglPage, GetSinglParonyan } from '../../services/action/action'
 import AramKhachatryan from '../../components/photoMap/AramKhachatryanHall'
 import PhotoCoordinatesByColor from '../../components/photoMap'
 import KarenDemerchyanMec from '../../components/photoMap/Karendemrjyanmec'
 import { Hall } from '../../components/photoMap/Hall'
 import { LocationSvg } from '../../components/svg'
 import { TopEvents } from '../../components/TopEvents/TopEvents'
+import { Card } from './card'
 
 export const Single = () => {
     const dispatch = useDispatch()
+    const location = useLocation();
     const { id } = useParams()
     const { t } = useTranslation();
     const getSinglPage = useSelector((st) => st.getSinglPage)
     const { language } = useSelector((st) => st.StaticReducer)
     let { event } = getSinglPage?.events
     let { recomended } = getSinglPage?.events
+
     const [openPopUp, setOpenPopUp] = useState(false)
     const [openBuy, setOpenBuy] = useState(false)
     const tickets = useSelector((st) => st.tiketsForBuy)
-    const [languageData, setLanguageData] = useState({ title: '', description: '' })
+    const [languageData, setLanguageData] = useState({ title: '', description: '', hall: '' })
+    const [paronyan, setParonyan] = useState('')
     useEffect(() => {
-        dispatch(GetSinglPage(id))
+        dispatch(GetSinglParonyan())
+        const includesParonyan = location.pathname.includes('paronyan')
+        setParonyan(includesParonyan)
+        if (!includesParonyan) {
+            dispatch(GetSinglPage(id))
+        }
     }, [])
     const [date, setDate] = useState()
 
-
+    console.log(getSinglPage.events
+        , 'getSinglPage')
     useEffect(() => {
         let item = { ...languageData }
         if (language === 'am') {
             item.title = event?.title
             item.description = event?.description
+            item.hall = event?.sessions[0]?.hallId.hall
         }
         else if (language === 'en') {
             item.title = event?.title_en
             item.description = event?.description_en
+            item.hall = event?.sessions[0]?.hallId.hall_en
+
         }
         else if (language === 'ru') {
             item.title = event?.title_ru
             item.description = event?.description_ru
-
+            item.hall = event?.sessions[0].hallId.hall_ru
         }
         setLanguageData(item)
     }, [language, event])
@@ -76,53 +89,34 @@ export const Single = () => {
     }
     return (
         <div id='singlPage' className='container'>
-            <div className='SinglCaruselItem'>
-                <div className='SinglBanerDiv' >
-                    <img className='SiglBanerImg2' src={require('../../assets/4.png')} />
-                    <div className='SinglBanerDivInfo'>
-                        <div className='SinglBanerPrimera'>
-                            <div className='SinglPrimera'>
-                                <p className='SinglPrimerap'>ՊՐԵՄԻԵՐԱ</p>
-                                <p className='SinglPrimeraDate'>ՀՈՒՆՎԱՐ 24 19։00</p>
-                            </div>
-                            <div className='SinglBanerLocation'>
-                                <LocationSvg />
-                                <p className='SinglBanerDivInfoPlace'>Arno Babajanyan Concert Hall</p>
-                            </div>
-                        </div>
-                        <div>
-                            <p className='SinglBanerTitle'>միխայիլ շուֆուտինսկի</p>
-                            <div className='SinglBanerTextDiv'>
-                                <p className='SinglBanerText'>ՀՈԲԵԼՅԱՆԱԿԱՆ ՀԱՄԵՐԳ</p>
-                            </div>
-                        </div>
-                        <div className='SinglBanerPrimeraMobile'>
-                            <div className='Primera'>
-                                <p className='Primerap'>ՊՐԵՄԻԵՐԱ</p>
-                                <p className='PrimeraDate'>ՀՈՒՆՎԱՐ 24 19։00</p>
-                            </div>
-                            <div className='BanerLocation'>
-                                <LocationSvg />
-                                <p className='BanerDivInfoPlace'>Arno Babajanyan Concert Hall</p>
-                            </div>
-                        </div>
-                        <div className='SinglPriceDiv'>
-                            <p className='SinglBanerPrice'>1500-2000 AMD</p>
-                            <div className='SinglBanerButton'>
-                                <Button
-                                    onClick={() => window.location = `/BuyTickets/${id}`}
-                                    title={t('BuyNew')} />
-                                <p>տեսնել ավելին</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <img
-                    className='SinglBanerImg'
-                    src={require('../../assets/4.png')}
-                    alt='#'
-                />
-            </div>
+            {!paronyan ? <Card
+                time={event?.sessions[0].time}
+                img={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`}
+                id={id}
+                data={event?.sessions[0].date.slice(0, 10)}
+                description={languageData.description}
+                title={languageData?.title}
+                priceEnd={`${event?.sessions[0].priceEnd} AMD`}
+                priceStart={`${event?.sessions[0].priceStart} -`}
+                hall={languageData.hall}
+                onClick={() => window.location = `/BuyTickets/${id}`}
+                largImage={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.largeImage}`
+
+                }
+            /> : <Card
+                time={''}
+                img={getSinglPage.events.image}
+                id={getSinglPage.events.id}
+                data={getSinglPage.events.date}
+                description={''}
+                title={getSinglPage.events.title}
+                priceEnd={''}
+                priceStart={''}
+                hall={getSinglPage.events.location}
+                largImage={getSinglPage.events.image}
+                onClick={() => window.location = `/BuyTickets/${id}`}
+            />
+            }
             <div>
                 {
                     recomended?.length > 0 &&

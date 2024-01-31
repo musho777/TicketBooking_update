@@ -63,3 +63,9 @@ export const StartWeekEvents = () => {
         type: 'StartWeekEvents'
     }
 }
+
+export const StartGetParonyanEvents = () => {
+    return {
+        type: 'StartGetParonyanEvents'
+    }
+}

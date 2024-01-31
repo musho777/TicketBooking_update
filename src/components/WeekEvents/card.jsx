@@ -21,7 +21,6 @@ export const WeekCard = ({
             return text;
         }
     }
-    console.log(date)
 
     useEffect(() => {
         let item = { ...languageData }
@@ -38,7 +37,6 @@ export const WeekCard = ({
             item.title = title_ru
             item.hall = hall_ru
         }
-        console.log(title, title_en, title_ru)
         setLanguageData(item)
     }, [language])
     return <div className='WeekCard'>

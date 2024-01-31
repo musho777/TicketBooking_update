@@ -103,3 +103,10 @@ export const SuccessWeekEvent = (data) => {
         data
     }
 }
+
+export const SuccessGetParonyanEvetns = (data) => {
+    return {
+        type: 'SuccessGetParonyanEvetns',
+        data
+    }
+} 

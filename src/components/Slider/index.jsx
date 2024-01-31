@@ -30,20 +30,22 @@ export const Carusel = () => {
         if (!item.length) {
             let title = ''
             let description = ''
+            let hall = ''
             general?.events?.length > 0 && general?.events?.map((elm, i) => {
+                console.log(elm, 'elm')
                 if (language === 'am') {
-                    title = elm.title
+                    title = elm.eventId.title
                     description = elm.eventId?.description
                 }
                 else if (language === 'en') {
-                    title = elm.title_en
+                    title = elm.eventId.title_en
                     description = elm.eventId?.description_en
                 }
                 else if (language === 'ru') {
-                    title = elm.title_ru
+                    title = elm.eventId.title_ru
                     description = elm.eventId?.description_ru
                 }
-                const dateObject = new Date(elm?.eventId?.date)
+                const dateObject = new Date(elm?.date)
                 let dayOfWeek = dateObject.getDate()
                 const year = dateObject.getFullYear()
                 let month = dateObject.getMonth() + 1
@@ -69,14 +71,14 @@ export const Carusel = () => {
                                 <div className='BanerPrimera'>
                                     <div className='Primera'>
                                         <p className='Primerap'>ՊՐԵՄԻԵՐԱ</p>
-                                        <p className='PrimeraDate'>ՀՈՒՆՎԱՐ 24 19։00</p>
+                                        <p className='PrimeraDate'>{month}-{dayOfWeek} {elm.time}</p>
                                     </div>
                                     <div className='BanerLocation'>
                                         <LocationSvg />
                                         <p className='BanerDivInfoPlace'>Arno Babajanyan Concert Hall</p>
                                     </div>
                                 </div>
-                                <p className='BanerTitle'>Նեոկլասիկայի Տիեզերքը</p>
+                                <p className='BanerTitle'>{title}</p>
                                 <div className='BanerPrimeraMobile'>
                                     <div className='Primera'>
                                         <p className='Primerap'>ՊՐԵՄԻԵՐԱ</p>
@@ -88,14 +90,11 @@ export const Carusel = () => {
                                     </div>
                                 </div>
                                 <div className='BanerTextDiv'>
-                                    <p className='BanerText'>Ժամանակից դուրս երաժշտություն, որը կարող են գնահատել բոլոր սերունդները.
-                                        այսպիսին է Տիգրան Բերկելյանի «Նեոկլասիկայի տիեզերքը» համերգը։
-                                        Հրավիրում ենք ձեզ Տիգրանի հետ միասին ճամփորդել դեպի
-                                        Նորին մեծություն երաժշտության աշխարհ:</p>
-                                    <p className='BanerText'>Լյուդովիկո Էյնաուդի, Հանս Ցիմեր, Մաքս Ռիխտեր, Օլավյուր Արնալդս, Էնյա</p>
+                                    <p className='BanerText'>{description}</p>
+                                    {/* <p className='BanerText'>Լյուդովիկո Էյնաուդի, Հանս Ցիմեր, Մաքս Ռիխտեր, Օլավյուր Արնալդս, Էնյա</p> */}
                                 </div>
 
-                                <p className='BanerPrice'>1500-2000 AMD</p>
+                                <p className='BanerPrice'>{elm.priceStart}-{elm.priceEnd} AMD</p>
                                 <div className='BanerButton'>
                                     <Button title={t('BuyNew')} />
                                     <p>տեսնել ավելին</p>

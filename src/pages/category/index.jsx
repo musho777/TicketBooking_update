@@ -13,7 +13,7 @@ import { MultySelect } from '../../components/MultySelect'
 import { CategoryMenu } from '../../components/CategoryMenu'
 import { CategoryTicket } from '../../components/CategoryTicket'
 import { CalendarSvg, FilterSvg, MFilter, MultysElectSvg } from '../../components/svg'
-import { GetAllEvents, GetHall, OpenCaldendar, OpenCategoryMenu, SubCategory } from '../../services/action/action'
+import { GetAllEvents, GetHall, GetParonyanEvents, OpenCaldendar, OpenCategoryMenu, SubCategory } from '../../services/action/action'
 import { Calendar } from '../../components/Calendar'
 import { TopEvents } from '../../components/TopEvents/TopEvents'
 import { WeekEvents } from '../../components/WeekEvents'
@@ -42,7 +42,7 @@ export const Category = () => {
     const [date, setDate] = useState('')
     const [height, setHeight] = useState(false)
     const [baner, setBaner] = useState(<div></div>)
-
+    const { paronyanEvents } = useSelector((st) => st)
     useEffect(() => {
         dispatch(GetHall())
     }, [])
@@ -68,6 +68,10 @@ export const Category = () => {
                 endDate
             }, hall: hallId
         }))
+
+        if (id == '657b00c67a91070546630967') {
+            dispatch(GetParonyanEvents())
+        }
     }, [selectedDate, id, subcategoryId, page, hallId])
 
     useEffect(() => {
@@ -329,7 +333,7 @@ export const Category = () => {
 
                     </div>
                 </div>
-                <CategoryCardWrapper data={events} />
+                <CategoryCardWrapper paronyan={id == '657b00c67a91070546630967' ? paronyanEvents.events?.result : []} data={events} />
             </div>
         </div>
     )
