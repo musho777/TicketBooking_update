@@ -1,23 +1,32 @@
 import { useEffect, useState } from 'react';
-import { CalendarSvg, ClearSvg, LocationSvg, LocationSvg1, Restart } from '../../components/svg'
+import { CalendarSvg, CalendarSvg1, ClearSvg, LocationSvg, LocationSvg1, Restart } from '../../components/svg'
 import { ZoomMap } from '../../components/ZoomMap/ZoomMap'
 import './styles.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { TopEvents } from '../../components/TopEvents/TopEvents';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { GetSinglPage } from '../../services/action/action';
+import { GetSinglPage, RemoveTicketsAction } from '../../services/action/action';
+import { CartPopup } from '../../components/popup/cart';
+import { BuyNow } from '../../components/BuyNow';
 export const BuyTickets = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
     const { t } = useTranslation();
     const getSinglPage = useSelector((st) => st.getSinglPage)
     let { recomended } = getSinglPage?.events
-
+    const { language } = useSelector((st) => st.StaticReducer)
+    const [data, setData] = useState({ name: '', description: '', hall: '' })
+    let { event } = getSinglPage?.events
+    const [open, setOpen] = useState(false)
     const [scale, setScale] = useState(1);
     const handleZoomIn = () => {
         setScale(scale * 1.2);
     };
+    const tickets = useSelector((st) => st.tiketsForBuy)
+    const [total, setTotal] = useState(0)
+
+    console.log(tickets, 'tickets')
 
     const handleZoomOut = () => {
         setScale(scale / 1.2);
@@ -25,9 +34,55 @@ export const BuyTickets = () => {
     useEffect(() => {
         dispatch(GetSinglPage(id))
     }, [])
+    useEffect(() => {
+        let price = 0
+        tickets.tickets?.map((elm, i) => {
+            price += +elm.price
+        })
+        setTotal(price)
+    }, [tickets])
+
+    useEffect(() => {
+        let item = { ...data }
+
+        if (language === 'am') {
+            item.name = getSinglPage?.events?.event?.title
+            item.description = getSinglPage.events.event?.description
+            item.hall = getSinglPage.events.event?.sessions[0]?.hallId.hall
+        }
+        else if (language === 'ru') {
+            item.name = getSinglPage.events.event?.title_ru
+            item.description = getSinglPage.events.event?.description_ru
+            item.hall = getSinglPage.events.event?.sessions[0]?.hallId.hall_ru
 
 
+
+        }
+        else if (language === 'en') {
+            item.name = getSinglPage.events.event?.title_en
+            item.description = getSinglPage.events.event?.description_en
+            item.hall = getSinglPage.events.event?.sessions[0]?.hallId.hall_en
+        }
+        setData(item)
+    }, [language, getSinglPage])
+
+    console.log(getSinglPage.events.event?.sessions[0].date, 'getSinglPage')
+
+    function truncateText(text) {
+        if (text?.length > 13) {
+            return text.substring(0, 10) + '...';
+        } else {
+            return text;
+        }
+    }
     return <div className='container'>
+        <CartPopup
+            open={open}
+            type='openBuy'
+            setOpen={() => setOpen(false)}
+        >
+            <BuyNow />
+        </CartPopup >
         <div className='BuyTicketsWrapper'>
             <div className='HallWrapper'>
                 <div className="zoom-controls">
@@ -38,27 +93,30 @@ export const BuyTickets = () => {
                     </button>
                 </div>
                 <div className='Hall'>
-                    <ZoomMap setScale={(e) => setScale(e)} scale={scale} handleZoomIn={() => handleZoomOut()} handleZoomOut={() => handleZoomOut} />
+                    <ZoomMap
+                        event={event}
+                        setScale={(e) => setScale(e)} scale={scale}
+                        getSinglPage={getSinglPage}
+                    />
                 </div>
             </div>
             <div className='BuyTicketsCardWrapper'>
                 <div className='BuyTicketsCard'>
-                    <img src={require('../../assets/4.png')} />
+                    <img src={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`} />
                     <div className='BuyTicketsCardInfo'>
                         <div>
-                            <p className='BuyTicketTitle'>միխայիլ շուֆուտինսկի</p>
-                            <p className='BuyTickeDescription'>հոբելյանական համերգ</p>
+                            <p className='BuyTicketTitle'>{data.name}</p>
+                            <p className='BuyTickeDescription'>{truncateText(data.description)}</p>
                         </div>
                         <div className='BuyTicketDate'>
-                            <CalendarSvg />
-                            <p className='BuyTicketDateMonth'>17 Հունվար </p>
+                            <CalendarSvg1 />
+                            <p className='BuyTicketDateMonth'>{new Date(getSinglPage.events.event?.sessions[0].date).getDate()}.{new Date(getSinglPage.events.event?.sessions[0].date).getMonth() + 1}.{new Date(getSinglPage.events.event?.sessions[0].date).getFullYear()} </p>
                             <div></div>
-                            <p className='BuyTicketDateTime'>19:00</p>
+                            <p className='BuyTicketDateTime'>{getSinglPage.events.event?.sessions[0].time}</p>
                         </div>
                         <div className='BuyTicketDateLocation'>
                             <LocationSvg1 />
-                            <p>Կարեն Դեմիրճյանի անվան
-                                մարզահամերգային համալիր</p>
+                            <p>{data.hall}</p>
                         </div>
                     </div>
                 </div>
@@ -68,29 +126,36 @@ export const BuyTickets = () => {
                         <p>Գինը</p>
                     </div>
                     <div className='TicketBody'>
-                        <div className='TikcetsWrapper'>
-                            <div className='TicketDiv'>
-                                <div className='TicketInfoo'>
-                                    <p>Պարտեր</p>
-                                    <div>
-                                        <p>Շարք: 9</p>
-                                        <p>Տեղ: 7</p>
+                        {
+                            tickets?.tickets?.map((elm, i) => {
+                                console.log(elm.row)
+                                return <div className='TikcetsWrapper'>
+                                    <div className='TicketDiv'>
+                                        <div className='TicketInfoo'>
+                                            <p>{elm?.parterre && t('Parterre')} {elm?.lodge && t('Lodge')} {elm?.amphitheater && t('Amphitheater')} {elm?.stage && 'Stage'}</p>
+                                            <div>
+                                                <p>{t('Line')}: {elm.row}</p>
+                                                <p>{t('Place')}: {elm.seat}</p>
+                                            </div>
+                                        </div>
+                                        <p className='TicketPrcie'>{elm.price} AMD</p>
+                                        <div className='ClewarTicet' onClick={() => dispatch(RemoveTicketsAction(elm))}>
+                                            <ClearSvg />
+                                        </div>
                                     </div>
                                 </div>
-                                <p className='TicketPrcie'>7000 AMD</p>
-                                <div className='ClewarTicet'>
-                                    <ClearSvg />
-                                </div>
-                            </div>
-                        </div>
+                            })
+                        }
+
+
                         <div className='TotalPrice'>
                             <p className='Totalp'>ԸՆԴԱՄԵՆԸ</p>
-                            <p className='ToatalPricep'>7000 AMD</p>
+                            <p className='ToatalPricep'>{total} AMD</p>
                         </div>
                         <div className='totalLine' />
-                        <div className='BuyTicketButtonWrapper'>
-                            <button>Հաջորդ</button>
-                        </div>
+                        {tickets?.tickets?.length && <div className='BuyTicketButtonWrapper'>
+                            <button onClick={() => setOpen(true)}>Հաջորդ</button>
+                        </div>}
                     </div>
                 </div>
             </div>
@@ -105,7 +170,7 @@ export const BuyTickets = () => {
                             return <TopEvents
                                 key={i}
                                 image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
-                                title={elm.title}
+                                title={elm?.title}
                                 category={elm.category}
                                 location={elm?.sessions[0]?.hallId?.location}
                                 location_en={elm?.sessions[0]?.hallId?.location_en}
@@ -118,5 +183,5 @@ export const BuyTickets = () => {
                 </div>
             }
         </div>
-    </div>
+    </div >
 }

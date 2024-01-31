@@ -63,8 +63,6 @@ export const Main = () => {
             ]
         });
 
-        console.log((sortedParams))
-
         const options = {
             method: 'POST',
             headers: {
@@ -124,7 +122,6 @@ export const Main = () => {
             ]
         });
 
-        console.log((sortedParams))
 
         const options = {
             method: 'POST',

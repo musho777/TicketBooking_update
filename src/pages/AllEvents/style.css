@@ -69,15 +69,15 @@
 }
 
 .rdrInRange {
-    color: #333 !important;
+    color: #24005C !important;
 }
 
 .rdrStartEdge {
-    color: #333 !important;
+    color: #24005C !important;
 }
 
 .rdrEndEdge {
-    color: #333 !important;
+    color: #24005C !important;
 }
 
 .DataPickerDiv {
@@ -150,11 +150,11 @@
 }
 
 .MultyselectItemCategory>div:hover {
-    background: #FEE827;
+    background: #24005C;
 }
 
 .css-19micn4-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
-    background-color: #FEE827 !important;
+    background-color: #24005C !important;
 }
 
 @media screen and (max-width: 768px) {
@@ -203,6 +203,9 @@
 
 .rdrCalendarWrapper {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: #DED9E7 !important;
+    border: 1px solid #24005C !important;
+    border-radius: 10px;
 }
 
 .FilterWrapperCalendar {

@@ -30,11 +30,18 @@
 
 .FilterDiv {
     display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
 }
 
-.FilterDiv div {
+.FilterDiv>div {
     width: 50%;
 }
+
+/* 
+.CalendarDiv {
+    width: 60% !important;
+} */
 
 .SubCategoryButton {
     color: #24005C;
@@ -79,9 +86,6 @@
     border: none;
 }
 
-.FilterDiv {
-    margin-top: 30px;
-}
 
 .FilterDivButton {
     gap: 10px;
@@ -90,7 +94,7 @@
     width: 50%;
 }
 
-.FilterDivButton>p {
+.FilterDivTitle {
     color: #24005C;
     font-family: "Montserrat arm";
     font-size: 16px;
@@ -103,4 +107,118 @@
     gap: 20px;
     flex-wrap: wrap;
     width: 100%;
+}
+
+.CalendarDivCalendar {
+    border-radius: 6px;
+    background: #DED9E7;
+    backdrop-filter: blur(9.649999618530273px);
+    width: 230px;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 999;
+    cursor: pointer;
+
+}
+
+.CalendarWrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.CalendarDiv {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.CalendarDiv>div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.CalendarDiV {
+    position: absolute;
+    top: 50px;
+    z-index: 1000;
+}
+
+.CalendarDivCalendaR {
+    position: absolute;
+    width: 100%;
+    height: 0px;
+    top: 40px;
+    background: #DED9E7;
+    backdrop-filter: blur(9.649999618530273px);
+    z-index: 9999 !important;
+    transition: 1000ms;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow-y: scroll;
+}
+
+.getCategoryDiv {
+    padding: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.getCategoryDiv:hover {
+    background-color: #aea6bd;
+}
+
+@media screen and (max-width: 1200px) {
+    .FilterDiv {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .CalendarDiv {
+        flex-direction: column;
+    }
+
+    .CalendarDiv>div {
+        width: 100%;
+    }
+
+    .CalendarDivCalendar {
+        width: 100%;
+    }
+
+    .FilterDiv>div {
+        width: 100%;
+    }
+
+    .CalendarWrapper>svg {
+        display: none;
+    }
+
+    .CategoryBaner>img {
+        height: 103px;
+    }
+
+    .CategoryBaner {
+        height: 103px;
+    }
+
+    .CategoryBanerFon p {
+        color: #FFF;
+
+        font-family: "Montserrat arm";
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 700;
+    }
 }

@@ -21,6 +21,7 @@ export const TopEventsComponent = () => {
         <div className="TopEventWrapper">
             {
                 topEvents?.events.length > 0 && topEvents?.events.map((elm, i) => {
+                    console.log(elm)
                     const dateObject = new Date(elm.sessions[0]?.date);
                     let day = dateObject.getDate();
                     let month = dateObject.getMonth() + 1;
@@ -30,11 +31,10 @@ export const TopEventsComponent = () => {
                     if (month <= 9) {
                         month = `0${month}`
                     }
-                    if (i == 0) {
-                        console.log(elm)
-                    }
+
                     return <TopEvents
                         key={i}
+                        id={elm?._id}
                         image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
                         title={elm.title}
                         category={elm.category}

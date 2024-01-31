@@ -73,6 +73,7 @@ export const GetSinglPage = (id) => {
     return (dispatch) => {
         dispatch(StartGetSinglPage())
         axios.get(`${process.env.REACT_APP_HOSTNAME}/singleEvent/${id}`).then((r) => {
+            console.log(r.data)
             if (r.data.success) {
                 dispatch(SuccessSinglPage(r.data))
             } else {
@@ -80,6 +81,7 @@ export const GetSinglPage = (id) => {
             }
         })
             .catch((error) => {
+                console.log(error, 'error')
                 dispatch(ErrorSinglPage())
             })
     }
@@ -118,6 +120,7 @@ export const GetAllEvents = (page, data) => {
         dispatch(StartGetCategoris())
         axios.post(`${process.env.REACT_APP_HOSTNAME}/filterEvents?currentPage=${page}`, data).then((r) => {
             if (r.data.success) {
+                console.log(r.data)
                 dispatch(SuccessGetCategoris(r.data))
             }
             else {

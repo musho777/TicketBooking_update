@@ -11,29 +11,36 @@ export const TopEvents = ({
     location_ru,
     data,
     price,
-    category
+    category,
+    hall,
+    hall_ru,
+    hall_en,
+    id
 }) => {
     const { t } = useTranslation();
-    const [languageData, setLanguageData] = useState({ title: '', location: '', categorName: '' })
+    const [languageData, setLanguageData] = useState({ title: '', location: '', categorName: '', hall })
     const { language } = useSelector((st) => st.StaticReducer)
-
+    console.log(id, 'id')
     useEffect(() => {
         let item = { ...languageData }
         if (language === 'am') {
             item.title = data?.title
             item.location = location
-            item.categorName = data.category.name
+            item.categorName = data.category?.name
+            item.hall = hall
         }
         else if (language === 'en') {
             item.title = data?.title_en
             item.location = location_en
-            item.categorName = data.category.name_en
+            item.categorName = data.category?.name_en
+            item.hall = hall_en
 
         }
         else if (language === 'ru') {
             item.title = data?.title_ru
             item.location = location_ru
-            item.categorName = data.category.name_ru
+            item.categorName = data.category?.name_ru
+            item.hall = hall_ru
         }
         setLanguageData(item)
     }, [language])
@@ -55,7 +62,7 @@ export const TopEvents = ({
                 <p className='TopEventsTime'>18։00</p>
             </div>
             <div>
-                <p className='TopEventsInfoPlace'>ԵՐԵՒԱՆԻ ՊԵՏԱԿԱՆ ՏԻԿՆԻԿԱՅԻՆ ԹԱՏՐՈՆ</p>
+                <p className='TopEventsInfoPlace'>{languageData.hall}</p>
             </div>
             <div className='TopEventsInfoLine' />
             <div className='TopEventsDiv'>
@@ -67,7 +74,10 @@ export const TopEvents = ({
             </div>
             <div className='TopEventsInfoLine2' />
             <div className='TopEventsButton'>
-                <Button title={t('BuyNow')} />
+                <Button
+
+                    onClick={() => window.location = `/BuyTickets/${id}`}
+                    title={t('BuyNow')} />
             </div>
         </div>
         <img src={image} />

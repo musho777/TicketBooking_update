@@ -29,7 +29,6 @@ export const Single = () => {
     const tickets = useSelector((st) => st.tiketsForBuy)
     const [languageData, setLanguageData] = useState({ title: '', description: '' })
     useEffect(() => {
-        window.scrollTo(0, 0)
         dispatch(GetSinglPage(id))
     }, [])
     const [date, setDate] = useState()

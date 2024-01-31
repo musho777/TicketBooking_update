@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/action'
 
-const AramKhachatryan = ({ secion, soldTickets, sessionID }) => {
+const AramKhachatryan = ({ secion, soldTickets, sessionID, pading }) => {
     const dispatch = useDispatch()
     const [coordinatesState, setCoordinatesState] = useState([])
     const [activeTicket, setActiveTicket] = useState({})
@@ -608,53 +608,52 @@ const AramKhachatryan = ({ secion, soldTickets, sessionID }) => {
 
     return (
 
-        <div className='hallWrapper'>
 
-            <div className='hall' >
-                <div >
-                    <img alt='' src={require('../../assets/hamalir7000.png')} />
-                    {coordinatesState.map((e, i) => {
-                        if (e.price && !e.sold)
-                            return <button
-                                key={i}
-                                onMouseOver={() => {
-                                    // getPrice(e.y, i, e.x, e.price, e.row)
-                                    getPrice(e.y, i, e.x, e.price, e.row, e.id)
+        <div >
+            <img
+                style={{ paddingTop: pading, paddingLeft: pading }}
+                className="zoomable-image"
+                alt='' src={require('../../assets/hamalir7000.png')} />
+            {coordinatesState.map((e, i) => {
+                if (e.price && !e.sold)
+                    return <button
+                        key={i}
+                        onMouseOver={() => {
+                            // getPrice(e.y, i, e.x, e.price, e.row)
+                            getPrice(e.y, i, e.x, e.price, e.row, e.id)
 
-                                    setActiveButton(i)
-                                }}
-                                style={
-                                    {
-                                        top: e?.y - 4,
-                                        left: e?.x - 4,
-                                        // backgroundColor: e.active && 'green'
-                                        backgroundColor: tickets.find((elm) => elm.seatId == e.id) && 'green'
+                            setActiveButton(i)
+                        }}
+                        style={
+                            {
+                                top: e?.y - 4,
+                                left: e?.x - 4,
+                                // backgroundColor: e.active && 'green'
+                                backgroundColor: tickets.find((elm) => elm.seatId == e.id) && 'green'
 
-                                    }
-                                }
-                                id='seatStyle'
-                                className={[
-                                    i == activeButton ? 'activeButton' : '',
-                                    e.active ? "addTicketButton" : '']}
-                                onMouseLeave={() => {
-                                    setShowModal(false)
-                                    setActiveButton(null)
-                                }}
-                                // onClick={() => addTicket(i)}
-                                onClick={() => addTicket(e.y, i, e.x, e.price, e.row, e.id)}
+                            }
+                        }
+                        id='seatStyle'
+                        className={[
+                            i == activeButton ? 'activeButton' : '',
+                            e.active ? "addTicketButton" : '']}
+                        onMouseLeave={() => {
+                            setShowModal(false)
+                            setActiveButton(null)
+                        }}
+                        // onClick={() => addTicket(i)}
+                        onClick={() => addTicket(e.y, i, e.x, e.price, e.row, e.id)}
 
-                            />
-                    })}
+                    />
+            })}
 
-                    {showModal &&
-                        <div style={{ top: position.y, left: position.x, position: 'absolute' }} className='parter'>
-                            <p className='Teatertext'>շարք {activeTicket.row}</p>
-                            <p className='Teatertext'>տեղ {activeTicket.seat}</p>
-                            <p className='Teatertext'> {activeTicket.price} դրամ</p>
-                        </div>
-                    }
+            {showModal &&
+                <div style={{ top: position.y, left: position.x, position: 'absolute' }} className='parter'>
+                    <p className='Teatertext'>շարք {activeTicket.row}</p>
+                    <p className='Teatertext'>տեղ {activeTicket.seat}</p>
+                    <p className='Teatertext'> {activeTicket.price} դրամ</p>
                 </div>
-            </div>
+            }
         </div>
     )
 }

@@ -94,7 +94,7 @@ export const BuyNow = () => {
 
     useEffect(() => {
         if (language === 'am') {
-            setTitle(getSinglPage.events.event.title)
+            setTitle(getSinglPage.events.event?.title)
         }
         else if (language === 'en') {
             setTitle(getSinglPage?.events?.event?.title_en)
@@ -152,12 +152,14 @@ export const BuyNow = () => {
             item.phonNumber = 'error'
         }
         else if (number.length < 11) {
+            console.log(number.length)
             item.phonNumber = 'error'
         }
         else if (number) {
             item.phonNumber = ''
         }
         if (!ValidateEmail(email)) {
+            console.log('email')
             item.email = 'error'
         }
         else if (ValidateEmail(email)) {
@@ -259,8 +261,8 @@ export const BuyNow = () => {
     return (
         <div className='BuyNow'>
             <div className='BuyNowHeader'>
-                <p className='BuyNowHeaderTitle'>միխայիլ շուֆուտինսկի</p>
-                <p className='BuyNowHeaderDate'> 17.01.2024 19:00</p>
+                <p className='BuyNowHeaderTitle'>{title}</p>
+                <p className='BuyNowHeaderDate'> {new Date(getSinglPage.events.event?.sessions[0].date).getDate()}.{new Date(getSinglPage.events.event?.sessions[0].date).getMonth() + 1}.{new Date(getSinglPage.events.event?.sessions[0].date).getFullYear()} {getSinglPage.events.event?.sessions[0].time}</p>
             </div>
             <div className='BuyNowBody'>
                 <p className='FreeDelivery'>{t('freeDelivery')}</p>
@@ -274,7 +276,7 @@ export const BuyNow = () => {
                             className='InputsBuy'
                             value={number}
                             placeholder={t('PhoneNumber')}
-                            onChange={phone => setNumber(phone)}
+                            onChange={e => setNumber(e.target.value)}
                             id={error.phonNumber != '' ? 'errorInut' : 'inout'}
                         />
                         <input

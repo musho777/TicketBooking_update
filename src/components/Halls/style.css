@@ -14,14 +14,6 @@
 }
 
 
-.hall {
-    display: flex;
-    gap: 30px;
-    width: 100%;
-    background: #c2beb4;
-    padding-bottom: 50px;
-}
-
 #hall {
     opacity: 0.4;
     width: 100%;

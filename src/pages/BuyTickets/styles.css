@@ -27,10 +27,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 40%;
 }
 
 .BuyTicketsCard>img {
     height: 180px;
+    width: 140px;
     border-radius: 5px;
 }
 
@@ -68,6 +70,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 5px;
 }
 
 .BuyTicketDateLocation>p {
@@ -148,6 +151,7 @@
     position: relative;
     border-radius: 5px;
     background: rgba(77, 207, 95, 0.30);
+    padding-left: 10px;
 }
 
 .TicketPrcie {
@@ -243,10 +247,12 @@
 }
 
 @media screen and (max-width: 768px) {
-    .BuyTicketsCard {}
-
     .BuyTicketsWrapper {
         flex-direction: column;
+    }
+
+    .HallWrapper {
+        width: 100%;
     }
 
     .BuyTicketsCard>img {
@@ -277,5 +283,21 @@
 
     .BuyTicketDateLocation>p {
         font-size: 11px;
+    }
+
+    .TicketsHeader>p {
+        font-size: 20px;
+    }
+
+    .TicketInfoo p {
+        font-size: 13px;
+    }
+
+    .TicketPrcie {
+        font-size: 13px;
+    }
+
+    .TicketInfoo>div {
+        gap: 5px;
     }
 }

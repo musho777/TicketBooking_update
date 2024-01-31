@@ -216,10 +216,7 @@ export const HP85 = ({ secion, eventId, soldTickets, sessionID }) => {
             elm.active = filteredSeats[0].active
         })
         setPoint(item)
-        console.log(item)
     }, [])
-
-    console.log(position)
 
     return <div className='hallWrapper'>
         <div className='hall' style={{ justifyContent: 'center', alignItems: 'center', height: '100%' }} >

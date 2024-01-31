@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/action'
 
-const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID }) => {
+const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading }) => {
     const dispatch = useDispatch()
     const [coordinatesState, setCoordinatesState] = useState([])
     const [activeTicket, setActiveTicket] = useState({})
@@ -1548,51 +1548,49 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID }) => {
     }, []);
 
     return (
-
-        <div className='hallWrapper'>
-            <div className='hall' >
-                <div >
-                    <img alt='' src={require('../../assets/AramKhachatryan.png')} />
-                    {coordinatesState.map((e, i) => {
-                        if (seansArr.find((e) => e.id == i)?.price) {
-                            if (soldTickets.findIndex((elm) => elm.id == e.id) < 0) {
-                                return <button
-                                    key={i}
-                                    onMouseOver={() => {
-                                        getPrice(e.y, i, e.x, e.parterre, e.amphitheater, e.lodge)
-                                        setActiveButton(i)
-                                    }}
-                                    style={
-                                        {
-                                            top: e?.y - 4,
-                                            left: e?.x - 4,
-                                            // backgroundColor: e.active && 'green'
-                                            backgroundColor: tickets.find((elm) => elm.seatId == e.id) && 'green'
-                                        }
-                                    }
-                                    id='seatStyle'
-                                    className={[
-                                        i == activeButton ? 'activeButton' : '',
-                                        e.active ? "addTicketButton" : '']}
-                                    onMouseLeave={() => {
-                                        setShowModal(false)
-                                        setActiveButton(null)
-                                    }}
-                                    onClick={() => addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)}
-                                />
+        <div >
+            <img
+                style={{ paddingTop: pading, paddingLeft: pading }}
+                className="zoomable-image"
+                alt='' src={require('../../assets/AramKhachatryan.png')} />
+            {coordinatesState.map((e, i) => {
+                if (seansArr.find((e) => e.id == i)?.price) {
+                    if (soldTickets.findIndex((elm) => elm.id == e.id) < 0) {
+                        return <button
+                            key={i}
+                            onMouseOver={() => {
+                                getPrice(e.y, i, e.x, e.parterre, e.amphitheater, e.lodge)
+                                setActiveButton(i)
+                            }}
+                            style={
+                                {
+                                    top: e?.y - 4,
+                                    left: e?.x - 4,
+                                    // backgroundColor: e.active && 'green'
+                                    backgroundColor: tickets.find((elm) => elm.seatId == e.id) && 'green'
+                                }
                             }
-                        }
-                    })}
-
-                    {showModal &&
-                        <div style={{ top: position.y, left: position.x, position: 'absolute' }} className='parter'>
-                            <p className='Teatertext'>շարք {activeTicket.row}</p>
-                            <p className='Teatertext'>տեղ {activeTicket.seat}</p>
-                            <p className='Teatertext'>{activeTicket.price} դրամ</p>
-                        </div>
+                            id='seatStyle'
+                            className={[
+                                i == activeButton ? 'activeButton' : '',
+                                e.active ? "addTicketButton" : '']}
+                            onMouseLeave={() => {
+                                setShowModal(false)
+                                setActiveButton(null)
+                            }}
+                            onClick={() => addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)}
+                        />
                     }
+                }
+            })}
+
+            {showModal &&
+                <div style={{ top: position.y, left: position.x, position: 'absolute' }} className='parter'>
+                    <p className='Teatertext'>շարք {activeTicket.row}</p>
+                    <p className='Teatertext'>տեղ {activeTicket.seat}</p>
+                    <p className='Teatertext'>{activeTicket.price} դրամ</p>
                 </div>
-            </div>
+            }
         </div>
     )
 }
