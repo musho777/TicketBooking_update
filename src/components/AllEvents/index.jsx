@@ -40,7 +40,7 @@ export const ALLEvents = () => {
                     if (month <= 9) {
                         month = `0${month}`
                     }
-                    if (elm?.sessions?.length > 0)
+                    if (elm?.sessions?.length > 0 && i < 8)
                         return (
 
                             <EachTicket
@@ -65,32 +65,33 @@ export const ALLEvents = () => {
                         )
                 })}
                 {paronyanEvents?.events?.result?.map((elm, i) => {
-                    return <EachTicket
-                        key={i}
-                        location={elm?.group_name}
-                        location_en={'H. Paronyan State Theater'}
-                        location_ru={'A.Государственный театр Пароняна'}
-                        title={elm?.name}
-                        onClick={() => {
-                            dispatch(SuccessSinglPage({
-                                location: elm?.group_name,
-                                location_en: 'H. Paronyan State Theater',
-                                location_ru: 'A.Государственный театр Пароняна',
-                                title: elm?.name,
-                                title_ru: elm?.name,
-                                title_en: elm?.name,
-                                date: elm.time.replace(/<div[^>]*>|<\/div>|<br>/g, ''),
-                                image: elm.img,
-                                id: elm?.id
-                            }))
-                            navigation(`/Single/paronyan${elm?.id}`)
-                        }}
-                        title_ru={elm?.name}
-                        title_en={elm?.name}
-                        date={elm.time.replace(/<div[^>]*>|<\/div>|<br>/g, '')}
-                        image={elm.img}
-                        price={``}
-                    />
+                    if (events?.events?.length < 8 && 8 - events?.events?.length > i)
+                        return <EachTicket
+                            key={i}
+                            location={elm?.group_name}
+                            location_en={'H. Paronyan State Theater'}
+                            location_ru={'A.Государственный театр Пароняна'}
+                            title={elm?.name}
+                            onClick={() => {
+                                dispatch(SuccessSinglPage({
+                                    location: elm?.group_name,
+                                    location_en: 'H. Paronyan State Theater',
+                                    location_ru: 'A.Государственный театр Пароняна',
+                                    title: elm?.name,
+                                    title_ru: elm?.name,
+                                    title_en: elm?.name,
+                                    date: elm.time.replace(/<div[^>]*>|<\/div>|<br>/g, ''),
+                                    image: elm.img,
+                                    id: elm?.id
+                                }))
+                                navigation(`/Single/paronyan${elm?.id}`)
+                            }}
+                            title_ru={elm?.name}
+                            title_en={elm?.name}
+                            date={elm.time.replace(/<div[^>]*>|<\/div>|<br>/g, '')}
+                            image={elm.img}
+                            price={``}
+                        />
                 })}
             </div>
             <div className="ShowAllButtonWrappr">

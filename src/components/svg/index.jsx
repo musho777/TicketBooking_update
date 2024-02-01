@@ -390,8 +390,9 @@ export const CheckSvg = ({ error }) => {
 
 }
 export const CheckedSvg = (error) => {
-    return <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="9" height="9" fill="#24005C" />
+    return <svg width="15" height="15" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect style={{ padding: 2 }} width="12" height="12" fill="#24005C" />
+
     </svg>
 
 

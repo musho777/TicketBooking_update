@@ -28,8 +28,15 @@ export const Single = () => {
     let { event } = getSinglPage?.events
     let { recomended } = getSinglPage?.events
 
+
+
     const [openPopUp, setOpenPopUp] = useState(false)
     const [openBuy, setOpenBuy] = useState(false)
+    var months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const tickets = useSelector((st) => st.tiketsForBuy)
     const [languageData, setLanguageData] = useState({ title: '', description: '', hall: '' })
     const [paronyan, setParonyan] = useState('')
@@ -42,9 +49,6 @@ export const Single = () => {
         }
     }, [])
     const [date, setDate] = useState()
-
-    console.log(getSinglPage.events
-        , 'getSinglPage')
     useEffect(() => {
         let item = { ...languageData }
         if (language === 'am') {
@@ -127,17 +131,26 @@ export const Single = () => {
                         <h2>{t('RecommendTickets')}</h2>
                         <div className='RecDiv'>
                             {recomended.map((elm, i) => {
-                                return <TopEvents
-                                    key={i}
-                                    image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
-                                    title={elm.title}
-                                    category={elm.category}
-                                    location={elm?.sessions[0]?.hallId?.location}
-                                    location_en={elm?.sessions[0]?.hallId?.location_en}
-                                    location_ru={elm?.sessions[0]?.hallId?.location_ru}
-                                    data={elm}
-                                    price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
-                                />
+                                const dateObject = new Date(elm.sessions[0]?.date);
+                                let day = dateObject.getDate();
+                                let month = dateObject.getMonth();
+                                var currentDayOfWeek = daysOfWeek[dateObject.getDay()];
+                                if (elm?.sessions.length)
+                                    return <TopEvents
+                                        key={i}
+                                        image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
+                                        title={elm.title}
+                                        category={elm.category}
+                                        day={day}
+                                        location={elm?.sessions[0]?.hallId?.location}
+                                        location_en={elm?.sessions[0]?.hallId?.location_en}
+                                        location_ru={elm?.sessions[0]?.hallId?.location_ru}
+                                        data={elm}
+                                        time={elm?.sessions[0]?.time}
+                                        months={months[month]}
+                                        currentDayOfWeek={currentDayOfWeek}
+                                        price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
+                                    />
                             })}
                         </div>
                         <div className="ShowAllButtonWrappr">

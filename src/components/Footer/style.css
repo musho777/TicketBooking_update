@@ -122,4 +122,8 @@
     .footerWrapper {
         margin-top: 30px;
     }
+
+    .footerColumnsWrapper {
+        gap: 0;
+    }
 }

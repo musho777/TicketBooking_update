@@ -35,8 +35,6 @@ export const Carusel = () => {
             let primera = ''
             let BuyNow = ''
             general?.events?.length > 0 && general?.events?.map((elm, i) => {
-                console.log(elm)
-                console.log(elm, 'elm')
                 if (language === 'am') {
                     title = elm.eventId.title
                     description = elm.eventId?.description
@@ -52,9 +50,6 @@ export const Carusel = () => {
                     primera = 'PREMIERE'
                     seeMore = 'see more'
                     BuyNow = 'Buy Now'
-
-
-
                 }
                 else if (language === 'ru') {
                     title = elm.eventId.title_ru
@@ -114,8 +109,8 @@ export const Carusel = () => {
 
                                 <p className='BanerPrice'>{elm.priceStart}-{elm.priceEnd} AMD</p>
                                 <div className='BanerButton'>
-                                    <Button title={BuyNow} />
-                                    <p>{seeMore}</p>
+                                    <Button onClick={() => window.location = `/BuyTickets/${elm?.eventId?._id}`} title={BuyNow} />
+                                    <p onClick={() => window.location = `/Single/${elm?.eventId?._id}`}>{seeMore}</p>
                                 </div>
                             </div>
                         </div>

@@ -28,6 +28,12 @@
     text-transform: uppercase;
 }
 
+#errorInut {
+    border: 1px solid red !important;
+    border-left: 5px solid #FF3D00 !important;
+
+}
+
 .BuyNowHeaderDate {
     color: rgba(255, 255, 255, 0.50);
     font-size: 21px;

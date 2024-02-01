@@ -18,6 +18,15 @@
     align-items: center;
 }
 
+.NotFound {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 78px;
+    font-style: normal;
+    color: #24005C;
+    font-family: "Montserratarm-Bold", sans-serif;
+}
+
 .CategoryBanerFon p {
     color: #FFF;
 
@@ -87,6 +96,13 @@
     border: none;
 }
 
+.CategoryScreenBaner {
+    display: block;
+}
+
+.CategoryScreenBaner2 {
+    display: none;
+}
 
 .FilterDivButton {
     gap: 10px;
@@ -184,11 +200,16 @@
     .FilterDiv {
         flex-direction: column;
     }
+
+    .FilterDivButton {
+        margin-top: 20px;
+    }
 }
 
 @media screen and (max-width: 768px) {
     .CalendarDiv {
         flex-direction: column;
+        gap: 10px;
     }
 
     .CalendarDiv>div {
@@ -201,6 +222,7 @@
 
     .FilterDiv>div {
         width: 100%;
+        padding: 0 20px;
     }
 
     .CalendarWrapper>svg {
@@ -215,13 +237,35 @@
         height: 103px;
     }
 
+    .FilterDivButton {
+        margin-top: 10px;
+    }
+
     .CategoryBanerFon p {
         color: #FFF;
-
-
         font-size: 30px;
         font-style: normal;
         font-family: "Montserratarm-Bold", sans-serif;
+    }
 
+    #CategoryScreen1 {
+        padding: 0 !important;
+    }
+
+    .CategoryScreen1Div {
+        padding: 0 20px;
+    }
+
+    .CategoryScreenBaner {
+        display: none;
+    }
+
+    .FilterDiv {
+        margin-top: 10px;
+    }
+
+    .CategoryScreenBaner2 {
+        display: block;
+        margin-top: 20px;
     }
 }

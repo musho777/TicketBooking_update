@@ -9,7 +9,6 @@ export const MobileMenuComponent = ({ setOpen }) => {
     const navigation = useNavigate()
     const dispatch = useDispatch()
     const { id } = useParams()
-    console.log(localStorage.getItem('lang'))
     return <div className='Menu'>
         <p>ԲԱԺԻՆՆԵՐ</p>
         <div className='MenuWrapper'>

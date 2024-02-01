@@ -333,7 +333,6 @@ export const GetParonyanEvents = () => {
         dispatch(StartGetParonyanEvents())
 
         const response = await axios(options)
-        console.log(response, 'response')
         dispatch(SuccessGetParonyanEvetns(response.data))
     }
 }
@@ -362,7 +361,6 @@ export const GetParoninaSinglHallSeats = () => {
 
     return async (dispatch) => {
         const response = await axios(options)
-        console.log(response, 'response')
     }
 }
 
@@ -390,7 +388,6 @@ export const GetSinglParonyan = () => {
 
     return async (dispatch) => {
         const response = await axios(options)
-        console.log(response, 'resp2onse')
     }
 }
 
@@ -436,7 +433,6 @@ export const BuyTicketFromParonyan = () => {
 
     return async (dispatch) => {
         const response = await axios(options)
-        console.log(response, 'response222')
     }
 }
 
@@ -458,4 +454,22 @@ export const WeekEvetntApi = () => {
             })
     }
 }
-// /getEventsOfTheWeek
+
+export const GetExpectedEvents = () => {
+    return (dispatch) => {
+        dispatch(StartWeekEvents())
+        axios.get(`${process.env.REACT_APP_HOSTNAME}//getAllUpcomingEvents`).then((r) => {
+            if (r.data.success) {
+                dispatch(SuccessWeekEvent(r.data.weeklyEvents))
+            }
+            else {
+                dispatch(ErrorWeekEvents())
+                // dispatch(ErrorGetTopEvents())
+            }
+        })
+            .catch((error) => {
+                dispatch(ErrorWeekEvents())
+                // dispatch(ErrorGetTopEvents())
+            })
+    }
+}

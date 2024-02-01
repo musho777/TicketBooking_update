@@ -43,6 +43,20 @@ export const Category = () => {
     const [height, setHeight] = useState(false)
     const [baner, setBaner] = useState(<div></div>)
     const { paronyanEvents } = useSelector((st) => st)
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+
+    const handleResize = () => {
+        setScreenWidth(window.innerWidth);
+        setScreenHeight(window.innerHeight);
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     useEffect(() => {
         dispatch(GetHall())
     }, [])
@@ -75,7 +89,7 @@ export const Category = () => {
     }, [selectedDate, id, subcategoryId, page, hallId])
 
     useEffect(() => {
-
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         dispatch(SubCategory({ id: id }))
         setActiveButton('Բոլորը')
         setSubcategoryId('')
@@ -86,7 +100,7 @@ export const Category = () => {
                 <div className='CategoryBaner'>
                     <div id='C' className='CategoryBanerFon' >
                         <div className='container'>
-                            <p>ՀԱՄԵՐԳ</p>
+                            <p>{t('CONCERT')}</p>
                         </div>
                     </div>
                     <img src={require('../../assets/Concert.png')} />
@@ -98,7 +112,7 @@ export const Category = () => {
                 <div className='CategoryBaner'>
                     <div id='O' className='CategoryBanerFon' >
                         <div className='container'>
-                            <p>ՕՊԵՐԱ</p>
+                            <p>{t('OPERA')}</p>
                         </div>
                     </div>
                     <img src={require('../../assets/Opera.png')} />
@@ -110,7 +124,7 @@ export const Category = () => {
                 <div className='CategoryBaner'>
                     <div id='K' className='CategoryBanerFon' >
                         <div className='container'>
-                            <p>ԿԻՆՈ</p>
+                            <p>{t('CINEMA')}</p>
                         </div>
                     </div>
                     <img src={require('../../assets/Cinema.png')} />
@@ -122,7 +136,7 @@ export const Category = () => {
                 <div className='CategoryBaner'>
                     <div id='T' className='CategoryBanerFon' >
                         <div className='container'>
-                            <p>ԹԱՏՐՈՆ</p>
+                            <p>{t('THEATRE')}</p>
                         </div>
                     </div>
                     <img src={require('../../assets/Teater.png')} />
@@ -236,21 +250,29 @@ export const Category = () => {
         }
     }
     function truncateText(text) {
-        if (text?.length > 13) {
+        if (text?.length > 13 && window.innerWidth > 768) {
+
+
             return text.substring(0, 10) + '...';
-        } else {
+
+        }
+        else if (text?.length > 30 && window.innerWidth < 768) {
+            return text.substring(0, 30) + '...';
+        }
+        else {
             return text;
         }
     }
-
     return (
         <div className='CategoryScreen'>
-            {baner}
-            <div className='container'>
-                <div className='FilterDiv'>
+            <div className='CategoryScreenBaner'>
+                {baner}
+            </div>
+            <div id='CategoryScreen1' className='container'>
+                {<div className='FilterDiv'>
                     <div className='CalendarDiv'>
                         <div >
-                            <p className='FilterDivTitle'>Ամսաթիվ</p>
+                            <p className='FilterDivTitle'>{t('Date')}</p>
                             <div className='CalendarWrapper'>
                                 <div onClick={(e) => {
                                     e.preventDefault()
@@ -270,7 +292,7 @@ export const Category = () => {
                             </div>
                         </div>
                         <div>
-                            <p className='FilterDivTitle'>Վայր</p>
+                            <p className='FilterDivTitle'>{t('Place1')}</p>
                             <div style={{ borderBottomLeftRadius: height && 0, borderBottomRightRadius: height && 0 }} onClick={(e) => {
                                 e.preventDefault()
                                 e.stopPropagation()
@@ -313,7 +335,7 @@ export const Category = () => {
                         </div>
                     </div>
                     <div className='FilterDivButton'>
-                        <p className='FilterDivTitle'>Ժանր</p>
+                        {getSubCategory?.data?.subcategories?.length > 0 && <p className='FilterDivTitle'>{t('Genre')}</p>}
                         <div >
                             {getSubCategory?.data?.subcategories?.length > 0 &&
                                 <button
@@ -343,8 +365,18 @@ export const Category = () => {
                         </div>
 
                     </div>
+                </div>}
+                <div className='CategoryScreenBaner2'>
+                    {baner}
                 </div>
-                <CategoryCardWrapper paronyan={id == '657b00c67a91070546630967' ? paronyanEvents.events?.result : []} data={events} />
+                <div className='CategoryScreen1Div'>
+                    {paronyanEvents.events?.result?.length > 0 || events.events?.sessions?.length > 0 &&
+                        <CategoryCardWrapper paronyan={id == '657b00c67a91070546630967' ? paronyanEvents.events?.result : []} data={events} />
+                    }
+                    {!paronyanEvents.events.length > 0 && !events.events?.sessions?.length > 0 &&
+                        <p className='NotFound'>ss</p>
+                    }
+                </div>
             </div>
         </div>
     )

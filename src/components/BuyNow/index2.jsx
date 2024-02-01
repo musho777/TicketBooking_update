@@ -151,7 +151,7 @@ export const BuyNow = () => {
         if (!number) {
             item.phonNumber = 'error'
         }
-        else if (number.length < 11) {
+        else if (number.length < 7) {
             item.phonNumber = 'error'
         }
         else if (number) {

@@ -54,10 +54,9 @@
 
 .SearchInput::placeholder {
     color: rgba(36, 0, 92, 0.63);
-    font-family: "Montserrat arm";
     font-size: 13px;
     font-style: normal;
-    font-weight: 400;
+    font-family: "Montserratarm-Regular", sans-serif;
     line-height: 30px;
 }
 
@@ -91,7 +90,10 @@
     gap: 5px;
     padding: 3px 20px;
     height: 35px;
+    font-family: "Montserrat arm";
+    font-weight: 600;
     font-size: 12px;
+    font-family: "Montserratarm-Bold", sans-serif;
 }
 
 .ButtonWrapperHeader {
@@ -138,10 +140,9 @@
 
 .LanguageDiv>p {
     color: rgba(255, 255, 255, 0.50);
-    font-family: "Montserrat arm";
     font-size: 18px;
     font-style: normal;
-    font-weight: 400;
+    font-family: "Montserratarm-Regular", sans-serif;
     line-height: 30px;
 }
 
@@ -159,10 +160,10 @@
 
 .SelectLanguage>p {
     color: #24005C;
-    font-family: "Montserrat arm";
     font-size: 14px;
     font-style: normal;
-    font-weight: 400;
+    font-family: "Montserratarm-Regular", sans-serif;
+
     height: 32%;
     text-align: center;
     border-bottom: 1px solid rgba(36, 0, 92, 0.50);

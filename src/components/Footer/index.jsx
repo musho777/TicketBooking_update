@@ -19,25 +19,27 @@ export const Footer = ({ menu }) => {
         dispatch(GetFeedback())
     }, [dispatch])
 
-    console.log(Event_reducer.feedback?.instagram, 'Event_reducer')
 
     return (
         <div className='footerWrapper'>
             <div className='container' id='footerWrapperDiv'>
                 <div className='footerColumns'>
                     <img src={require('../../assets/logo2.png')} />
-                    <p className=''>SHINE TICKETS LLC thanks its Partners for Cooperation and for their Support. Privacy Policy / © 2024 / All Rights Reserved</p>
+                    <p className=''>
+                        {t('SHINETICKETSLLC')}
+
+                    </p>
                 </div>
                 <div className='footerColumnsWrapper'>
                     <div className='footerColumnsWrapperDiv'>
-                        <p className='footerColumnsTitle'>Կապվեք մեզ հետ</p>
+                        <p className='footerColumnsTitle'>{t('Contactus')}</p>
                         <div className='footerColumnsInfo'>
                             <p>+374 93 55 88 44</p>
                             <p>info@shineticket.com</p>
                         </div>
                     </div>
                     <div className='footerColumnsWrapperDiv'>
-                        <p className='footerColumnsTitle'>Բաժիններ</p>
+                        <p className='footerColumnsTitle'>{t('Sections')}</p>
                         <div className='footerColumnsInfo'>
                             {getCategory.category.map(elm => {
                                 let title = ''
@@ -55,7 +57,7 @@ export const Footer = ({ menu }) => {
                         </div>
                     </div>
                     <div className='footerColumnsWrapperDiv'>
-                        <p className='footerColumnsTitle'>Մենք սոց. ցանցերում </p>
+                        <p className='footerColumnsTitle'>{t('innetworks')}</p>
                         <div className='Social'>
                             <div onClick={() => window.open(`${Event_reducer.feedback?.instagram}`, "_blank")}>
                                 <InstagramSvg />
@@ -75,14 +77,14 @@ export const Footer = ({ menu }) => {
                 <div className='footerColumnsWrapper'>
                     <div className='footerColumnsWrapperDiv'>
                         <div className='footerColumnsWrapperDivMObile'>
-                            <p className='footerColumnsTitle'>Կապվեք մեզ հետ</p>
+                            <p className='footerColumnsTitle'>{t('Contactus')}</p>
                             <div className='footerColumnsInfo'>
                                 <p>+374 93 55 88 44</p>
                                 <p>info@shineticket.com</p>
                             </div>
                         </div>
                         <div className='footerColumnsWrapperDiv'>
-                            <p className='footerColumnsTitle'>Մենք սոց. ցանցերում </p>
+                            <p className='footerColumnsTitle'>{t('innetworks')}</p>
                             <div className='Social'>
                                 <InstagramSvg />
                                 <FbSvg />
@@ -91,7 +93,7 @@ export const Footer = ({ menu }) => {
                         </div>
                     </div>
                     <div className='footerColumnsWrapperDiv'>
-                        <p className='footerColumnsTitle'>Բաժիններ</p>
+                        <p className='footerColumnsTitle'>{t('Sections')}</p>
                         <div className='footerColumnsInfo'>
                             {getCategory.category.map(elm => {
                                 let title = ''
@@ -102,7 +104,7 @@ export const Footer = ({ menu }) => {
                                 } else if (language === 'ru') {
                                     title = elm.name_ru
                                 }
-                                return <p onClick={() => navigation(`/Category/${elm.name}/${elm?._id}`)}>
+                                return <p onClick={() => window.location = `/Category/${elm.name}/${elm?._id}`}>
                                     {title}
                                 </p>
                             })}
@@ -112,7 +114,9 @@ export const Footer = ({ menu }) => {
                 </div>
                 <div className='footerColumns'>
                     <img src={require('../../assets/logo2.png')} />
-                    <p className=''>SHINE TICKETS LLC thanks its Partners for Cooperation and for their Support. Privacy Policy / © 2024 / All Rights Reserved</p>
+                    <p className=''>
+                        {t('SHINETICKETSLLC')}
+                    </p>
                 </div>
             </div>
         </div >

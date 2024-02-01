@@ -14,7 +14,6 @@ export const CategoryCardWrapper = ({ data, paronyan }) => {
                 data.events.sessions?.length > 0 && data?.events?.sessions?.map((elm, i) => {
                     const dateObject = new Date(elm?.date);
                     let day = dateObject.getDate();
-                    console.log(elm)
                     let month = dateObject.getMonth();
                     var currentDayOfWeek = daysOfWeek[dateObject.getDay()];
                     return <TopEvents
@@ -32,7 +31,7 @@ export const CategoryCardWrapper = ({ data, paronyan }) => {
                         months={months[month]}
                         currentDayOfWeek={currentDayOfWeek}
                         day={day}
-                        time={elm?.time}
+                        // time={elm?.sessions[0]?.time}
                         months={months[month]}
                         data={elm.eventId}
                         price={`${elm?.priceStart} - ${elm?.priceEnd} AMD`}

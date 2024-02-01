@@ -9,6 +9,9 @@ import { useParams } from 'react-router-dom';
 import { GetSinglPage, RemoveTicketsAction } from '../../services/action/action';
 import { CartPopup } from '../../components/popup/cart';
 import { BuyNow } from '../../components/BuyNow';
+import { ShowAllButton } from '../../components/Button/ShowAllButton'
+import { PuffLoader } from 'react-spinners';
+
 export const BuyTickets = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
@@ -19,6 +22,11 @@ export const BuyTickets = () => {
     const [data, setData] = useState({ name: '', description: '', hall: '' })
     let { event } = getSinglPage?.events
     const [open, setOpen] = useState(false)
+    var months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const [scale, setScale] = useState(1);
     const handleZoomIn = () => {
         setScale(scale * 1.2);
@@ -52,9 +60,6 @@ export const BuyTickets = () => {
             item.name = getSinglPage.events.event?.title_ru
             item.description = getSinglPage.events.event?.description_ru
             item.hall = getSinglPage.events.event?.sessions[0]?.hallId.hall_ru
-
-
-
         }
         else if (language === 'en') {
             item.name = getSinglPage.events.event?.title_en
@@ -72,15 +77,41 @@ export const BuyTickets = () => {
             return text;
         }
     }
+    if (getSinglPage?.loading) {
+        return (
+            <div className='loading'>
+                <PuffLoader color="#FEE827" />
+            </div>
+        )
+    }
     return <div className='container'>
         <CartPopup
             open={open}
             type='openBuy'
             setOpen={() => setOpen(false)}
         >
-            <BuyNow />
+            <BuyNow open={open} />
         </CartPopup >
         <div className='BuyTicketsWrapper'>
+            <div className='BuyTicketsCard' id='mobileBuyTicketsCard'>
+                <img src={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`} />
+                <div className='BuyTicketsCardInfo'>
+                    <div>
+                        <p className='BuyTicketTitle'>{data.name}</p>
+                        <p className='BuyTickeDescription'>{truncateText(data.description)}</p>
+                    </div>
+                    <div className='BuyTicketDate'>
+                        <CalendarSvg1 />
+                        <p className='BuyTicketDateMonth'>{new Date(getSinglPage.events.event?.sessions[0].date).getDate()}.{new Date(getSinglPage.events.event?.sessions[0].date).getMonth() + 1}.{new Date(getSinglPage.events.event?.sessions[0].date).getFullYear()} </p>
+                        <div></div>
+                        <p className='BuyTicketDateTime'>{getSinglPage.events.event?.sessions[0].time}</p>
+                    </div>
+                    <div className='BuyTicketDateLocation'>
+                        <LocationSvg1 />
+                        <p>{data.hall}</p>
+                    </div>
+                </div>
+            </div>
             <div className='HallWrapper'>
                 <div className="zoom-controls">
                     <button onClick={handleZoomIn}>+</button>
@@ -106,9 +137,11 @@ export const BuyTickets = () => {
                             <p className='BuyTickeDescription'>{truncateText(data.description)}</p>
                         </div>
                         <div className='BuyTicketDate'>
-                            <CalendarSvg1 />
+                            <div>
+                                <CalendarSvg1 />
+                            </div>
                             <p className='BuyTicketDateMonth'>{new Date(getSinglPage.events.event?.sessions[0].date).getDate()}.{new Date(getSinglPage.events.event?.sessions[0].date).getMonth() + 1}.{new Date(getSinglPage.events.event?.sessions[0].date).getFullYear()} </p>
-                            <div></div>
+                            <div className='LineBuyTicketDate'></div>
                             <p className='BuyTicketDateTime'>{getSinglPage.events.event?.sessions[0].time}</p>
                         </div>
                         <div className='BuyTicketDateLocation'>
@@ -119,8 +152,8 @@ export const BuyTickets = () => {
                 </div>
                 <div className='Tickets'>
                     <div className='TicketsHeader'>
-                        <p>Տոմս</p>
-                        <p>Գինը</p>
+                        <p>{t('Ticket')}</p>
+                        <p>{t('Price')}</p>
                     </div>
                     <div className='TicketBody'>
                         {
@@ -130,8 +163,10 @@ export const BuyTickets = () => {
                                         <div className='TicketInfoo'>
                                             <p>{elm?.parterre && t('Parterre')} {elm?.lodge && t('Lodge')} {elm?.amphitheater && t('Amphitheater')} {elm?.stage && 'Stage'}</p>
                                             <div>
-                                                <p>{t('Line')}: {elm.row}</p>
-                                                <p>{t('Place')}: {elm.seat}</p>
+                                                <p>{t('Line')}: <span>{elm.row}</span></p>
+                                                <p>{t('Place')}: <span>
+                                                    {elm.seat}
+                                                </span></p>
                                             </div>
                                         </div>
                                         <p className='TicketPrcie'>{elm.price} AMD</p>
@@ -145,13 +180,15 @@ export const BuyTickets = () => {
 
 
                         <div className='TotalPrice'>
-                            <p className='Totalp'>ԸՆԴԱՄԵՆԸ</p>
+                            <p className='Totalp'>{t('TOTALLY')}</p>
                             <p className='ToatalPricep'>{total} AMD</p>
                         </div>
                         <div className='totalLine' />
-                        {tickets?.tickets?.length && <div className='BuyTicketButtonWrapper'>
-                            <button onClick={() => setOpen(true)}>Հաջորդ</button>
-                        </div>}
+                        <div className='BuyTicketButtonWrapper'>
+                            <button
+                                disabled={tickets?.tickets?.length == 0}
+                                className={tickets?.tickets?.length == 0 && 'disableButton'} onClick={() => setOpen(true)}>{t('Next')}</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -163,18 +200,31 @@ export const BuyTickets = () => {
                     <h2>{t('RecommendTickets')}</h2>
                     <div className='RecDiv'>
                         {recomended.map((elm, i) => {
-                            return <TopEvents
-                                key={i}
-                                image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
-                                title={elm?.title}
-                                category={elm.category}
-                                location={elm?.sessions[0]?.hallId?.location}
-                                location_en={elm?.sessions[0]?.hallId?.location_en}
-                                location_ru={elm?.sessions[0]?.hallId?.location_ru}
-                                data={elm}
-                                price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
-                            />
+                            const dateObject = new Date(elm.sessions[0]?.date);
+                            let day = dateObject.getDate();
+                            let month = dateObject.getMonth();
+                            var currentDayOfWeek = daysOfWeek[dateObject.getDay()];
+                            if (elm?.sessions.length)
+                                return <TopEvents
+                                    key={i}
+                                    image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
+                                    title={elm?.title}
+                                    category={elm.category}
+                                    location={elm?.sessions[0]?.hallId?.location}
+                                    location_en={elm?.sessions[0]?.hallId?.location_en}
+                                    location_ru={elm?.sessions[0]?.hallId?.location_ru}
+                                    data={elm}
+                                    day={day}
+
+                                    time={elm?.sessions[0]?.time}
+                                    months={months[month]}
+                                    currentDayOfWeek={currentDayOfWeek}
+                                    price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
+                                />
                         })}
+                    </div>
+                    <div className="ShowAllButtonWrappr">
+                        <ShowAllButton />
                     </div>
                 </div>
             }

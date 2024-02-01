@@ -10,8 +10,9 @@ import { Buffer } from "buffer"
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { useTranslation } from 'react-i18next'
+import InputMask from 'react-input-mask';
 
-export const BuyNow = () => {
+export const BuyNow = ({ open }) => {
     const { language } = useSelector((st) => st.StaticReducer)
     const generateOrderNumber = () => {
         const timestamp = Date.now()
@@ -54,6 +55,23 @@ export const BuyNow = () => {
         checked: '',
         address: ''
     })
+
+    useEffect(() => {
+        setName('')
+        setNumber('')
+        setChedker(false)
+        setSelectPay(1)
+        setEmail('')
+        setAddress('')
+        setAdditional('')
+        setError({
+            name: '',
+            email: '',
+            phonNumber: '',
+            checked: '',
+            address: ''
+        })
+    }, [open])
 
     useEffect(() => {
         if (selectPay == 3) {
@@ -270,9 +288,10 @@ export const BuyNow = () => {
                             className='InputsBuy'
                             placeholder={t('NameSurname')}
                             id={error.name != '' ? 'errorInut' : 'inout'} value={name} onChange={(e) => setName(e.target.value)} />
-                        <input
+                        <InputMask
                             className='InputsBuy'
                             value={number}
+                            mask="+374 (99) 999-999"
                             placeholder={t('PhoneNumber')}
                             onChange={e => setNumber(e.target.value)}
                             id={error.phonNumber != '' ? 'errorInut' : 'inout'}
@@ -285,9 +304,9 @@ export const BuyNow = () => {
                         className='TextareBuy'
                         placeholder={t('Notes')}
                         value={additional} onChange={(e) => setAdditional(e.target.value)} />
-                    {true &&
+                    {delivery &&
                         <input
-                            placeholder='Առաքման հասցե'
+                            placeholder={t('Deliveryaddress')}
                             className='InputsBuyDelvery' id={error.address != '' ? 'errorInut' : 'inout'} value={address} onChange={(e) => setAddress(e.target.value)} />
                     }
                 </div>
@@ -344,7 +363,7 @@ export const BuyNow = () => {
                                     : <CheckSvg error={error?.checked == ''} />
                                 }
                             </div>
-                            <a className='textDD' style={{ color: 'black', }} href='https://shinetickets.com/PrivacyPolicy'>{t('Termsandconditions')}</a>
+                            <a className='textDD' style={error.checked ? { color: 'red' } : { color: '' }} href='https://shinetickets.com/PrivacyPolicy'>{t('Termsandconditions')}</a>
                         </div>
                         <div className='ReadAndAgree'>
                             <div style={{ marginLeft: 1 }}>

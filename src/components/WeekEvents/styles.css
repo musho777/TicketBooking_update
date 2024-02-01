@@ -103,6 +103,10 @@
     gap: 5px;
 }
 
+.WeekArrow svg {
+    cursor: pointer;
+}
+
 .WeekEventTitle>h2 {
     color: #24005C;
     font-size: 40px;

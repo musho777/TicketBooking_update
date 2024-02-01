@@ -21,7 +21,7 @@ export const Layout = () => {
         </div>
         <div className='container'>
             <div className='wrapper'>
-                <p className='mainPageText'>{t('forDelivery')}</p>
+                <p className='mainPageText'>{t('forDelivery')} <span>+374 93 55 88 44</span></p>
             </div>
         </div>
         <div className='outlet'>
