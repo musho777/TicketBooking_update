@@ -49,3 +49,48 @@ code {
     padding: 0 20px;
   }
 }
+
+@font-face {
+  font-family: "Montserratarm-Black";
+  src: url("./fonts/Montserratarm-Black.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserratarm-Bold";
+  src: url("./fonts/Montserratarm-Bold.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserratarm-ExtraBold";
+  src: url("./fonts/Montserratarm-ExtraBold.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserratarm-ExtraLight";
+  src: url("./fonts/Montserratarm-ExtraLight.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserratarm-Light";
+  src: url("./fonts/Montserratarm-Light.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserratarm-Medium";
+  src: url("./fonts/Montserratarm-Medium.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserratarm-Regular";
+  src: url("./fonts/Montserratarm-Regular.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserratarm-SemiBold";
+  src: url("./fonts/Montserratarm-SemiBold.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserratarm-Thin";
+  src: url("./fonts/Montserratarm-Thin.otf") format("truetype");
+}

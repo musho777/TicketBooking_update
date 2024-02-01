@@ -43,19 +43,18 @@
 
 .BuyTicketTitle {
     color: #FFCE00;
-    font-family: "Montserrat arm";
     font-size: 18px;
+    font-family: "Montserratarm-Bold", sans-serif;
     font-style: normal;
-    font-weight: 700;
     text-transform: uppercase;
 }
 
 .BuyTickeDescription {
     color: #FFF;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Bold", sans-serif;
+
     font-size: 14px;
     font-style: normal;
-    font-weight: 700;
     line-height: 30px;
     text-transform: uppercase;
 }
@@ -75,27 +74,26 @@
 
 .BuyTicketDateLocation>p {
     color: #FFF;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Regular", sans-serif;
     font-size: 12px;
     font-style: normal;
-    font-weight: 400;
     width: 200px;
 }
 
 .BuyTicketDateMonth {
     color: #FFF;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Bold", sans-serif;
+
     font-size: 18px;
     font-style: normal;
-    font-weight: 700;
+
 }
 
 .BuyTicketDateTime {
     color: #FFCE00;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Regular", sans-serif;
     font-size: 18px;
     font-style: normal;
-    font-weight: 400;
 }
 
 .Tickets {
@@ -157,10 +155,9 @@
 .TicketPrcie {
     color: #24005C;
 
-    font-family: "Montserrat arm";
     font-size: 20px;
     font-style: normal;
-    font-weight: 400;
+    font-family: "Montserratarm-Regular", sans-serif;
     line-height: 30px;
 }
 
@@ -237,10 +234,10 @@
     background: #24005C;
     border: none;
     color: #FFF;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Medium", sans-serif;
+
     font-size: 20px;
     font-style: normal;
-    font-weight: 500;
     padding: 7px 27px;
     cursor: pointer;
 

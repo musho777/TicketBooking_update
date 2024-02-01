@@ -36,10 +36,9 @@
 
 .SinglBanerButton>p {
     color: #FEE827;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Regular", sans-serif;
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
     cursor: pointer;
 }
 
@@ -56,18 +55,20 @@
 
 .SinglPrimerap {
     color: #FEE827;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Medium", sans-serif;
+
     font-size: 18px;
     font-style: normal;
-    font-weight: 500;
+
 }
 
 .SinglPrimeraDate {
     color: #FFF;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Medium", sans-serif;
+
     font-size: 18px;
     font-style: normal;
-    font-weight: 500;
+
 }
 
 .SinglBanerDiv {
@@ -96,10 +97,9 @@
 
 .SinglBanerDivInfoPlace {
     color: #FFF;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Regular", sans-serif;
     font-size: 15px;
     font-style: normal;
-    font-weight: 400;
 }
 
 .SinglBanerLocation {
@@ -110,19 +110,19 @@
 
 .SinglBanerTitle {
     color: #FFF;
-    font-family: "Montserrat arm";
+
     font-size: 36px;
     font-style: normal;
-    font-weight: 700;
+    font-family: "Montserratarm-Bold", sans-serif;
+
     text-transform: uppercase;
 }
 
 .SinglBanerText {
     color: #FFF;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Regular", sans-serif;
     font-size: 14px;
     font-style: normal;
-    font-weight: 400;
 }
 
 .SinglBanerTextDiv {
@@ -136,7 +136,7 @@
     font-family: Montserrat;
     font-size: 30px;
     font-style: normal;
-    font-weight: 500;
+    font-family: "Montserratarm-Medium", sans-serif;
 }
 
 .SinglBanerPrimera {

@@ -5,9 +5,9 @@
 .EventTitle>h2 {
     color: #24005C;
     font-family: "Montserrat arm";
+    font-family: "Montserratarm-Bold", sans-serif;
     font-size: 40px;
     font-style: normal;
-    font-weight: 700;
     line-height: 30px;
 }
 

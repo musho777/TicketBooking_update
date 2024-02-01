@@ -61,10 +61,10 @@
 
 .TopEventsInfoDate>p {
     color: #FFF;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Bold", sans-serif;
+
     font-size: 30px;
     font-style: normal;
-    font-weight: 700;
 }
 
 .TopEventsInfoDiv {
@@ -86,28 +86,28 @@
 .TopEventsMonth {
     color: #FFF;
     text-align: center;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Medium", sans-serif;
+
     font-size: 17px;
     font-style: normal;
-    font-weight: 500;
     padding: 0 10px;
 }
 
 .TopEventsWeek {
     color: #FFCE00;
     text-align: center;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Medium", sans-serif;
+
     font-size: 17px;
     font-style: normal;
-    font-weight: 500;
 }
 
 .TopEventsTime {
     color: #FFF;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Bold", sans-serif;
+
     font-size: 20px;
     font-style: normal;
-    font-weight: 700;
 }
 
 .TopEventsLine {
@@ -119,10 +119,10 @@
 .TopEventsInfoPlace {
     color: #FFF;
     text-align: center;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Medium", sans-serif;
+
     font-size: 12px;
     font-style: normal;
-    font-weight: 500;
     text-decoration-line: underline;
     padding: 0 25px;
 }
@@ -154,11 +154,11 @@
 
 .TopEventsName {
     color: #FFF;
-    font-family: "Montserrat arm";
     font-size: 18px;
     font-style: normal;
-    font-weight: 700;
     text-align: center;
+    font-family: "Montserratarm-Bold", sans-serif;
+
 }
 
 .TopEventsDivDiv {
@@ -170,10 +170,10 @@
 
 .TopEventsPrice {
     color: #FFCE00;
-    font-family: Montserrat;
+    font-family: "Montserratarm-Bold", sans-serif;
+
     font-size: 17px;
     font-style: normal;
-    font-weight: 700;
 }
 
 .TopEventsInfoLine2 {

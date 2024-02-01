@@ -58,10 +58,10 @@
 
 .ticketTitle {
     color: #FFCE00;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Bold", sans-serif;
+
     font-size: 20px;
     font-style: normal;
-    font-weight: 700;
     /* line-height: 25px; */
 }
 
@@ -92,10 +92,10 @@
 
 .TicketPrice {
     color: #FFCE00;
-    font-family: Montserrat;
+    /* font-family: Montserrat; */
+    font-family: "Montserratarm-Medium", sans-serif;
     font-size: 16px;
     font-style: normal;
-    font-weight: 500;
     line-height: 30px;
 }
 

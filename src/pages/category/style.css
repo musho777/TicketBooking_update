@@ -21,10 +21,10 @@
 .CategoryBanerFon p {
     color: #FFF;
 
-    font-family: "Montserrat arm";
     font-size: 78px;
     font-style: normal;
-    font-weight: 700;
+    font-family: "Montserratarm-Bold", sans-serif;
+
     line-height: 30px;
 }
 
@@ -45,10 +45,11 @@
 
 .SubCategoryButton {
     color: #24005C;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Medium", sans-serif;
+
     font-size: 16px;
     font-style: normal;
-    font-weight: 500;
+
     line-height: 30px;
     padding: 5px 30px;
     border: none;
@@ -96,10 +97,11 @@
 
 .FilterDivTitle {
     color: #24005C;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Medium", sans-serif;
+
     font-size: 16px;
     font-style: normal;
-    font-weight: 500;
+
 }
 
 .FilterDivButton>div {
@@ -216,9 +218,10 @@
     .CategoryBanerFon p {
         color: #FFF;
 
-        font-family: "Montserrat arm";
+
         font-size: 30px;
         font-style: normal;
-        font-weight: 700;
+        font-family: "Montserratarm-Bold", sans-serif;
+
     }
 }

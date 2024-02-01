@@ -90,10 +90,11 @@
 .monthp {
     color: #FFF;
     text-align: center;
-    font-family: "Montserrat arm";
+    /* font-family: "Montserrat arm"; */
+    font-family: "Montserratarm-Medium", sans-serif;
+
     font-size: 20px;
     font-style: normal;
-    font-weight: 500;
 }
 
 .monthLine {
@@ -105,10 +106,10 @@
 .weekp {
     color: #FFCE00;
     text-align: center;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Medium", sans-serif;
     font-size: 15px;
     font-style: normal;
-    font-weight: 500;
+
 }
 
 .expectedDate {
@@ -129,19 +130,20 @@
 
 .dayDate>p {
     color: #FFF;
-    font-family: "Montserrat arm";
+
+    font-family: "Montserratarm-Bold", sans-serif;
+
     font-size: 37px;
     font-style: normal;
-    font-weight: 700;
     line-height: 30px;
 }
 
 .expectTime {
     color: #FFF;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Bold", sans-serif;
+
     font-size: 23px;
     font-style: normal;
-    font-weight: 700;
 }
 
 .LocationDiv {
@@ -152,10 +154,12 @@
 
 .LocationDiv>p {
     color: #FFF;
-    font-family: "Montserrat arm";
+
+    font-family: "Montserratarm-Medium", sans-serif;
+
     font-size: 12px;
     font-style: normal;
-    font-weight: 500;
+
 }
 
 .eventType {
@@ -168,10 +172,10 @@
 
 .eventName {
     color: #FFF;
-    font-family: "Montserrat arm";
     font-size: 31px;
     font-style: normal;
-    font-weight: 700;
+    font-family: "Montserratarm-Bold", sans-serif;
+
     line-height: 30px;
 }
 
@@ -202,7 +206,8 @@
     font-family: Montserrat;
     font-size: 21px;
     font-style: normal;
-    font-weight: 700;
+    font-family: "Montserratarm-Bold", sans-serif;
+
 }
 
 .MobilePrice {
@@ -215,7 +220,6 @@
     font-family: Montserrat;
     font-size: 21px;
     font-style: normal;
-    font-weight: 700;
 }
 
 @media screen and (max-width: 1180px) {

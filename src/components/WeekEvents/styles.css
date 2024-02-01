@@ -47,10 +47,10 @@
 
 .WeekcardIfnoTitle {
     color: #FFCE00;
-    font-family: "Montserrat arm";
     font-size: 20px;
     font-style: normal;
-    font-weight: 700;
+    font-family: "Montserratarm-Bold", sans-serif;
+
 }
 
 .WeekCardDate {
@@ -63,10 +63,10 @@
 
 .WeekCardPlace {
     color: #FFF;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Medium", sans-serif;
+
     font-size: 14px;
     font-style: normal;
-    font-weight: 500;
     text-transform: uppercase;
 }
 
@@ -105,10 +105,10 @@
 
 .WeekEventTitle>h2 {
     color: #24005C;
-    font-family: "Montserrat arm";
     font-size: 40px;
     font-style: normal;
-    font-weight: 700;
+    font-family: "Montserratarm-Bold", sans-serif;
+
     line-height: 30px;
 }
 

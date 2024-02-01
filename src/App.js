@@ -4,6 +4,19 @@ import i18n from "i18next";
 import en from "./components/lang/en.json";
 import am from "./components/lang/am.json";
 import ru from "./components/lang/ru.json";
+import './fonts/Montserratarm-Black.otf'
+import './fonts/Montserratarm-Bold.otf'
+import './fonts/Montserratarm-ExtraBold.otf'
+import './fonts/Montserratarm-ExtraLight.otf'
+import './fonts/Montserratarm-Light.otf'
+import './fonts/Montserratarm-Medium.otf'
+import './fonts/Montserratarm-Regular.otf'
+import './fonts/Montserratarm-SemiBold.otf'
+import './fonts/Montserratarm-Thin.otf'
+import './index.css'
+
+
+
 
 
 import { Router } from './routes/router'

@@ -21,28 +21,27 @@
 
 .BuyNowHeaderTitle {
     color: #FFF;
-    font-family: "Montserrat arm";
     font-size: 25px;
     font-style: normal;
-    font-weight: 700;
+    font-family: "Montserratarm-Bold", sans-serif;
+
     text-transform: uppercase;
 }
 
 .BuyNowHeaderDate {
     color: rgba(255, 255, 255, 0.50);
-    font-family: "Montserrat arm";
     font-size: 21px;
     font-style: normal;
-    font-weight: 400;
+    font-family: "Montserratarm-Regular", sans-serif;
     line-height: 26px;
 }
 
 .FreeDelivery {
     color: #00830D;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Regular", sans-serif;
     font-size: 14px;
     font-style: normal;
-    font-weight: 400;
+
     line-height: 26px;
 }
 
@@ -116,10 +115,9 @@
 
 .selectPay>p {
     color: rgba(36, 0, 92, 0.50);
-    font-family: "Montserrat arm";
     font-size: 14px;
     font-style: normal;
-    font-weight: 400;
+    font-family: "Montserratarm-Regular", sans-serif;
     line-height: 26px;
 }
 
@@ -137,10 +135,9 @@
 .ReadAndAgree>a,
 .ReadAndAgree>p {
     color: #24005C;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Regular", sans-serif;
     font-size: 12px;
     font-style: normal;
-    font-weight: 400;
 }
 
 .BuyEnd {
@@ -163,10 +160,9 @@
     border: none;
     cursor: pointer;
     color: #24005C;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Medium", sans-serif;
     font-size: 20px;
     font-style: normal;
-    font-weight: 500;
 }
 
 @media screen and (max-width: 768px) {

@@ -5,10 +5,10 @@
     background: #FFCE00;
     border: none;
     color: #24005C;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Bold", sans-serif;
+
     font-size: 16px;
     font-style: normal;
-    font-weight: 700;
     cursor: pointer;
 }
 
@@ -18,10 +18,9 @@
 } */
 .ShowAllButton {
     color: #24005C;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Regular", sans-serif;
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
     width: 184px;
     height: 46px;
     border-radius: 61px;

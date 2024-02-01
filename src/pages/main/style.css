@@ -1,9 +1,8 @@
 .mainPageText {
     color: #24005C;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Regular", sans-serif;
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
     line-height: 30px;
     margin: 15px 0;
 }

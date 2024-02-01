@@ -54,10 +54,10 @@
 
 .Primerap {
     color: #FEE827;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Medium", sans-serif;
+
     font-size: 18px;
     font-style: normal;
-    font-weight: 500;
 }
 
 .BanerPrimera {
@@ -68,10 +68,10 @@
 
 .PrimeraDate {
     color: #FFF;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Medium", sans-serif;
+
     font-size: 18px;
     font-style: normal;
-    font-weight: 500;
 }
 
 .BanerDivInfo {
@@ -83,10 +83,9 @@
 
 .BanerDivInfoPlace {
     color: #FFF;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Regular", sans-serif;
     font-size: 15px;
     font-style: normal;
-    font-weight: 400;
 }
 
 .BanerLocation {
@@ -97,19 +96,17 @@
 
 .BanerTitle {
     color: #FFF;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Bold", sans-serif;
     font-size: 36px;
     font-style: normal;
-    font-weight: 700;
     text-transform: uppercase;
 }
 
 .BanerText {
     color: #FFF;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Regular", sans-serif;
     font-size: 14px;
     font-style: normal;
-    font-weight: 400;
 }
 
 .BanerTextDiv {
@@ -120,10 +117,10 @@
 
 .BanerPrice {
     color: #FFF;
-    font-family: Montserrat;
+    /* font-family: Montserrat; */
+    font-family: "Montserratarm-Medium", sans-serif;
     font-size: 30px;
     font-style: normal;
-    font-weight: 500;
 }
 
 .BanerButton {
@@ -134,10 +131,9 @@
 
 .BanerButton>p {
     color: #FEE827;
-    font-family: "Montserrat arm";
+    font-family: "Montserratarm-Regular", sans-serif;
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
 }
 
 .alice-carousel__dots-item:not(.__custom).__active {
