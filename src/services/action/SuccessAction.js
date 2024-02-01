@@ -109,4 +109,11 @@ export const SuccessGetParonyanEvetns = (data) => {
         type: 'SuccessGetParonyanEvetns',
         data
     }
-} 
+}
+
+export const SuccessGetExpectedEvents = (data) => {
+    return {
+        type: 'SuccessGetExpectedEvents',
+        data
+    }
+}

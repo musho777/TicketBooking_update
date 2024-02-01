@@ -69,3 +69,9 @@ export const StartGetParonyanEvents = () => {
         type: 'StartGetParonyanEvents'
     }
 }
+
+export const StartGetExpectedEvents = () => {
+    return {
+        type: 'StartGetExpectedEvents'
+    }
+}

@@ -17,7 +17,7 @@ export const WeekEvents = () => {
     return <div className="WeekEvents">
         <div className="container">
             <div className='WeekEventTitle'>
-                <h2>{t('TopEvents')}</h2>
+                <h2>{t('WEEKLYEVENTS')}</h2>
                 <div className="WeekArrow">
                     <RightSvg />
                     <LeftSvg />

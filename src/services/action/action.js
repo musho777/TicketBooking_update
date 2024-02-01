@@ -1,7 +1,7 @@
 import axios from "axios"
-import { StartCreatTicket, StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetParonyanEvents, StartGetRadnomEvents, StartGetSinglPage, StartGetTelStatus, StartSearch, StartSubCategory, StartWeekEvents } from "./StartAction"
-import { ErrorCreatTicket, ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTelStatus, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage, ErrorWeekEvents } from "./ErrorAction"
-import { SuccessCreatTicket, SuccessGetAllAds, SuccessGetCategoris, SuccessGetCategory, SuccessGetEventValidity, SuccessGetFeedback, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetParonyanEvetns, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTellStatus, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage, SuccessWeekEvent, eventValidity } from "./SuccessAction"
+import { StartCreatTicket, StartGetCategoris, StartGetCategory, StartGetExpectedEvents, StartGetGeneralEvents, StartGetGetTopEvents, StartGetParonyanEvents, StartGetRadnomEvents, StartGetSinglPage, StartGetTelStatus, StartSearch, StartSubCategory, StartWeekEvents } from "./StartAction"
+import { ErrorCreatTicket, ErrorGetCategoris, ErrorGetCategory, ErrorGetExpectedEvents, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTelStatus, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage, ErrorWeekEvents } from "./ErrorAction"
+import { SuccessCreatTicket, SuccessGetAllAds, SuccessGetCategoris, SuccessGetCategory, SuccessGetEventValidity, SuccessGetExpectedEvents, SuccessGetFeedback, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetParonyanEvetns, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTellStatus, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage, SuccessWeekEvent, eventValidity } from "./SuccessAction"
 import { MD5 } from "crypto-js";
 
 
@@ -457,19 +457,18 @@ export const WeekEvetntApi = () => {
 
 export const GetExpectedEvents = () => {
     return (dispatch) => {
-        dispatch(StartWeekEvents())
-        axios.get(`${process.env.REACT_APP_HOSTNAME}//getAllUpcomingEvents`).then((r) => {
+        dispatch(StartGetExpectedEvents())
+        axios.get(`${process.env.REACT_APP_HOSTNAME}/getAllUpcomingEvents`).then((r) => {
+            console.log(r, '21')
             if (r.data.success) {
-                dispatch(SuccessWeekEvent(r.data.weeklyEvents))
+                dispatch(SuccessGetExpectedEvents(r.data.upcomingEvents))
             }
             else {
-                dispatch(ErrorWeekEvents())
-                // dispatch(ErrorGetTopEvents())
+                dispatch(ErrorGetExpectedEvents())
             }
         })
             .catch((error) => {
-                dispatch(ErrorWeekEvents())
-                // dispatch(ErrorGetTopEvents())
+                dispatch(ErrorGetExpectedEvents())
             })
     }
 }

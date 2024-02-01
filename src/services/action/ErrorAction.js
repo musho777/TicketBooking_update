@@ -60,3 +60,8 @@ export const ErrorWeekEvents = () => {
         type: "ErrorWeekEvents"
     }
 }
+export const ErrorGetExpectedEvents = () => {
+    return {
+        type: 'ErrorGetExpectedEvents'
+    }
+}

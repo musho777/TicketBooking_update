@@ -46,5 +46,6 @@
     "CONCERT": "CONCERT",
     "THEATRE": "THEATRE",
     "CINEMA": "CINEMA",
-    "OPERA": "OPERA"
+    "OPERA": "OPERA",
+    "WEEKLYEVENTS": "WEEKLY EVENTS"
 }

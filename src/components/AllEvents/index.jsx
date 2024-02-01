@@ -20,10 +20,7 @@ export const ALLEvents = () => {
         dispatch(GetParonyanEvents())
     }, [dispatch])
 
-    const handleRemoveDiv = () => {
-        const divContent = document.querySelector('.hy_timeline')?.textContent;
-        return divContent
-    };
+
     return (
         <div>
             <div className='EventTitle'>

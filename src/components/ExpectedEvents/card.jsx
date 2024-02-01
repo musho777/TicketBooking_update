@@ -4,7 +4,17 @@ import { CategoryType } from '../CategoryType'
 import { LocationSvg } from '../svg'
 
 import './styles.css'
-export const Card = () => {
+export const Card = ({
+    month,
+    time,
+    title,
+    weekday,
+    location,
+    description,
+    day,
+    priceRange,
+    img
+}) => {
     const { t } = useTranslation();
     return <div className='ExpectedEventsDiv'>
         <div className='TypeDiv'>
@@ -14,34 +24,34 @@ export const Card = () => {
             <div className='dateAndLocation'>
                 <div className='expectedDate'>
                     <div className='dayDate'>
-                        <p>28</p>
+                        <p>{day}</p>
                     </div>
                     <div className='monthAndWeek'>
-                        <p className='monthp'>Հունվար</p>
+                        <p className='monthp'>{month}</p>
                         <div className='monthLine' />
-                        <p className='weekp'>Կիրակի</p>
+                        <p className='weekp'>{weekday}</p>
                     </div>
-                    <p className='expectTime'>17։00</p>
+                    <p className='expectTime'>{time}</p>
                 </div>
                 <div className='dateAndLocationLine' />
                 <div className='LocationDiv'>
                     <LocationSvg />
-                    <p>ՀԱՆՐԱՊԵՏԱԿԱՆ ՄԱՐԶԱԴԱՇՏ</p>
+                    <p>{location}</p>
                 </div>
             </div>
             <div className='ExpectedEventInfo'>
-                <p className='eventType'>ԵՎՐՈ 2024 ՈՐԱԿԱՎՈՐՄԱՆ ՓՈՒԼ</p>
-                <p className='eventName'>ՀԱՅԱՍՏԱՆ - ԽՈՐՎԱԹԻԱ</p>
+                <p className='eventType'>{description}</p>
+                <p className='eventName'>{title}</p>
             </div>
             <div className='MobilePrice'>
-                <p>1500-3000 AMD</p>
+                <p>{priceRange} AMD</p>
             </div>
             <div className='ExpectedEventLine' />
             <div className='ExpectedEventPrice'>
-                <p>1500-3000 AMD</p>
+                <p>{priceRange} AMD</p>
                 <Button title={t('BuyNow')} />
             </div>
         </div>
-        <img src={require('../../assets/2.png')} />
+        <img src={`${process.env.REACT_APP_IMAGE}/${img}`} />
     </div>
 }
