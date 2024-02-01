@@ -31,19 +31,37 @@ export const Carusel = () => {
             let title = ''
             let description = ''
             let hall = ''
+            let seeMore = ''
+            let primera = ''
+            let BuyNow = ''
             general?.events?.length > 0 && general?.events?.map((elm, i) => {
+                console.log(elm)
                 console.log(elm, 'elm')
                 if (language === 'am') {
                     title = elm.eventId.title
                     description = elm.eventId?.description
+                    primera = 'ՊՐԵՄԻԵՐԱ'
+                    seeMore = 'տեսնել ավելին'
+                    BuyNow = 'Գնիր հիմա'
+
+
                 }
                 else if (language === 'en') {
                     title = elm.eventId.title_en
                     description = elm.eventId?.description_en
+                    primera = 'PREMIERE'
+                    seeMore = 'see more'
+                    BuyNow = 'Buy Now'
+
+
+
                 }
                 else if (language === 'ru') {
                     title = elm.eventId.title_ru
                     description = elm.eventId?.description_ru
+                    primera = 'ПРЕМЬЕРА'
+                    seeMore = 'узнать больше'
+                    BuyNow = 'Купить сейчас'
                 }
                 const dateObject = new Date(elm?.date)
                 let dayOfWeek = dateObject.getDate()
@@ -70,7 +88,7 @@ export const Carusel = () => {
                             <div className='BanerDivInfo'>
                                 <div className='BanerPrimera'>
                                     <div className='Primera'>
-                                        <p className='Primerap'>ՊՐԵՄԻԵՐԱ</p>
+                                        <p className='Primerap'>{primera}</p>
                                         <p className='PrimeraDate'>{month}-{dayOfWeek} {elm.time}</p>
                                     </div>
                                     <div className='BanerLocation'>
@@ -81,8 +99,8 @@ export const Carusel = () => {
                                 <p className='BanerTitle'>{title}</p>
                                 <div className='BanerPrimeraMobile'>
                                     <div className='Primera'>
-                                        <p className='Primerap'>ՊՐԵՄԻԵՐԱ</p>
-                                        <p className='PrimeraDate'>ՀՈՒՆՎԱՐ 24 19։00</p>
+                                        <p className='Primerap'>{primera}</p>
+                                        <p className='PrimeraDate'>{month}-{dayOfWeek} {elm.time}</p>
                                     </div>
                                     <div className='BanerLocation'>
                                         <LocationSvg />
@@ -96,8 +114,8 @@ export const Carusel = () => {
 
                                 <p className='BanerPrice'>{elm.priceStart}-{elm.priceEnd} AMD</p>
                                 <div className='BanerButton'>
-                                    <Button title={t('BuyNew')} />
-                                    <p>տեսնել ավելին</p>
+                                    <Button title={BuyNow} />
+                                    <p>{seeMore}</p>
                                 </div>
                             </div>
                         </div>

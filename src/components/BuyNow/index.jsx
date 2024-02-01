@@ -307,7 +307,7 @@ export const BuyNow = () => {
                             <img alt='' width={55} height={34} src={require('../../assets/arca_logo.png')} />
                         </div>
                     </div>
-                    <p>{t('Youwillreceive')}</p>
+                    <p className={selectPay == 1 && 'activeSelectedBuy'}>{t('Youwillreceive')}</p>
                 </div>
                 <div className='selectPay' onClick={() => {
                     Select(2)
@@ -319,7 +319,7 @@ export const BuyNow = () => {
                         </div>
                         <img alt='' width={65} height={34} src={require('../../assets/TelCell.png')} />
                     </div>
-                    <p>{t('Youwillreceive')}</p>
+                    <p className={selectPay == 2 && 'activeSelectedBuy'}>{t('Youwillreceive')}</p>
                 </div>
                 <div className='selectPay' onClick={() => {
                     setDelivery(true)
@@ -331,7 +331,7 @@ export const BuyNow = () => {
                         </div>
                         <img width={68} height={34} src={require('../../assets/22.png')} />
                     </div>
-                    <p >{t('Shippingisfree')}</p>
+                    <p className={selectPay == 3 && 'activeSelectedBuy'}>{t('Shippingisfree')}</p>
 
                 </div>
                 <div className='BuyEndWrapper'>

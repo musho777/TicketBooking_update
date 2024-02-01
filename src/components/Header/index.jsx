@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { ActiveArrowSvg, ArrowSvg, CloseSvg, MenuSvg, MobileMenu, PhonSvg, Search, SearchMobileSvg, SearchSvg, Translate, WorldSvg } from '../svg'
 import { ChangeLanguageAction, GetCategory, OpenCaldendar, OpenCategoryMenu, SearchAction } from '../../services/action/action'
 import { PuffLoader } from 'react-spinners'
+import { MobileMenuComponent } from '../MobileMenu'
 
 export const Header = ({ open, menu }) => {
     const dispatch = useDispatch()
@@ -17,6 +18,7 @@ export const Header = ({ open, menu }) => {
     const [serchInput, setSearchInput] = useState(false)
     const [openLanguage, setOpenLanguage] = useState(false)
     const [value, setValue] = useState('')
+    const [openMenuMobile, setOpenMenuMobile] = useState(false)
 
     document.body.addEventListener('click', function () {
         setOpenLanguage(false)
@@ -122,11 +124,14 @@ export const Header = ({ open, menu }) => {
                     </div>
                     <div className='MobileHeader'>
                         <SearchMobileSvg />
-                        <MobileMenu />
+                        <div onClick={() => setOpenMenuMobile(!openMenuMobile)}>
+                            <MobileMenu />
+                        </div>
                     </div>
                 </div>
             </div>
             <div className='LineHeader' />
+            {openMenuMobile && <MobileMenuComponent setOpen={() => setOpenMenuMobile(false)} />}
         </div >
     )
 }

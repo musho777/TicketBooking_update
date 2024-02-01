@@ -40,27 +40,29 @@ export const ALLEvents = () => {
                     if (month <= 9) {
                         month = `0${month}`
                     }
-                    return (
-                        <EachTicket
-                            key={i}
-                            id={elm?._id}
-                            // data={elm}
-                            onClick={() => window.location = `/Single/${elm?._id}`}
-                            location={elm?.sessions[0]?.hallId?.location}
-                            location_en={elm?.sessions[0]?.hallId?.location_en}
-                            location_ru={elm?.sessions[0]?.hallId?.location_ru}
-                            title={elm?.title}
-                            title_ru={elm?.title_ru}
-                            title_en={elm?.title_en}
-                            category_en={elm?.category.name_en}
-                            category_ru={elm?.category.name_ru}
-                            category={elm?.category.name}
-                            time={elm?.sessions[0]?.time}
-                            image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
-                            date={`${day}-${month}-${dateObject.getFullYear()}, ${elm.sessions[0]?.time}`}
-                            price={`${elm?.sessions[0]?.priceStart} - ${elm?.sessions[0]?.priceEnd} AMD`}
-                        />
-                    )
+                    if (elm?.sessions?.length > 0)
+                        return (
+
+                            <EachTicket
+                                key={i}
+                                id={elm?._id}
+                                // data={elm}
+                                onClick={() => window.location = `/Single/${elm?._id}`}
+                                location={elm?.sessions[0]?.hallId?.location}
+                                location_en={elm?.sessions[0]?.hallId?.location_en}
+                                location_ru={elm?.sessions[0]?.hallId?.location_ru}
+                                title={elm?.title}
+                                title_ru={elm?.title_ru}
+                                title_en={elm?.title_en}
+                                category_en={elm?.category.name_en}
+                                category_ru={elm?.category.name_ru}
+                                category={elm?.category.name}
+                                time={elm?.sessions[0]?.time}
+                                image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
+                                date={`${day}-${month}-${dateObject.getFullYear()}, ${elm.sessions[0]?.time}`}
+                                price={`${elm?.sessions[0]?.priceStart} - ${elm?.sessions[0]?.priceEnd} AMD`}
+                            />
+                        )
                 })}
                 {paronyanEvents?.events?.result?.map((elm, i) => {
                     return <EachTicket

@@ -179,6 +179,18 @@ export const Category = () => {
             day1 = end.getDate();
             year1 = end.getFullYear();
         }
+        if (month > 0 && month < 10) {
+            month = `0${month}`
+        }
+        if (day > 0 && day < 10) {
+            day = `0${day}`
+        }
+        if (month1 > 0 && month1 < 10) {
+            month1 = `0${month1}`
+        }
+        if (day1 > 0 && day1 < 10) {
+            day1 = `0${day1}`
+        }
         setDate(`
             ${month}.${day}.${year} - ${month1}.${day1}.${year1}
         `)
@@ -255,7 +267,6 @@ export const Category = () => {
                                         close={() => dispatch(openCalendar(false))}
                                     />}
                                 </div>
-                                <CalendarSvg />
                             </div>
                         </div>
                         <div>

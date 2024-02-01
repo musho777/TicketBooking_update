@@ -30,22 +30,23 @@ export const TopEventsComponent = () => {
                     let day = dateObject.getDate();
                     let month = dateObject.getMonth();
                     var currentDayOfWeek = daysOfWeek[dateObject.getDay()];
-                    return <TopEvents
-                        key={i}
-                        day={day}
-                        id={elm?._id}
-                        image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
-                        title={elm.title}
-                        category={elm.category}
-                        location={elm?.sessions[0]?.hallId?.location}
-                        location_en={elm?.sessions[0]?.hallId?.location_en}
-                        location_ru={elm?.sessions[0]?.hallId?.location_ru}
-                        data={elm}
-                        time={elm?.sessions[0]?.time}
-                        months={months[month]}
-                        currentDayOfWeek={currentDayOfWeek}
-                        price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
-                    />
+                    if (elm?.sessions?.length > 0)
+                        return <TopEvents
+                            key={i}
+                            day={day}
+                            id={elm?._id}
+                            image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
+                            title={elm.title}
+                            category={elm.category}
+                            location={elm?.sessions[0]?.hallId?.location}
+                            location_en={elm?.sessions[0]?.hallId?.location_en}
+                            location_ru={elm?.sessions[0]?.hallId?.location_ru}
+                            data={elm}
+                            time={elm?.sessions[0]?.time}
+                            months={months[month]}
+                            currentDayOfWeek={currentDayOfWeek}
+                            price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
+                        />
                 })}
         </div>
         <div className="ShowAllButtonWrappr">

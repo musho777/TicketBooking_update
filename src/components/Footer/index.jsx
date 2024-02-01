@@ -10,7 +10,7 @@ export const Footer = ({ menu }) => {
     const navigation = useNavigate()
     const getCategory = useSelector((st) => st.getCategory)
     const { language } = useSelector((st) => st.StaticReducer)
-
+    const { Event_reducer } = useSelector((st) => st)
 
     const dispatch = useDispatch()
     const { t } = useTranslation()
@@ -18,6 +18,8 @@ export const Footer = ({ menu }) => {
     useEffect(() => {
         dispatch(GetFeedback())
     }, [dispatch])
+
+    console.log(Event_reducer.feedback?.instagram, 'Event_reducer')
 
     return (
         <div className='footerWrapper'>
@@ -55,9 +57,15 @@ export const Footer = ({ menu }) => {
                     <div className='footerColumnsWrapperDiv'>
                         <p className='footerColumnsTitle'>Մենք սոց. ցանցերում </p>
                         <div className='Social'>
-                            <InstagramSvg />
-                            <FbSvg />
-                            <TwitterSvg />
+                            <div onClick={() => window.open(`${Event_reducer.feedback?.instagram}`, "_blank")}>
+                                <InstagramSvg />
+                            </div>
+                            <div onClick={() => window.open(`${Event_reducer.feedback?.facebook}`, "_blank")}>
+                                <FbSvg />
+                            </div>
+                            <div onClick={() => window.open(`${Event_reducer.feedback?.twitter}`, "_blank")}>
+                                <TwitterSvg />
+                            </div>
                         </div>
                     </div>
                 </div>

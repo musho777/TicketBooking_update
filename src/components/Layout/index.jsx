@@ -5,10 +5,13 @@ import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { EventValidity } from '../../services/action/action.js'
 import { Footer } from '../Footer/index.jsx'
+import { useTranslation } from 'react-i18next'
 
 export const Layout = () => {
     const [openMenu, setOpenMenu] = useState(false)
     const dispatch = useDispatch()
+    const { t } = useTranslation()
+
     useEffect(() => {
         dispatch(EventValidity())
     }, [dispatch])
@@ -18,7 +21,7 @@ export const Layout = () => {
         </div>
         <div className='container'>
             <div className='wrapper'>
-                <p className='mainPageText'>Պատվիրելու համար զանգահարել +374 93 55 88 44</p>
+                <p className='mainPageText'>{t('forDelivery')}</p>
             </div>
         </div>
         <div className='outlet'>

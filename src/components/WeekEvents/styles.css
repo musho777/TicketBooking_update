@@ -117,6 +117,14 @@
         min-width: 312px;
     }
 
+    .WeekEventTitle>h2 {
+        font-size: 23px;
+    }
+
+    .WeekArrow {
+        display: none;
+    }
+
     .WeekCardImg>img {
         width: 108px;
         height: 127px;

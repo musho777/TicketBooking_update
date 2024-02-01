@@ -14,6 +14,11 @@
     overflow-y: scroll;
 }
 
+.activeSelectedBuy {
+    color: #24005C !important;
+    font-weight: 500 !important;
+}
+
 .BuyNowHeaderTitle {
     color: #FFF;
     font-family: "Montserrat arm";
@@ -110,11 +115,11 @@
 }
 
 .selectPay>p {
-    color: #24005C;
+    color: rgba(36, 0, 92, 0.50);
     font-family: "Montserrat arm";
     font-size: 14px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 26px;
 }
 

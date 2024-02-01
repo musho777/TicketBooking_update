@@ -16,6 +16,7 @@ import { Hall } from '../../components/photoMap/Hall'
 import { LocationSvg } from '../../components/svg'
 import { TopEvents } from '../../components/TopEvents/TopEvents'
 import { Card } from './card'
+import { ShowAllButton } from '../../components/Button/ShowAllButton'
 
 export const Single = () => {
     const dispatch = useDispatch()
@@ -100,7 +101,9 @@ export const Single = () => {
                 priceStart={`${event?.sessions[0].priceStart} -`}
                 hall={languageData.hall}
                 onClick={() => window.location = `/BuyTickets/${id}`}
-                largImage={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.largeImage}`
+                largImage={
+                    getSinglPage.events.event?.largeImage ? `${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.largeImage}` :
+                        `${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`
 
                 }
             /> : <Card
@@ -136,6 +139,9 @@ export const Single = () => {
                                     price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
                                 />
                             })}
+                        </div>
+                        <div className="ShowAllButtonWrappr">
+                            <ShowAllButton />
                         </div>
                     </div>
                 }

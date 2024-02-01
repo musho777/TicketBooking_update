@@ -22,7 +22,7 @@ export const Card = ({
             <div className='SinglBanerDivInfo'>
                 <div className='SinglBanerPrimera'>
                     <div className='SinglPrimera'>
-                        <p className='SinglPrimerap'>ՊՐԵՄԻԵՐԱ</p>
+                        <p className='SinglPrimerap'>{t('Primera')}</p>
                         <p className='SinglPrimeraDate'>{data} {time}</p>
                     </div>
                     <div className='SinglBanerLocation'>
@@ -38,7 +38,7 @@ export const Card = ({
                 </div>
                 <div className='SinglBanerPrimeraMobile'>
                     <div className='Primera'>
-                        <p className='Primerap'>ՊՐԵՄԻԵՐԱ</p>
+                        <p className='Primerap'>{t('Primera')}</p>
                         <p className='PrimeraDate'>{data} {time}</p>
                     </div>
                     <div className='BanerLocation'>
@@ -51,8 +51,8 @@ export const Card = ({
                     <div className='SinglBanerButton'>
                         <Button
                             onClick={onClick}
-                            title={t('BuyNew')} />
-                        <p>տեսնել ավելին</p>
+                            title={t('BuyNow')} />
+                        <p>{t('seeMore')}</p>
                     </div>
                 </div>
             </div>
