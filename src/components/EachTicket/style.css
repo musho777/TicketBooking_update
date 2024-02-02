@@ -108,12 +108,6 @@
 }
 
 @media screen and (max-width: 768px) {
-    .ticket {
-        width: 47%;
-        height: 82px;
-        margin-bottom: 6%;
-    }
-
     .TicketInfodiv {
         gap: 10px;
     }
@@ -143,5 +137,13 @@
         font-size: 10px;
         line-height: 10px;
 
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .ticket {
+        width: 100%;
+        margin-bottom: 6%;
     }
 }

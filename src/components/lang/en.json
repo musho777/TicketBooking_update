@@ -30,7 +30,7 @@
     "Youwillreceive": "You will receive the ticket to the specified e-mail address.",
     "Shippingisfree": "Shipping is free. Payment in cash.",
     "freeDelivery": "Delivery is free in Yerevan",
-    "forDelivery": "To order, call +374 93 55 88 44",
+    "forDelivery": "To order, call ",
     "Primera": "PREMIERE",
     "seeMore": "see more",
     "SHINETICKETSLLC": "SHINE TICKETS LLC thanks its Partners for Cooperation and for their Support. Privacy Policy / © 2024 / All Rights Reserved",
@@ -47,5 +47,6 @@
     "THEATRE": "THEATRE",
     "CINEMA": "CINEMA",
     "OPERA": "OPERA",
-    "WEEKLYEVENTS": "WEEKLY EVENTS"
+    "WEEKLYEVENTS": "WEEKLY EVENTS",
+    "Cancel": "Cancel selected"
 }

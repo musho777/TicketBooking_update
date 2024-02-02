@@ -8,6 +8,7 @@
     cursor: pointer;
     max-width: 682px;
     min-width: 471px;
+    height: 270px;
 }
 
 .ExpectedEventsDiv>img {

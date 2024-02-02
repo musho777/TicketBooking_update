@@ -18,10 +18,18 @@
     align-items: center;
 }
 
+.Emoji {
+    display: block;
+}
+
+.EmojiM {
+    display: none;
+}
+
 .NotFound {
     margin-top: 30px;
     text-align: center;
-    font-size: 78px;
+    font-size: 30px;
     font-style: normal;
     color: #24005C;
     font-family: "Montserratarm-Bold", sans-serif;
@@ -40,7 +48,7 @@
 .FilterDiv {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
 
 .FilterDiv>div {
@@ -196,6 +204,41 @@
     background-color: #aea6bd;
 }
 
+.ClearFilterDiv {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    align-items: flex-end;
+    margin: 10px;
+}
+
+.NotFoundDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.ClearFilter {
+    display: flex;
+    border: 1px solid #24005C;
+    /* max-width: 240px; */
+    padding: 7px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: rgba(36, 0, 92, 0.1);
+}
+
+.ClearFilter p {
+    font-family: 'Montserratarm-Regular', sans-serif;
+    color: #24005C;
+    font-size: 14px;
+}
+
 @media screen and (max-width: 1200px) {
     .FilterDiv {
         flex-direction: column;
@@ -218,6 +261,23 @@
 
     .CalendarDivCalendar {
         width: 100%;
+    }
+
+    .ClearFilterDiv {
+        justify-content: center;
+    }
+
+    #CategoryCardWrapper {
+        display: flex !important;
+        overflow: hidden !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        align-items: center;
+
+    }
+
+    #CategoryCardWrapper>div {
+        margin-bottom: 30px;
     }
 
     .FilterDiv>div {
@@ -267,5 +327,17 @@
     .CategoryScreenBaner2 {
         display: block;
         margin-top: 20px;
+    }
+
+    .Emoji {
+        display: none;
+    }
+
+    .EmojiM {
+        display: block;
+    }
+
+    .NotFound {
+        font-size: 15px;
     }
 }

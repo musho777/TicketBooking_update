@@ -1,25 +1,17 @@
 import './style.css'
-import Stack from '@mui/material/Stack'
 import 'react-date-range/dist/styles.css'
 import { useEffect, useState } from 'react'
-import { PuffLoader } from 'react-spinners'
 import { useTranslation } from 'react-i18next'
 import 'react-date-range/dist/theme/default.css'
-import Pagination from '@mui/material/Pagination'
-import { DateRangePicker } from 'react-date-range'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
-import { MultySelect } from '../../components/MultySelect'
+import { useParams } from 'react-router-dom'
 import { CategoryMenu } from '../../components/CategoryMenu'
-import { CategoryTicket } from '../../components/CategoryTicket'
-import { CalendarSvg, FilterSvg, MFilter, MultysElectSvg } from '../../components/svg'
 import { GetAllEvents, GetHall, GetParonyanEvents, OpenCaldendar, OpenCategoryMenu, SubCategory } from '../../services/action/action'
 import { Calendar } from '../../components/Calendar'
-import { TopEvents } from '../../components/TopEvents/TopEvents'
-import { WeekEvents } from '../../components/WeekEvents'
-import { ALLEvents } from '../../components/AllEvents'
-import { TopEventsComponent } from '../../components/TopEvents'
 import { CategoryCardWrapper } from './CategoryCardWrapper'
+import { ClearFiltr, Emoji, EmojiM } from '../../components/svg'
+import { PuffLoader } from 'react-spinners'
+import { ExpectedEvents } from '../../components/ExpectedEvents'
 
 export const Category = () => {
     const dispatch = useDispatch()
@@ -143,7 +135,7 @@ export const Category = () => {
                 </div>
             )
         }
-        else if (id == '6581e28f5bf51638abd3fa02') {
+        else if (id == '65bb8ba6c2c47b9c4c2e5ef9') {
             setBaner(
                 <div className='CategoryBaner'>
                     <div id='A' className='CategoryBanerFon' >
@@ -228,7 +220,13 @@ export const Category = () => {
         setHeight(false)
     });
 
-
+    const ClearFunction = () => {
+        setActiveButton('Բոլորը')
+        setSubcategoryId('')
+        setHallId('')
+        setHallName('')
+        setSelectedDate([{ startDate: '', endDate: '', key: 'selection' }])
+    }
     const HallName = () => {
         if (hallId == '') {
             if (language === 'ru') {
@@ -263,13 +261,26 @@ export const Category = () => {
             return text;
         }
     }
+    // if (events?.loading) {
+    //     return (
+    //         <div className='loading'>
+    //             <PuffLoader color="#FEE827" />
+    //         </div>
+    //     )
+    // }
     return (
         <div className='CategoryScreen'>
             <div className='CategoryScreenBaner'>
                 {baner}
             </div>
             <div id='CategoryScreen1' className='container'>
-                {<div className='FilterDiv'>
+                <div onClick={() => ClearFunction()} className='ClearFilterDiv'>
+                    {(hallId || selectedDate[0].startDate) && <div className='ClearFilter'>
+                        <p>{t('Cancel')}</p>
+                        <ClearFiltr />
+                    </div>}
+                </div>
+                <div className='FilterDiv'>
                     <div className='CalendarDiv'>
                         <div >
                             <p className='FilterDivTitle'>{t('Date')}</p>
@@ -365,18 +376,27 @@ export const Category = () => {
                         </div>
 
                     </div>
-                </div>}
+                </div>
                 <div className='CategoryScreenBaner2'>
                     {baner}
                 </div>
                 <div className='CategoryScreen1Div'>
-                    {paronyanEvents.events?.result?.length > 0 || events.events?.sessions?.length > 0 &&
-                        <CategoryCardWrapper paronyan={id == '657b00c67a91070546630967' ? paronyanEvents.events?.result : []} data={events} />
-                    }
+                    <CategoryCardWrapper paronyan={id == '657b00c67a91070546630967' ? paronyanEvents.events?.result : []} data={events} />
                     {!paronyanEvents.events.length > 0 && !events.events?.sessions?.length > 0 &&
-                        <p className='NotFound'>ss</p>
+                        <div className='NotFoundDiv'>
+                            <div className='Emoji'>
+                                <Emoji />
+                            </div>
+                            <div className='EmojiM'>
+                                <EmojiM />
+                            </div>
+                            <p className='NotFound'>Ցավոք միջոցառումներ չեն գտնվել</p>
+                        </div>
                     }
                 </div>
+            </div>
+            <div className='container'>
+                <ExpectedEvents />
             </div>
         </div>
     )

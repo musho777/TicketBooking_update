@@ -247,7 +247,6 @@
 
 @media screen and (min-width:905px) and (max-width: 1330px) {
     .TopEvents {
-        /* width: 23%; */
         width: 260px;
         height: 350px;
     }
@@ -268,8 +267,8 @@
     }
 
     .TopEvents {
-        /* width: 23%; */
-        /* width: 260px; */
+        min-width: 270px;
+        width: 270px;
         height: 350px;
     }
 }

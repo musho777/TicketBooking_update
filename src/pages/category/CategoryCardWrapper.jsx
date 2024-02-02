@@ -9,7 +9,7 @@ export const CategoryCardWrapper = ({ data, paronyan }) => {
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     return <div>
         <div className='EventTitle' />
-        <div className="TopEventWrapper">
+        <div id='CategoryCardWrapper' className="TopEventWrapper">
             {
                 data.events.sessions?.length > 0 && data?.events?.sessions?.map((elm, i) => {
                     const dateObject = new Date(elm?.date);
@@ -32,7 +32,7 @@ export const CategoryCardWrapper = ({ data, paronyan }) => {
                         currentDayOfWeek={currentDayOfWeek}
                         day={day}
                         // time={elm?.sessions[0]?.time}
-                        months={months[month]}
+                        // months={months[month]}
                         data={elm.eventId}
                         price={`${elm?.priceStart} - ${elm?.priceEnd} AMD`}
                     />
@@ -58,8 +58,8 @@ export const CategoryCardWrapper = ({ data, paronyan }) => {
                 })
             }
         </div>
-        <div className="ShowAllButtonWrappr">
+        {(data.events.sessions?.length > 0 || paronyan.length > 0) && <div className="ShowAllButtonWrappr">
             <ShowAllButton />
-        </div>
+        </div>}
     </div>
 }

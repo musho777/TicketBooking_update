@@ -39,11 +39,9 @@ export const ALLEvents = () => {
                     }
                     if (elm?.sessions?.length > 0 && i < 8)
                         return (
-
                             <EachTicket
                                 key={i}
                                 id={elm?._id}
-                                // data={elm}
                                 onClick={() => window.location = `/Single/${elm?._id}`}
                                 location={elm?.sessions[0]?.hallId?.location}
                                 location_en={elm?.sessions[0]?.hallId?.location_en}
