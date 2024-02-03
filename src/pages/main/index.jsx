@@ -7,7 +7,7 @@ import { ALLEvents } from '../../components/AllEvents'
 import { useDispatch, useSelector } from 'react-redux'
 import { CardSlider } from '../../components/CardSlider'
 import { SearchEvent } from '../../components/SearchEvent'
-import { BuyTicketFromParonyan, GetAllAds, GetGenerealEvents, GetParoninaSinglHallSeats, GetParonyanEvents, WeekEvetntApi } from '../../services/action/action'
+import { BuyTicketFromParonyan, GetAllAds, GetGenerealEvents, GetParoninaSinglHallSeats, GetParonyanEvents, GetSinglParonyan, WeekEvetntApi } from '../../services/action/action'
 import { HP85 } from '../../components/Halls/HP85'
 import { CartPopup } from '../../components/popup/cart'
 import { MD5 } from 'crypto-js'
@@ -151,6 +151,7 @@ export const Main = () => {
         dispatch(GetAllAds())
         dispatch(GetParoninaSinglHallSeats())
         dispatch(WeekEvetntApi())
+        dispatch(GetSinglParonyan())
         // dispatch(BuyTickets())
     }, [])
         ;

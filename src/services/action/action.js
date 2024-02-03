@@ -343,8 +343,8 @@ export const GetParoninaSinglHallSeats = () => {
     const requestType = "getRow";
     const params = {
         group_id: "12",
-        timeline_id: "6929",
-        event_id: "97",
+        timeline_id: "6933",
+        event_id: "1321",
     };
     const sortedParams = Object.fromEntries(Object.entries(params).sort());
     sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
@@ -361,6 +361,7 @@ export const GetParoninaSinglHallSeats = () => {
 
     return async (dispatch) => {
         const response = await axios(options)
+        console.log(response.data.data.Levels)
     }
 }
 
@@ -388,6 +389,7 @@ export const GetSinglParonyan = () => {
 
     return async (dispatch) => {
         const response = await axios(options)
+        console.log(response, 'response')
     }
 }
 
@@ -471,3 +473,6 @@ export const GetExpectedEvents = () => {
             })
     }
 }
+
+
+

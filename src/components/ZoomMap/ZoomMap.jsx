@@ -4,6 +4,7 @@ import AramKhachatryan from '../photoMap/AramKhachatryanHall'
 import PhotoCoordinatesByColor from '../photoMap'
 import KarenDemerchyanMec from '../photoMap/Karendemrjyanmec'
 import './styles.css';
+import ParonyanPoqr from '../photoMap/ParonyanPoqr';
 
 export const ZoomMap = ({ scale, event, getSinglPage }) => {
 
@@ -70,6 +71,15 @@ export const ZoomMap = ({ scale, event, getSinglPage }) => {
             }
             {event?.sessions[0]?.hallId?._id === '6535520e0dc8b78f78b56997' &&
                 <AramKhachatryan
+                    pading={pading}
+                    eventId={getSinglPage.events.event?._id}
+                    sessionID={getSinglPage.events.event?.sessions[0]._id}
+                    soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets}
+                    secion={getSinglPage.events.event?.sessions[0]?.price}
+                />
+            }
+            {!event?.sessions[0]?.hallId?._id &&
+                <ParonyanPoqr
                     pading={pading}
                     eventId={getSinglPage.events.event?._id}
                     sessionID={getSinglPage.events.event?.sessions[0]._id}
