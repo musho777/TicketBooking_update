@@ -16,7 +16,6 @@ export const ExpectedEvents = () => {
         "July", "August", "September", "October", "November", "December"
     ];
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    // console.log(getExpectedEvents.events, 'getExpectedEvents')
     const { t } = useTranslation()
     return <div className='ExpectedEvents'>
         <div className='EventTitle'>
@@ -24,7 +23,6 @@ export const ExpectedEvents = () => {
         </div>
         <div className='CardDiv'>
             {getExpectedEvents?.events?.map((elm, i) => {
-                console.log(elm.category)
                 let month = ''
                 let title = ''
                 let weekday = ''

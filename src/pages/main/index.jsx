@@ -75,7 +75,6 @@ export const Main = () => {
         fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -135,7 +134,6 @@ export const Main = () => {
         fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
             })
             .catch(error => {
                 console.error('Error:', error);

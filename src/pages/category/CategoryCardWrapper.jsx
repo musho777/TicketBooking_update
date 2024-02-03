@@ -30,9 +30,6 @@ export const CategoryCardWrapper = ({ data, paronyan }) => {
                         hall_ru={elm.hallId.hall_ru}
                         months={months[month]}
                         currentDayOfWeek={currentDayOfWeek}
-                        day={day}
-                        // time={elm?.sessions[0]?.time}
-                        // months={months[month]}
                         data={elm.eventId}
                         price={`${elm?.priceStart} - ${elm?.priceEnd} AMD`}
                     />
@@ -40,14 +37,32 @@ export const CategoryCardWrapper = ({ data, paronyan }) => {
             {
 
                 paronyan?.map((elm, i) => {
+                    const matchResult = elm.time.match(/(\d+)([\s\S]*?)(<div[\s\S]*?<\/div>)([\s\S]*?)(\d+:\d+)/);
+                    const day = matchResult[1];
+                    const divContent = matchResult[3];
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(divContent, "text/html");
+                    const divElement = doc.body.firstChild;
+                    divElement.removeChild(divElement.querySelector('br'));
+                    const linesArray = Array.from(divElement.childNodes)
+                        .filter(node => node.nodeType === 3) // Filter out non-text nodes
+                        .map(node => node.textContent.trim());
+                    const time = matchResult[5];
                     return <TopEvents
                         key={i}
                         image={`${elm.img}`}
+                        type={false}
+                        day={day}
                         title={elm.title}
                         category={{ _id: '657b00c67a91070546630967', name: 'Թատրոն', name_en: 'Theatre', name_ru: 'Театр' }}
                         hall={elm?.group_name}
                         hall_en={'H. Paronyan State Theater'}
                         hall_ru={'A.Государственный театр Пароняна'}
+                        months={linesArray[0]}
+                        currentDayOfWeek={linesArray[1]}
+                        time={time}
+                        time2={elm.time}
+                        id={elm.id}
                         data={{
                             title: elm.name,
                             title_ru: elm.name,

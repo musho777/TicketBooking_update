@@ -28,7 +28,6 @@ export const BuyTickets = () => {
     ];
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const [scale, setScale] = useState(1);
-    console.log(scale, 'scale')
     const handleZoomIn = () => {
         if (scale < 1) {
             setScale(scale * 1.2);
@@ -41,7 +40,9 @@ export const BuyTickets = () => {
         setScale(scale / 1.2);
     };
     useEffect(() => {
-        dispatch(GetSinglPage(id))
+        if (id.length > 3) {
+            dispatch(GetSinglPage(id))
+        }
     }, [])
     useEffect(() => {
         let price = 0

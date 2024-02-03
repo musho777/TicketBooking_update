@@ -3,7 +3,9 @@ import { Button } from '../Button'
 import { CategoryType } from '../CategoryType'
 import './styles.css'
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { SuccessSinglPage } from '../../services/action/SuccessAction';
+import { useNavigate } from 'react-router-dom';
 export const TopEvents = ({
     image,
     location,
@@ -19,11 +21,15 @@ export const TopEvents = ({
     day,
     months,
     time,
-    currentDayOfWeek
+    currentDayOfWeek,
+    type = true,
+    time2
 }) => {
     const { t } = useTranslation();
     const [languageData, setLanguageData] = useState({ title: '', location: '', categorName: '', hall })
     const { language } = useSelector((st) => st.StaticReducer)
+    const dispatch = useDispatch()
+    const navigation = useNavigate()
     useEffect(() => {
         let item = { ...languageData }
         if (language === 'am') {
@@ -47,6 +53,30 @@ export const TopEvents = ({
         }
         setLanguageData(item)
     }, [language])
+
+    const handelClick = () => {
+        if (!type) {
+            dispatch(SuccessSinglPage({
+                event: {
+                    location: location,
+                    location_en: 'H. Paronyan State Theater',
+                    location_ru: 'A.Государственный театр Пароняна',
+                    title: data?.title,
+                    title_ru: data?.title_ru,
+                    title_en: data?.title_en,
+                    date: time2.replace(/<div[^>]*>|<\/div>|<br>/g, ''),
+                    image: image,
+                    id: id,
+                    type: 'paronyan'
+                }
+            }))
+            navigation(`/BuyTickets/${id}`)
+        }
+        else {
+            window.location = `/BuyTickets/${id}`
+        }
+
+    }
 
     return <div className='TopEvents'>
         <div className='TypeTopDiv'>
@@ -78,7 +108,7 @@ export const TopEvents = ({
             <div className='TopEventsInfoLine2' />
             <div className='TopEventsButton'>
                 <Button
-                    onClick={() => window.location = `/BuyTickets/${id}`}
+                    onClick={() => handelClick()}
                     title={t('BuyNow')} />
             </div>
         </div>

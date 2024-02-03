@@ -78,7 +78,6 @@ export const Header = ({ open, menu }) => {
         }
         const timeoutId1 = setTimeout(() => {
             if (!searchResult) {
-                console.log('11')
                 setINputFocus(false)
             }
         }, 1200);
@@ -86,7 +85,6 @@ export const Header = ({ open, menu }) => {
             clearTimeout(timeoutId1)
         };
     }, [searchResult])
-    console.log(searchResultData)
     return (
         <div className='header'>
             <div className='MainHeaderDiv'>
@@ -157,7 +155,6 @@ export const Header = ({ open, menu }) => {
                             <div id={searchResult ? 'SearchResultActive' : ''} className='SearchResult'>
                                 {searchResultData && <div>
                                     {value != '' && search.events.map((elm, i) => {
-                                        console.log(elm)
                                         let name = ''
                                         let description = ''
                                         if (language == 'am') {
@@ -266,7 +263,6 @@ export const Header = ({ open, menu }) => {
                                 <div id={searchResult ? 'SearchResultActive' : ''} className='SearchResult'>
                                     {searchResultData && <div>
                                         {value != '' && search?.events.map((elm, i) => {
-                                            console.log(elm)
                                             let name = ''
                                             let description = ''
                                             if (language == 'am') {

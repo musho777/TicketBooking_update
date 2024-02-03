@@ -459,7 +459,6 @@ export const GetExpectedEvents = () => {
     return (dispatch) => {
         dispatch(StartGetExpectedEvents())
         axios.get(`${process.env.REACT_APP_HOSTNAME}/getAllUpcomingEvents`).then((r) => {
-            console.log(r, '21')
             if (r.data.success) {
                 dispatch(SuccessGetExpectedEvents(r.data.upcomingEvents))
             }
