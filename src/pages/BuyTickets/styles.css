@@ -341,4 +341,12 @@
     .BuyTicketButtonWrapper {
         padding: 10px 0;
     }
+
+    .TikcetsWrapper {
+        padding: 10px;
+    }
+
+    .ClewarTicet {
+        right: -10px;
+    }
 }

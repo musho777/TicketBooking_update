@@ -99,7 +99,7 @@ export const Category = () => {
                 </div>
             )
         }
-        else if (id == '6581e2425bf51638abd3f9ee') {
+        else if (id == '65bb8bddc2c47b9c4c2e5f3a') {
             setBaner(
                 <div className='CategoryBaner'>
                     <div id='O' className='CategoryBanerFon' >
@@ -382,7 +382,7 @@ export const Category = () => {
                 </div>
                 <div className='CategoryScreen1Div'>
                     <CategoryCardWrapper paronyan={id == '657b00c67a91070546630967' ? paronyanEvents.events?.result : []} data={events} />
-                    {!paronyanEvents.events.length > 0 && !events.events?.sessions?.length > 0 &&
+                    {!paronyanEvents?.events?.length > 0 && !events.events?.sessions?.length > 0 &&
                         <div className='NotFoundDiv'>
                             <div className='Emoji'>
                                 <Emoji />

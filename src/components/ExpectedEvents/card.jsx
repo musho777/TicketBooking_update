@@ -13,12 +13,14 @@ export const Card = ({
     description,
     day,
     priceRange,
-    img
+    img,
+    category,
+    categoryType
 }) => {
     const { t } = useTranslation();
     return <div className='ExpectedEventsDiv'>
         <div className='TypeDiv'>
-            <CategoryType />
+            <CategoryType type={categoryType} name={category} />
         </div>
         <div className='ExpectedEventsInfo'>
             <div className='dateAndLocation'>

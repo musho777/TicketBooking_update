@@ -1,9 +1,9 @@
 import './style.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SearchInput } from '../SearchInput'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { ActiveArrowSvg, ArrowSvg, CloseSvg, MenuSvg, MobileMenu, PhonSvg, Search, SearchMobileSvg, SearchSvg, Translate, WorldSvg } from '../svg'
+import { ActiveArrowSvg, Arrow1, ArrowSvg, CloseSvg, MenuSvg, MobileMenu, PhonSvg, Search, SearchMobileSvg, SearchSvg, Translate, WorldSvg } from '../svg'
 import { ChangeLanguageAction, GetCategory, OpenCaldendar, OpenCategoryMenu, SearchAction } from '../../services/action/action'
 import { PuffLoader } from 'react-spinners'
 import { MobileMenuComponent } from '../MobileMenu'
@@ -16,24 +16,75 @@ export const Header = ({ open, menu }) => {
     const getCategory = useSelector((st) => st.getCategory)
     const { language } = useSelector((st) => st.StaticReducer)
     const [serchInput, setSearchInput] = useState(false)
+    const inputRef = useRef(null);
     const [openLanguage, setOpenLanguage] = useState(false)
+    const [inputFocus, setINputFocus] = useState(false)
     const [value, setValue] = useState('')
     const [openMenuMobile, setOpenMenuMobile] = useState(false)
+    const [searchResult, setSearchResult] = useState(false)
+    const [searchResultData, setSearchResultDAta] = useState(false)
 
     document.body.addEventListener('click', function () {
         setOpenLanguage(false)
         setSearchInput(false)
+        setSearchResult(false)
 
     });
 
+    function truncateText(text) {
+        if (text?.length > 13) {
+            return text.substring(0, 10) + '...';
+        }
+        else {
+            return text;
+        }
+    }
+
     const { id } = useParams()
     useEffect(() => {
-        dispatch(SearchAction(value))
+        if (value) {
+            dispatch(SearchAction(value))
+        }
     }, [value, dispatch])
 
     useEffect(() => {
         dispatch(GetCategory())
     }, [dispatch])
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            if (searchResult) {
+                setSearchResultDAta(true)
+
+            }
+        }, 300);
+
+
+
+        if (!searchResult) {
+            setSearchResultDAta(false)
+        }
+
+        return () => {
+            clearTimeout(timeoutId);
+        };
+    }, [searchResult]);
+
+    useEffect(() => {
+        if (searchResult) {
+            inputRef.current.focus()
+        }
+        const timeoutId1 = setTimeout(() => {
+            if (!searchResult) {
+                console.log('11')
+                setINputFocus(false)
+            }
+        }, 1200);
+        return () => {
+            clearTimeout(timeoutId1)
+        };
+    }, [searchResult])
+
     return (
         <div className='header'>
             <div className='MainHeaderDiv'>
@@ -87,7 +138,63 @@ export const Header = ({ open, menu }) => {
                             <div className='SearchInputSvg'>
                                 <SearchSvg />
                             </div>
-                            <input placeholder='Փնտրել միջոցառում' className='SearchInput' />
+
+                            <input
+                                ref={inputRef}
+                                onChange={(e) => setValue(e.target.value)}
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    e.stopPropagation()
+                                    setINputFocus(true)
+                                    setSearchResult(true)
+                                }
+                                } placeholder='Փնտրել միջոցառում'
+                                id={inputFocus ? 'SearchInput' : ''}
+                                className='SearchInput' />
+                            <div id={searchResult ? 'SearchResultActive' : ''} className='SearchResult'>
+                                {searchResultData && <div>
+
+                                    {value != '' && search.events.map((elm, i) => {
+                                        console.log(elm)
+                                        let name = ''
+                                        let description = ''
+                                        if (language == 'am') {
+                                            name = elm.title
+                                            description = elm.description
+                                        }
+                                        else if (language == 'ru') {
+                                            name = elm.title_ru
+                                            description = elm.description_ru
+
+                                        }
+                                        else {
+                                            name = elm.title_en
+                                            description = elm.description_en
+
+                                        }
+                                        return <div>
+                                            <div className='SearchResultDiv'>
+                                                <div className='SearchResultDivInfo'>
+                                                    <p>{truncateText(name)}</p>
+                                                    <p>{truncateText(description)}</p>
+                                                    <p className='SearchResultDivInfoMount'>Փետրվար 13 2024</p>
+                                                </div>
+                                                <div className='SearchResultDivInfoPrice'>
+                                                    <p>5000-15000 AMD</p>
+                                                    <div onClick={() => window.location = `/single/${elm._id}`} className='SearchResultDivInfoPriceButton'>
+                                                        <Arrow1 />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className='SearchResultDivLine' />
+
+                                        </div>
+
+                                    })}
+
+
+                                </div>}
+                            </div>
                         </div>
                         <div className='ButtonWrapperHeader'>
                             <button className='phonNumber'>

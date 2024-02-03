@@ -58,7 +58,7 @@ export const CategoryCardWrapper = ({ data, paronyan }) => {
                 })
             }
         </div>
-        {(data.events.sessions?.length > 0 || paronyan.length > 0) && <div className="ShowAllButtonWrappr">
+        {(data.events.sessions?.length > 0 || paronyan?.length > 0) && <div className="ShowAllButtonWrappr">
             <ShowAllButton />
         </div>}
     </div>

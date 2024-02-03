@@ -7,7 +7,6 @@ import { GetExpectedEvents } from '../../services/action/action'
 export const ExpectedEvents = () => {
     const { getExpectedEvents } = useSelector((st) => st)
     const { language } = useSelector((st) => st.StaticReducer)
-    console.log(language)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(GetExpectedEvents())
@@ -25,18 +24,20 @@ export const ExpectedEvents = () => {
         </div>
         <div className='CardDiv'>
             {getExpectedEvents?.events?.map((elm, i) => {
-                console.log(elm)
+                console.log(elm.category)
                 let month = ''
                 let title = ''
                 let weekday = ''
                 let location = ''
                 let description = ''
+                let category = ''
                 if (language == 'am') {
                     month = elm.month
                     title = elm.title
                     weekday = elm.weekday
                     location = elm.location
                     description = elm.description
+                    category = elm.category.name
                 }
                 else if (language == 'ru') {
                     month = elm.month_ru
@@ -44,6 +45,7 @@ export const ExpectedEvents = () => {
                     weekday = elm.weekday_ru
                     location = elm.location_ru
                     description = elm.description_ru
+                    category = elm.category.name_ru
                 }
                 else {
                     month = elm.month_en
@@ -51,15 +53,18 @@ export const ExpectedEvents = () => {
                     weekday = elm.weekday_en
                     location = elm.location_en
                     description = elm.description_en
+                    category = elm.category.name_en
                 }
                 return <Card
                     month={month}
                     time={elm.time}
                     day={elm.day}
                     title={title}
+                    categoryType={elm._id}
                     img={elm.image}
                     location={location}
                     weekday={weekday}
+                    category={category}
                     description={description}
                     priceRange={elm.priceRange}
                 />
