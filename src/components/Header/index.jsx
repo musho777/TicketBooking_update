@@ -1,11 +1,9 @@
 import './style.css'
 import { useEffect, useRef, useState } from 'react'
-import { SearchInput } from '../SearchInput'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { ActiveArrowSvg, Arrow1, ArrowSvg, CloseSvg, MenuSvg, MobileMenu, PhonSvg, Search, SearchMobileSvg, SearchSvg, Translate, WorldSvg } from '../svg'
-import { ChangeLanguageAction, GetCategory, OpenCaldendar, OpenCategoryMenu, SearchAction } from '../../services/action/action'
-import { PuffLoader } from 'react-spinners'
+import { ActiveArrowSvg, Arrow1, ArrowSvg, MobileMenu, PhonSvg, Search, SearchMobileSvg, SearchSvg, Translate, WorldSvg } from '../svg'
+import { ChangeLanguageAction, GetCategory, SearchAction } from '../../services/action/action'
 import { MobileMenuComponent } from '../MobileMenu'
 
 export const Header = ({ open, menu }) => {
@@ -24,11 +22,15 @@ export const Header = ({ open, menu }) => {
     const [searchResult, setSearchResult] = useState(false)
     const [searchResultData, setSearchResultDAta] = useState(false)
 
+
+    const feedback = useSelector(st => st.Event_reducer.feedback)
+    const [openMobilsSearch, setOpenMobileSearch] = useState(false)
+
     document.body.addEventListener('click', function () {
         setOpenLanguage(false)
         setSearchInput(false)
         setSearchResult(false)
-
+        setOpenMobileSearch(false)
     });
 
     function truncateText(text) {
@@ -84,14 +86,14 @@ export const Header = ({ open, menu }) => {
             clearTimeout(timeoutId1)
         };
     }, [searchResult])
-
+    console.log(searchResultData)
     return (
         <div className='header'>
             <div className='MainHeaderDiv'>
                 <div className='MainHeader'>
-                    <div onClick={() => navigation('/')}>
+                    {!openMobilsSearch && <div onClick={() => navigation('/')}>
                         <img className='Logo' src={require('../../assets/logo.png')} />
-                    </div>
+                    </div>}
                     <div className='textWrapper'>
                         {getCategory.category.map(elm => {
                             let bg = ''
@@ -141,6 +143,7 @@ export const Header = ({ open, menu }) => {
 
                             <input
                                 ref={inputRef}
+                                value={value}
                                 onChange={(e) => setValue(e.target.value)}
                                 onClick={(e) => {
                                     e.preventDefault()
@@ -153,7 +156,6 @@ export const Header = ({ open, menu }) => {
                                 className='SearchInput' />
                             <div id={searchResult ? 'SearchResultActive' : ''} className='SearchResult'>
                                 {searchResultData && <div>
-
                                     {value != '' && search.events.map((elm, i) => {
                                         console.log(elm)
                                         let name = ''
@@ -191,13 +193,13 @@ export const Header = ({ open, menu }) => {
                                         </div>
 
                                     })}
-
-
                                 </div>}
                             </div>
                         </div>
                         <div className='ButtonWrapperHeader'>
-                            <button className='phonNumber'>
+                            <button onClick={() => {
+                                window.location.href = `tel:${feedback.phone}`;
+                            }} className='phonNumber'>
                                 <PhonSvg />
                                 ԱՆՎՃԱՐ ԱՌԱՔՈՒՄ
                             </button>
@@ -229,11 +231,81 @@ export const Header = ({ open, menu }) => {
                             <p onClick={() => dispatch(ChangeLanguageAction('en'))} >English</p>
                         </div>}
                     </div>
-                    <div className='MobileHeader'>
-                        <SearchMobileSvg />
-                        <div onClick={() => setOpenMenuMobile(!openMenuMobile)}>
-                            <MobileMenu />
-                        </div>
+                    <div className='MobileHeaderWrapper'>
+                        {!openMobilsSearch ?
+
+                            <div className='MobileHeader'>
+                                <div onClick={(e) => {
+                                    e.stopPropagation()
+                                    e.preventDefault()
+                                    setOpenMobileSearch(true)
+                                }}>
+                                    <SearchMobileSvg />
+                                </div>
+                                <div onClick={() => setOpenMenuMobile(!openMenuMobile)}>
+                                    <MobileMenu />
+                                </div>
+                            </div> :
+                            <div className='MobileSearchINputWrapper'>
+                                <div
+                                    className='MobileSearchInputSvg'>
+                                    <SearchSvg />
+                                </div>
+                                <input
+                                    value={value}
+                                    id={inputFocus ? 'SearchInput' : ''}
+                                    onChange={(e) => setValue(e.target.value)}
+                                    className='MobileSearchINput'
+                                    onClick={(e) => {
+                                        e.preventDefault()
+                                        e.stopPropagation()
+                                        setINputFocus(true)
+                                        setSearchResult(true)
+                                    }}
+                                />
+                                <div id={searchResult ? 'SearchResultActive' : ''} className='SearchResult'>
+                                    {searchResultData && <div>
+                                        {value != '' && search?.events.map((elm, i) => {
+                                            console.log(elm)
+                                            let name = ''
+                                            let description = ''
+                                            if (language == 'am') {
+                                                name = elm.title
+                                                description = elm.description
+                                            }
+                                            else if (language == 'ru') {
+                                                name = elm.title_ru
+                                                description = elm.description_ru
+
+                                            }
+                                            else {
+                                                name = elm.title_en
+                                                description = elm.description_en
+
+                                            }
+                                            return <div>
+                                                <div className='SearchResultDiv'>
+                                                    <div className='SearchResultDivInfo'>
+                                                        <p>{truncateText(name)}</p>
+                                                        <p>{truncateText(description)}</p>
+                                                        <p className='SearchResultDivInfoMount'>Փետրվար 13 2024</p>
+                                                    </div>
+                                                    <div className='SearchResultDivInfoPrice'>
+                                                        <p>5000-15000 AMD</p>
+                                                        <div onClick={() => window.location = `/single/${elm._id}`} className='SearchResultDivInfoPriceButton'>
+                                                            <Arrow1 />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className='SearchResultDivLine' />
+
+                                            </div>
+
+                                        })}
+                                    </div>}
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

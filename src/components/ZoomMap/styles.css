@@ -40,6 +40,11 @@
     font-weight: 600;
 }
 
+.zoom-controls>div {
+    padding: 12px 17px;
+    border: none;
+}
+
 .map {
 
     padding: 100px;

@@ -77,11 +77,6 @@ export const ZoomMap = ({ scale, event, getSinglPage }) => {
                     secion={getSinglPage.events.event?.sessions[0]?.price}
                 />
             }
-            {/* <img
-                className="zoomable-image"
-                src={require('../../assets/AramKhachatryan.png')}
-                style={{ paddingTop: pading, paddingLeft: pading }}
-            /> */}
         </div>
     );
 };
