@@ -287,7 +287,12 @@ export const Header = ({ open, menu }) => {
                                         setSearchResult(true)
                                     }}
                                 />
-                                <div id={searchResult ? 'SearchResultActive' : ''} className='SearchResult'>
+                                <div
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        e.preventDefault()
+                                    }}
+                                    id={searchResult ? 'SearchResultActive' : ''} className='SearchResult'>
                                     {searchResultData && <div>
                                         {value != '' && search?.events.map((elm, i) => {
                                             let name = ''

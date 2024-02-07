@@ -69,9 +69,9 @@ export const TopEventsComponent = () => {
                 })}
         </div>
         <div className="ShowAllButtonWrappr">
-            {page != topEvents.events.totalPages &&
+            {/* {page != topEvents.events.totalPages &&
                 <ShowAllButton loading={topEvents.loading} onClick={() => setPage(page + 1)} />
-            }
+            } */}
         </div>
     </div>
 }

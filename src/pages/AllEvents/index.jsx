@@ -9,7 +9,6 @@ import { useParams } from 'react-router-dom'
 import { CategoryMenu } from '../../components/CategoryMenu'
 import { Calendar } from '../../components/Calendar'
 import { ClearFiltr, Emoji, EmojiM } from '../../components/svg'
-import { ExpectedEvents } from '../../components/ExpectedEvents'
 import { AllEventsWrapper } from './AllEventsWrapper'
 import { PuffLoader } from 'react-spinners'
 
@@ -238,6 +237,7 @@ export const AllEventss = () => {
                                         e.preventDefault()
                                         e.stopPropagation()
                                         setOpenCalendar(true)
+                                        setOpenCalendar(false)
                                     }
                                     } className='CalendarDivCalendar'>
                                         <p>{date}</p>

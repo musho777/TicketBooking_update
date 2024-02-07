@@ -3,11 +3,15 @@ import { BlueSvg, OrangeSvg, PhonSvg, RedSvg, SportSvg, TetreSvg } from '../svg'
 import './styles.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ChangeLanguageAction } from '../../services/action/action'
+import { useTranslation } from 'react-i18next'
 export const MobileMenuComponent = ({ setOpen }) => {
     const getCategory = useSelector((st) => st.getCategory)
     const { language } = useSelector((st) => st.StaticReducer)
     const navigation = useNavigate()
     const dispatch = useDispatch()
+    const feedback = useSelector(st => st.Event_reducer.feedback)
+    const { t } = useTranslation()
+
     const { id } = useParams()
     return <div
         onClick={() => {
@@ -21,7 +25,7 @@ export const MobileMenuComponent = ({ setOpen }) => {
                 e.preventDefault()
             }}
             className='Menu'>
-            <p>ԲԱԺԻՆՆԵՐ</p>
+            <p>{t('DEPARTMENTS')}</p>
             <div className='MenuWrapper'>
                 <div className='MenuWrapperDiv'>
                     {getCategory.category.map(elm => {
@@ -74,9 +78,13 @@ export const MobileMenuComponent = ({ setOpen }) => {
                     })}
                 </div>
                 <div className='ButtonWrapperHeader'>
-                    <button className='phonNumber'>
+                    <button
+                        onClick={() => {
+                            window.location.href = `tel:${feedback.phone}`
+                        }}
+                        className='phonNumber'>
                         <PhonSvg />
-                        ԱՆՎՃԱՐ ԱՌԱՔՈՒՄ
+                        {t('freeDelivery1')}
                     </button>
                 </div>
                 <div className='LineMobileMenu' />

@@ -51,6 +51,7 @@
     "Cancel": "Cancel selected",
     "Sorry_no": "Sorry, no events found",
     "NothingFound": "Nothing found",
-    "freeDelivery1": "FREE SHIPPING!",
-    "Searchforanevent": "Search for an event"
+    "freeDelivery1": "FREE Delivery",
+    "Searchforanevent": "Search for an event",
+    "DEPARTMENTS": "DEPARTMENTS"
 }

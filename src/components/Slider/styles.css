@@ -237,4 +237,8 @@
         align-items: center;
         font-size: 12px;
     }
+
+    .BanerButton>p {
+        color: #24005C;
+    }
 }

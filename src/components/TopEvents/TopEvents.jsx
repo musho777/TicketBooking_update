@@ -70,10 +70,10 @@ export const TopEvents = ({
                     type: 'paronyan'
                 }
             }))
-            navigation(`/BuyTickets/${id}`)
+            navigation(`/Single/${id}`)
         }
         else {
-            window.location = `/BuyTickets/${id}`
+            window.location = `/Single/${id}`
         }
 
     }
@@ -82,7 +82,7 @@ export const TopEvents = ({
         <div className='TypeTopDiv'>
             <CategoryType type={category?._id} name={languageData?.categorName} />
         </div>
-        <div className='TopEventsInfo'>
+        <div className='TopEventsInfo' onClick={() => handelClick()}>
             <div className='TopEventsInfoDiv'>
                 <div className='TopEventsInfoDate'>
                     <p>{day}</p>

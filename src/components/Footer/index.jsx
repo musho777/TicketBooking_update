@@ -35,7 +35,7 @@ export const Footer = ({ menu }) => {
                         <p className='footerColumnsTitle'>{t('Contactus')}</p>
                         <div className='footerColumnsInfo'>
                             <p>+374 93 55 88 44</p>
-                            <p>info@shineticket.com</p>
+                            <p>info@shinetickets.com</p>
                         </div>
                     </div>
                     <div className='footerColumnsWrapperDiv'>
@@ -80,15 +80,21 @@ export const Footer = ({ menu }) => {
                             <p className='footerColumnsTitle'>{t('Contactus')}</p>
                             <div className='footerColumnsInfo'>
                                 <p>+374 93 55 88 44</p>
-                                <p>info@shineticket.com</p>
+                                <p>info@shinetickets.com</p>
                             </div>
                         </div>
                         <div className='footerColumnsWrapperDiv'>
                             <p className='footerColumnsTitle'>{t('innetworks')}</p>
                             <div className='Social'>
-                                <InstagramSvg />
-                                <FbSvg />
-                                <TwitterSvg />
+                                <div onClick={() => window.open(`${Event_reducer.feedback?.instagram}`, "_blank")}>
+                                    <InstagramSvg />
+                                </div>
+                                <div onClick={() => window.open(`${Event_reducer.feedback?.facebook}`, "_blank")}>
+                                    <FbSvg />
+                                </div>
+                                <div onClick={() => window.open(`${Event_reducer.feedback?.twitter}`, "_blank")}>
+                                    <TwitterSvg />
+                                </div>
                             </div>
                         </div>
                     </div>
