@@ -28,7 +28,6 @@ export const Single = () => {
         "July", "August", "September", "October", "November", "December"
     ];
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const tickets = useSelector((st) => st.tiketsForBuy)
     const [languageData, setLanguageData] = useState({ title: '', description: '', hall: '' })
     const [paronyan, setParonyan] = useState('')
     useEffect(() => {

@@ -3,8 +3,10 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/action'
 import { PuffLoader } from 'react-spinners'
+import { padding } from '@mui/system'
 
-const PhotoCoordinatesByColor = ({ secion, soldTickets, sessionID, eventId, pading }) => {
+const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventId, pading }) => {
+
     const dispatch = useDispatch()
     const [coordinatesState, setCoordinatesState] = useState([])
     const [activeTicket, setActiveTicket] = useState({})
@@ -448,9 +450,15 @@ const PhotoCoordinatesByColor = ({ secion, soldTickets, sessionID, eventId, padi
         </div>
     }
     return (
-        <div >
+        <div style={{
+            position: 'relative',
+            // transform: `scale(${scale})`,
+        }}>
             <img
-                style={{ paddingTop: pading, paddingLeft: pading }}
+                style={{
+                    // transform: `scale(${scale})`,
+                    // transformOrigin: 'top left',
+                }}
                 className="zoomable-image"
                 alt='' src={require('../../assets/ActualPlan.png')} />
             {coordinatesState?.map((e, i) => {

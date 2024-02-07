@@ -22,17 +22,20 @@ export const BuyTickets = () => {
     const [data, setData] = useState({ name: '', description: '', hall: '' })
     let { event } = getSinglPage?.events
     const [open, setOpen] = useState(false)
+
+
+
     var months = [
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const [scale, setScale] = useState(1);
+    const [scale, setScale] = useState(0.4);
     const handleZoomIn = () => {
-        if (scale < 1) {
-            setScale(scale * 1.2);
-        }
+        setScale(scale * 1.2);
     };
+
+
     const tickets = useSelector((st) => st.tiketsForBuy)
     const [total, setTotal] = useState(0)
 
@@ -118,10 +121,7 @@ export const BuyTickets = () => {
             </div>
             <div className='HallWrapper'>
                 <div className="zoom-controls">
-                    {scale < 1 ?
-                        <button onClick={handleZoomIn}>+</button> :
-                        <div ></div>
-                    }
+                    <button onClick={handleZoomIn}>+</button>
                     <button onClick={handleZoomOut}>-</button>
                     <button onClick={() => setScale(1)}>
                         <Restart />
