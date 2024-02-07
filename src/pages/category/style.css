@@ -48,17 +48,12 @@
 .FilterDiv {
     display: flex;
     flex-wrap: wrap;
-    /* margin-top: 30px; */
 }
 
 .FilterDiv>div {
     width: 50%;
 }
 
-/* 
-.CalendarDiv {
-    width: 60% !important;
-} */
 
 .SubCategoryButton {
     color: #24005C;
@@ -159,7 +154,6 @@
 
 .CalendarDiv {
     display: flex;
-    align-items: center;
     gap: 30px;
 }
 

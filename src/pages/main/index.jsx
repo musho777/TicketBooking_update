@@ -20,8 +20,6 @@ import { BuyNow } from '../../components/BuyNow'
 export const Main = () => {
 
     const dispatch = useDispatch()
-    const { t } = useTranslation()
-    const topEvents = useSelector((st) => st.topEvents)
     const general = useSelector((st) => st.general)
 
 
@@ -152,7 +150,6 @@ export const Main = () => {
         dispatch(GetParoninaSinglHallSeats())
         dispatch(WeekEvetntApi())
         dispatch(GetSinglParonyan())
-        // dispatch(BuyTickets())
     }, [])
         ;
 

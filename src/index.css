@@ -102,3 +102,29 @@ code {
   font-family: "Montserratarm-Thin";
   src: url("./fonts/Montserratarm-Thin.otf") format("truetype");
 }
+
+input {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  /* Prevent double-tap zooming in some mobile browsers */
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #FFCE00;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -13,7 +13,6 @@ export const CardSlider = ({ data }) => {
     const [windowSize, setWindowSize] = useState(getWindowSize())
 
     useEffect(() => {
-        dispatch(GetTopEvents())
         function handleWindowResize() {
             setWindowSize(getWindowSize())
         }

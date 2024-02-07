@@ -104,6 +104,7 @@
     border-top: 1px solid rgba(36, 0, 92, 0.2);
     height: 300px;
     padding-top: 20px;
+    overflow: hidden;
 }
 
 .SearchResultDiv {
@@ -115,6 +116,7 @@
     display: flex;
     gap: 10px;
     margin-bottom: 7px;
+    justify-content: space-between;
 }
 
 .SearchResultDivInfoPriceButton {
@@ -157,6 +159,7 @@
     border-right: 1px solid #24005C;
     height: 15px;
     padding-right: 10px;
+    min-width: 80px;
 }
 
 .phonNumber {
@@ -325,9 +328,23 @@
 
 .MobileHeaderWrapper {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     width: 100%;
     align-items: center;
+}
+
+.notingNotFound {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85%;
+}
+
+.notingNotFound>p {
+    color: #24005C;
+    font-family: "Montserratarm-Regular", sans-serif;
+    font-size: 15px;
+    font-style: normal;
 }
 
 @media screen and (max-width: 1200px) {
@@ -359,10 +376,16 @@
 @media screen and (max-width: 768px) {
     .MainHeader {
         padding: 0 20px;
+        height: 70px;
     }
 
     .SearchResult {
         width: 95%;
+    }
+
+    .Logo {
+        width: 105px;
+        height: 40px;
     }
 }
 

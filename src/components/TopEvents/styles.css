@@ -30,6 +30,13 @@
     opacity: 1;
 }
 
+.TopEvents:hover .AllEventsCardWrapperInfo {
+    display: none;
+}
+
+.TopEvents:hover .AllEventsCardWrapper>img {
+    height: 100%;
+}
 
 .TopEventsInfo {
     transition: opacity 400ms;
@@ -149,7 +156,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    min-height: 70px;
+    height: 105px;
 }
 
 .TopEventsName {
@@ -231,7 +238,7 @@
 @media screen and (min-width:1330px) and (max-width: 1550px) {
     .TopEvents {
         /* width: 23%; */
-        width: 260px;
+        width: 260px !important;
         height: 350px;
     }
 

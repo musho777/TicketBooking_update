@@ -27,6 +27,9 @@
     border: 1px solid #24005C;
     background-color: transparent;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .ShowAllButton:hover {

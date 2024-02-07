@@ -35,12 +35,13 @@ export const GetFeedback = () => {
     }
 }
 
-export const GetTopEvents = () => {
+export const GetTopEvents = (page) => {
     return (dispatch) => {
         dispatch(StartGetGetTopEvents())
-        axios.get(`${process.env.REACT_APP_HOSTNAME}/getTopEvents`).then((r) => {
+        axios.get(`${process.env.REACT_APP_HOSTNAME}/getTopEvents?currentPage=${page}`).then((r) => {
+            console.log(r)
             if (r.data.success) {
-                dispatch(SuccessGetTopEvents(r.data.events))
+                dispatch(SuccessGetTopEvents(r.data))
             }
             else {
                 dispatch(ErrorGetTopEvents())
@@ -114,9 +115,11 @@ export const EventValidity = () => {
 }
 
 export const GetAllEvents = (page, data) => {
+    console.log(data, '11')
     return (dispatch) => {
         dispatch(StartGetCategoris())
         axios.post(`${process.env.REACT_APP_HOSTNAME}/filterEvents?currentPage=${page}`, data).then((r) => {
+            console.log(r, '11')
             if (r.data.success) {
                 dispatch(SuccessGetCategoris(r.data))
             }
@@ -361,7 +364,6 @@ export const GetParoninaSinglHallSeats = () => {
 
     return async (dispatch) => {
         const response = await axios(options)
-        console.log(response.data.data.Levels)
     }
 }
 
@@ -389,7 +391,6 @@ export const GetSinglParonyan = () => {
 
     return async (dispatch) => {
         const response = await axios(options)
-        console.log(response, 'response')
     }
 }
 

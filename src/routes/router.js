@@ -7,10 +7,10 @@ import { Page404 } from "../pages/404"
 import { PrivatePolice } from "../components/privatePolice"
 import { StatusPage } from "../pages/StatusPage/index.jsx"
 import { StatusPageReject } from "../pages/StatusPage/reject.jsx"
-// import { TelCell } from "../components/TelCell/index.jsx"
 import { StatusACBA } from '../pages/StatusPage/telcellData.jsx'
-import { AllEvents } from "../pages/AllEvents/index.jsx"
 import { BuyTickets } from "../pages/BuyTickets/index.jsx"
+import { AllEventss } from '../pages/AllEvents/index.jsx'
+import { AllWeekEvents } from "../components/AllWeekEvents/index.jsx"
 
 export const Router = () => {
     return (
@@ -23,10 +23,11 @@ export const Router = () => {
                     <Route path="/PrivacyPolicy" element={<PrivatePolice />} />
                     <Route path="/StatusPage " element={<StatusPage />} />
                     <Route path="/Reject" element={<StatusPageReject />} />
-                    {/* <Route path="/telCell/:price/:issuerId" element={<TelCell />} /> */}
                     <Route path="/StatusACBA" element={<StatusACBA />} />
                     <Route path="/BuyTickets/:id" element={<BuyTickets />} />
-                    <Route path="/allEvents" element={<AllEvents />} />
+                    <Route path="/allEvents" element={<AllEventss />} />
+                    <Route path="/allWeekEvents" element={<AllWeekEvents />} />
+
                     <Route path='*' element={<Page404 />} />
                 </Route>
             </Routes>

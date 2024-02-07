@@ -182,7 +182,6 @@ const ParonyanPoqr = ({ secion, eventId, soldTickets, sessionID, pading }) => {
             let index = item.findIndex((e) => (e.row == elm.Row && e.seat == elm.Seat))
             item[index].price = elm.Price
             item[index].active = elm.active
-            console.log(item)
         })
         setSeansArr(item)
     }, [secion])

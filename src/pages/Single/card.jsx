@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Button } from '../../components/Button'
-import { LocationSvg } from '../../components/svg'
+import { LocationSvg, SeansCaelndar } from '../../components/svg'
+import { useState } from 'react';
 
 export const Card = ({
     id,
@@ -16,9 +17,36 @@ export const Card = ({
     onClick
 }) => {
     const { t } = useTranslation();
+    const data1 = [
+        { week: 'ՀՆԳ', date: '17 Հունվար', time: '19։00' },
+        { week: 'ՀՆԳ', date: '17 Հունվար', time: '19։00' },
+        { week: 'ՀՆԳ', date: '17 Հունվար', time: '19։00' },
+        { week: 'ՀՆԳ', date: '17 Հունվար', time: '19։00' },
+        { week: 'ՀՆԳ', date: '17 Հունվար', time: '19։00' },
+        { week: 'ՀՆԳ', date: '17 Հունվար', time: '19։00' },
+    ]
+    const [active, setActive] = useState(0)
     return <div className='SinglCaruselItem'>
         <div className='SinglBanerDiv' >
-            <img className='SiglBanerImg2' src={img} />
+            <div className='SiglBanerImg2'>
+                <img className='SiglBanerImg2' src={img} />
+                {/* <div className='MobileSenas'>
+                    <div className='MobileSenasSvg'>
+                        <SeansCaelndar />
+                    </div>
+                    <div className='MobileSenasINfo'>
+                        {data1.map((elm, i) => {
+                            return <div>
+                                <div>
+                                    <p></p>
+                                    <p></p>
+                                    <p></p>
+                                </div>
+                            </div>
+                        })}
+                    </div>
+                </div> */}
+            </div>
             <div className='SinglBanerDivInfo'>
                 <div className='SinglBanerPrimera'>
                     <div className='SinglPrimera'>
@@ -57,6 +85,23 @@ export const Card = ({
                 </div>
             </div>
         </div>
+        {/* <div className='SeansDiv'>
+            <div className='SeansDivWrapper'>
+                {data1.map((elm, i) => {
+                    return <div className='SeansDivItenWrapper' onClick={() => setActive(i)} >
+                        {i == active &&
+                            <div className={'SeansDivItenActive'} id={i == active} />
+                        }
+                        <div className='SeansDivIten'>
+                            <p className='SeansDivWeek'>{elm.week}</p>
+                            <p className='SeansDivMount' >17 Հունվար</p>
+                            <p className='SeansDivWeek'>19։00</p>
+                        </div>
+                    </div>
+                })}
+            </div>
+        </div> */}
+
         <img
             className='SinglBanerImg'
             src={largImage}

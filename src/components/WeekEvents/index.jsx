@@ -41,7 +41,7 @@ export const WeekEvents = () => {
                 }
             </div>
             <div className="ShowAllButtonWrappr">
-                <ShowAllButton />
+                <ShowAllButton onClick={() => window.location = '/allWeekEvents'} />
             </div>
         </div>
     </div>

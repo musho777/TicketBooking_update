@@ -8,11 +8,30 @@ import { ShowAllButton } from "../Button/ShowAllButton"
 
 export const TopEventsComponent = () => {
     const topEvents = useSelector((st) => st.topEvents)
+    const [data, setData] = useState([])
     const dispatch = useDispatch()
     const { t } = useTranslation()
+    const [page, setPage] = useState(1)
     useEffect(() => {
-        dispatch(GetTopEvents())
-    }, [])
+        dispatch(GetTopEvents(page))
+    }, [page])
+
+    useEffect(() => {
+        let item = [...data]
+        let combinedArray = []
+        if (page == 1) {
+
+            combinedArray = []
+        }
+        else {
+            combinedArray = data
+        }
+        if (topEvents.events.events?.length > 0) {
+            combinedArray = item.concat(topEvents.events.events);
+        }
+        setData(combinedArray)
+    }, [topEvents.events])
+
 
     var months = [
         "January", "February", "March", "April", "May", "June",
@@ -25,7 +44,7 @@ export const TopEventsComponent = () => {
         </div>
         <div className="TopEventWrapper">
             {
-                topEvents?.events.length > 0 && topEvents?.events.map((elm, i) => {
+                data?.length > 0 && data?.map((elm, i) => {
                     const dateObject = new Date(elm.sessions[0]?.date);
                     let day = dateObject.getDate();
                     let month = dateObject.getMonth();
@@ -50,7 +69,9 @@ export const TopEventsComponent = () => {
                 })}
         </div>
         <div className="ShowAllButtonWrappr">
-            <ShowAllButton />
+            {page != topEvents.events.totalPages &&
+                <ShowAllButton loading={topEvents.loading} onClick={() => setPage(page + 1)} />
+            }
         </div>
     </div>
 }

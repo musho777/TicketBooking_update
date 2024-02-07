@@ -1,33 +1,49 @@
 import { TopEvents } from "../../components/TopEvents/TopEvents"
 import { ShowAllButton } from "../../components/Button/ShowAllButton"
+import { useTranslation } from "react-i18next";
+import { Card } from "./Card";
 
-export const CategoryCardWrapper = ({ loading, data, paronyan, setPage, page, showButton }) => {
+export const AllEventsWrapper = ({ loading, data, paronyan, setPage, page, showButton }) => {
+    const { t } = useTranslation()
     var months = [
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     return <div>
-        <div className='EventTitle' />
+        <div className='EventTitle'>
+            <h2>{t('AllEvents')}</h2>
+        </div>
         <div id='CategoryCardWrapper' className="TopEventWrapper">
             {
                 data.length > 0 && data.map((elm, i) => {
                     const dateObject = new Date(elm?.date);
                     let day = dateObject.getDate();
+                    if (day <= 9) {
+                        day = `0${day}`
+                    }
                     let month = dateObject.getMonth();
+                    let month1 = dateObject.getMonth();
+                    let year = dateObject.getFullYear()
+                    if (month1 <= 9) {
+                        month1 = `0${month1}`
+                    }
+
                     var currentDayOfWeek = daysOfWeek[dateObject.getDay()];
-                    return <TopEvents
+                    return <Card
                         key={i}
                         day={day}
+                        time={elm.time}
                         id={elm.eventId._id}
                         image={`${process.env.REACT_APP_IMAGE}/${elm.eventId?.image}`}
                         title={elm.title}
+                        year={year}
+                        month1={month1}
                         category={elm.eventId?.category}
                         location={elm?.hallId?.location}
                         location_en={elm?.eventId?.hallId?.location_en}
                         location_ru={elm?.eventId?.hallId?.location_ru}
                         hall={elm.hallId.hall}
-                        time={elm.time}
                         hall_en={elm.hallId.hall_en}
                         hall_ru={elm.hallId.hall_ru}
                         months={months[month]}
@@ -37,6 +53,7 @@ export const CategoryCardWrapper = ({ loading, data, paronyan, setPage, page, sh
                     />
                 })}
             {
+                // <Card />
 
                 // paronyan?.map((elm, i) => {
                 //     const matchResult = elm.time.match(/(\d+)([\s\S]*?)(<div[\s\S]*?<\/div>)([\s\S]*?)(\d+:\d+)/);

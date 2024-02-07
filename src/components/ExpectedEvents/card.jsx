@@ -51,7 +51,7 @@ export const Card = ({
             <div className='ExpectedEventLine' />
             <div className='ExpectedEventPrice'>
                 <p>{priceRange} AMD</p>
-                <Button title={t('BuyNow')} />
+                {/* <Button title={t('BuyNow')} /> */}
             </div>
         </div>
         <img src={`${process.env.REACT_APP_IMAGE}/${img}`} />

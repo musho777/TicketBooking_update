@@ -1,70 +1,54 @@
-.Category {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 2%;
-    margin-top: 60px;
+.AllEventsCardWrapper {
+    width: 100%;
+
 }
 
 .rdrDateDisplayWrapper {
     display: none !important;
 }
 
-.CateogryButton {
-    border-radius: 40px;
-    background: white;
-    border: 2px solid black;
-
-    color: black;
-    min-width: 200px;
-    width: auto;
-    padding: 8px 20px;
-    font-family: Arian AMU Serif;
-    font-style: normal;
-    line-height: normal;
-    /* border: none; */
-    margin-bottom: 5px;
-    cursor: pointer;
-    min-width: 150px;
-    font-size: 16px;
-}
-
-.notfound {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-}
-
-.notfound {
-    font-size: 30px;
-}
-
-.loadingCategory {
+.AllEventsCardWrapper>img {
     width: 100%;
-    justify-content: center;
-    display: flex;
-    /* height: calc(100vh - 220px); */
-    align-items: center;
-    display: flex;
+    height: 63%;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: 1000ms;
 }
 
-.paginationDiv {
-    margin: 70px auto 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#AllEventsWrapperCard {
+    background-color: #24005C !important;
     width: 100%;
 }
 
-.mobileDate {
-    display: none;
-}
-
-.DateInput {
+.AllEventsCardWrapperInfo {
+    height: 37%;
+    position: relative;
+    gap: 10px;
     display: flex;
     flex-direction: column;
-    margin: 0 40px;
+}
+
+#AllEventsInfo {
+    height: 100%;
+}
+
+.AllEventsCardWrapperInfoTitleDateTeter {
+    font-family: "Montserratarm-Medium", sans-serif;
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    bottom: 10px;
+}
+
+.AllEventsCardWrapperInfoTitle {
+    font-family: "Montserratarm-Bold", sans-serif;
+    font-size: 20px;
+    color: #FFCE00;
+}
+
+.AllEventsCardWrapperInfoTitleDate {
+    color: white;
+    font-family: "Montserratarm-Bold", sans-serif;
 }
 
 .rdrInRange {
@@ -91,12 +75,6 @@
     display: flex;
     gap: 20px;
 }
-
-
-/* .CateogryButton:hover {
-    background: #FEE827;
-    color: #333333;
-} */
 
 .FilterWrapper {
     display: flex;
@@ -155,49 +133,6 @@
     background-color: #24005C !important;
 }
 
-@media screen and (max-width: 768px) {
-    .category {
-        padding: 0 0px !important;
-    }
-
-    .FilterWrapper {
-        display: none;
-    }
-
-    .mFilterWrapper {
-        padding: 0 20px;
-        margin-top: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .CategoryButtonWrapper {
-        gap: 0 !important;
-
-        /* justify-content: flex-start !important; */
-    }
-
-    .mobileDate {
-        display: block;
-    }
-
-    .DateInput {
-        margin: 0 20px;
-    }
-
-    .CateogryButton {
-        min-width: 30% !important;
-        padding: 8px 7px !important;
-        font-size: 14px !important;
-        margin-left: 8px;
-    }
-}
-
-
-.rdrDefinedRangesWrapper {
-    display: none;
-}
 
 .rdrCalendarWrapper {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -206,48 +141,6 @@
     border-radius: 10px;
 }
 
-.FilterWrapperCalendar {
-    position: absolute;
-    top: 20px;
-    right: 0px;
-}
-
-
-.DateInput>input {
-    border: none;
-    border-bottom: 1px solid black;
-    width: 200px;
-    margin-top: 6px;
-}
-
-@media screen and (max-width: 1200px) {
-    .Category {
-        padding: 0 20px;
-    }
-
-    .CateogryButton {
-        min-width: 150px;
-        font-size: 16px;
-    }
-
-    .CategoryButtonWrapper {
-        flex-wrap: wrap;
-        padding: 0 20px;
-        gap: 10px;
-        margin-top: 40px;
-    }
-
-    .category {
-        padding: 0 60px;
-    }
-
-    .FilterWrapper {
-        padding: 0 20px;
-    }
-
-    .Category {
-        margin-top: 20px;
-    }
-
-
+.rdrDefinedRangesWrapper {
+    display: none;
 }

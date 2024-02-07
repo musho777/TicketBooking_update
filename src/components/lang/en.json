@@ -48,5 +48,9 @@
     "CINEMA": "CINEMA",
     "OPERA": "OPERA",
     "WEEKLYEVENTS": "WEEKLY EVENTS",
-    "Cancel": "Cancel selected"
+    "Cancel": "Cancel selected",
+    "Sorry_no": "Sorry, no events found",
+    "NothingFound": "Nothing found",
+    "freeDelivery1": "FREE SHIPPING!",
+    "Searchforanevent": "Search for an event"
 }

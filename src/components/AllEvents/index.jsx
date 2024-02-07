@@ -90,7 +90,7 @@ export const ALLEvents = () => {
                 })}
             </div>
             <div className="ShowAllButtonWrappr">
-                <ShowAllButton />
+                <ShowAllButton onClick={() => window.location = '/allEvents'} />
             </div>
         </div>
     )

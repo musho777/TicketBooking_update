@@ -5,12 +5,12 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { ActiveArrowSvg, Arrow1, ArrowSvg, MobileMenu, PhonSvg, Search, SearchMobileSvg, SearchSvg, Translate, WorldSvg } from '../svg'
 import { ChangeLanguageAction, GetCategory, SearchAction } from '../../services/action/action'
 import { MobileMenuComponent } from '../MobileMenu'
+import { useTranslation } from 'react-i18next'
 
 export const Header = ({ open, menu }) => {
     const dispatch = useDispatch()
     const navigation = useNavigate()
     const search = useSelector((st) => st.search)
-    const openMenu = useSelector((st) => st.StaticReducer)
     const getCategory = useSelector((st) => st.getCategory)
     const { language } = useSelector((st) => st.StaticReducer)
     const [serchInput, setSearchInput] = useState(false)
@@ -21,17 +21,40 @@ export const Header = ({ open, menu }) => {
     const [openMenuMobile, setOpenMenuMobile] = useState(false)
     const [searchResult, setSearchResult] = useState(false)
     const [searchResultData, setSearchResultDAta] = useState(false)
+    const { t } = useTranslation()
+
 
 
     const feedback = useSelector(st => st.Event_reducer.feedback)
     const [openMobilsSearch, setOpenMobileSearch] = useState(false)
+    const handleTouchStart = (e) => {
+        e.preventDefault();
+    };
 
     document.body.addEventListener('click', function () {
         setOpenLanguage(false)
         setSearchInput(false)
         setSearchResult(false)
         setOpenMobileSearch(false)
+
     });
+
+    useEffect(() => {
+        if (openMenuMobile) {
+            document.body.style.overflow = 'hidden';
+        }
+        else {
+            document.body.style.overflow = 'scroll';
+
+
+        }
+    }, [openMenuMobile])
+
+    useEffect(() => {
+        if (!openMobilsSearch) {
+            setValue('')
+        }
+    }, [openMobilsSearch])
 
     function truncateText(text) {
         if (text?.length > 13) {
@@ -149,7 +172,7 @@ export const Header = ({ open, menu }) => {
                                     setINputFocus(true)
                                     setSearchResult(true)
                                 }
-                                } placeholder='Փնտրել միջոցառում'
+                                } placeholder={t('Searchforanevent')}
                                 id={inputFocus ? 'SearchInput' : ''}
                                 className='SearchInput' />
                             <div id={searchResult ? 'SearchResultActive' : ''} className='SearchResult'>
@@ -176,10 +199,10 @@ export const Header = ({ open, menu }) => {
                                                 <div className='SearchResultDivInfo'>
                                                     <p>{truncateText(name)}</p>
                                                     <p>{truncateText(description)}</p>
-                                                    <p className='SearchResultDivInfoMount'>Փետրվար 13 2024</p>
+                                                    <p className='SearchResultDivInfoMount'>{elm.sessions[0].date.slice(0, 10)}</p>
                                                 </div>
                                                 <div className='SearchResultDivInfoPrice'>
-                                                    <p>5000-15000 AMD</p>
+                                                    <p>{elm.sessions[0].priceStart}-{elm.sessions[0].priceEnd} AMD</p>
                                                     <div onClick={() => window.location = `/single/${elm._id}`} className='SearchResultDivInfoPriceButton'>
                                                         <Arrow1 />
                                                     </div>
@@ -191,6 +214,9 @@ export const Header = ({ open, menu }) => {
 
                                     })}
                                 </div>}
+                                {search.events.length == 0 && <div className='notingNotFound'>
+                                    <p>{t('NothingFound')}</p>
+                                </div>}
                             </div>
                         </div>
                         <div className='ButtonWrapperHeader'>
@@ -198,7 +224,7 @@ export const Header = ({ open, menu }) => {
                                 window.location.href = `tel:${feedback.phone}`;
                             }} className='phonNumber'>
                                 <PhonSvg />
-                                ԱՆՎՃԱՐ ԱՌԱՔՈՒՄ
+                                {t('freeDelivery1')}
                             </button>
                         </div>
                     </div>
@@ -253,6 +279,7 @@ export const Header = ({ open, menu }) => {
                                     id={inputFocus ? 'SearchInput' : ''}
                                     onChange={(e) => setValue(e.target.value)}
                                     className='MobileSearchINput'
+                                    onTouchStart={handleTouchStart}
                                     onClick={(e) => {
                                         e.preventDefault()
                                         e.stopPropagation()
@@ -284,10 +311,10 @@ export const Header = ({ open, menu }) => {
                                                     <div className='SearchResultDivInfo'>
                                                         <p>{truncateText(name)}</p>
                                                         <p>{truncateText(description)}</p>
-                                                        <p className='SearchResultDivInfoMount'>Փետրվար 13 2024</p>
+                                                        <p className='SearchResultDivInfoMount'>{elm.sessions[0].date.slice(0, 10)}</p>
                                                     </div>
                                                     <div className='SearchResultDivInfoPrice'>
-                                                        <p>5000-15000 AMD</p>
+                                                        <p>{elm.sessions[0].priceStart}-{elm.sessions[0].priceEnd}  AMD</p>
                                                         <div onClick={() => window.location = `/single/${elm._id}`} className='SearchResultDivInfoPriceButton'>
                                                             <Arrow1 />
                                                         </div>
@@ -299,6 +326,11 @@ export const Header = ({ open, menu }) => {
 
                                         })}
                                     </div>}
+                                    {search?.events.length == 0 &&
+                                        <div className='notingNotFound'>
+                                            <p>{t('NothingFound')}</p>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         }
@@ -310,3 +342,7 @@ export const Header = ({ open, menu }) => {
         </div >
     )
 }
+
+// <div>
+// <p>{t('NothingFound')}</p>
+// </div>
