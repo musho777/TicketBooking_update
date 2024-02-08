@@ -12,7 +12,7 @@ export const MobileMenuComponent = ({ setOpen }) => {
     const feedback = useSelector(st => st.Event_reducer.feedback)
     const { t } = useTranslation()
 
-    const { id } = useParams()
+
     return <div
         onClick={() => {
             setOpen(false)

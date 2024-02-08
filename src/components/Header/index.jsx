@@ -23,6 +23,7 @@ export const Header = ({ open, menu }) => {
     const [searchResultData, setSearchResultDAta] = useState(false)
     const { t } = useTranslation()
 
+    const searchRef = useRef()
 
 
     const feedback = useSelector(st => st.Event_reducer.feedback)
@@ -108,6 +109,11 @@ export const Header = ({ open, menu }) => {
             clearTimeout(timeoutId1)
         };
     }, [searchResult])
+
+    useEffect(() => {
+        searchRef?.current?.focus()
+    }, [openMobilsSearch])
+
     return (
         <div className='header'>
             <div className='MainHeaderDiv'>
@@ -176,7 +182,11 @@ export const Header = ({ open, menu }) => {
                                 id={inputFocus ? 'SearchInput' : ''}
                                 className='SearchInput' />
                             <div id={searchResult ? 'SearchResultActive' : ''} className='SearchResult'>
-                                {searchResultData && <div>
+                                {searchResultData && <div onClick={(e) => {
+                                    e.preventDefault()
+                                    e.stopPropagation()
+
+                                }}>
                                     {value != '' && search.events.map((elm, i) => {
                                         let name = ''
                                         let description = ''
@@ -194,18 +204,17 @@ export const Header = ({ open, menu }) => {
                                             description = elm.description_en
 
                                         }
-                                        return <div>
+                                        return <div
+                                            onClick={() => window.location = `/single/${elm._id}`}
+                                        >
                                             <div className='SearchResultDiv'>
                                                 <div className='SearchResultDivInfo'>
                                                     <p>{truncateText(name)}</p>
-                                                    <p>{truncateText(description)}</p>
                                                     <p className='SearchResultDivInfoMount'>{elm.sessions[0].date.slice(0, 10)}</p>
                                                 </div>
                                                 <div className='SearchResultDivInfoPrice'>
                                                     <p>{elm.sessions[0].priceStart}-{elm.sessions[0].priceEnd} AMD</p>
-                                                    <div onClick={() => window.location = `/single/${elm._id}`} className='SearchResultDivInfoPriceButton'>
-                                                        <Arrow1 />
-                                                    </div>
+
                                                 </div>
                                             </div>
                                             <div className='SearchResultDivLine' />
@@ -276,6 +285,7 @@ export const Header = ({ open, menu }) => {
                                 </div>
                                 <input
                                     value={value}
+                                    ref={searchRef}
                                     id={inputFocus ? 'SearchInput' : ''}
                                     onChange={(e) => setValue(e.target.value)}
                                     className='MobileSearchINput'

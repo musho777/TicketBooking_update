@@ -26,12 +26,12 @@
 }
 
 .Menu {
-    width: 100%;
     background-color: white;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 85%;
+    width: 75%;
+    height: 100%;
+    gap: 20px;
     /* padding: 20px; */
 }
 
@@ -86,7 +86,7 @@
     .MenuWrapperDiv {
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 20px;
     }
 
 

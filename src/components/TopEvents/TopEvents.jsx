@@ -82,7 +82,7 @@ export const TopEvents = ({
         <div className='TypeTopDiv'>
             <CategoryType type={category?._id} name={languageData?.categorName} />
         </div>
-        <div className='TopEventsInfo' onClick={() => handelClick()}>
+        <div className='TopEventsInfo' >
             <div className='TopEventsInfoDiv'>
                 <div className='TopEventsInfoDate'>
                     <p>{day}</p>
@@ -109,7 +109,7 @@ export const TopEvents = ({
             <div className='TopEventsButton'>
                 <Button
                     onClick={() => handelClick()}
-                    title={t('BuyNow')} />
+                    title={t('seeMore')} />
             </div>
         </div>
         <img src={image} />

@@ -114,7 +114,7 @@ export const Single = () => {
                 onClick={() => window.location = `/BuyTickets/${id}`}
             />
             }
-            <div>
+            <div className='RecDiv2'>
                 {
                     recomended?.length > 0 &&
                     <div className='EventTitle'>
@@ -143,9 +143,9 @@ export const Single = () => {
                                     />
                             })}
                         </div>
-                        <div className="ShowAllButtonWrappr">
+                        {/* <div className="ShowAllButtonWrappr">
                             <ShowAllButton />
-                        </div>
+                        </div> */}
                     </div>
                 }
             </div>

@@ -241,4 +241,8 @@
     .BanerButton>p {
         color: #24005C;
     }
+
+    .BanerImg {
+        height: 100%;
+    }
 }

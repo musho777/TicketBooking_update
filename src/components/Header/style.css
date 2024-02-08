@@ -110,6 +110,7 @@
 .SearchResultDiv {
     padding: 5px 12px;
     padding-top: 10px;
+    cursor: pointer;
 }
 
 .SearchResultDivInfo {
@@ -156,7 +157,7 @@
     font-family: "Montserratarm-Regular", sans-serif;
     font-size: 11px;
     color: #24005C;
-    border-right: 1px solid #24005C;
+    /* border-right: 1px solid #24005C; */
     height: 15px;
     padding-right: 10px;
     min-width: 80px;

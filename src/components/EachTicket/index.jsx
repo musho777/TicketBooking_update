@@ -19,7 +19,6 @@ export const EachTicket = ({
     price,
     time,
     date,
-    type,
     onClick
 }) => {
     const navigation = useNavigate()
@@ -54,6 +53,18 @@ export const EachTicket = ({
                         <p className='ticketTitle'>{languageData.title}</p>
                         <p className='TicketData'>{date} {time}</p>
                     </div>
+                    <div className='TicketTeater'>
+                        <LocationSvg />
+                        <p>{languageData.location}</p>
+                    </div>
+                    <p className='TicketPrice'>{price}</p>
+                </div>
+                <div className='TicketInfoLine' />
+            </div>
+            <div className='TicketInfodivMobile'>
+                <div className='TicketInfo'>
+                    <p className='TicketData'>{date}</p>
+                    <p className='ticketTitle'>{languageData.title}</p>
                     <div className='TicketTeater'>
                         <LocationSvg />
                         <p>{languageData.location}</p>

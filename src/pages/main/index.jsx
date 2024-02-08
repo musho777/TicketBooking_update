@@ -21,6 +21,8 @@ export const Main = () => {
 
     const dispatch = useDispatch()
     const general = useSelector((st) => st.general)
+    const { getWeekEvent } = useSelector((st) => st)
+    console.log(getWeekEvent.events, '22')
 
 
     const BuyTickets = () => {
@@ -167,7 +169,10 @@ export const Main = () => {
                 <Carusel />
                 <TopEventsComponent />
             </div>
-            <WeekEvents />
+            {
+                getWeekEvent.events.length > 0 &&
+                <WeekEvents />
+            }
             <div className='container'>
                 <ALLEvents />
                 <ExpectedEvents />

@@ -26,26 +26,13 @@ export const Card = ({
         { week: 'ՀՆԳ', date: '17 Հունվար', time: '19։00' },
     ]
     const [active, setActive] = useState(0)
+    const [showAll, setShowAll] = useState(false)
+
+    console.log(!showAll && description?.length > 100, 1)
     return <div className='SinglCaruselItem'>
         <div className='SinglBanerDiv' >
             <div className='SiglBanerImg2'>
                 <img className='SiglBanerImg2' src={img} />
-                {/* <div className='MobileSenas'>
-                    <div className='MobileSenasSvg'>
-                        <SeansCaelndar />
-                    </div>
-                    <div className='MobileSenasINfo'>
-                        {data1.map((elm, i) => {
-                            return <div>
-                                <div>
-                                    <p></p>
-                                    <p></p>
-                                    <p></p>
-                                </div>
-                            </div>
-                        })}
-                    </div>
-                </div> */}
             </div>
             <div className='SinglBanerDivInfo'>
                 <div className='SinglBanerPrimera'>
@@ -80,32 +67,25 @@ export const Card = ({
                         <Button
                             onClick={onClick}
                             title={t('BuyNow')} />
-                        <p>{t('seeMore')}</p>
+                        {description?.length > 100 && <p onClick={() => setShowAll(!showAll)}>{t('seeMore')}</p>}
                     </div>
+                </div>
+                <div className='descriptionDiv'>
+                    <p className='descriptionDiv2Title'>նկարագրություն</p>
+                    <p className='descriptionDiv2Text'>
+                        {showAll ? description : description?.slice(0, 100)}{(!showAll && description?.length > 100) && '...'}
+                    </p>
                 </div>
             </div>
         </div>
-        {/* <div className='SeansDiv'>
-            <div className='SeansDivWrapper'>
-                {data1.map((elm, i) => {
-                    return <div className='SeansDivItenWrapper' onClick={() => setActive(i)} >
-                        {i == active &&
-                            <div className={'SeansDivItenActive'} id={i == active} />
-                        }
-                        <div className='SeansDivIten'>
-                            <p className='SeansDivWeek'>{elm.week}</p>
-                            <p className='SeansDivMount' >17 Հունվար</p>
-                            <p className='SeansDivWeek'>19։00</p>
-                        </div>
-                    </div>
-                })}
-            </div>
-        </div> */}
-
         <img
             className='SinglBanerImg'
             src={largImage}
             alt='#'
         />
+        <div className='descriptionDiv2'>
+            {/* <p >նկարագրություն</p> */}
+            <p>  {showAll ? description : description?.slice(0, 100)}{(!showAll && description?.length > 100) && '...'}</p>
+        </div>
     </div>
 }

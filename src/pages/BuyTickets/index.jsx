@@ -32,15 +32,28 @@ export const BuyTickets = () => {
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const [scale, setScale] = useState(0.4);
     const handleZoomIn = () => {
-        setScale(scale * 1.2);
+        setValue({
+            scale: value.scale + 0.1,
+            translation: value.translation
+
+        })
+        // setScale(scale * 1.2);
     };
 
 
     const tickets = useSelector((st) => st.tiketsForBuy)
     const [total, setTotal] = useState(0)
+    const [value, setValue] = useState({
+        scale: 0.4,
+        translation: { x: 90, y: 35 }
+    });
+
 
     const handleZoomOut = () => {
-        setScale(scale / 1.2);
+        setValue({
+            scale: value.scale - 0.1,
+            translation: value.translation
+        })
     };
     useEffect(() => {
         if (id.length > 3) {
@@ -130,8 +143,8 @@ export const BuyTickets = () => {
                 <div className='Hall'>
                     <ZoomMap
                         event={event}
-                        setScale={(e) => setScale(e)}
-                        scale={scale}
+                        value={value}
+                        setValue={(e) => setValue(e)}
                         getSinglPage={getSinglPage}
                     />
                 </div>
