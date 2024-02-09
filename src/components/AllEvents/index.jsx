@@ -5,19 +5,14 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { GetParonyanEvents, GetRandomEvents } from "../../services/action/action"
 import { ShowAllButton } from '../Button/ShowAllButton'
-import { useNavigate } from 'react-router-dom'
-import { SuccessSinglPage } from '../../services/action/SuccessAction'
 
 export const ALLEvents = () => {
     const dispatch = useDispatch()
     const { t } = useTranslation()
     const events = useSelector((st) => st.getRandomEvents)
-    const { paronyanEvents } = useSelector((st) => st)
-    const navigation = useNavigate()
 
     useEffect(() => {
         dispatch(GetRandomEvents(1))
-        dispatch(GetParonyanEvents())
     }, [dispatch])
 
 
@@ -59,35 +54,7 @@ export const ALLEvents = () => {
                             />
                         )
                 })}
-                {paronyanEvents?.events?.result?.map((elm, i) => {
-                    if (events?.events?.length < 8 && 8 - events?.events?.length > i)
-                        return <EachTicket
-                            key={i}
-                            location={elm?.group_name}
-                            location_en={'H. Paronyan State Theater'}
-                            location_ru={'A.Государственный театр Пароняна'}
-                            title={elm?.name}
-                            onClick={() => {
-                                dispatch(SuccessSinglPage({
-                                    location: elm?.group_name,
-                                    location_en: 'H. Paronyan State Theater',
-                                    location_ru: 'A.Государственный театр Пароняна',
-                                    title: elm?.name,
-                                    title_ru: elm?.name,
-                                    title_en: elm?.name,
-                                    date: elm.time.replace(/<div[^>]*>|<\/div>|<br>/g, ''),
-                                    image: elm.img,
-                                    id: elm?.id
-                                }))
-                                navigation(`/Single/paronyan${elm?.id}`)
-                            }}
-                            title_ru={elm?.name}
-                            title_en={elm?.name}
-                            date={elm.time.replace(/<div[^>]*>|<\/div>|<br>/g, '')}
-                            image={elm.img}
-                            price={``}
-                        />
-                })}
+
             </div>
             <div className="ShowAllButtonWrappr">
                 <ShowAllButton onClick={() => window.location = '/allEvents'} />

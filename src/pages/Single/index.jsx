@@ -1,17 +1,15 @@
 import './styles.css'
 import { useEffect, useState } from 'react'
 import { PuffLoader } from 'react-spinners'
-import { useParams, useLocation, } from 'react-router-dom'
+import { useParams, } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { GetSinglPage, GetSinglParonyan } from '../../services/action/action'
+import { GetSinglPage } from '../../services/action/action'
 import { TopEvents } from '../../components/TopEvents/TopEvents'
 import { Card } from './card'
-import { ShowAllButton } from '../../components/Button/ShowAllButton'
 
 export const Single = () => {
     const dispatch = useDispatch()
-    const location = useLocation();
     const { id } = useParams()
     const { t } = useTranslation();
     const getSinglPage = useSelector((st) => st.getSinglPage)
@@ -19,26 +17,23 @@ export const Single = () => {
     let { event } = getSinglPage?.events
     let { recomended } = getSinglPage?.events
 
-
-
-    const [openPopUp, setOpenPopUp] = useState(false)
-    const [openBuy, setOpenBuy] = useState(false)
     var months = [
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const [languageData, setLanguageData] = useState({ title: '', description: '', hall: '' })
-    const [paronyan, setParonyan] = useState('')
-    useEffect(() => {
-        dispatch(GetSinglParonyan())
-        const includesParonyan = location.pathname.includes('paronyan')
-        setParonyan(includesParonyan)
-        if (!includesParonyan) {
-            dispatch(GetSinglPage(id))
+    function truncateText(text) {
+        if (text?.length > 23) {
+            return text.substring(0, 30) + '...';
         }
+        else {
+            return text;
+        }
+    }
+    useEffect(() => {
+        dispatch(GetSinglPage(id))
     }, [])
-    const [date, setDate] = useState()
     useEffect(() => {
         let item = { ...languageData }
         if (language === 'am') {
@@ -59,20 +54,7 @@ export const Single = () => {
         }
         setLanguageData(item)
     }, [language, event])
-    useEffect(() => {
-        const dateObject = new Date(getSinglPage?.events?.event?.sessions[0]?.date);
-        let day = dateObject.getDate();
-        let month = dateObject.getMonth() + 1;
-        let year = dateObject.getFullYear()
 
-        if (day <= 9) {
-            day = `0${day}`
-        }
-        if (month <= 9) {
-            month = `0${month}`
-        }
-        setDate(`${day}-${month}-${year}, ${getSinglPage?.events?.event?.sessions[0]?.time}`)
-    }, [getSinglPage])
     if (getSinglPage.loading) {
         return (
             <div className='container'>
@@ -82,15 +64,17 @@ export const Single = () => {
             </div>
         )
     }
+
     return (
         <div id='singlPage' className='container'>
-            {!paronyan ? <Card
+            {!getSinglPage.events?.event
+                ?.isParonyanEvent ? <Card
                 time={event?.sessions[0].time}
                 img={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`}
                 id={id}
                 data={event?.sessions[0].date.slice(0, 10)}
                 description={languageData.description}
-                title={languageData?.title}
+                title={truncateText(languageData?.title)}
                 priceEnd={`${event?.sessions[0].priceEnd} AMD`}
                 priceStart={`${event?.sessions[0].priceStart} -`}
                 hall={languageData.hall}
@@ -101,16 +85,18 @@ export const Single = () => {
 
                 }
             /> : <Card
-                time={''}
-                img={getSinglPage.events.image}
-                id={getSinglPage.events.id}
-                data={getSinglPage.events.date}
-                description={''}
-                title={getSinglPage.events.title}
+                img={getSinglPage.events.event.ParonyanImg}
+                id={getSinglPage.events.event.id}
+                data={getSinglPage.events.event.ParonyanTime}
+                isParonyan={true}
+                description={
+                    getSinglPage.events.event?.ParonyanText?.replace(/<\/?p>/g, '')
+                }
+                title={truncateText(getSinglPage.events.event.ParonyanName)}
                 priceEnd={''}
                 priceStart={''}
-                hall={getSinglPage.events.location}
-                largImage={getSinglPage.events.image}
+                hall={getSinglPage.events.event.ParonyanGroup_name}
+                largImage={getSinglPage.events.event.ParonyanImg}
                 onClick={() => window.location = `/BuyTickets/${id}`}
             />
             }

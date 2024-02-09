@@ -10,7 +10,8 @@ export const WeekCard = ({
     hall_en,
     hall_ru,
     time,
-    date
+    date,
+    img
 }) => {
     const [languageData, setLanguageData] = useState({ title: '', location: '', hall: '' })
     const { language } = useSelector((st) => st.StaticReducer)
@@ -41,7 +42,7 @@ export const WeekCard = ({
     }, [language])
     return <div className='WeekCard'>
         <div className='WeekCardImg'>
-            <img src={require('../../assets/3.png')} />
+            <img src={img} />
         </div>
         <div className='WeekcardIfno'>
             <p className='WeekcardIfnoTitle'>{truncateText(languageData.title)}</p>

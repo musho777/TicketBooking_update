@@ -25,6 +25,14 @@ export const TopEvents = ({
     type = true,
     time2
 }) => {
+    function truncateText(text) {
+        if (text?.length > 23) {
+            return text.substring(0, 25) + '...';
+        }
+        else {
+            return text;
+        }
+    }
     const { t } = useTranslation();
     const [languageData, setLanguageData] = useState({ title: '', location: '', categorName: '', hall })
     const { language } = useSelector((st) => st.StaticReducer)
@@ -101,7 +109,7 @@ export const TopEvents = ({
             <div className='TopEventsDiv'>
                 <div className='TopEventsDivDiv'>
                     <p className='TopEventsTeaterName'>{languageData?.location}</p>
-                    <p className='TopEventsName'>{languageData?.title}</p>
+                    <p className='TopEventsName'>{truncateText(languageData?.title)}</p>
                 </div>
                 <p className='TopEventsPrice'>{price}</p>
             </div>

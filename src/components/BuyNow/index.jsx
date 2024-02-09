@@ -12,7 +12,7 @@ import 'react-phone-input-2/lib/style.css'
 import { useTranslation } from 'react-i18next'
 import InputMask from 'react-input-mask';
 
-export const BuyNow = ({ open }) => {
+export const BuyNow = ({ open, isParonyanEvent }) => {
     const { language } = useSelector((st) => st.StaticReducer)
     const generateOrderNumber = () => {
         const timestamp = Date.now()
@@ -112,15 +112,30 @@ export const BuyNow = ({ open }) => {
 
     useEffect(() => {
         if (language === 'am') {
-            setTitle(getSinglPage.events.event?.title)
+            if (isParonyanEvent) {
+                setTitle(getSinglPage.events.event?.ParonyanName)
+            }
+            else {
+                setTitle(getSinglPage.events.event?.title)
+            }
         }
         else if (language === 'en') {
-            setTitle(getSinglPage?.events?.event?.title_en)
+            if (isParonyanEvent) {
+                setTitle(getSinglPage.events.event?.ParonyanName)
+            }
+            else {
+                setTitle(getSinglPage?.events?.event?.title_en)
+            }
 
 
         }
         else if (language === 'ru') {
-            setTitle(getSinglPage.events.event?.title_ru)
+            if (isParonyanEvent) {
+                setTitle(getSinglPage.events.event?.ParonyanName)
+            }
+            else {
+                setTitle(getSinglPage.events.event?.title_ru)
+            }
 
         }
     }, [language, getSinglPage])
@@ -278,7 +293,11 @@ export const BuyNow = ({ open }) => {
         <div className='BuyNow'>
             <div className='BuyNowHeader'>
                 <p className='BuyNowHeaderTitle'>{title}</p>
-                <p className='BuyNowHeaderDate'> {new Date(getSinglPage.events.event?.sessions[0].date).getDate()}.{new Date(getSinglPage.events.event?.sessions[0].date).getMonth() + 1}.{new Date(getSinglPage.events.event?.sessions[0].date).getFullYear()} {getSinglPage.events.event?.sessions[0].time}</p>
+                {isParonyanEvent ?
+                    <p id="paronyan" className='BuyTicketDateMonth' dangerouslySetInnerHTML={{ __html: getSinglPage.events.event.ParonyanTime }} />
+                    :
+                    <p className='BuyNowHeaderDate'> {new Date(getSinglPage.events.event?.sessions[0].date).getDate()}.{new Date(getSinglPage.events.event?.sessions[0].date).getMonth() + 1}.{new Date(getSinglPage.events.event?.sessions[0].date).getFullYear()} {getSinglPage.events.event?.sessions[0].time}</p>
+                }
             </div>
             <div className='BuyNowBody'>
                 <p className='FreeDelivery'>{t('freeDelivery')}</p>

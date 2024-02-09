@@ -26,6 +26,14 @@ export const Card = ({
     month1,
     year
 }) => {
+    function truncateText(text) {
+        if (text?.length > 15) {
+            return text.substring(0, 14) + '...';
+        }
+        else {
+            return text;
+        }
+    }
     const { t } = useTranslation();
     const [languageData, setLanguageData] = useState({ title: '', location: '', categorName: '', hall })
     const { language } = useSelector((st) => st.StaticReducer)
@@ -102,7 +110,7 @@ export const Card = ({
             <div className='TopEventsDiv'>
                 <div className='TopEventsDivDiv'>
                     <p className='TopEventsTeaterName'>{languageData?.location}</p>
-                    <p className='TopEventsName'>{languageData?.title}</p>
+                    <p className='TopEventsName'>{truncateText(languageData?.title)}</p>
                 </div>
                 <p className='TopEventsPrice'>{price}</p>
             </div>
@@ -116,9 +124,9 @@ export const Card = ({
         <div className='AllEventsCardWrapper'>
             <img src={image} />
             <div className='AllEventsCardWrapperInfo'>
-                <p className='AllEventsCardWrapperInfoTitle'>{languageData.title}</p>
+                <p className='AllEventsCardWrapperInfoTitle'>{truncateText(languageData.title)}</p>
                 <p className='AllEventsCardWrapperInfoTitleDate'>{day}.{month1}.{year} {time}</p>
-                <p className='AllEventsCardWrapperInfoTitleDateTeter'>գոյ թատրոն</p>
+                <p className='AllEventsCardWrapperInfoTitleDateTeter'>{languageData.hall}</p>
             </div>
         </div>
     </div>

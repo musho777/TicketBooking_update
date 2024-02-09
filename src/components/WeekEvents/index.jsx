@@ -11,9 +11,7 @@ export const WeekEvents = () => {
     const dispatch = useDispatch()
     const { getWeekEvent } = useSelector((st) => st)
 
-    useEffect(() => {
-        dispatch(WeekEvetntApi())
-    }, [])
+
     return <div className="WeekEvents">
         <div className="container">
             <div className='WeekEventTitle'>
@@ -35,6 +33,7 @@ export const WeekEvents = () => {
                             title={elm.eventId.title}
                             title_en={elm.eventId.title_en}
                             title_ru={elm.eventId.title_ru}
+                            img={`${process.env.REACT_APP_IMAGE}/${elm.eventId.image}`}
                         />
                     </div>
                 })

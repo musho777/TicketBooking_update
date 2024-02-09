@@ -34,7 +34,6 @@ export const AllEventss = () => {
     const [date, setDate] = useState('')
     const [height, setHeight] = useState(false)
     const [baner, setBaner] = useState(<div></div>)
-    const { paronyanEvents } = useSelector((st) => st)
 
     useEffect(() => {
         HallName()
@@ -327,8 +326,8 @@ export const AllEventss = () => {
                         </div>
                     </div>
                     <div className='CategoryScreen1Div'>
-                        <AllEventsWrapper loading={events.loading} showButton={page >= events.events.totalPages} setPage={(e) => setPage(e)} page={page} paronyan={id == '657b00c67a91070546630967' ? paronyanEvents.events?.result : []} data={data} />
-                        {!paronyanEvents?.events?.length > 0 && !events.events?.sessions?.length > 0 && !events.loading &&
+                        <AllEventsWrapper loading={events.loading} showButton={page >= events.events.totalPages} setPage={(e) => setPage(e)} page={page} data={data} />
+                        {!events.events?.sessions?.length > 0 && !events.loading &&
                             <div className='NotFoundDiv'>
                                 <div className='Emoji'>
                                     <Emoji />

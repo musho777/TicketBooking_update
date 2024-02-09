@@ -285,22 +285,13 @@ export const Category = () => {
             return text;
         }
     }
-    // if (events?.loading && page == 1) {
-    //     return (
-    //         <div className='loading'>
-    //             <PuffLoader color="#FEE827" />
-    //         </div>
-    //     )
-    // }
+
     return (
         <div className='CategoryScreen'>
             <div className='CategoryScreenBaner'>
                 {baner}
             </div>
-            {/* {events?.loading && page == 1 ?
-                <div className='loading'>
-                    <PuffLoader color="#FEE827" />
-                </div> : */}
+
             <div>
                 <div id='CategoryScreen1' className='container'>
                     <div onClick={() => ClearFunction()} className='ClearFilterDiv'>

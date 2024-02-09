@@ -152,6 +152,7 @@ export const Main = () => {
         dispatch(GetParoninaSinglHallSeats())
         dispatch(WeekEvetntApi())
         dispatch(GetSinglParonyan())
+        dispatch(GetParonyanEvents())
     }, [])
         ;
 

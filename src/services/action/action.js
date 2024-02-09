@@ -337,6 +337,7 @@ export const GetParonyanEvents = () => {
 
         const response = await axios(options)
         dispatch(SuccessGetParonyanEvetns(response.data))
+        console.log(response)
     }
 }
 

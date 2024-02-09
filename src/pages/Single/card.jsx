@@ -14,7 +14,8 @@ export const Card = ({
     hall,
     time,
     data,
-    onClick
+    onClick,
+    isParonyan
 }) => {
     const { t } = useTranslation();
     const data1 = [
@@ -28,7 +29,6 @@ export const Card = ({
     const [active, setActive] = useState(0)
     const [showAll, setShowAll] = useState(false)
 
-    console.log(!showAll && description?.length > 100, 1)
     return <div className='SinglCaruselItem'>
         <div className='SinglBanerDiv' >
             <div className='SiglBanerImg2'>
@@ -38,7 +38,10 @@ export const Card = ({
                 <div className='SinglBanerPrimera'>
                     <div className='SinglPrimera'>
                         <p className='SinglPrimerap'>{t('Primera')}</p>
-                        <p className='SinglPrimeraDate'>{data} {time}</p>
+                        {isParonyan ?
+                            <p id="paronyan" className='SinglPrimeraDate' dangerouslySetInnerHTML={{ __html: data }} /> :
+                            <p className='SinglPrimeraDate'>{data} {time}</p>
+                        }
                     </div>
                     <div className='SinglBanerLocation'>
                         <LocationSvg />

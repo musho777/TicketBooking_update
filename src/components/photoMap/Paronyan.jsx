@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/action'
 
-const ParonyanPoqr = ({ secion, eventId, soldTickets, sessionID, pading }) => {
+const Paronyan = ({ secion, eventId, soldTickets, sessionID, pading }) => {
     const dispatch = useDispatch()
     const [coordinatesState, setCoordinatesState] = useState([])
     const [activeTicket, setActiveTicket] = useState({})
@@ -242,7 +242,7 @@ const ParonyanPoqr = ({ secion, eventId, soldTickets, sessionID, pading }) => {
 
     useEffect(() => {
         const image = new Image()
-        image.src = require('../../assets/ParonyanPoqr.png')
+        image.src = require('../../assets/ParonyanMec.png')
 
         image.onload = () => {
             const canvas = document.createElement('canvas')
@@ -276,33 +276,33 @@ const ParonyanPoqr = ({ secion, eventId, soldTickets, sessionID, pading }) => {
             <img
                 style={{ paddingTop: pading, paddingLeft: pading }}
                 className="zoomable-image"
-                alt='' src={require('../../assets/ParonyanPoqr.png')} />
+                alt='' src={require('../../assets/ParonyanMec.png')} />
             {coordinatesState?.map((e, i) => {
-                if (seansArr[i].active)
-                    return <button
-                        key={i}
-                        onMouseOver={() => {
-                            getPrice(e.y, i, e.x, e.parterre, e.amphitheater, e.lodge)
-                            setActiveButton(i)
-                        }}
-                        style={
-                            {
-                                top: e?.y - 4,
-                                left: e?.x - 4,
-                                // backgroundColor: e.active && 'green'
-                                backgroundColor: tickets.find((elm) => elm.seatId == e.id) && 'green'
-                            }
+                // if (seansArr[i].active)
+                return <button
+                    key={i}
+                    onMouseOver={() => {
+                        getPrice(e.y, i, e.x, e.parterre, e.amphitheater, e.lodge)
+                        setActiveButton(i)
+                    }}
+                    style={
+                        {
+                            top: e?.y - 4,
+                            left: e?.x - 4,
+                            // backgroundColor: e.active && 'green'
+                            backgroundColor: tickets.find((elm) => elm.seatId == e.id) && 'green'
                         }
-                        id='seatStyle'
-                        className={[
-                            i == activeButton ? 'activeButton' : '',
-                            e.active ? "addTicketButton" : '']}
-                        onMouseLeave={() => {
-                            setShowModal(false)
-                            setActiveButton(null)
-                        }}
-                        onClick={() => addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)}
-                    />
+                    }
+                    id='seatStyle'
+                    className={[
+                        i == activeButton ? 'activeButton' : '',
+                        e.active ? "addTicketButton" : '']}
+                    onMouseLeave={() => {
+                        setShowModal(false)
+                        setActiveButton(null)
+                    }}
+                    onClick={() => addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)}
+                />
             })}
 
             {showModal &&
@@ -315,4 +315,4 @@ const ParonyanPoqr = ({ secion, eventId, soldTickets, sessionID, pading }) => {
         </div>
     )
 }
-export default ParonyanPoqr
+export default Paronyan
