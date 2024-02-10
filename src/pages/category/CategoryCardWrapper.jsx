@@ -6,7 +6,6 @@ export const CategoryCardWrapper = ({ loading, data, paronyan, setPage, page, sh
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
-    console.log(data)
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     return <div>
         <div className='EventTitle' />
@@ -18,7 +17,6 @@ export const CategoryCardWrapper = ({ loading, data, paronyan, setPage, page, sh
                     let month = dateObject.getMonth();
                     var currentDayOfWeek = daysOfWeek[dateObject.getDay()];
                     if (elm?.eventId) {
-                        console.log(elm.eventId.category)
                         return <TopEvents
                             key={i}
                             day={day}

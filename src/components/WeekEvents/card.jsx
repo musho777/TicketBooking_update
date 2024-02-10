@@ -11,7 +11,8 @@ export const WeekCard = ({
     hall_ru,
     time,
     date,
-    img
+    img,
+    id
 }) => {
     const [languageData, setLanguageData] = useState({ title: '', location: '', hall: '' })
     const { language } = useSelector((st) => st.StaticReducer)
@@ -40,7 +41,9 @@ export const WeekCard = ({
         }
         setLanguageData(item)
     }, [language])
-    return <div className='WeekCard'>
+    return <div onClick={() => {
+        window.location = `/Single/${id}`
+    }} className='WeekCard'>
         <div className='WeekCardImg'>
             <img src={img} />
         </div>

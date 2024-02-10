@@ -1579,6 +1579,13 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading }) =>
                                 setActiveButton(null)
                             }}
                             onClick={() => addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)}
+                            onTouchStart={() => {
+                                getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                                setActiveButton(i)
+                            }}
+                            onTouchEnd={() => {
+                                addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                            }}
                         />
                     }
                 }

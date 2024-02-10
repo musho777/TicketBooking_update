@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { debounce } from 'lodash';
+import React from 'react';
 import AramKhachatryan from '../photoMap/AramKhachatryanHall'
 import PhotoCoordinatesByColor from '../photoMap'
 import KarenDemerchyanMec from '../photoMap/Karendemrjyanmec'
@@ -8,14 +7,12 @@ import ParonyanPoqr from '../photoMap/ParonyanPoqr';
 import { MapInteractionCSS } from 'react-map-interaction';
 import Paronyan from '../photoMap/Paronyan';
 
-export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent }) => {
+export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent, paronyanSeans, open }) => {
 
     const handleChange = (newValue) => {
-        console.log(newValue.scale, '2')
         setValue(newValue);
     };
 
-    console.log(getSinglPage?.events?.event?.ParonyanHall_id)
     return (
         <MapInteractionCSS
             value={value}
@@ -44,15 +41,19 @@ export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent 
             {
                 getSinglPage?.events?.event?.ParonyanHall_id == '85' &&
                 <ParonyanPoqr
-                // eventId={getSinglPage.events.event?._id}
-                // sessionID={getSinglPage.events.event?.sessions[0]._id}
-                // soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets}
-                // secion={getSinglPage.events.event?.sessions[0]?.price}
+                    grupID={getSinglPage.events?.event?.ParonyanGroup_id}
+                    Timeline={paronyanSeans}
+                    id={getSinglPage?.events?.event?.ParonyanEventId}
+                    open={open}
                 />
             }
             {
                 getSinglPage?.events?.event?.ParonyanHall_id == '36' &&
                 <Paronyan
+                    grupID={getSinglPage.events?.event?.ParonyanGroup_id}
+                    Timeline={paronyanSeans}
+                    id={getSinglPage?.events?.event?.ParonyanEventId}
+                    open={open}
                 // eventId={getSinglPage.events.event?._id}
                 // sessionID={getSinglPage.events.event?.sessions[0]._id}
                 // soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets}

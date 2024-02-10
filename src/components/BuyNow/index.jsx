@@ -5,14 +5,14 @@ import { CreateCurrentTicket, RemoveTicketsAction, StatusSuccessAction } from '.
 import { CheckSvg, CheckedSvg, MobileSvg, SelectSvg, SelectedSvg } from '../svg'
 import axios from 'axios'
 import { PuffLoader } from 'react-spinners'
-import CryptoJS from 'crypto-js'
+import CryptoJS, { MD5 } from 'crypto-js'
 import { Buffer } from "buffer"
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { useTranslation } from 'react-i18next'
 import InputMask from 'react-input-mask';
 
-export const BuyNow = ({ open, isParonyanEvent }) => {
+export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID }) => {
     const { language } = useSelector((st) => st.StaticReducer)
     const generateOrderNumber = () => {
         const timestamp = Date.now()
@@ -29,7 +29,6 @@ export const BuyNow = ({ open, isParonyanEvent }) => {
     };
 
     const { t } = useTranslation()
-
 
     const dispatch = useDispatch()
     const tickets = useSelector((st) => st.tiketsForBuy)
@@ -71,6 +70,9 @@ export const BuyNow = ({ open, isParonyanEvent }) => {
             checked: '',
             address: ''
         })
+        // if (open) {
+        //     BookTikests()
+        // }
     }, [open])
 
     useEffect(() => {
@@ -141,27 +143,268 @@ export const BuyNow = ({ open, isParonyanEvent }) => {
     }, [language, getSinglPage])
 
 
+    // for (let i = 0; i < tickets.tickets.length; i += 2) {
+    //     const key = tickets.tickets[i];
+    //     const value = tickets.tickets[i + 1];
+    //     if (key && value !== undefined) {
+    //         tempObj[key] = value;
+    //     }
+    //     if (key === "seat" && value !== undefined) {
+    //         if (!tempObj.Places) {
+    //             tempObj.Places = [];
+    //         }
+    //         tempObj.Places.push({ Row: tempObj.row, Seat: value.toString() });
+    //     }
+    //     if (key === "stage" && value !== undefined) {
+    //         data.data.push(tempObj);
+    //         tempObj = {};
+    //     }
+    // }
+
+
+    // useEffect(() => {
+    //     let data1 = { 'data': [] }
+
+    //     tickets.tickets.map((e, i) => {
+    //         let index = data1.data.findIndex(el => el.LevelId = e.LevelId)
+    //         if (index < 0) {
+    //             data1.data?.push({
+    //                 "LevelId": e.LevelId,
+    //                 "Places": []
+    //             })
+    //         }
+    //         data1.data.map((elm, i) => {
+    //             if (elm.LevelId == e.LevelId) {
+    //                 elm.Places.push({
+    //                     "Row": e.row,
+    //                     "Seat": e.seat
+    //                 })
+    //             }
+    //         })
+    //     })
+    // }, [])
+
+
+    // const BookTikests = () => {
+    //     const keys = "hYDepOnSarMi";
+    //     const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
+    //     const requestType = "book";
+
+    //     const params = {
+    //         group_id: grupID,
+    //         timeline_id: paronyanSeans,
+    //         event_id: event_id,
+    //     };
+
+    //     const sortedParams = Object.keys(params).sort().reduce((acc, key) => {
+    //         acc[key] = params[key];
+    //         return acc;
+    //     }, {});
+
+    //     sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
+    //     let data = { 'data': [] }
+    //     tickets.tickets.map((e, i) => {
+    //         let index = data.data.findIndex(el => el.LevelId = e.LevelId)
+    //         if (index < 0) {
+    //             data.data?.push({
+    //                 "LevelId": e.LevelId,
+    //                 "Places": []
+    //             })
+    //         }
+    //         data.data.map((elm, i) => {
+    //             if (elm.LevelId == e.LevelId) {
+    //                 elm.Places.push({
+    //                     "Row": e.row,
+    //                     "Seat": e.seat
+    //                 })
+    //             }
+    //         })
+    //     })
+    //     sortedParams.data = JSON.stringify(data);
+
+    //     const options = {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json'
+    //         },
+    //         body: JSON.stringify(sortedParams)
+    //     };
+
+    //     fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             console.log(data, 'dattrtassw3s')
+    //             localStorage.setItem('order_id', JSON.stringify(data))
+    //             // dispatch(CreateCurrentTicket({
+    //             //     tickets: tickets.tickets,
+    //             //     buyerName: name,
+    //             //     buyerEmail: email,
+    //             //     buyerPhone: number,
+    //             //     deliveryLocation: address,
+    //             //     sessionId: tickets.tickets[0].sessionId,
+    //             //     buyerNotes: additional,
+    //             //     orderId: data.id,
+    //             //     paymentMethod: 'CREDIT CARD',
+    //             //     delivery,
+    //             // }))
+    //         })
+    //         .catch(error => {
+    //             console.error('Error:', error);
+    //         });
+    // }
+
+    const backBookTikets = () => {
+        const keys = "hYDepOnSarMi";
+        const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
+        const requestType = "bookBack";
+
+        const params = {
+            group_id: grupID,
+            timeline_id: paronyanSeans,
+            event_id: event_id,
+        };
+
+        const sortedParams = Object.keys(params).sort().reduce((acc, key) => {
+            acc[key] = params[key];
+            return acc;
+        }, {});
+
+        sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
+        let data = { 'data': [] }
+        tickets.tickets.map((e, i) => {
+            let index = data.data.findIndex(el => el.LevelId = e.LevelId)
+            if (index < 0) {
+                data.data?.push({
+                    "LevelId": e.LevelId,
+                    "Places": []
+                })
+            }
+            data.data.map((elm, i) => {
+                if (elm.LevelId == e.LevelId) {
+                    elm.Places.push({
+                        "Row": e.row,
+                        "Seat": e.seat
+                    })
+                }
+            })
+        })
+        sortedParams.data = JSON.stringify(data);
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(sortedParams)
+        };
+
+        fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data, 'dattrtassw3s')
+                localStorage.setItem('order_id', JSON.stringify(data))
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
 
     function handlePurchase() {
         setLoading(true)
         axios.post(`${process.env.REACT_APP_HOSTNAME}/registerPayment`, { amount: total * 100 })
             .then(res => {
                 if (res?.data?.success) {
+
                     setLoading(false)
                     localStorage.setItem('orderId', res?.data?.orderId)
                     window.open(`${res?.data?.formUrl}`, { target: '_blank' })
-                    dispatch(CreateCurrentTicket({
-                        tickets: tickets.tickets,
-                        buyerName: name,
-                        buyerEmail: email,
-                        buyerPhone: number,
-                        deliveryLocation: address,
-                        sessionId: tickets.tickets[0].sessionId,
-                        buyerNotes: additional,
-                        orderId: res?.data?.orderId,
-                        paymentMethod: 'CREDIT CARD',
-                        delivery,
-                    }))
+                    if (!isParonyanEvent)
+                        dispatch(CreateCurrentTicket({
+                            tickets: tickets.tickets,
+                            buyerName: name,
+                            buyerEmail: email,
+                            buyerPhone: number,
+                            deliveryLocation: address,
+                            sessionId: tickets.tickets[0].sessionId,
+                            buyerNotes: additional,
+                            orderId: res?.data?.orderId,
+                            paymentMethod: 'CREDIT CARD',
+                            delivery,
+                        }))
+
+                    if (isParonyanEvent) {
+                        const keys = "hYDepOnSarMi";
+                        const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
+                        const requestType = "buyTickets";
+
+                        const params = {
+                            group_id: grupID,
+                            timeline_id: paronyanSeans,
+                            event_id: event_id,
+                        };
+
+                        const sortedParams = Object.keys(params).sort().reduce((acc, key) => {
+                            acc[key] = params[key];
+                            return acc;
+                        }, {});
+
+                        sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
+                        let data = { 'data': [] }
+                        tickets.tickets.map((e, i) => {
+                            let index = data.data.findIndex(el => el.LevelId = e.LevelId)
+                            if (index < 0) {
+                                data.data?.push({
+                                    "LevelId": e.LevelId,
+                                    "Places": []
+                                })
+                            }
+                            data.data.map((elm, i) => {
+                                if (elm.LevelId == e.LevelId) {
+                                    elm.Places.push({
+                                        "Row": e.row,
+                                        "Seat": e.seat
+                                    })
+                                }
+                            })
+                        })
+                        sortedParams.data = JSON.stringify(data);
+
+                        const options = {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify(sortedParams)
+                        };
+
+                        fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
+                            .then(response => response.json())
+                            .then(data => {
+                                localStorage.setItem('order_id', JSON.stringify(data))
+                                dispatch(CreateCurrentTicket({
+                                    tickets: tickets.tickets,
+                                    buyerName: name,
+                                    buyerEmail: email,
+                                    buyerPhone: number,
+                                    deliveryLocation: address,
+                                    sessionId: tickets.tickets[0].sessionId,
+                                    buyerNotes: additional,
+                                    orderId: data.id,
+                                    paymentMethod: 'CREDIT CARD',
+                                    delivery,
+                                }))
+                            })
+                            .catch(error => {
+
+                                console.error('Error:', error);
+                            });
+                    }
+
+
                     setTimeout(() => {
                         dispatch(StatusSuccessAction())
                     }, 3000)
@@ -288,6 +531,83 @@ export const BuyNow = ({ open, isParonyanEvent }) => {
             window.location = `/StatusACBA`
         }
     }, [creatTicket])
+
+
+    // useEffect(() => {
+    //     console.log('12')
+    //     if (isParonyanEvent) {
+    //         console.log('0-------')
+    //         const keys = "hYDepOnSarMi";
+    //         const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
+    //         const requestType = "buyTickets";
+
+    //         const params = {
+    //             group_id: grupID,
+    //             timeline_id: paronyanSeans,
+    //             event_id: event_id,
+    //         };
+
+    //         const sortedParams = Object.keys(params).sort().reduce((acc, key) => {
+    //             acc[key] = params[key];
+    //             return acc;
+    //         }, {});
+
+    //         sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
+    //         let data = { 'data': [] }
+    //         tickets.tickets.map((e, i) => {
+    //             console.log(e)
+    //             let index = data.data.findIndex(el => el.LevelId = e.LevelId)
+    //             if (index < 0) {
+    //                 data.data?.push({
+    //                     "LevelId": e.LevelId,
+    //                     "Places": []
+    //                 })
+    //             }
+    //             data.data.map((elm, i) => {
+    //                 if (elm.LevelId == e.LevelId) {
+    //                     elm.Places.push({
+    //                         "Row": e.row,
+    //                         "Seat": e.seat
+    //                     })
+    //                 }
+    //             })
+    //         })
+    //         console.log(data)
+    //         sortedParams.data = JSON.stringify(data);
+
+    //         const options = {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'Accept': 'application/json'
+    //             },
+    //             body: JSON.stringify(sortedParams)
+    //         };
+
+    //         fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
+    //             .then(response => response.json())
+    //             .then(data => {
+    //                 console.log(data, '111222')
+    //                 localStorage.setItem('order_id', JSON.stringify(data))
+    //                 dispatch(CreateCurrentTicket({
+    //                     tickets: tickets.tickets,
+    //                     buyerName: name,
+    //                     buyerEmail: email,
+    //                     buyerPhone: number,
+    //                     deliveryLocation: address,
+    //                     sessionId: tickets.tickets[0].sessionId,
+    //                     buyerNotes: additional,
+    //                     orderId: data.id,
+    //                     paymentMethod: 'CREDIT CARD',
+    //                     delivery,
+    //                 }))
+    //             })
+    //             .catch(error => {
+
+    //                 console.error('Error:', error);
+    //             });
+    //     }
+    // }, [])
 
     return (
         <div className='BuyNow'>

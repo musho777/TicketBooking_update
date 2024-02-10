@@ -19,6 +19,7 @@ import { CreatTicketReducer } from './CreatTicketReducer'
 import { GetWeekEventReducer } from './GetWeekEventReducer'
 import { GetParonyanEventsReducer } from './GetParonyanEventsReducer'
 import { GetExpectedEventsReducer } from './GetExpectedEventsReducer'
+import { ActiveSeansReducer } from './ActiveSeansReducer'
 
 export default combineReducers({
     Ticket_reducer,
@@ -40,5 +41,6 @@ export default combineReducers({
     creatTicket: CreatTicketReducer,
     getWeekEvent: GetWeekEventReducer,
     paronyanEvents: GetParonyanEventsReducer,
-    getExpectedEvents: GetExpectedEventsReducer
+    getExpectedEvents: GetExpectedEventsReducer,
+    activeSeans: ActiveSeansReducer,
 })

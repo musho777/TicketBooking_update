@@ -29,7 +29,6 @@ export const AllEventsWrapper = ({ loading, data, paronyan, setPage, page, showB
                     if (month1 <= 9) {
                         month1 = `0${month1}`
                     }
-                    console.log(!elm?.eventId?.isParonyanEvent)
                     var currentDayOfWeek = daysOfWeek[dateObject.getDay()];
                     if (!elm?.isParonyanEvent) {
                         return <Card

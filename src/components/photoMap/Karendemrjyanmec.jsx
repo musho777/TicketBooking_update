@@ -643,6 +643,13 @@ const AramKhachatryan = ({ secion, soldTickets, sessionID, pading }) => {
                         }}
                         // onClick={() => addTicket(i)}
                         onClick={() => addTicket(e.y, i, e.x, e.price, e.row, e.id)}
+                        onTouchStart={() => {
+                            getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                            setActiveButton(i)
+                        }}
+                        onTouchEnd={() => {
+                            addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                        }}
 
                     />
             })}

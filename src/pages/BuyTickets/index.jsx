@@ -11,9 +11,10 @@ import { CartPopup } from '../../components/popup/cart';
 import { BuyNow } from '../../components/BuyNow';
 import { ShowAllButton } from '../../components/Button/ShowAllButton'
 import { PuffLoader } from 'react-spinners';
+import { MD5 } from 'crypto-js';
 
 export const BuyTickets = () => {
-    const { id } = useParams()
+    const ids = useParams()
     const dispatch = useDispatch()
     const { t } = useTranslation();
     const getSinglPage = useSelector((st) => st.getSinglPage)
@@ -22,9 +23,14 @@ export const BuyTickets = () => {
     const [data, setData] = useState({ name: '', description: '', hall: '' })
     let { event } = getSinglPage?.events
     const [open, setOpen] = useState(false)
+    const [paronyanSeans, setParonyanSeans] = useState('')
 
-
-
+    const [id, setId] = useState('')
+    useEffect(() => {
+        const parts = ids.id.split(':');
+        setId(parts[0])
+        setParonyanSeans(parts[1])
+    }, [ids])
     var months = [
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -38,10 +44,123 @@ export const BuyTickets = () => {
 
         })
     };
+    const BuyTickets2 = () => {
 
+        const keys = "hYDepOnSarMi";
+        const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
+        const requestType = "buyTickets";
+
+        const params = {
+            group_id: "12",
+            timeline_id: "6936",
+            event_id: "100",
+        };
+
+
+        const sortedParams = Object.keys(params).sort().reduce((acc, key) => {
+            acc[key] = params[key];
+            return acc;
+        }, {});
+
+        sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
+
+        const data = {
+            "data": [
+                {
+                    "LevelId": "2",
+                    "Places": [
+                        {
+                            "Row": "6",
+                            "Seat": "21"
+                        },
+                        {
+                            "Row": "2",
+                            "Seat": "22"
+                        },
+                    ]
+                },
+            ]
+        };
+        sortedParams.data = JSON.stringify(data);
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(sortedParams)
+        };
+
+        fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
+            .then(response => response.json())
+            .then(data => {
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    };
+    const returnTickets = () => {
+
+        const keys = "hYDepOnSarMi";
+        const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
+        const requestType = "backTickets";
+        const params = {
+            group_id: "12",
+            timeline_id: paronyanSeans,
+            event_id: getSinglPage?.events?.event?.ParonyanEventId,
+            order_id: "366"
+        };
+
+        const sortedParams = Object.keys(params).sort().reduce((acc, key) => {
+            acc[key] = params[key];
+            return acc;
+        }, {});
+
+        sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
+
+        const data = {
+            "data": [
+                {
+                    "LevelId": "3",
+                    "Places": [
+                        {
+                            "Row": "1",
+                            "Seat": "1"
+                        },
+                    ]
+                },
+            ]
+        };
+        sortedParams.data = JSON.stringify(data);
+
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(sortedParams)
+        };
+
+        fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
+            .then(response => response.json())
+            .then(data => {
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+
+    useEffect(() => {
+        returnTickets()
+    }, [])
 
 
     const tickets = useSelector((st) => st.tiketsForBuy)
+
     const [total, setTotal] = useState(0)
     const [value, setValue] = useState({
         scale: 0.4,
@@ -56,10 +175,10 @@ export const BuyTickets = () => {
         })
     };
     useEffect(() => {
-        if (id.length > 3) {
-            dispatch(GetSinglPage(id))
-        }
-    }, [])
+        // BuyTickets2()
+        // returnTickets()
+        dispatch(GetSinglPage(id))
+    }, [id])
     useEffect(() => {
         let price = 0
         tickets.tickets?.map((elm, i) => {
@@ -108,15 +227,78 @@ export const BuyTickets = () => {
             </div>
         )
     }
-    console.log(getSinglPage, 'getSinglPage')
+    const backBookTikets = () => {
+        const keys = "hYDepOnSarMi";
+        const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
+        const requestType = "bookBack";
+
+        const params = {
+            group_id: getSinglPage.events?.event?.ParonyanGroup_id,
+            timeline_id: paronyanSeans,
+            event_id: getSinglPage?.events?.event?.ParonyanEventId,
+        };
+
+        const sortedParams = Object.keys(params).sort().reduce((acc, key) => {
+            acc[key] = params[key];
+            return acc;
+        }, {});
+
+        sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
+        let data = { 'data': [] }
+        tickets.tickets.map((e, i) => {
+            let index = data.data.findIndex(el => el.LevelId = e.LevelId)
+            if (index < 0) {
+                data.data?.push({
+                    "LevelId": e.LevelId,
+                    "Places": []
+                })
+            }
+            data.data.map((elm, i) => {
+                if (elm.LevelId == e.LevelId) {
+                    elm.Places.push({
+                        "Row": e.row,
+                        "Seat": e.seat
+                    })
+                }
+            })
+        })
+        sortedParams.data = JSON.stringify(data);
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(sortedParams)
+        };
+
+        fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data, 'dattrtassw3s')
+                localStorage.setItem('order_id', JSON.stringify(data))
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
     return <div className='container'>
         <CartPopup
             open={open}
             type='openBuy'
-            setOpen={() => setOpen(false)}
+            setOpen={() => {
+                setOpen(false)
+                backBookTikets()
+            }}
         >
-            <BuyNow isParonyanEvent={getSinglPage.events?.event
-                ?.isParonyanEvent} open={open} />
+            <BuyNow
+                isParonyanEvent={getSinglPage.events?.event
+                    ?.isParonyanEvent}
+                paronyanSeans={paronyanSeans}
+                event_id={getSinglPage?.events?.event?.ParonyanEventId}
+                grupID={getSinglPage.events?.event?.ParonyanGroup_id}
+                open={open} />
         </CartPopup >
         <div className='BuyTicketsWrapper'>
             {!getSinglPage.events?.event
@@ -175,6 +357,8 @@ export const BuyTickets = () => {
                         value={value}
                         setValue={(e) => setValue(e)}
                         getSinglPage={getSinglPage}
+                        paronyanSeans={paronyanSeans}
+                        open={open}
                         isParonyanEvent={getSinglPage.events?.event
                             ?.isParonyanEvent}
                     />

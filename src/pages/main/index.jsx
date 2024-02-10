@@ -22,8 +22,6 @@ export const Main = () => {
     const dispatch = useDispatch()
     const general = useSelector((st) => st.general)
     const { getWeekEvent } = useSelector((st) => st)
-    console.log(getWeekEvent.events, '22')
-
 
     const BuyTickets = () => {
 
@@ -151,7 +149,7 @@ export const Main = () => {
         dispatch(GetAllAds())
         dispatch(GetParoninaSinglHallSeats())
         dispatch(WeekEvetntApi())
-        dispatch(GetSinglParonyan())
+        dispatch(GetParoninaSinglHallSeats())
         dispatch(GetParonyanEvents())
     }, [])
         ;

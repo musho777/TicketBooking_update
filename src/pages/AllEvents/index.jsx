@@ -57,12 +57,8 @@ export const AllEventss = () => {
         if (selectedDate[0].startDate) {
             statDate = `${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()}`
         }
-        console.log(subcategoryId == '', '12')
         if (subcategoryId == '') {
-            console.log('111 ')
             dispatch(GetAllEvents(page, {
-
-                // category: subcategoryId,
                 subcategory: 'all',
                 date: {
                     startDate: statDate,

@@ -39,7 +39,6 @@ export const GetTopEvents = (page) => {
     return (dispatch) => {
         dispatch(StartGetGetTopEvents())
         axios.get(`${process.env.REACT_APP_HOSTNAME}/getTopEvents?currentPage=${page}`).then((r) => {
-            console.log(r)
             if (r.data.success) {
                 dispatch(SuccessGetTopEvents(r.data))
             }
@@ -115,11 +114,9 @@ export const EventValidity = () => {
 }
 
 export const GetAllEvents = (page, data) => {
-    console.log(data, '11')
     return (dispatch) => {
         dispatch(StartGetCategoris())
         axios.post(`${process.env.REACT_APP_HOSTNAME}/filterEvents?currentPage=${page}`, data).then((r) => {
-            console.log(r, '11')
             if (r.data.success) {
                 dispatch(SuccessGetCategoris(r.data))
             }
@@ -337,7 +334,6 @@ export const GetParonyanEvents = () => {
 
         const response = await axios(options)
         dispatch(SuccessGetParonyanEvetns(response.data))
-        console.log(response)
     }
 }
 
@@ -347,8 +343,8 @@ export const GetParoninaSinglHallSeats = () => {
     const requestType = "getRow";
     const params = {
         group_id: "12",
-        timeline_id: "6933",
-        event_id: "1321",
+        timeline_id: "6936",
+        event_id: "100",
     };
     const sortedParams = Object.fromEntries(Object.entries(params).sort());
     sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
@@ -478,3 +474,18 @@ export const GetExpectedEvents = () => {
 
 
 
+
+
+
+export const ActiveSeans = (data) => {
+    return {
+        type: 'ActiveSeans',
+        data
+    }
+}
+
+export const ClearSeans = () => {
+    return {
+        type: 'ClearSeans'
+    }
+}

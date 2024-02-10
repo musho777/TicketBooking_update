@@ -211,7 +211,6 @@ export const Category = () => {
         let item = [...data]
         let combinedArray = []
         if (page == 1) {
-            console.log(page, '11')
             combinedArray = []
             item = []
         }
@@ -224,7 +223,6 @@ export const Category = () => {
         setData(combinedArray)
     }, [events.events])
 
-    console.log(data)
 
     if (openMenu?.categoryMenu) {
         return <CategoryMenu onClick={(e) => {

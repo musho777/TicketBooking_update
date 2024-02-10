@@ -11,12 +11,13 @@ import { Card } from './card'
 export const Single = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
+    console.log(id)
     const { t } = useTranslation();
     const getSinglPage = useSelector((st) => st.getSinglPage)
     const { language } = useSelector((st) => st.StaticReducer)
     let { event } = getSinglPage?.events
     let { recomended } = getSinglPage?.events
-
+    const [activSeans, setActiveSeans] = useState('')
     var months = [
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -64,7 +65,6 @@ export const Single = () => {
             </div>
         )
     }
-
     return (
         <div id='singlPage' className='container'>
             {!getSinglPage.events?.event
@@ -84,21 +84,25 @@ export const Single = () => {
                         `${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`
 
                 }
-            /> : <Card
-                img={getSinglPage.events.event.ParonyanImg}
-                id={getSinglPage.events.event.id}
-                data={getSinglPage.events.event.ParonyanTime}
-                isParonyan={true}
-                description={
-                    getSinglPage.events.event?.ParonyanText?.replace(/<\/?p>/g, '')
-                }
-                title={truncateText(getSinglPage.events.event.ParonyanName)}
-                priceEnd={''}
-                priceStart={''}
-                hall={getSinglPage.events.event.ParonyanGroup_name}
-                largImage={getSinglPage.events.event.ParonyanImg}
-                onClick={() => window.location = `/BuyTickets/${id}`}
-            />
+            /> : <div>
+                <Card
+                    img={getSinglPage.events.event.ParonyanImg}
+                    id={getSinglPage.events.event.id}
+                    data={getSinglPage.events.event.ParonyanTime}
+                    isParonyan={true}
+                    description={
+                        getSinglPage.events.event?.ParonyanText?.replace(/<\/?p>/g, '')
+                    }
+                    seans={getSinglPage.events.event.ParonyanTimeline}
+                    title={truncateText(getSinglPage.events.event.ParonyanName)}
+                    priceEnd={''}
+                    priceStart={''}
+                    setActiveSeans={(e) => setActiveSeans(e)}
+                    hall={getSinglPage.events.event.ParonyanGroup_name}
+                    largImage={getSinglPage.events.event.ParonyanImg}
+                    onClick={() => window.location = `/BuyTickets/${id}:${activSeans}`}
+                />
+            </div>
             }
             <div className='RecDiv2'>
                 {
@@ -111,7 +115,7 @@ export const Single = () => {
                                 let day = dateObject.getDate();
                                 let month = dateObject.getMonth();
                                 var currentDayOfWeek = daysOfWeek[dateObject.getDay()];
-                                if (elm?.sessions.length)
+                                if (elm?.sessions?.length)
                                     return <TopEvents
                                         key={i}
                                         image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}

@@ -79,10 +79,10 @@ export const Card = ({
                     type: 'paronyan'
                 }
             }))
-            navigation(`/BuyTickets/${id}`)
+            navigation(`/Single/${id}`)
         }
         else {
-            window.location = `/BuyTickets/${id}`
+            window.location = `/Single/${id}`
         }
 
     }

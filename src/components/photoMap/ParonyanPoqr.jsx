@@ -2,8 +2,10 @@ import './style.css'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/action'
+import { MD5 } from 'crypto-js'
+import axios from 'axios'
 
-const ParonyanPoqr = ({ secion, eventId, soldTickets, sessionID, pading }) => {
+const ParonyanPoqr = ({ grupID, eventId, Timeline, secion, id, sessionID, pading, open }) => {
     const dispatch = useDispatch()
     const [coordinatesState, setCoordinatesState] = useState([])
     const [activeTicket, setActiveTicket] = useState({})
@@ -11,6 +13,8 @@ const ParonyanPoqr = ({ secion, eventId, soldTickets, sessionID, pading }) => {
     const [showModal, setShowModal] = useState(false)
     const [activeButton, setActiveButton] = useState(null)
     const { tickets } = useSelector((st) => st.tiketsForBuy)
+    const [seatArr, setSeatArr] = useState([])
+
 
     let a = [
         { Id: '68', Row: '3', Seat: '24', Price: '2500', active: false },
@@ -86,6 +90,40 @@ const ParonyanPoqr = ({ secion, eventId, soldTickets, sessionID, pading }) => {
         width: window.innerWidth,
         height: window.innerHeight,
     });
+
+    const GetEventSeat = async () => {
+        const keys = "hYDepOnSarMi";
+        const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
+        const requestType = "getRow";
+        const params = {
+            group_id: grupID,
+            timeline_id: Timeline,
+            event_id: id,
+        };
+        const sortedParams = Object.fromEntries(Object.entries(params).sort());
+        sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
+
+        const options = {
+            method: 'POST',
+            url: `https://api.haytoms.am/sync/${secretKey}/${requestType}`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            data: JSON.stringify(sortedParams),
+        };
+
+        const response = await axios(options)
+        console.log(response.data.data.Levels, 'response.data.data')
+        if (response.data.data?.Levels?.length) {
+            setSeatArr(response.data.data?.Levels[0]?.Places)
+        }
+
+    }
+
+    useEffect(() => {
+        GetEventSeat()
+    }, [open])
 
     const handleResize = () => {
         setWindowSize({
@@ -178,11 +216,15 @@ const ParonyanPoqr = ({ secion, eventId, soldTickets, sessionID, pading }) => {
 
     useEffect(() => {
         let item = [...seansArr]
-        a?.map((elm, i) => {
+        console.log(seatArr, 'seatArr')
+        seatArr?.map((elm, i) => {
             let index = item.findIndex((e) => (e.row == elm.Row && e.seat == elm.Seat))
-            item[index].price = elm.Price
-            item[index].active = elm.active
+            console.log(index)
+            item[index].price = elm?.Price
+            item[index].active = elm?.active
         })
+        console.log(seatArr)
+
         setSeansArr(item)
     }, [secion])
 
@@ -270,7 +312,6 @@ const ParonyanPoqr = ({ secion, eventId, soldTickets, sessionID, pading }) => {
             setCoordinatesState(coordinates)
         };
     }, []);
-    console.log('12234')
     return (
         <div >
             <img
@@ -302,6 +343,13 @@ const ParonyanPoqr = ({ secion, eventId, soldTickets, sessionID, pading }) => {
                             setActiveButton(null)
                         }}
                         onClick={() => addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)}
+                        onTouchStart={() => {
+                            getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                            setActiveButton(i)
+                        }}
+                        onTouchEnd={() => {
+                            addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                        }}
                     />
             })}
 

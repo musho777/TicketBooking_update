@@ -245,4 +245,12 @@
     .BanerImg {
         height: 100%;
     }
+
+    .BanerDivInfoPlace {
+        width: 100%;
+    }
+
+    .BanerLocation {
+        width: 100%;
+    }
 }

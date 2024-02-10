@@ -444,6 +444,8 @@ const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventI
         };
     }, []);
 
+
+
     if (loading) {
         return <div className='loading'>
             <PuffLoader color="#FEE827" />
@@ -485,6 +487,13 @@ const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventI
                             setActiveButton(null)
                         }}
                         onClick={() => addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)}
+                        onTouchStart={() => {
+                            getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                            setActiveButton(i)
+                        }}
+                        onTouchEnd={() => {
+                            addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                        }}
                     />
             })}
             {showModal &&
