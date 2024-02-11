@@ -23,7 +23,6 @@ export const WeekEvents = () => {
             </div>
             <div className="WeekCardWrapper">
                 {getWeekEvent.events.map((elm, i) => {
-                    console.log(elm)
                     return <div>
                         <WeekCard
                             date={elm.date}

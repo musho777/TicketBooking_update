@@ -101,6 +101,7 @@
 .WeekArrow {
     display: flex;
     gap: 5px;
+    display: none;
 }
 
 .WeekArrow svg {

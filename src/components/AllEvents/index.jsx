@@ -15,7 +15,6 @@ export const ALLEvents = () => {
         dispatch(GetRandomEvents(1))
     }, [dispatch])
 
-    console.log(events)
     return (
         <div>
             <div className='EventTitle'>

@@ -114,7 +114,6 @@ const ParonyanPoqr = ({ grupID, eventId, Timeline, secion, id, sessionID, pading
         };
 
         const response = await axios(options)
-        console.log(response.data.data.Levels, 'response.data.data')
         if (response.data.data?.Levels?.length) {
             setSeatArr(response.data.data?.Levels[0]?.Places)
         }
@@ -216,14 +215,11 @@ const ParonyanPoqr = ({ grupID, eventId, Timeline, secion, id, sessionID, pading
 
     useEffect(() => {
         let item = [...seansArr]
-        console.log(seatArr, 'seatArr')
         seatArr?.map((elm, i) => {
             let index = item.findIndex((e) => (e.row == elm.Row && e.seat == elm.Seat))
-            console.log(index)
             item[index].price = elm?.Price
             item[index].active = elm?.active
         })
-        console.log(seatArr)
 
         setSeansArr(item)
     }, [secion])

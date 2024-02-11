@@ -1,7 +1,7 @@
 import './style.css'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { CreateCurrentTicket, RemoveTicketsAction, StatusSuccessAction } from '../../services/action/action'
+import { CreateCurrentTicket, GetCurrentTicket, RemoveTicketsAction, StatusSuccessAction } from '../../services/action/action'
 import { CheckSvg, CheckedSvg, MobileSvg, SelectSvg, SelectedSvg } from '../svg'
 import axios from 'axios'
 import { PuffLoader } from 'react-spinners'
@@ -234,7 +234,6 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
     //     fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
     //         .then(response => response.json())
     //         .then(data => {
-    //             console.log(data, 'dattrtassw3s')
     //             localStorage.setItem('order_id', JSON.stringify(data))
     //             // dispatch(CreateCurrentTicket({
     //             //     tickets: tickets.tickets,
@@ -253,6 +252,73 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
     //             console.error('Error:', error);
     //         });
     // }
+
+
+    const BuyParonyanEvents = (res) => {
+
+        if (selectPay === 3) {
+            localStorage.setItem('orderId', res)
+
+            dispatch(CreateCurrentTicket({
+                tickets: tickets.tickets,
+                buyerName: name,
+                buyerEmail: email,
+                buyerPhone: number,
+                isParonyanEvent: true,
+                deliveryLocation: address,
+                // paronyanOrderId: data.data.id,
+                sessionId: null,
+                buyerNotes: additional,
+                orderId: res,
+                eventId: event_id,
+                paymentMethod: 'CASH',
+                delivery,
+                // qrData: JSON.parse(data.data.map).data,
+
+            }, res, selectPay))
+        }
+        else if (selectPay === 2) {
+            localStorage.setItem('orderId', res)
+            dispatch(CreateCurrentTicket({
+                tickets: tickets.tickets,
+                buyerName: name,
+                buyerEmail: email,
+                buyerPhone: number,
+                isParonyanEvent: true,
+                deliveryLocation: address,
+                // paronyanOrderId: data.data.id,
+                sessionId: null,
+                buyerNotes: additional,
+                orderId: res,
+                eventId: event_id,
+                paymentMethod: 'Telcell',
+                delivery,
+                // qrData: JSON.parse(data.data.map).data,
+
+            }, res, selectPay))
+        }
+        else {
+            localStorage.setItem('orderId', res?.data?.orderId)
+
+            dispatch(CreateCurrentTicket({
+                tickets: tickets.tickets,
+                buyerName: name,
+                buyerEmail: email,
+                buyerPhone: number,
+                isParonyanEvent: true,
+                deliveryLocation: address,
+                // paronyanOrderId: data.data.id,
+                sessionId: null,
+                buyerNotes: additional,
+                orderId: res?.data?.orderId,
+                eventId: event_id,
+                paymentMethod: 'CREDIT CARD',
+                delivery,
+                // qrData: JSON.parse(data.data.map).data,
+
+            }, res, selectPay))
+        }
+    }
 
     const backBookTikets = () => {
         const keys = "hYDepOnSarMi";
@@ -303,8 +369,7 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
         fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
             .then(response => response.json())
             .then(data => {
-                console.log(data, 'dattrtassw3s')
-                localStorage.setItem('order_id', JSON.stringify(data))
+                localStorage.setItem('orderId', JSON.stringify(data))
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -317,11 +382,9 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
         axios.post(`${process.env.REACT_APP_HOSTNAME}/registerPayment`, { amount: total * 100 })
             .then(res => {
                 if (res?.data?.success) {
-
                     setLoading(false)
                     localStorage.setItem('orderId', res?.data?.orderId)
-                    window.open(`${res?.data?.formUrl}`, { target: '_blank' })
-                    if (!isParonyanEvent)
+                    if (!isParonyanEvent) {
                         dispatch(CreateCurrentTicket({
                             tickets: tickets.tickets,
                             buyerName: name,
@@ -329,86 +392,24 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
                             buyerPhone: number,
                             deliveryLocation: address,
                             sessionId: tickets.tickets[0].sessionId,
+                            isParonyanEvent: false,
                             buyerNotes: additional,
                             orderId: res?.data?.orderId,
                             paymentMethod: 'CREDIT CARD',
                             delivery,
                         }))
+                        window.open(`${res?.data?.formUrl}`, { target: '_blank' })
 
-                    if (isParonyanEvent) {
-                        const keys = "hYDepOnSarMi";
-                        const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
-                        const requestType = "buyTickets";
-
-                        const params = {
-                            group_id: grupID,
-                            timeline_id: paronyanSeans,
-                            event_id: event_id,
-                        };
-
-                        const sortedParams = Object.keys(params).sort().reduce((acc, key) => {
-                            acc[key] = params[key];
-                            return acc;
-                        }, {});
-
-                        sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
-                        let data = { 'data': [] }
-                        tickets.tickets.map((e, i) => {
-                            let index = data.data.findIndex(el => el.LevelId = e.LevelId)
-                            if (index < 0) {
-                                data.data?.push({
-                                    "LevelId": e.LevelId,
-                                    "Places": []
-                                })
-                            }
-                            data.data.map((elm, i) => {
-                                if (elm.LevelId == e.LevelId) {
-                                    elm.Places.push({
-                                        "Row": e.row,
-                                        "Seat": e.seat
-                                    })
-                                }
-                            })
-                        })
-                        sortedParams.data = JSON.stringify(data);
-
-                        const options = {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json'
-                            },
-                            body: JSON.stringify(sortedParams)
-                        };
-
-                        fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
-                            .then(response => response.json())
-                            .then(data => {
-                                localStorage.setItem('order_id', JSON.stringify(data))
-                                dispatch(CreateCurrentTicket({
-                                    tickets: tickets.tickets,
-                                    buyerName: name,
-                                    buyerEmail: email,
-                                    buyerPhone: number,
-                                    deliveryLocation: address,
-                                    sessionId: tickets.tickets[0].sessionId,
-                                    buyerNotes: additional,
-                                    orderId: data.id,
-                                    paymentMethod: 'CREDIT CARD',
-                                    delivery,
-                                }))
-                            })
-                            .catch(error => {
-
-                                console.error('Error:', error);
-                            });
                     }
 
-
+                    else {
+                        BuyParonyanEvents(res)
+                    }
                     setTimeout(() => {
                         dispatch(StatusSuccessAction())
                     }, 3000)
-                } else {
+                }
+                else {
                     window.open(`/`)
                 }
             })
@@ -460,17 +461,22 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
         ) {
             if (selectPay === 2) {
                 setLoading(true)
-                dispatch(CreateCurrentTicket({
-                    tickets: tickets.tickets,
-                    buyerName: name,
-                    buyerEmail: email,
-                    buyerPhone: number,
-                    deliveryLocation: address,
-                    sessionId: tickets.tickets[0].sessionId,
-                    paymentMethod: 'Telcell',
-                    buyerNotes: additional,
-                    orderId: issuerId,
-                }))
+                if (isParonyanEvent) {
+                    BuyParonyanEvents(issuerId)
+                }
+                else {
+                    dispatch(CreateCurrentTicket({
+                        tickets: tickets.tickets,
+                        buyerName: name,
+                        buyerEmail: email,
+                        buyerPhone: number,
+                        deliveryLocation: address,
+                        sessionId: tickets.tickets[0].sessionId,
+                        paymentMethod: 'Telcell',
+                        buyerNotes: additional,
+                        orderId: issuerId,
+                    }))
+                }
                 setLoading(false)
 
                 function getTelcellSecurityCode(shop_key, issuer, currency, price, product, issuer_id, valid_days) {
@@ -490,34 +496,42 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
                 )
 
                 document.getElementById('telcellForm').innerHTML = `
-                <form id='form' style={{ margin: "20px" }} target="_blank" action="https://telcellmoney.am/invoices" method="POST" >
+                <form id='form' style={{ margin: "20px" }} target="_blank" action="https://telcellmoney.am/invoices" method="POST">
                     <input type="hidden" name="action" value="PostInvoice" />
-                    <input type="hidden" name="issuer" value=${process.env.REACT_APP_TELCELL_ISSUER} />
+                    <input type="hidden" name="issuer" value="${process.env.REACT_APP_TELCELL_ISSUER}" />
                     <input type="hidden" name="currency" value="֏" />
-                    <input type="hidden" name="price" value=${total} />
-                    <input type="hidden" name="product" value=${encodedProduct} />
-                    <input type="hidden" name="issuer_id" value=${encodedIssuerId} />
+                    <input type="hidden" name="price" value="${total}" />
+                    <input type="hidden" name="product" value="${encodedProduct}" />
+                    <input type="hidden" name="issuer_id" value="${encodedIssuerId}" />
                     <input type="hidden" name="valid_days" value="1" />
                     <input type="hidden" name="lang" value="am" />
-                    <input type="hidden" name="security_code" value=${security_code} />
-                </form>`
+                    <input type="hidden" name="security_code" value="${security_code}" />
+                </form>`;
                 document.getElementById('form').submit()
                 window.location.reload()
             }
+
+
             else if (selectPay === 3) {
-                dispatch(CreateCurrentTicket({
-                    tickets: tickets.tickets,
-                    buyerName: name,
-                    buyerEmail: email,
-                    buyerPhone: number,
-                    deliveryLocation: address,
-                    sessionId: tickets.tickets[0].sessionId,
-                    buyerNotes: additional,
-                    orderId: issuerId,
-                    paymentMethod: 'CASH',
-                    delivery: true,
-                }))
-                localStorage.setItem('orderId', issuerId)
+                if (isParonyanEvent) {
+                    BuyParonyanEvents(issuerId)
+                }
+                else {
+                    dispatch(CreateCurrentTicket({
+                        tickets: tickets.tickets,
+                        buyerName: name,
+                        buyerEmail: email,
+                        buyerPhone: number,
+                        deliveryLocation: address,
+                        sessionId: tickets.tickets[0].sessionId,
+                        buyerNotes: additional,
+                        orderId: issuerId,
+                        paymentMethod: 'CASH',
+                        delivery: true,
+                    }))
+                    localStorage.setItem('orderId', issuerId)
+                }
+
             }
             else {
                 handlePurchase()
@@ -534,9 +548,7 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
 
 
     // useEffect(() => {
-    //     console.log('12')
     //     if (isParonyanEvent) {
-    //         console.log('0-------')
     //         const keys = "hYDepOnSarMi";
     //         const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
     //         const requestType = "buyTickets";
@@ -555,7 +567,6 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
     //         sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
     //         let data = { 'data': [] }
     //         tickets.tickets.map((e, i) => {
-    //             console.log(e)
     //             let index = data.data.findIndex(el => el.LevelId = e.LevelId)
     //             if (index < 0) {
     //                 data.data?.push({
@@ -572,7 +583,6 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
     //                 }
     //             })
     //         })
-    //         console.log(data)
     //         sortedParams.data = JSON.stringify(data);
 
     //         const options = {
@@ -587,7 +597,6 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
     //         fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
     //             .then(response => response.json())
     //             .then(data => {
-    //                 console.log(data, '111222')
     //                 localStorage.setItem('order_id', JSON.stringify(data))
     //                 dispatch(CreateCurrentTicket({
     //                     tickets: tickets.tickets,

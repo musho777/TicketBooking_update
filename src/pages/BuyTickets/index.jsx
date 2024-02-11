@@ -9,7 +9,6 @@ import { useParams } from 'react-router-dom';
 import { GetSinglPage, RemoveTicketsAction } from '../../services/action/action';
 import { CartPopup } from '../../components/popup/cart';
 import { BuyNow } from '../../components/BuyNow';
-import { ShowAllButton } from '../../components/Button/ShowAllButton'
 import { PuffLoader } from 'react-spinners';
 import { MD5 } from 'crypto-js';
 
@@ -36,69 +35,13 @@ export const BuyTickets = () => {
         "July", "August", "September", "October", "November", "December"
     ];
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const [scale, setScale] = useState(0.4);
+    const [scale, setScale] = useState(1);
     const handleZoomIn = () => {
         setValue({
-            scale: value.scale + 0.1,
+            scale: value.scale + 0.4,
             translation: value.translation
 
         })
-    };
-    const BuyTickets2 = () => {
-
-        const keys = "hYDepOnSarMi";
-        const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
-        const requestType = "buyTickets";
-
-        const params = {
-            group_id: "12",
-            timeline_id: "6936",
-            event_id: "100",
-        };
-
-
-        const sortedParams = Object.keys(params).sort().reduce((acc, key) => {
-            acc[key] = params[key];
-            return acc;
-        }, {});
-
-        sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
-
-        const data = {
-            "data": [
-                {
-                    "LevelId": "2",
-                    "Places": [
-                        {
-                            "Row": "6",
-                            "Seat": "21"
-                        },
-                        {
-                            "Row": "2",
-                            "Seat": "22"
-                        },
-                    ]
-                },
-            ]
-        };
-        sortedParams.data = JSON.stringify(data);
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(sortedParams)
-        };
-
-        fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
-            .then(response => response.json())
-            .then(data => {
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
     };
     const returnTickets = () => {
 
@@ -109,7 +52,7 @@ export const BuyTickets = () => {
             group_id: "12",
             timeline_id: paronyanSeans,
             event_id: getSinglPage?.events?.event?.ParonyanEventId,
-            order_id: "366"
+            order_id: "442"
         };
 
         const sortedParams = Object.keys(params).sort().reduce((acc, key) => {
@@ -127,6 +70,10 @@ export const BuyTickets = () => {
                         {
                             "Row": "1",
                             "Seat": "1"
+                        },
+                        {
+                            "Row": "1",
+                            "Seat": "2"
                         },
                     ]
                 },
@@ -158,7 +105,6 @@ export const BuyTickets = () => {
         returnTickets()
     }, [])
 
-
     const tickets = useSelector((st) => st.tiketsForBuy)
 
     const [total, setTotal] = useState(0)
@@ -169,15 +115,16 @@ export const BuyTickets = () => {
 
 
     const handleZoomOut = () => {
-        setValue({
-            scale: value.scale - 0.1,
-            translation: value.translation
-        })
+        if (value.scale - 0.1 > 0.1)
+            setValue({
+                scale: value.scale - 0.1,
+                translation: value.translation
+            })
     };
     useEffect(() => {
-        // BuyTickets2()
-        // returnTickets()
-        dispatch(GetSinglPage(id))
+        if (id) {
+            dispatch(GetSinglPage(id))
+        }
     }, [id])
     useEffect(() => {
         let price = 0
@@ -227,69 +174,13 @@ export const BuyTickets = () => {
             </div>
         )
     }
-    const backBookTikets = () => {
-        const keys = "hYDepOnSarMi";
-        const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
-        const requestType = "bookBack";
-
-        const params = {
-            group_id: getSinglPage.events?.event?.ParonyanGroup_id,
-            timeline_id: paronyanSeans,
-            event_id: getSinglPage?.events?.event?.ParonyanEventId,
-        };
-
-        const sortedParams = Object.keys(params).sort().reduce((acc, key) => {
-            acc[key] = params[key];
-            return acc;
-        }, {});
-
-        sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
-        let data = { 'data': [] }
-        tickets.tickets.map((e, i) => {
-            let index = data.data.findIndex(el => el.LevelId = e.LevelId)
-            if (index < 0) {
-                data.data?.push({
-                    "LevelId": e.LevelId,
-                    "Places": []
-                })
-            }
-            data.data.map((elm, i) => {
-                if (elm.LevelId == e.LevelId) {
-                    elm.Places.push({
-                        "Row": e.row,
-                        "Seat": e.seat
-                    })
-                }
-            })
-        })
-        sortedParams.data = JSON.stringify(data);
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(sortedParams)
-        };
-
-        fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data, 'dattrtassw3s')
-                localStorage.setItem('order_id', JSON.stringify(data))
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
     return <div className='container'>
-        <CartPopup
+        {open && <CartPopup
             open={open}
             type='openBuy'
             setOpen={() => {
                 setOpen(false)
-                backBookTikets()
+                // backBookTikets()
             }}
         >
             <BuyNow
@@ -299,7 +190,7 @@ export const BuyTickets = () => {
                 event_id={getSinglPage?.events?.event?.ParonyanEventId}
                 grupID={getSinglPage.events?.event?.ParonyanGroup_id}
                 open={open} />
-        </CartPopup >
+        </CartPopup >}
         <div className='BuyTicketsWrapper'>
             {!getSinglPage.events?.event
                 ?.isParonyanEvent ?

@@ -850,7 +850,6 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open }) =>
     const getPrice = (y, i, x, parterre, amphitheater, lodge) => {
         setPosition({ x, y })
         let item = seansArr.find((elm) => elm.id === i)
-        console.log(item.LevelId, 'LevelId')
         setActiveTicket({
             row: item?.row,
             price: item?.price,
@@ -862,7 +861,8 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open }) =>
             stage: item?.stage,
             lodge: item?.lodge,
             eventId: eventId,
-            LevelId: item.LevelId
+            LevelId: item.LevelId,
+            timeLine: Timeline,
         })
         setShowModal(true)
     }
@@ -888,9 +888,9 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open }) =>
                 lodge: temp.lodge,
                 eventId: eventId,
                 stage: temp.stage,
-                LevelId: temp.LevelId
+                LevelId: temp.LevelId,
+                timeLine: Timeline,
             }
-            console.log(temp.LevelId, '1')
 
         }
         else {

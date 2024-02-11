@@ -11,7 +11,6 @@ import { Card } from './card'
 export const Single = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
-    console.log(id)
     const { t } = useTranslation();
     const getSinglPage = useSelector((st) => st.getSinglPage)
     const { language } = useSelector((st) => st.StaticReducer)
