@@ -62,12 +62,12 @@ export const Category = () => {
 
     useEffect(() => {
         dispatch(GetHall())
-        let date = new Date(selectedDate[0].endDate)
-        let startDate = new Date(selectedDate[0].startDate)
+        let date = new Date(selectedDate[0]?.endDate)
+        let startDate = new Date(selectedDate[0]?.startDate)
         let statDate = ''
         let endDate = ''
         if (selectedDate[0].endDate) {
-            endDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+            endDate = `${date?.getFullYear()}-${date?.getMonth() + 1}-${date?.getDate()}`
         }
         if (selectedDate[0].startDate) {
             statDate = `${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()}`

@@ -33,6 +33,14 @@ export const TopEvents = ({
             return text;
         }
     }
+    function truncateTextWeek(text) {
+        if (text?.length > 9) {
+            return text.substring(0, 5) + '...';
+        }
+        else {
+            return text;
+        }
+    }
     const { t } = useTranslation();
     const [languageData, setLanguageData] = useState({ title: '', location: '', categorName: '', hall })
     const { language } = useSelector((st) => st.StaticReducer)
@@ -98,7 +106,7 @@ export const TopEvents = ({
                 <div className='TopEventsMonthAndWeek'>
                     <p className='TopEventsMonth'>{months}</p>
                     <div className='TopEventsLine' />
-                    <p className='TopEventsWeek'>{currentDayOfWeek}</p>
+                    <p className='TopEventsWeek'>{truncateTextWeek(currentDayOfWeek)}</p>
                 </div>
                 <p className='TopEventsTime'>{time}</p>
             </div>

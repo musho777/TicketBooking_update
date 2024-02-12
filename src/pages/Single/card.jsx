@@ -38,7 +38,7 @@ export const Card = ({
             const height = divRef.current.clientHeight;
             setHeight(height);
         }
-    }, []);
+    }, [description]);
 
     useEffect(() => {
         if (data1?.length > 0) {
@@ -52,7 +52,7 @@ export const Card = ({
         <div ref={divRef} className='SinglBanerDiv' >
             <div className='SiglBanerImg2'>
                 <img className='SiglBanerImg2' src={img} />
-                <div className='SeansCaelndar'>
+                {data1?.length && <div className='SeansCaelndar'>
                     <div onClick={(e) => {
                         e.stopPropagation()
                         e.preventDefault()
@@ -92,7 +92,7 @@ export const Card = ({
                             </div>
                         })}
                     </div>}
-                </div>
+                </div>}
             </div>
             <div className='SinglBanerDivInfo'>
                 <div className='SinglBanerPrimera'>

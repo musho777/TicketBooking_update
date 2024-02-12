@@ -143,10 +143,11 @@
     margin-top: 50px;
     display: flex;
     gap: 30px;
-    overflow-y: scroll;
+    overflow-x: scroll;
     padding: 15px 0;
     scrollbar-width: thin;
     -ms-overflow-style: none;
+    overflow-y: hidden;
 }
 
 .RecDiv::-webkit-scrollbar {
@@ -223,6 +224,7 @@
 
 #singlPage {
     position: relative;
+    overflow-x: hidden;
 }
 
 .SinglBanerDivInfo {
@@ -270,7 +272,7 @@
     flex-direction: column;
     gap: 5px;
     /* white-space: nowrap; */
-    width: 80%;
+    width: 100%;
     /* overflow: hidden; */
 }
 

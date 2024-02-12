@@ -35,7 +35,7 @@ export const AllEventsWrapper = ({ loading, data, paronyan, setPage, page, showB
                             key={i}
                             day={day}
                             time={elm.time}
-                            id={elm.eventId._id}
+                            id={elm.eventId?._id}
                             image={`${process.env.REACT_APP_IMAGE}/${elm.eventId?.image}`}
                             title={elm.title}
                             year={year}
@@ -68,7 +68,7 @@ export const AllEventsWrapper = ({ loading, data, paronyan, setPage, page, showB
                         return <Card
                             key={i}
                             day={day}
-                            id={elm._id}
+                            id={elm?._id}
                             year={2024}
                             month1={linesArray[0]}
                             image={`${elm.ParonyanImg}`}

@@ -9,7 +9,7 @@ export const StatusACBA = () => {
     const [loading, setLoading] = useState(false)
     useEffect(() => {
         if (!localStorage.getItem('orderId')) {
-            window.location = '/'
+            // window.location = '/'
         } else {
             dispatch(GetCurrentTicket())
             setLoading(false)
@@ -24,11 +24,11 @@ export const StatusACBA = () => {
         </div>
     }
 
-    return <div className='statusDiv'>
-        <div className='successPage'>
+    return <div className='container' id='statusDiv'>
+        < div className='successPage' >
             <img src={require('../../assets/success.png')} alt='' />
             <h1>Շուտով կստանաք տոմսերը ձեր նշած էլ. հասցեին,</h1>
             <h1>Խնդրում ենք էջը չփակել</h1>
-        </div>
-    </div>
+        </div >
+    </div >
 } 

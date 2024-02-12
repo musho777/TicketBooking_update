@@ -44,13 +44,13 @@ export const Single = () => {
         else if (language === 'en') {
             item.title = event?.title_en
             item.description = event?.description_en
-            item.hall = event?.sessions[0]?.hallId.hall_en
+            item.hall = event?.sessions[0]?.hallId?.hall_en
 
         }
         else if (language === 'ru') {
             item.title = event?.title_ru
             item.description = event?.description_ru
-            item.hall = event?.sessions[0].hallId.hall_ru
+            item.hall = event?.sessions[0]?.hallId?.hall_ru
         }
         setLanguageData(item)
     }, [language, event])
@@ -68,15 +68,15 @@ export const Single = () => {
         <div id='singlPage' className='container'>
             {!getSinglPage.events?.event
                 ?.isParonyanEvent ? <Card
-                time={event?.sessions[0].time}
+                time={event?.sessions[0]?.time}
                 img={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`}
                 id={id}
-                data={event?.sessions[0].date.slice(0, 10)}
-                description={languageData.description}
+                data={event?.sessions[0]?.date.slice(0, 10)}
+                description={languageData?.description}
                 title={truncateText(languageData?.title)}
-                priceEnd={`${event?.sessions[0].priceEnd} AMD`}
-                priceStart={`${event?.sessions[0].priceStart} -`}
-                hall={languageData.hall}
+                priceEnd={`${event?.sessions[0]?.priceEnd} AMD`}
+                priceStart={`${event?.sessions[0]?.priceStart} -`}
+                hall={languageData?.hall}
                 onClick={() => window.location = `/BuyTickets/${id}`}
                 largImage={
                     getSinglPage.events.event?.largeImage ? `${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.largeImage}` :
@@ -85,7 +85,7 @@ export const Single = () => {
                 }
             /> : <div>
                 <Card
-                    img={getSinglPage.events.event.ParonyanImg}
+                    img={getSinglPage?.events.event?.ParonyanImg}
                     id={getSinglPage.events.event.id}
                     data={getSinglPage.events.event.ParonyanTime}
                     isParonyan={true}
@@ -117,9 +117,10 @@ export const Single = () => {
                                 if (elm?.sessions?.length)
                                     return <TopEvents
                                         key={i}
-                                        image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
-                                        title={elm.title}
-                                        category={elm.category}
+                                        id={elm?._id}
+                                        image={`${process.env.REACT_APP_IMAGE}/${elm?.image}`}
+                                        title={elm?.title}
+                                        category={elm?.category}
                                         day={day}
                                         location={elm?.sessions[0]?.hallId?.location}
                                         location_en={elm?.sessions[0]?.hallId?.location_en}

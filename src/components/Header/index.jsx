@@ -114,6 +114,7 @@ export const Header = ({ open, menu }) => {
         searchRef?.current?.focus()
     }, [openMobilsSearch])
 
+    console.log(search.loading, 'search')
     return (
         <div className='header'>
             <div className='MainHeaderDiv'>
@@ -136,7 +137,7 @@ export const Header = ({ open, menu }) => {
                             else if (elm._id === "6581e26c5bf51638abd3f9f8") {
                                 bg = '#FFCE00'
                             }
-                            else if (elm._id === "6581e28f5bf51638abd3fa02") {
+                            else if (elm._id === "65bb8ba6c2c47b9c4c2e5ef9") {
                                 bg = '#4DCF5F'
                             }
 
@@ -205,15 +206,15 @@ export const Header = ({ open, menu }) => {
 
                                         }
                                         return <div
-                                            onClick={() => window.location = `/single/${elm._id}`}
+                                            onClick={() => window.location = `/single/${elm?._id}`}
                                         >
                                             <div className='SearchResultDiv'>
                                                 <div className='SearchResultDivInfo'>
                                                     <p>{truncateText(name)}</p>
-                                                    <p className='SearchResultDivInfoMount'>{elm.sessions[0].date.slice(0, 10)}</p>
+                                                    <p className='SearchResultDivInfoMount'>{elm.sessions[0]?.date.slice(0, 10)}</p>
                                                 </div>
                                                 <div className='SearchResultDivInfoPrice'>
-                                                    <p>{elm.sessions[0].priceStart}-{elm.sessions[0].priceEnd} AMD</p>
+                                                    <p>{elm.sessions[0]?.priceStart}-{elm.sessions[0]?.priceEnd} AMD</p>
 
                                                 </div>
                                             </div>
@@ -287,14 +288,17 @@ export const Header = ({ open, menu }) => {
                                     value={value}
                                     ref={searchRef}
                                     id={inputFocus ? 'SearchInput' : ''}
-                                    onChange={(e) => setValue(e.target.value)}
-                                    className='MobileSearchINput'
-                                    onTouchStart={handleTouchStart}
-                                    onClick={(e) => {
+                                    onChange={(e) => {
+                                        setValue(e.target.value)
                                         e.preventDefault()
                                         e.stopPropagation()
                                         setINputFocus(true)
                                         setSearchResult(true)
+                                    }}
+                                    className='MobileSearchINput'
+                                    onTouchStart={handleTouchStart}
+                                    onClick={(e) => {
+
                                     }}
                                 />
                                 <div
@@ -321,18 +325,14 @@ export const Header = ({ open, menu }) => {
                                                 description = elm.description_en
 
                                             }
-                                            return <div>
+                                            return <div onClick={() => window.location = `/single/${elm?._id}`}>
                                                 <div className='SearchResultDiv'>
                                                     <div className='SearchResultDivInfo'>
                                                         <p>{truncateText(name)}</p>
-                                                        <p>{truncateText(description)}</p>
-                                                        <p className='SearchResultDivInfoMount'>{elm.sessions[0].date.slice(0, 10)}</p>
+                                                        <p className='SearchResultDivInfoMount'>{elm.sessions[0]?.date.slice(0, 10)}</p>
                                                     </div>
                                                     <div className='SearchResultDivInfoPrice'>
-                                                        <p>{elm.sessions[0].priceStart}-{elm.sessions[0].priceEnd}  AMD</p>
-                                                        <div onClick={() => window.location = `/single/${elm._id}`} className='SearchResultDivInfoPriceButton'>
-                                                            <Arrow1 />
-                                                        </div>
+                                                        <p>{elm.sessions[0]?.priceStart}-{elm.sessions[0]?.priceEnd}  AMD</p>
                                                     </div>
                                                 </div>
                                                 <div className='SearchResultDivLine' />
@@ -341,7 +341,7 @@ export const Header = ({ open, menu }) => {
 
                                         })}
                                     </div>}
-                                    {search?.events.length == 0 &&
+                                    {search?.events?.length == 0 && !search.loading &&
                                         <div className='notingNotFound'>
                                             <p>{t('NothingFound')}</p>
                                         </div>

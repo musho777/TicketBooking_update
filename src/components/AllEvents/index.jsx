@@ -46,7 +46,7 @@ export const ALLEvents = () => {
                                 category_en={elm?.category.name_en}
                                 category_ru={elm?.category.name_ru}
                                 category={elm?.category.name}
-                                time={elm?.sessions[0]?.time}
+                                // time={elm?.sessions[0]?.time}
                                 image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
                                 date={`${day}-${month}-${dateObject.getFullYear()}, ${elm.sessions[0]?.time}`}
                                 price={`${elm?.sessions[0]?.priceStart} - ${elm?.sessions[0]?.priceEnd} AMD`}
@@ -85,7 +85,7 @@ export const ALLEvents = () => {
 
                                     }
                                 }
-                                time={elm?.sessions[0]?.time}
+                                // time={elm?.sessions[0]?.time}
                                 image={`${elm.ParonyanImg}`}
 
                                 date={`${day}-${linesArray[0]}-${2024}, ${time}`}

@@ -264,23 +264,23 @@ export const AllEventss = () => {
                                         {height && getCategory.hall.map((elm, i) => {
                                             if (language == 'en') {
                                                 return <div onClick={() => {
-                                                    setHallId(elm._id)
-                                                    setHallName(elm.hall_en)
+                                                    setHallId(elm?._id)
+                                                    setHallName(elm?.hall_en)
                                                 }} className='getCategoryDiv'>{truncateText(elm.hall_en)}</div>
                                             }
                                             else if (language == 'am') {
                                                 return <div
                                                     onClick={() => {
-                                                        setHallId(elm._id)
-                                                        setHallName(elm.hall)
+                                                        setHallId(elm?._id)
+                                                        setHallName(elm?.hall)
                                                     }}
                                                     className='getCategoryDiv'>{truncateText(elm.hall)}</div>
                                             }
                                             else if (language == 'ru') {
                                                 return <div
                                                     onClick={() => {
-                                                        setHallId(elm._id)
-                                                        setHallName(elm.hall_ru)
+                                                        setHallId(elm?._id)
+                                                        setHallName(elm?.hall_ru)
                                                     }}
                                                     className='getCategoryDiv'>{truncateText(elm.hall_ru)}</div>
                                             }

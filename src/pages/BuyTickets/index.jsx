@@ -199,14 +199,14 @@ export const BuyTickets = () => {
                     <img src={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`} />
                     <div className='BuyTicketsCardInfo'>
                         <div>
-                            <p className='BuyTicketTitle'>{data.name}</p>
-                            <p className='BuyTickeDescription'>{truncateText(data.description)}</p>
+                            <p className='BuyTicketTitle'>{data?.name}</p>
+                            <p className='BuyTickeDescription'>{truncateText(data?.description)}</p>
                         </div>
                         <div className='BuyTicketDate'>
                             <CalendarSvg1 />
-                            <p className='BuyTicketDateMonth'>{new Date(getSinglPage.events.event?.sessions[0].date).getDate()}.{new Date(getSinglPage.events.event?.sessions[0].date).getMonth() + 1}.{new Date(getSinglPage.events.event?.sessions[0].date).getFullYear()} </p>
+                            <p className='BuyTicketDateMonth'>{new Date(getSinglPage.events.event?.sessions[0]?.date).getDate()}.{new Date(getSinglPage.events.event?.sessions[0]?.date).getMonth() + 1}.{new Date(getSinglPage.events.event?.sessions[0]?.date).getFullYear()} </p>
                             <div></div>
-                            <p className='BuyTicketDateTime'>{getSinglPage.events.event?.sessions[0].time}</p>
+                            <p className='BuyTicketDateTime'>{getSinglPage.events.event?.sessions[0]?.time}</p>
                         </div>
                         <div className='BuyTicketDateLocation'>
                             <LocationSvg1 />
@@ -223,7 +223,7 @@ export const BuyTickets = () => {
                         </div>
                         <div className='BuyTicketDate'>
                             <CalendarSvg1 />
-                            <p id="paronyan" className='BuyTicketDateMonth' dangerouslySetInnerHTML={{ __html: getSinglPage.events.event.ParonyanTime }} />
+                            <p id="paronyan" className='BuyTicketDateMonth' dangerouslySetInnerHTML={{ __html: getSinglPage.events.event?.ParonyanTime }} />
                             <div></div>
                         </div>
                         <div className='BuyTicketDateLocation'>
@@ -270,9 +270,9 @@ export const BuyTickets = () => {
                                 <div>
                                     <CalendarSvg1 />
                                 </div>
-                                <p className='BuyTicketDateMonth'>{new Date(getSinglPage.events.event?.sessions[0].date).getDate()}.{new Date(getSinglPage.events.event?.sessions[0].date).getMonth() + 1}.{new Date(getSinglPage.events.event?.sessions[0].date).getFullYear()} </p>
+                                <p className='BuyTicketDateMonth'>{new Date(getSinglPage.events.event?.sessions[0]?.date).getDate()}.{new Date(getSinglPage.events.event?.sessions[0]?.date).getMonth() + 1}.{new Date(getSinglPage.events.event?.sessions[0]?.date).getFullYear()} </p>
                                 <div className='LineBuyTicketDate'></div>
-                                <p className='BuyTicketDateTime'>{getSinglPage.events.event?.sessions[0].time}</p>
+                                <p className='BuyTicketDateTime'>{getSinglPage.events.event?.sessions[0]?.time}</p>
                             </div>
                             <div className='BuyTicketDateLocation'>
                                 <LocationSvg1 />
@@ -395,7 +395,7 @@ export const BuyTickets = () => {
                             const dateObject = new Date(elm.sessions[0]?.date);
                             let day = dateObject.getDate();
                             let month = dateObject.getMonth();
-                            var currentDayOfWeek = daysOfWeek[dateObject.getDay()];
+                            var currentDayOfWeek = daysOfWeek[dateObject?.getDay()];
                             if (elm?.sessions.length)
                                 return <TopEvents
                                     key={i}
@@ -407,7 +407,7 @@ export const BuyTickets = () => {
                                     location_ru={elm?.sessions[0]?.hallId?.location_ru}
                                     data={elm}
                                     day={day}
-
+                                    id={elm._id}
                                     time={elm?.sessions[0]?.time}
                                     months={months[month]}
                                     currentDayOfWeek={currentDayOfWeek}

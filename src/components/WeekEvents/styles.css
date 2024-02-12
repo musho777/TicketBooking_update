@@ -79,7 +79,8 @@
 .WeekCardWrapper {
     display: flex;
     gap: 20px;
-    overflow-y: scroll;
+    overflow-x: scroll;
+    overflow-y: hidden;
     padding: 15px 0;
 }
 
