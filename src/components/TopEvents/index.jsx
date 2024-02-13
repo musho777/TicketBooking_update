@@ -17,17 +17,9 @@ export const TopEventsComponent = () => {
     }, [page])
 
     useEffect(() => {
-        let item = [...data]
         let combinedArray = []
-        if (page == 1) {
-
-            combinedArray = []
-        }
-        else {
-            combinedArray = data
-        }
         if (topEvents.events.events?.length > 0) {
-            combinedArray = item.concat(topEvents.events.events);
+            combinedArray = topEvents.events.events;
         }
         setData(combinedArray)
     }, [topEvents.events])

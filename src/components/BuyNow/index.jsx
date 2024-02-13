@@ -29,6 +29,8 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
     };
 
     const { t } = useTranslation()
+    const { Event_reducer } = useSelector((st) => st)
+    console.log(Event_reducer.feedback.phone)
 
     const dispatch = useDispatch()
     const tickets = useSelector((st) => st.tiketsForBuy)
@@ -547,77 +549,6 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
     }, [creatTicket])
 
 
-    // useEffect(() => {
-    //     if (isParonyanEvent) {
-    //         const keys = "hYDepOnSarMi";
-    //         const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
-    //         const requestType = "buyTickets";
-
-    //         const params = {
-    //             group_id: grupID,
-    //             timeline_id: paronyanSeans,
-    //             event_id: event_id,
-    //         };
-
-    //         const sortedParams = Object.keys(params).sort().reduce((acc, key) => {
-    //             acc[key] = params[key];
-    //             return acc;
-    //         }, {});
-
-    //         sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
-    //         let data = { 'data': [] }
-    //         tickets.tickets.map((e, i) => {
-    //             let index = data.data.findIndex(el => el.LevelId = e.LevelId)
-    //             if (index < 0) {
-    //                 data.data?.push({
-    //                     "LevelId": e.LevelId,
-    //                     "Places": []
-    //                 })
-    //             }
-    //             data.data.map((elm, i) => {
-    //                 if (elm.LevelId == e.LevelId) {
-    //                     elm.Places.push({
-    //                         "Row": e.row,
-    //                         "Seat": e.seat
-    //                     })
-    //                 }
-    //             })
-    //         })
-    //         sortedParams.data = JSON.stringify(data);
-
-    //         const options = {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'Accept': 'application/json'
-    //             },
-    //             body: JSON.stringify(sortedParams)
-    //         };
-
-    //         fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
-    //             .then(response => response.json())
-    //             .then(data => {
-    //                 localStorage.setItem('order_id', JSON.stringify(data))
-    //                 dispatch(CreateCurrentTicket({
-    //                     tickets: tickets.tickets,
-    //                     buyerName: name,
-    //                     buyerEmail: email,
-    //                     buyerPhone: number,
-    //                     deliveryLocation: address,
-    //                     sessionId: tickets.tickets[0].sessionId,
-    //                     buyerNotes: additional,
-    //                     orderId: data.id,
-    //                     paymentMethod: 'CREDIT CARD',
-    //                     delivery,
-    //                 }))
-    //             })
-    //             .catch(error => {
-
-    //                 console.error('Error:', error);
-    //             });
-    //     }
-    // }, [])
-
     return (
         <div className='BuyNow'>
             <div className='BuyNowHeader'>
@@ -717,7 +648,7 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
                             <div style={{ marginLeft: 1 }}>
                                 <MobileSvg />
                             </div>
-                            <p>+374 93 55 88 44</p>
+                            <p>{Event_reducer.feedback.phone}</p>
                         </div>
                     </div>
                     <button

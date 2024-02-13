@@ -64,6 +64,7 @@ export const Single = () => {
             </div>
         )
     }
+    console.log(getSinglPage)
     return (
         <div id='singlPage' className='container'>
             {!getSinglPage.events?.event

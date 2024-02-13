@@ -65,6 +65,10 @@
     gap: 5px;
 }
 
+#footerColumnsInfo {
+    cursor: auto;
+}
+
 .footerColumnsInfo>p {
     color: #FFF;
     font-family: "Montserratarm-Regular", sans-serif;

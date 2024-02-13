@@ -4,8 +4,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import 'react-date-range/dist/theme/default.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { GetAllEvents, GetHall, GetRandomEvents, SubCategory } from '../../services/action/action'
-import { useParams } from 'react-router-dom'
+import { GetAllEvents, GetHall, SubCategory } from '../../services/action/action'
 import { CategoryMenu } from '../../components/CategoryMenu'
 import { Calendar } from '../../components/Calendar'
 import { ClearFiltr, Emoji, EmojiM } from '../../components/svg'
@@ -14,7 +13,6 @@ import { PuffLoader } from 'react-spinners'
 
 export const AllEventss = () => {
     const dispatch = useDispatch()
-    const { id } = useParams()
     const { t } = useTranslation()
     const events = useSelector((st) => st.getAllEventes)
     const openMenu = useSelector((st) => st.StaticReducer)
@@ -33,7 +31,6 @@ export const AllEventss = () => {
     const getCategory = useSelector((st) => st.getCategory)
     const [date, setDate] = useState('')
     const [height, setHeight] = useState(false)
-    const [baner, setBaner] = useState(<div></div>)
 
     useEffect(() => {
         HallName()
@@ -107,6 +104,7 @@ export const AllEventss = () => {
         }
         setData(combinedArray)
     }, [events.events])
+    console.log(events.events, 'events.events')
 
     useEffect(() => {
         let start = {}
@@ -208,10 +206,6 @@ export const AllEventss = () => {
     }
     return (
         <div className='CategoryScreen'>
-            <div className='CategoryScreenBaner'>
-                {baner}
-            </div>
-
             {events?.loading && page == 1 ?
                 <div className='loading'>
                     <PuffLoader color="#FEE827" />
@@ -322,7 +316,7 @@ export const AllEventss = () => {
                         </div>
                     </div>
                     <div className='CategoryScreen1Div'>
-                        <AllEventsWrapper loading={events.loading} showButton={page >= events.events.totalPages} setPage={(e) => setPage(e)} page={page} data={data} />
+                        <AllEventsWrapper loading={events.loading} showButton={page < events.events.totalPages} setPage={(e) => setPage(e)} page={page} data={data} />
                         {!events.events?.sessions?.length > 0 && !events.loading &&
                             <div className='NotFoundDiv'>
                                 <div className='Emoji'>

@@ -81,7 +81,6 @@ export const Header = ({ open, menu }) => {
         const timeoutId = setTimeout(() => {
             if (searchResult) {
                 setSearchResultDAta(true)
-
             }
         }, 300);
 
@@ -114,7 +113,6 @@ export const Header = ({ open, menu }) => {
         searchRef?.current?.focus()
     }, [openMobilsSearch])
 
-    console.log(search.loading, 'search')
     return (
         <div className='header'>
             <div className='MainHeaderDiv'>

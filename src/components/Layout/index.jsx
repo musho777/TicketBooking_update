@@ -2,7 +2,7 @@ import './style.css'
 import { Header } from '../Header/index.jsx'
 import { Outlet } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { EventValidity } from '../../services/action/action.js'
 import { Footer } from '../Footer/index.jsx'
 import { useTranslation } from 'react-i18next'
@@ -15,13 +15,14 @@ export const Layout = () => {
     useEffect(() => {
         dispatch(EventValidity())
     }, [dispatch])
+    const { Event_reducer } = useSelector((st) => st)
     return (<>
         <div className='HeaderDiv'>
             <Header open={(e) => setOpenMenu(e)} />
         </div>
         <div className='container'>
             <div className='wrapper'>
-                <p className='mainPageText'>{t('forDelivery')} <span>+374 93 55 88 44</span></p>
+                <p className='mainPageText'>{t('forDelivery')} <span>{Event_reducer.feedback.phone}</span></p>
             </div>
         </div>
         <div className='outlet'>

@@ -11,7 +11,7 @@ export const Footer = ({ menu }) => {
     const getCategory = useSelector((st) => st.getCategory)
     const { language } = useSelector((st) => st.StaticReducer)
     const { Event_reducer } = useSelector((st) => st)
-
+    console.log(Event_reducer.feedback.phone)
     const dispatch = useDispatch()
     const { t } = useTranslation()
 
@@ -34,8 +34,8 @@ export const Footer = ({ menu }) => {
                     <div className='footerColumnsWrapperDiv'>
                         <p className='footerColumnsTitle'>{t('Contactus')}</p>
                         <div className='footerColumnsInfo'>
-                            <p>+374 93 55 88 44</p>
-                            <p>info@shinetickets.com</p>
+                            <p id={'footerColumnsInfo'}>{Event_reducer.feedback.phone}</p>
+                            <p id={'footerColumnsInfo'}>info@shinetickets.com</p>
                         </div>
                     </div>
                     <div className='footerColumnsWrapperDiv'>
@@ -79,7 +79,7 @@ export const Footer = ({ menu }) => {
                         <div className='footerColumnsWrapperDivMObile'>
                             <p className='footerColumnsTitle'>{t('Contactus')}</p>
                             <div className='footerColumnsInfo'>
-                                <p>+374 93 55 88 44</p>
+                                <p>{Event_reducer.feedback.phone}</p>
                                 <p>info@shinetickets.com</p>
                             </div>
                         </div>

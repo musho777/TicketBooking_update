@@ -6,7 +6,7 @@ import 'react-date-range/dist/theme/default.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { CategoryMenu } from '../../components/CategoryMenu'
-import { GetAllEvents, GetHall, GetParonyanEvents, OpenCaldendar, OpenCategoryMenu, SubCategory } from '../../services/action/action'
+import { GetAllEvents, GetHall, SubCategory } from '../../services/action/action'
 import { Calendar } from '../../components/Calendar'
 import { CategoryCardWrapper } from './CategoryCardWrapper'
 import { ClearFiltr, Emoji, EmojiM } from '../../components/svg'
@@ -34,33 +34,21 @@ export const Category = () => {
     const [date, setDate] = useState('')
     const [height, setHeight] = useState(false)
     const [baner, setBaner] = useState(<div></div>)
-    const { paronyanEvents } = useSelector((st) => st)
     const [data, setData] = useState([])
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-    const [screenHeight, setScreenHeight] = useState(window.innerHeight);
-    const [title, setTitle] = useState('')
 
-    const handleResize = () => {
-        setScreenWidth(window.innerWidth);
-        setScreenHeight(window.innerHeight);
-    };
 
-    useEffect(() => {
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
     useEffect(() => {
         dispatch(GetHall())
         setData([])
         setPage(1)
     }, [])
+
     useEffect(() => {
         HallName()
     }, [language])
 
     useEffect(() => {
+        console.log('22')
         dispatch(GetHall())
         let date = new Date(selectedDate[0]?.endDate)
         let startDate = new Date(selectedDate[0]?.startDate)
@@ -78,10 +66,6 @@ export const Category = () => {
                 endDate
             }, hall: hallId
         }))
-
-        if (id == '657b00c67a91070546630967') {
-            dispatch(GetParonyanEvents())
-        }
     }, [selectedDate, id, subcategoryId, page, hallId])
 
     useEffect(() => {
@@ -92,7 +76,6 @@ export const Category = () => {
         setHallId('')
         setSelectedDate([{ startDate: '', endDate: '', key: 'selection' }])
         if (id == '65722b047d066ae13510acd7') {
-            setTitle(t('CONCERT'))
             setBaner(
                 <div className='CategoryBaner'>
                     <div id='C' className='CategoryBanerFon' >
@@ -404,8 +387,8 @@ export const Category = () => {
                             <PuffLoader color="#FEE827" />
                         </div> :
                         <div className='CategoryScreen1Div'>
-                            <CategoryCardWrapper loading={events.loading} showButton={page == events.events.totalPage} setPage={(e) => setPage(e)} page={page} paronyan={id == '657b00c67a91070546630967' ? paronyanEvents.events?.result : []} data={data} />
-                            {!paronyanEvents?.events?.length > 0 && !events.events?.sessions?.length > 0 && !events.loading &&
+                            <CategoryCardWrapper loading={events.loading} showButton={page < events.events.totalPages} setPage={(e) => setPage(e)} page={page} data={data} />
+                            {!events.events?.sessions?.length > 0 && !events?.loading &&
                                 <div className='NotFoundDiv'>
                                     <div className='Emoji'>
                                         <Emoji />

@@ -44,9 +44,9 @@ export const AllEventsWrapper = ({ loading, data, paronyan, setPage, page, showB
                             location={elm?.hallId?.location}
                             location_en={elm?.eventId?.hallId?.location_en}
                             location_ru={elm?.eventId?.hallId?.location_ru}
-                            hall={elm.hallId.hall}
-                            hall_en={elm.hallId.hall_en}
-                            hall_ru={elm.hallId.hall_ru}
+                            hall={elm.hallId?.place}
+                            hall_en={elm.hallId?.place_en}
+                            hall_ru={elm.hallId?.place_ru}
                             months={months[month]}
                             currentDayOfWeek={currentDayOfWeek}
                             data={elm.eventId}
@@ -68,7 +68,7 @@ export const AllEventsWrapper = ({ loading, data, paronyan, setPage, page, showB
                         return <Card
                             key={i}
                             day={day}
-                            id={elm?._id}
+                            id={elm?.ParonyanEventId}
                             year={2024}
                             month1={linesArray[0]}
                             image={`${elm.ParonyanImg}`}
@@ -100,7 +100,7 @@ export const AllEventsWrapper = ({ loading, data, paronyan, setPage, page, showB
                     }
                 })}
         </div>
-        {!showButton && (data.length > 0) && <div className="ShowAllButtonWrappr">
+        {showButton && <div className="ShowAllButtonWrappr">
             <ShowAllButton loading={loading} onClick={() => setPage(page + 1)} />
         </div>}
     </div>

@@ -1,7 +1,8 @@
 import { TopEvents } from "../../components/TopEvents/TopEvents"
 import { ShowAllButton } from "../../components/Button/ShowAllButton"
+import { PuffLoader } from "react-spinners";
 
-export const CategoryCardWrapper = ({ loading, data, paronyan, setPage, page, showButton }) => {
+export const CategoryCardWrapper = ({ loading, data, setPage, page, showButton, total }) => {
     var months = [
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -13,9 +14,9 @@ export const CategoryCardWrapper = ({ loading, data, paronyan, setPage, page, sh
             {
                 data.length > 0 && data.map((elm, i) => {
                     const dateObject = new Date(elm?.date);
-                    let day = dateObject.getDate();
-                    let month = dateObject.getMonth();
-                    var currentDayOfWeek = daysOfWeek[dateObject.getDay()];
+                    let day = dateObject?.getDate();
+                    let month = dateObject?.getMonth();
+                    var currentDayOfWeek = daysOfWeek[dateObject?.getDay()];
                     if (elm?.eventId) {
                         return <TopEvents
                             key={i}
@@ -38,18 +39,26 @@ export const CategoryCardWrapper = ({ loading, data, paronyan, setPage, page, sh
                         />
                     }
                     else {
-
                         const matchResult = elm?.ParonyanTime?.match(/(\d+)([\s\S]*?)(<div[\s\S]*?<\/div>)([\s\S]*?)(\d+:\d+)/);
-                        const day = matchResult[1];
-                        const divContent = matchResult[3];
+                        let day = ''
+                        let divContent = ''
+                        if (matchResult?.length > 0) {
+                            day = matchResult[1];
+                            divContent = matchResult[3];
+                        }
+
                         const parser = new DOMParser();
-                        const doc = parser.parseFromString(divContent, "text/html");
-                        const divElement = doc.body.firstChild;
-                        divElement.removeChild(divElement.querySelector('br'));
-                        const linesArray = Array.from(divElement.childNodes)
-                            .filter(node => node.nodeType === 3) // Filter out non-text nodes
-                            .map(node => node.textContent.trim());
-                        const time = matchResult[5];
+                        const doc = parser?.parseFromString(divContent, "text/html");
+                        const divElement = doc?.body?.firstChild;
+                        divElement?.removeChild(divElement?.querySelector('br'));
+                        const linesArray = Array.from(divElement?.childNodes)
+                            .filter(node => node?.nodeType === 3) // Filter out non-text nodes
+                            .map(node => node.textContent?.trim());
+                        let time = ''
+                        if (matchResult?.length > 0)
+                            time = matchResult[5];
+
+
                         return <TopEvents
                             key={i}
                             id={elm._id}
@@ -69,10 +78,10 @@ export const CategoryCardWrapper = ({ loading, data, paronyan, setPage, page, sh
                             hall={elm?.ParonyanGroup_name}
                             hall_en={'H. Paronyan State Theater'}
                             hall_ru={'A.Государственный театр Пароняна'}
-                            months={linesArray[0]}
                             currentDayOfWeek={linesArray[1]}
                             time={time}
                             time2={elm.time}
+                            months={linesArray[0]}
                             day={day}
                             data={{
                                 title: elm.ParonyanName,
@@ -83,45 +92,14 @@ export const CategoryCardWrapper = ({ loading, data, paronyan, setPage, page, sh
                     }
                 })}
         </div>
-        {!showButton && (data.length > 0 || paronyan?.length > 0) && <div className="ShowAllButtonWrappr">
+        {showButton && <div className="ShowAllButtonWrappr">
             <ShowAllButton loading={loading} onClick={() => setPage(page + 1)} />
-        </div>}
+        </div>
+        }
+        {!showButton && loading &&
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                <PuffLoader size={35} color="#FEE827" />
+            </div>
+        }
     </div>
 }
-
-
-//     />
-// paronyan?.map((elm, i) => {
-//     const matchResult = elm.time.match(/(\d+)([\s\S]*?)(<div[\s\S]*?<\/div>)([\s\S]*?)(\d+:\d+)/);
-//     const day = matchResult[1];
-//     const divContent = matchResult[3];
-//     const parser = new DOMParser();
-//     const doc = parser.parseFromString(divContent, "text/html");
-//     const divElement = doc.body.firstChild;
-//     divElement.removeChild(divElement.querySelector('br'));
-//     const linesArray = Array.from(divElement.childNodes)
-//         .filter(node => node.nodeType === 3) // Filter out non-text nodes
-//         .map(node => node.textContent.trim());
-//     const time = matchResult[5];
-//     return <TopEvents
-//         key={i}
-//         image={`${elm.img}`}
-//         type={false}
-//         day={day}
-//         title={elm.title}
-//         category={{ _id: '657b00c67a91070546630967', name: 'Թատրոն', name_en: 'Theatre', name_ru: 'Театр' }}
-//         hall={elm?.group_name}
-//         hall_en={'H. Paronyan State Theater'}
-//         hall_ru={'A.Государственный театр Пароняна'}
-//         months={linesArray[0]}
-//         currentDayOfWeek={linesArray[1]}
-//         time={time}
-//         time2={elm.time}
-//         id={elm.id}
-//         data={{
-//             title: elm.name,
-//             title_ru: elm.name,
-//             title_en: elm.name
-//         }}
-//         price={''}
-// })
