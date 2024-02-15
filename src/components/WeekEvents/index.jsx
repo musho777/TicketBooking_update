@@ -23,7 +23,6 @@ export const WeekEvents = () => {
             </div>
             <div className="WeekCardWrapper">
                 {getWeekEvent.events.map((elm, i) => {
-                    console.log(elm)
                     // if (!elm.isParonyanEvent) {
                     return <div>
                         <WeekCard

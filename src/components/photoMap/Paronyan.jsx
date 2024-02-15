@@ -13,7 +13,6 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
     const [showModal, setShowModal] = useState(false)
     const [activeButton, setActiveButton] = useState(null)
     const { tickets } = useSelector((st) => st.tiketsForBuy)
-    console.log(places)
 
     const [seatArr, setSeatArr] = useState([])
 
@@ -459,10 +458,8 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
 
 
     useEffect(() => {
-        console.log('12', places[0])
         setSeansArr(JSON.parse(places[0]))
     }, [places])
-    console.log(seansArr, '11')
 
     // useEffect(() => {
     //     let item = [...seansArr]
@@ -525,21 +522,15 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
     //     setSeansArr(item)
     // }, [seatArr])
 
-    // console.log(seatArr, 'seatArr')
 
     const [data, setData] = useState([])
 
     const getPrice = (y, i, x, parterre, amphitheater, lodge) => {
         let temp = [...data]
-        console.log(i)
         if (temp.findIndex((el) => el.id == i) == -1) {
             temp.push({ "id": i, "price": "", "row": 1, "seat": temp.length + 1, LevelId: 6, balcony: true, active: false },)
         }
 
-
-        if (temp.length > 5) {
-            console.log(JSON.stringify(temp))
-        }
 
         setData(temp)
 

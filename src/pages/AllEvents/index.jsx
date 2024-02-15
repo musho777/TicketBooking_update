@@ -90,7 +90,6 @@ export const AllEventss = () => {
     }, [])
 
     useEffect(() => {
-        console.log(events.events.events, 'events.events.length ')
         let item = [...data]
         let combinedArray = []
         if (page == 1) {
@@ -101,7 +100,6 @@ export const AllEventss = () => {
             combinedArray = data
         }
         if (events.events.events?.length > 0) {
-            console.log('-00999900----')
             combinedArray = item.concat(events.events.events);
         }
         setData(combinedArray)

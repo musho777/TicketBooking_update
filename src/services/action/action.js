@@ -57,7 +57,6 @@ export const GetGenerealEvents = () => {
         dispatch(StartGetGeneralEvents())
         axios.get(`${process.env.REACT_APP_HOSTNAME}/getGeneralEvents`).then((r) => {
             if (r.data.success) {
-                console.log(r.data, 'r,data')
                 dispatch(SuccessGetGeneralEvents(r.data.events))
             }
             else {
@@ -137,7 +136,6 @@ export const GetAllEvents2 = (page, data) => {
     return (dispatch) => {
         dispatch(StartGetCategoris())
         axios.post(`${process.env.REACT_APP_HOSTNAME}/getAllEvents?currentPage=${page}`, data).then((r) => {
-            console.log(r, '222121')
             if (r.data.success) {
                 dispatch(SuccessGetCategoris(r.data))
             }

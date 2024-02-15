@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { Card } from "./Card";
 
 export const AllEventsWrapper = ({ loading, data, paronyan, setPage, page, showButton }) => {
-    console.log(data, '223999')
     const { t } = useTranslation()
     var months = [
         "January", "February", "March", "April", "May", "June",
@@ -19,7 +18,6 @@ export const AllEventsWrapper = ({ loading, data, paronyan, setPage, page, showB
         <div id='CategoryCardWrapper' className="TopEventWrapper">
             {
                 data.length > 0 && data.map((elm, i) => {
-                    console.log(elm.sessions[0])
                     const dateObject = new Date(elm.sessions
                     [0]?.date);
                     let day = dateObject.getDate();

@@ -30,7 +30,6 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
 
     const { t } = useTranslation()
     const { Event_reducer } = useSelector((st) => st)
-    console.log(Event_reducer.feedback.phone)
 
     const dispatch = useDispatch()
     const tickets = useSelector((st) => st.tiketsForBuy)

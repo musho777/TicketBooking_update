@@ -11,7 +11,6 @@ export const Footer = ({ menu }) => {
     const getCategory = useSelector((st) => st.getCategory)
     const { language } = useSelector((st) => st.StaticReducer)
     const { Event_reducer } = useSelector((st) => st)
-    console.log(Event_reducer.feedback.phone)
     const dispatch = useDispatch()
     const { t } = useTranslation()
 

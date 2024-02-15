@@ -23,10 +23,6 @@ export const BuyTickets = () => {
     let { event } = getSinglPage?.events
     const [open, setOpen] = useState(false)
     const [paronyanSeans, setParonyanSeans] = useState('')
-    console.log(getSinglPage.
-        events?.event?.sessions.
-        places
-        , 'getSinglPage')
     const [id, setId] = useState('')
     useEffect(() => {
         const parts = ids.id.split(':');

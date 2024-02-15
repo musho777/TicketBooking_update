@@ -48,7 +48,6 @@ export const Category = () => {
     }, [language])
 
     useEffect(() => {
-        console.log('22')
         dispatch(GetHall())
         let date = new Date(selectedDate[0]?.endDate)
         let startDate = new Date(selectedDate[0]?.startDate)
