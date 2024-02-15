@@ -23,6 +23,7 @@ export const ExpectedEvents = () => {
         </div>
         <div className='CardDiv'>
             {getExpectedEvents?.events?.map((elm, i) => {
+                console.log(elm, 'elm')
                 let month = ''
                 let title = ''
                 let weekday = ''

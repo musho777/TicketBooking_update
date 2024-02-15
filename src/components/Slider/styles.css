@@ -33,14 +33,14 @@
     background: linear-gradient(180deg, rgba(254, 120, 1, 0.19) 0%, rgba(0, 0, 0, 0.19) 76.15%);
     backdrop-filter: blur(22.950000762939453px);
     max-width: 1440px;
-    padding: 40px;
+    padding: 20px;
     gap: 40px;
 }
 
 .BanerImg2 {
     height: 100%;
-    width: 270px;
-    object-fit: cover;
+    width: 285px;
+    /* object-fit: cover; */
 }
 
 .BanerDiv {

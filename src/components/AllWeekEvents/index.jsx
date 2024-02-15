@@ -120,7 +120,7 @@ export const AllWeekEvents = () => {
     if (openMenu?.categoryMenu) {
         return <CategoryMenu onClick={(e) => {
             setHallId(e?._id)
-        }} item={events.hall} close={() => setOpen(!open)} />
+        }} item={events?.hall} close={() => setOpen(!open)} />
     }
     if (openMenu?.openCalendar) {
         return <Calendar

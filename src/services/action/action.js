@@ -132,6 +132,25 @@ export const GetAllEvents = (page, data) => {
     }
 }
 
+export const GetAllEvents2 = (page, data) => {
+
+    return (dispatch) => {
+        dispatch(StartGetCategoris())
+        axios.post(`${process.env.REACT_APP_HOSTNAME}/getAllEvents?currentPage=${page}`, data).then((r) => {
+            console.log(r, '222121')
+            if (r.data.success) {
+                dispatch(SuccessGetCategoris(r.data))
+            }
+            else {
+                dispatch(ErrorGetCategoris())
+            }
+        })
+            .catch((error) => {
+                dispatch(ErrorGetCategoris())
+            })
+    }
+}
+
 export const GetRandomEvents = (page) => {
     return (dispatch) => {
         dispatch(StartGetRadnomEvents())

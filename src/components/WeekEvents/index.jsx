@@ -24,50 +24,50 @@ export const WeekEvents = () => {
             <div className="WeekCardWrapper">
                 {getWeekEvent.events.map((elm, i) => {
                     console.log(elm)
-                    if (!elm.isParonyanEvent) {
-                        return <div>
-                            <WeekCard
-                                date={elm.date}
-                                time={elm.time}
-                                id={elm.eventId._id}
-                                hall={elm.hallId.hall}
-                                hall_en={elm.hallId.hall_en}
-                                hall_ru={elm.hallId.hall_ru}
-                                title={elm.eventId.title}
-                                title_en={elm.eventId.title_en}
-                                title_ru={elm.eventId.title_ru}
-                                img={`${process.env.REACT_APP_IMAGE}/${elm.eventId.image}`}
-                            />
-                        </div>
-                    }
-                    else {
-                        const matchResult = elm.ParonyanTime.match(/(\d+)([\s\S]*?)(<div[\s\S]*?<\/div>)([\s\S]*?)(\d+:\d+)/);
-                        const day = matchResult[1];
-                        const divContent = matchResult[3];
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(divContent, "text/html");
-                        const divElement = doc.body.firstChild;
-                        divElement.removeChild(divElement.querySelector('br'));
-                        const linesArray = Array.from(divElement.childNodes)
-                            .filter(node => node.nodeType === 3)
-                            .map(node => node.textContent.trim());
-                        const time = matchResult[5];
-                        return <div>
-                            <WeekCard
-                                // date={elm.ParonyanText}
-                                // time={elm.time}
-                                id={elm.ParonyanEventId}
-                                hall={elm.ParonyanGroup_name}
-                                hall_en={elm.ParonyanGroup_name}
-                                hall_ru={elm.ParonyanGroup_name}
-                                title={elm?.ParonyanName}
-                                title_en={elm.ParonyanName}
-                                title_ru={elm.ParonyanName}
-                                img={elm.ParonyanImg}
-                                time={`${day}-${linesArray[0]}-${2024}, ${time}`}
-                            />
-                        </div>
-                    }
+                    // if (!elm.isParonyanEvent) {
+                    return <div>
+                        <WeekCard
+                            date={elm.date}
+                            time={elm.time}
+                            id={elm.eventId._id}
+                            hall={elm?.hallId?.hall}
+                            hall_en={elm.hallId.hall_en}
+                            hall_ru={elm.hallId.hall_ru}
+                            title={elm.eventId.title}
+                            title_en={elm.eventId.title_en}
+                            title_ru={elm.eventId.title_ru}
+                            img={`${process.env.REACT_APP_IMAGE}/${elm.eventId.image}`}
+                        />
+                    </div>
+                    // }
+                    // else {
+                    //     const matchResult = elm.ParonyanTime.match(/(\d+)([\s\S]*?)(<div[\s\S]*?<\/div>)([\s\S]*?)(\d+:\d+)/);
+                    //     const day = matchResult[1];
+                    //     const divContent = matchResult[3];
+                    //     const parser = new DOMParser();
+                    //     const doc = parser.parseFromString(divContent, "text/html");
+                    //     const divElement = doc.body.firstChild;
+                    //     divElement.removeChild(divElement.querySelector('br'));
+                    //     const linesArray = Array.from(divElement.childNodes)
+                    //         .filter(node => node.nodeType === 3)
+                    //         .map(node => node.textContent.trim());
+                    //     const time = matchResult[5];
+                    //     return <div>
+                    //         <WeekCard
+                    //             // date={elm.ParonyanText}
+                    //             // time={elm.time}
+                    //             id={elm.ParonyanEventId}
+                    //             hall={elm.ParonyanGroup_name}
+                    //             hall_en={elm.ParonyanGroup_name}
+                    //             hall_ru={elm.ParonyanGroup_name}
+                    //             title={elm?.ParonyanName}
+                    //             title_en={elm.ParonyanName}
+                    //             title_ru={elm.ParonyanName}
+                    //             img={elm.ParonyanImg}
+                    //             time={`${day}-${linesArray[0]}-${2024}, ${time}`}
+                    //         />
+                    //     </div>
+                    // }
 
                 })
                 }

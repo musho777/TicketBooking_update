@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import 'react-date-range/dist/theme/default.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { GetAllEvents, GetHall, SubCategory } from '../../services/action/action'
+import { GetAllEvents, GetAllEvents2, GetHall, SubCategory } from '../../services/action/action'
 import { CategoryMenu } from '../../components/CategoryMenu'
 import { Calendar } from '../../components/Calendar'
 import { ClearFiltr, Emoji, EmojiM } from '../../components/svg'
@@ -55,8 +55,8 @@ export const AllEventss = () => {
             statDate = `${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()}`
         }
         if (subcategoryId == '') {
-            dispatch(GetAllEvents(page, {
-                subcategory: 'all',
+            dispatch(GetAllEvents2(page, {
+                subcategory: '',
                 date: {
                     startDate: statDate,
                     endDate
@@ -64,7 +64,7 @@ export const AllEventss = () => {
             }))
         }
         else {
-            dispatch(GetAllEvents(page, {
+            dispatch(GetAllEvents2(page, {
                 category: subcategoryId,
                 // subcategory: 'all',
                 date: {
@@ -90,6 +90,7 @@ export const AllEventss = () => {
     }, [])
 
     useEffect(() => {
+        console.log(events.events.events, 'events.events.length ')
         let item = [...data]
         let combinedArray = []
         if (page == 1) {
@@ -99,12 +100,12 @@ export const AllEventss = () => {
         else {
             combinedArray = data
         }
-        if (events.events.sessions?.length > 0) {
-            combinedArray = item.concat(events.events.sessions);
+        if (events.events.events?.length > 0) {
+            console.log('-00999900----')
+            combinedArray = item.concat(events.events.events);
         }
         setData(combinedArray)
     }, [events.events])
-    console.log(events.events, 'events.events')
 
     useEffect(() => {
         let start = {}
@@ -148,7 +149,7 @@ export const AllEventss = () => {
     if (openMenu?.categoryMenu) {
         return <CategoryMenu onClick={(e) => {
             setHallId(e?._id)
-        }} item={events.hall} close={() => setOpen(!open)} />
+        }} item={events?.hall} close={() => setOpen(!open)} />
     }
     if (openMenu?.openCalendar) {
         return <Calendar
@@ -255,12 +256,12 @@ export const AllEventss = () => {
                                                 setHallName(hallDefaultName)
                                             }}
                                             className='getCategoryDiv'>{truncateText(hallDefaultName)}</div>
-                                        {height && getCategory.hall.map((elm, i) => {
+                                        {height && getCategory?.hall.map((elm, i) => {
                                             if (language == 'en') {
                                                 return <div onClick={() => {
                                                     setHallId(elm?._id)
                                                     setHallName(elm?.hall_en)
-                                                }} className='getCategoryDiv'>{truncateText(elm.hall_en)}</div>
+                                                }} className='getCategoryDiv'>{truncateText(elm?.hall_en)}</div>
                                             }
                                             else if (language == 'am') {
                                                 return <div
@@ -268,7 +269,7 @@ export const AllEventss = () => {
                                                         setHallId(elm?._id)
                                                         setHallName(elm?.hall)
                                                     }}
-                                                    className='getCategoryDiv'>{truncateText(elm.hall)}</div>
+                                                    className='getCategoryDiv'>{truncateText(elm?.hall)}</div>
                                             }
                                             else if (language == 'ru') {
                                                 return <div
@@ -276,7 +277,7 @@ export const AllEventss = () => {
                                                         setHallId(elm?._id)
                                                         setHallName(elm?.hall_ru)
                                                     }}
-                                                    className='getCategoryDiv'>{truncateText(elm.hall_ru)}</div>
+                                                    className='getCategoryDiv'>{truncateText(elm?.hall_ru)}</div>
                                             }
                                         })}
                                     </div>
@@ -317,7 +318,7 @@ export const AllEventss = () => {
                     </div>
                     <div className='CategoryScreen1Div'>
                         <AllEventsWrapper loading={events.loading} showButton={page < events.events.totalPages} setPage={(e) => setPage(e)} page={page} data={data} />
-                        {!events.events?.sessions?.length > 0 && !events.loading &&
+                        {!events.events.events?.length > 0 && !events.loading &&
                             <div className='NotFoundDiv'>
                                 <div className='Emoji'>
                                     <Emoji />

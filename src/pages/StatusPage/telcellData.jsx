@@ -9,7 +9,7 @@ export const StatusACBA = () => {
     const [loading, setLoading] = useState(false)
     useEffect(() => {
         if (!localStorage.getItem('orderId')) {
-            // window.location = '/'
+            window.location = '/'
         } else {
             dispatch(GetCurrentTicket())
             setLoading(false)

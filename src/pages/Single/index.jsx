@@ -67,8 +67,7 @@ export const Single = () => {
     console.log(getSinglPage)
     return (
         <div id='singlPage' className='container'>
-            {!getSinglPage.events?.event
-                ?.isParonyanEvent ? <Card
+            {true ? <Card
                 time={event?.sessions[0]?.time}
                 img={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`}
                 id={id}
@@ -84,25 +83,26 @@ export const Single = () => {
                         `${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`
 
                 }
-            /> : <div>
-                <Card
-                    img={getSinglPage?.events.event?.ParonyanImg}
-                    id={getSinglPage.events.event.id}
-                    data={getSinglPage.events.event.ParonyanTime}
-                    isParonyan={true}
-                    description={
-                        getSinglPage.events.event?.ParonyanText?.replace(/<\/?p>/g, '')
-                    }
-                    seans={getSinglPage.events.event.ParonyanTimeline}
-                    title={truncateText(getSinglPage.events.event.ParonyanName)}
-                    priceEnd={''}
-                    priceStart={''}
-                    setActiveSeans={(e) => setActiveSeans(e)}
-                    hall={getSinglPage.events.event.ParonyanGroup_name}
-                    largImage={getSinglPage.events.event.ParonyanImg}
-                    onClick={() => window.location = `/BuyTickets/${id}:${activSeans}`}
-                />
-            </div>
+            /> :
+                <div>
+                    <Card
+                        img={getSinglPage?.events.event?.ParonyanImg}
+                        id={getSinglPage.events.event.id}
+                        data={getSinglPage.events.event.ParonyanTime}
+                        isParonyan={true}
+                        description={
+                            getSinglPage.events.event?.ParonyanText?.replace(/<\/?p>/g, '')
+                        }
+                        seans={getSinglPage.events.event.ParonyanTimeline}
+                        title={truncateText(getSinglPage.events.event.ParonyanName)}
+                        priceEnd={''}
+                        priceStart={''}
+                        setActiveSeans={(e) => setActiveSeans(e)}
+                        hall={getSinglPage.events.event.ParonyanGroup_name}
+                        largImage={getSinglPage.events.event.ParonyanImg}
+                        onClick={() => window.location = `/BuyTickets/${id}:${activSeans}`}
+                    />
+                </div>
             }
             <div className='RecDiv2'>
                 {

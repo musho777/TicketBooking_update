@@ -646,7 +646,7 @@ const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventI
             {
                 showModal &&
                 <div
-                    style={{ top: position.y - 85, left: position.x - 30, position: 'absolute' }} className='parter'>
+                    style={{ top: position.y - 150, left: position.x - 130, position: 'absolute' }} className='parter'>
                     <p className='Teatertext'>շարք {activeTicket.row}</p>
                     <p className='Teatertext'>տեղ {activeTicket.seat}</p>
                     <p className='Teatertext'>{activeTicket.price} դրամ</p>

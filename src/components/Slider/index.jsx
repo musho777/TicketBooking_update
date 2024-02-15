@@ -78,7 +78,7 @@ export const Carusel = () => {
                         <div className='BanerDiv' >
                             <img
                                 className='BanerImg2'
-                                src={`${process.env.REACT_APP_IMAGE}/${elm?.eventId?.largeImage}`}
+                                src={`${process.env.REACT_APP_IMAGE}/${elm?.eventId?.image}`}
                             />
                             <div className='BanerDivInfo'>
                                 <div className='BanerPrimera'>

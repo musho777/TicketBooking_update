@@ -8,7 +8,6 @@ import { MapInteractionCSS } from 'react-map-interaction';
 import Paronyan from '../photoMap/Paronyan';
 
 export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent, paronyanSeans, open }) => {
-
     const handleChange = (newValue) => {
         setValue(newValue);
     };
@@ -48,12 +47,13 @@ export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent,
                 />
             }
             {
-                getSinglPage?.events?.event?.ParonyanHall_id == '36' &&
+                event?.sessions[0]?.hallId?._id == '65cd06eae8679feb09775695' &&
                 <Paronyan
                     grupID={getSinglPage.events?.event?.ParonyanGroup_id}
                     Timeline={paronyanSeans}
                     id={getSinglPage?.events?.event?.ParonyanEventId}
                     open={open}
+                    places={getSinglPage.events?.event?.sessions[0].places}
                 // eventId={getSinglPage.events.event?._id}
                 // sessionID={getSinglPage.events.event?.sessions[0]._id}
                 // soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets}

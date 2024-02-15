@@ -104,7 +104,7 @@ export const Card = ({
                 <p className='TopEventsTime'>{time}</p>
             </div>
             <div>
-                <p className='TopEventsInfoPlace'>{languageData.hall}</p>
+                <p className='TopEventsInfoPlace'>{languageData?.hall}</p>
             </div>
             <div className='TopEventsInfoLine' />
             <div className='TopEventsDiv'>
@@ -126,7 +126,7 @@ export const Card = ({
             <div className='AllEventsCardWrapperInfo'>
                 <p className='AllEventsCardWrapperInfoTitle'>{truncateText(languageData.title)}</p>
                 <p className='AllEventsCardWrapperInfoTitleDate'>{day}.{month1}.{year} {time}</p>
-                <p className='AllEventsCardWrapperInfoTitleDateTeter'>{languageData.hall}</p>
+                <p className='AllEventsCardWrapperInfoTitleDateTeter'>{languageData?.hall}</p>
             </div>
         </div>
     </div>

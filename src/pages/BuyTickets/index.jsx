@@ -23,7 +23,10 @@ export const BuyTickets = () => {
     let { event } = getSinglPage?.events
     const [open, setOpen] = useState(false)
     const [paronyanSeans, setParonyanSeans] = useState('')
-
+    console.log(getSinglPage.
+        events?.event?.sessions.
+        places
+        , 'getSinglPage')
     const [id, setId] = useState('')
     useEffect(() => {
         const parts = ids.id.split(':');
@@ -35,10 +38,9 @@ export const BuyTickets = () => {
         "July", "August", "September", "October", "November", "December"
     ];
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const [scale, setScale] = useState(1);
     const handleZoomIn = () => {
         setValue({
-            scale: value.scale + 0.4,
+            scale: value.scale + 0.01,
             translation: value.translation
 
         })
@@ -109,15 +111,15 @@ export const BuyTickets = () => {
 
     const [total, setTotal] = useState(0)
     const [value, setValue] = useState({
-        scale: 0.4,
-        translation: { x: 90, y: 35 }
+        scale: 0.13,
+        translation: { x: 70, y: 25 }
     });
 
 
     const handleZoomOut = () => {
-        if (value.scale - 0.1 > 0.1)
+        if (value.scale - 0.01 > 0.01)
             setValue({
-                scale: value.scale - 0.1,
+                scale: value.scale - 0.01,
                 translation: value.translation
             })
     };
@@ -142,7 +144,7 @@ export const BuyTickets = () => {
             if (language === 'am') {
                 item.name = getSinglPage?.events?.event?.title
                 item.description = getSinglPage.events.event?.description
-                item.hall = getSinglPage.events.event?.sessions[0]?.hallId.hall
+                item.hall = getSinglPage.events.event?.sessions[0]?.hallId?.hall
             }
             else if (language === 'ru') {
                 item.name = getSinglPage.events.event?.title_ru
@@ -238,7 +240,10 @@ export const BuyTickets = () => {
                 <div className="zoom-controls">
                     <button onClick={handleZoomIn}>+</button>
                     <button onClick={handleZoomOut}>-</button>
-                    <button onClick={() => setScale(1)}>
+                    <button onClick={() => setValue({
+                        scale: 0.13,
+                        translation: { x: 70, y: 25 }
+                    })}>
                         <Restart />
                     </button>
                 </div>
