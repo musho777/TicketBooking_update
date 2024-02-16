@@ -22,7 +22,7 @@ export const Layout = () => {
         </div>
         <div className='container'>
             <div className='wrapper'>
-                <p className='mainPageText'>{t('forDelivery')} <span>{Event_reducer.feedback.phone}</span></p>
+                <p className='mainPageText'>{t('forDelivery')} <span>{Event_reducer?.feedback?.phone}</span></p>
             </div>
         </div>
         <div className='outlet'>

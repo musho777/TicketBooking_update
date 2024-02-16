@@ -481,7 +481,8 @@ const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventI
                     // transformOrigin: 'top left',
                 }}
                 className="zoomable-image"
-                alt='' src={require('../../assets/Redessign-2.png')} />
+                alt='' src={require('../../assets/Redessign-2.png')}
+            />
             {coordinatesState?.map((e, i) => {
                 if (e.price && !e.sold)
                     return <button
@@ -494,7 +495,7 @@ const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventI
                             {
                                 top: e?.y - 12,
                                 left: e?.x - 124,
-                                backgroundColor: tickets.find((elm) => elm.seatId == e.id) && 'green'
+                                backgroundColor: tickets.find((elm) => elm.seatId == e.id) && '#24005C'
                             }
                         }
                         id='seatStyle2'
@@ -516,7 +517,7 @@ const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventI
                             addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
                         }}
                     >
-                        {e.price == '15000' &&
+                        {e.price == '15000' && !tickets.find((elm) => elm.seatId == e.id) &&
                             <svg width="30" height="30" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.854736 5.0903H1.58107V7.19807H0.854736V5.0903Z" fill="#1E4751" />
                                 <path d="M1.64802 7.19516H0.787724C0.701558 7.19516 0.631714 7.1253 0.631714 7.03914V6.91943C0.631714 6.83325 0.701558 6.7634 0.787724 6.7634H1.64801C1.73417 6.7634 1.80402 6.83326 1.80402 6.91943V7.03914C1.80402 7.12532 1.73419 7.19516 1.64802 7.19516ZM4.41895 5.0903H5.14534V7.19807H4.41895V5.0903Z" fill="#1E4751" />
@@ -528,7 +529,7 @@ const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventI
                                 <path d="M5.21228 7.19515H4.35201C4.26583 7.19515 4.19598 7.1253 4.19598 7.03913V6.91942C4.19598 6.83324 4.26584 6.7634 4.35201 6.7634H5.21228C5.29844 6.7634 5.3683 6.83325 5.3683 6.91942V7.03913C5.3683 7.12531 5.29843 7.19515 5.21228 7.19515Z" fill="#1E4751" />
                             </svg>
                         }
-                        {e.price == '10000' &&
+                        {e.price == '10000' && !tickets.find((elm) => elm.seatId == e.id) &&
                             <svg width="30" height="30" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.854736 5.0903H1.58107V7.19807H0.854736V5.0903Z" fill="#1E4751" />
                                 <path d="M1.64802 7.19516H0.787724C0.701558 7.19516 0.631714 7.1253 0.631714 7.03914V6.91943C0.631714 6.83325 0.701558 6.7634 0.787724 6.7634H1.64801C1.73417 6.7634 1.80402 6.83326 1.80402 6.91943V7.03914C1.80402 7.12532 1.73419 7.19516 1.64802 7.19516ZM4.41895 5.0903H5.14534V7.19807H4.41895V5.0903Z" fill="#1E4751" />
@@ -541,7 +542,7 @@ const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventI
                             </svg>
 
                         }
-                        {e.price == '20000' &&
+                        {e.price == '20000' && !tickets.find((elm) => elm.seatId == e.id) &&
                             <svg width="30" height="30" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.854736 5.0903H1.58107V7.19807H0.854736V5.0903Z" fill="#1E4751" />
                                 <path d="M1.64802 7.19516H0.787724C0.701558 7.19516 0.631714 7.1253 0.631714 7.03914V6.91943C0.631714 6.83325 0.701558 6.7634 0.787724 6.7634H1.64801C1.73417 6.7634 1.80402 6.83326 1.80402 6.91943V7.03914C1.80402 7.12532 1.73419 7.19516 1.64802 7.19516ZM4.41895 5.0903H5.14534V7.19807H4.41895V5.0903Z" fill="#1E4751" />
@@ -553,7 +554,7 @@ const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventI
                                 <path d="M5.21228 7.19515H4.35201C4.26583 7.19515 4.19598 7.1253 4.19598 7.03913V6.91942C4.19598 6.83324 4.26584 6.7634 4.35201 6.7634H5.21228C5.29844 6.7634 5.3683 6.83325 5.3683 6.91942V7.03913C5.3683 7.12531 5.29843 7.19515 5.21228 7.19515Z" fill="#1E4751" />
                             </svg>
                         }
-                        {e.price == '25000' &&
+                        {e.price == '25000' && !tickets.find((elm) => elm.seatId == e.id) &&
                             <svg width="30" height="30" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.854736 5.0903H1.58107V7.19807H0.854736V5.0903Z" fill="#1E4751" />
                                 <path d="M1.64802 7.19516H0.787724C0.701558 7.19516 0.631714 7.1253 0.631714 7.03914V6.91943C0.631714 6.83325 0.701558 6.7634 0.787724 6.7634H1.64801C1.73417 6.7634 1.80402 6.83326 1.80402 6.91943V7.03914C1.80402 7.12532 1.73419 7.19516 1.64802 7.19516ZM4.41895 5.0903H5.14534V7.19807H4.41895V5.0903Z" fill="#1E4751" />
@@ -566,7 +567,7 @@ const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventI
                             </svg>
 
                         }
-                        {e.price === '30000' &&
+                        {e.price === '30000' && !tickets.find((elm) => elm.seatId == e.id) &&
                             <svg width="30" height="30" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.854736 5.0903H1.58107V7.19807H0.854736V5.0903Z" fill="#1E4751" />
                                 <path d="M1.64802 7.19516H0.787724C0.701558 7.19516 0.631714 7.1253 0.631714 7.03914V6.91943C0.631714 6.83325 0.701558 6.7634 0.787724 6.7634H1.64801C1.73417 6.7634 1.80402 6.83326 1.80402 6.91943V7.03914C1.80402 7.12532 1.73419 7.19516 1.64802 7.19516ZM4.41895 5.0903H5.14534V7.19807H4.41895V5.0903Z" fill="#1E4751" />
@@ -578,7 +579,7 @@ const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventI
                                 <path d="M5.21228 7.19515H4.35201C4.26583 7.19515 4.19598 7.1253 4.19598 7.03913V6.91942C4.19598 6.83324 4.26584 6.7634 4.35201 6.7634H5.21228C5.29844 6.7634 5.3683 6.83325 5.3683 6.91942V7.03913C5.3683 7.12531 5.29843 7.19515 5.21228 7.19515Z" fill="#1E4751" />
                             </svg>
                         }
-                        {e.price === '35000' &&
+                        {e.price === '35000' && !tickets.find((elm) => elm.seatId == e.id) &&
                             <svg width="30" height="30" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.854736 5.0903H1.58107V7.19807H0.854736V5.0903Z" fill="#1E4751" />
                                 <path d="M1.64802 7.19516H0.787724C0.701558 7.19516 0.631714 7.1253 0.631714 7.03914V6.91943C0.631714 6.83325 0.701558 6.7634 0.787724 6.7634H1.64801C1.73417 6.7634 1.80402 6.83326 1.80402 6.91943V7.03914C1.80402 7.12532 1.73419 7.19516 1.64802 7.19516ZM4.41895 5.0903H5.14534V7.19807H4.41895V5.0903Z" fill="#1E4751" />
@@ -591,7 +592,7 @@ const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventI
                             </svg>
 
                         }
-                        {e.price === '50000' &&
+                        {e.price === '50000' && !tickets.find((elm) => elm.seatId == e.id) &&
                             <svg width="30" height="30" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.854736 5.0903H1.58107V7.19807H0.854736V5.0903Z" fill="#1E4751" />
                                 <path d="M1.64802 7.19516H0.787724C0.701558 7.19516 0.631714 7.1253 0.631714 7.03914V6.91943C0.631714 6.83325 0.701558 6.7634 0.787724 6.7634H1.64801C1.73417 6.7634 1.80402 6.83326 1.80402 6.91943V7.03914C1.80402 7.12532 1.73419 7.19516 1.64802 7.19516ZM4.41895 5.0903H5.14534V7.19807H4.41895V5.0903Z" fill="#1E4751" />
@@ -603,7 +604,7 @@ const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventI
                                 <path d="M5.21228 7.19515H4.35201C4.26583 7.19515 4.19598 7.1253 4.19598 7.03913V6.91942C4.19598 6.83324 4.26584 6.7634 4.35201 6.7634H5.21228C5.29844 6.7634 5.3683 6.83325 5.3683 6.91942V7.03913C5.3683 7.12531 5.29843 7.19515 5.21228 7.19515Z" fill="#1E4751" />
                             </svg>
                         }
-                        {e.price === '45000' &&
+                        {e.price === '45000' && !tickets.find((elm) => elm.seatId == e.id) &&
                             <svg width="30" height="30" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.854736 5.0903H1.58107V7.19807H0.854736V5.0903Z" fill="#1E4751" />
                                 <path d="M1.64802 7.19516H0.787724C0.701558 7.19516 0.631714 7.1253 0.631714 7.03914V6.91943C0.631714 6.83325 0.701558 6.7634 0.787724 6.7634H1.64801C1.73417 6.7634 1.80402 6.83326 1.80402 6.91943V7.03914C1.80402 7.12532 1.73419 7.19516 1.64802 7.19516ZM4.41895 5.0903H5.14534V7.19807H4.41895V5.0903Z" fill="#1E4751" />
@@ -615,7 +616,7 @@ const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventI
                                 <path d="M5.21228 7.19515H4.35201C4.26583 7.19515 4.19598 7.1253 4.19598 7.03913V6.91942C4.19598 6.83324 4.26584 6.7634 4.35201 6.7634H5.21228C5.29844 6.7634 5.3683 6.83325 5.3683 6.91942V7.03913C5.3683 7.12531 5.29843 7.19515 5.21228 7.19515Z" fill="#1E4751" />
                             </svg>
                         }
-                        {e.price === '40000' &&
+                        {e.price === '40000' && !tickets.find((elm) => elm.seatId == e.id) &&
                             <svg width="30" height="30" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.854736 5.0903H1.58107V7.19807H0.854736V5.0903Z" fill="#1E4751" />
                                 <path d="M1.64802 7.19516H0.787724C0.701558 7.19516 0.631714 7.1253 0.631714 7.03914V6.91943C0.631714 6.83325 0.701558 6.7634 0.787724 6.7634H1.64801C1.73417 6.7634 1.80402 6.83326 1.80402 6.91943V7.03914C1.80402 7.12532 1.73419 7.19516 1.64802 7.19516ZM4.41895 5.0903H5.14534V7.19807H4.41895V5.0903Z" fill="#1E4751" />
@@ -627,7 +628,7 @@ const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventI
                                 <path d="M5.21228 7.19515H4.35201C4.26583 7.19515 4.19598 7.1253 4.19598 7.03913V6.91942C4.19598 6.83324 4.26584 6.7634 4.35201 6.7634H5.21228C5.29844 6.7634 5.3683 6.83325 5.3683 6.91942V7.03913C5.3683 7.12531 5.29843 7.19515 5.21228 7.19515Z" fill="#1E4751" />
                             </svg>
                         }
-                        {e.price != '10000' && e.price != '15000' && e.price != '20000' && e.price != '25000' && e.price != '45000' && e.price != '30000' && e.price != '35000' && e.price != '40000' && e.price != '50000' &&
+                        {e.price != '10000' && e.price != '15000' && e.price != '20000' && e.price != '25000' && e.price != '45000' && e.price != '30000' && e.price != '35000' && e.price != '40000' && e.price != '50000' && !tickets.find((elm) => elm.seatId == e.id) &&
                             <svg width="30" height="30" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.854736 5.0903H1.58107V7.19807H0.854736V5.0903Z" fill="#1E4751" />
                                 <path d="M1.64802 7.19516H0.787724C0.701558 7.19516 0.631714 7.1253 0.631714 7.03914V6.91943C0.631714 6.83325 0.701558 6.7634 0.787724 6.7634H1.64801C1.73417 6.7634 1.80402 6.83326 1.80402 6.91943V7.03914C1.80402 7.12532 1.73419 7.19516 1.64802 7.19516ZM4.41895 5.0903H5.14534V7.19807H4.41895V5.0903Z" fill="#1E4751" />

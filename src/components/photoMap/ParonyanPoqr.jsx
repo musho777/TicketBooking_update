@@ -91,38 +91,38 @@ const ParonyanPoqr = ({ grupID, eventId, Timeline, secion, id, sessionID, pading
         height: window.innerHeight,
     });
 
-    const GetEventSeat = async () => {
-        const keys = "hYDepOnSarMi";
-        const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
-        const requestType = "getRow";
-        const params = {
-            group_id: grupID,
-            timeline_id: Timeline,
-            event_id: id,
-        };
-        const sortedParams = Object.fromEntries(Object.entries(params).sort());
-        sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
+    // const GetEventSeat = async () => {
+    //     const keys = "hYDepOnSarMi";
+    //     const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
+    //     const requestType = "getRow";
+    //     const params = {
+    //         group_id: grupID,
+    //         timeline_id: Timeline,
+    //         event_id: id,
+    //     };
+    //     const sortedParams = Object.fromEntries(Object.entries(params).sort());
+    //     sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
 
-        const options = {
-            method: 'POST',
-            url: `https://api.haytoms.am/sync/${secretKey}/${requestType}`,
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            data: JSON.stringify(sortedParams),
-        };
+    //     const options = {
+    //         method: 'POST',
+    //         url: `https://api.haytoms.am/sync/${secretKey}/${requestType}`,
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json',
+    //         },
+    //         data: JSON.stringify(sortedParams),
+    //     };
 
-        const response = await axios(options)
-        if (response.data.data?.Levels?.length) {
-            setSeatArr(response.data.data?.Levels[0]?.Places)
-        }
+    //     const response = await axios(options)
+    //     if (response.data.data?.Levels?.length) {
+    //         setSeatArr(response.data.data?.Levels[0]?.Places)
+    //     }
 
-    }
+    // }
 
-    useEffect(() => {
-        GetEventSeat()
-    }, [open])
+    // useEffect(() => {
+    //     GetEventSeat()
+    // }, [open])
 
     const handleResize = () => {
         setWindowSize({

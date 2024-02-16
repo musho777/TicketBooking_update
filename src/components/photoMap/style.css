@@ -139,7 +139,7 @@
     border: none;
     cursor: pointer;
     background-color: transparent;
-    transform: rotate(-16deg);
+    /* transform: rotate(-16deg); */
 }
 
 .HallWithoutSeat {

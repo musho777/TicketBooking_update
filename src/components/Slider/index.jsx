@@ -2,22 +2,35 @@ import './styles.css'
 import { Button } from '../Button'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
-import { BanerRightSvg, LocationSvg } from '../svg'
-import { useTranslation } from 'react-i18next'
+import { LocationSvg } from '../svg'
 
 
 const handleDragStart = (e) => e.preventDefault()
 
 export const Carusel = () => {
-    const navigation = useNavigate()
     const general = useSelector((st) => st.general)
     const { language } = useSelector((st) => st.StaticReducer)
     const [data, setData] = useState([])
-    const [open, setOpen] = useState(false)
-    const { t } = useTranslation();
+    const [windowSize, setWindowSize] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight
+    });
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowSize({
+                width: window.innerWidth,
+                height: window.innerHeight
+            });
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
 
 
     useEffect(() => {
@@ -41,8 +54,7 @@ export const Carusel = () => {
                     primera = 'ՊՐԵՄԻԵՐԱ'
                     seeMore = 'տեսնել ավելին'
                     BuyNow = 'Գնիր հիմա'
-
-
+                    hall = elm?.hallId?.place
                 }
                 else if (language === 'en') {
                     title = elm.eventId.title_en
@@ -50,6 +62,8 @@ export const Carusel = () => {
                     primera = 'PREMIERE'
                     seeMore = 'see more'
                     BuyNow = 'Buy Now'
+                    hall = elm.hallId?.place_en
+
                 }
                 else if (language === 'ru') {
                     title = elm.eventId.title_ru
@@ -57,6 +71,8 @@ export const Carusel = () => {
                     primera = 'ПРЕМЬЕРА'
                     seeMore = 'узнать больше'
                     BuyNow = 'Купить сейчас'
+                    hall = elm.hallId?.place_ru
+
                 }
                 const dateObject = new Date(elm?.date)
                 let dayOfWeek = dateObject.getDate()
@@ -78,28 +94,30 @@ export const Carusel = () => {
                         <div className='BanerDiv' >
                             <img
                                 className='BanerImg2'
-                                src={`${process.env.REACT_APP_IMAGE}/${elm?.eventId?.image}`}
+                                src={windowSize.width > 940 ? `${process.env.REACT_APP_IMAGE}/${elm?.eventId?.image}` :
+                                    `${process.env.REACT_APP_IMAGE}/${elm?.eventId?.largeImage}`
+                                }
                             />
                             <div className='BanerDivInfo'>
                                 <div className='BanerPrimera'>
                                     <div className='Primera'>
                                         <p className='Primerap'>{primera}</p>
-                                        <p className='PrimeraDate'>{month}-{dayOfWeek} {elm.time}</p>
+                                        <p className='PrimeraDate'>{dayOfWeek}-{month} {elm.time}</p>
                                     </div>
                                     <div className='BanerLocation'>
                                         <LocationSvg />
-                                        <p className='BanerDivInfoPlace'>Arno Babajanyan Concert Hall</p>
+                                        <p className='BanerDivInfoPlace'>{hall}</p>
                                     </div>
                                 </div>
                                 <p className='BanerTitle'>{title}</p>
                                 <div className='BanerPrimeraMobile'>
                                     <div className='Primera'>
                                         <p className='Primerap'>{primera}</p>
-                                        <p className='PrimeraDate'>{month}-{dayOfWeek} {elm.time}</p>
+                                        <p className='PrimeraDate'>{dayOfWeek}-{month} {elm.time}</p>
                                     </div>
                                     <div className='BanerLocation'>
                                         <LocationSvg />
-                                        <p className='BanerDivInfoPlace'>Arno Babajanyan Concert Hall</p>
+                                        <p className='BanerDivInfoPlace'>{hall}</p>
                                     </div>
                                 </div>
                                 <div className='BanerTextDiv'>
@@ -114,6 +132,9 @@ export const Carusel = () => {
                                 </div>
                             </div>
                         </div>
+                        {
+
+                        }
                         <img
                             className='BanerImg'
                             src={`${process.env.REACT_APP_IMAGE}/${elm?.eventId?.largeImage}`}
@@ -125,7 +146,7 @@ export const Carusel = () => {
             })
         }
         setData(item)
-    }, [general.events, language])
+    }, [general.events, language, windowSize])
     return (
         <div>
             {/* <div>

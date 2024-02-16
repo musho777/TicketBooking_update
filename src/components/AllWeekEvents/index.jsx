@@ -35,9 +35,6 @@ export const AllWeekEvents = () => {
     const { getWeekEvent } = useSelector((st) => st)
 
     useEffect(() => {
-        dispatch(GetHall())
-    }, [])
-    useEffect(() => {
         HallName()
     }, [language])
 

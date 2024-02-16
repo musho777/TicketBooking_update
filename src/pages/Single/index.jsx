@@ -39,18 +39,18 @@ export const Single = () => {
         if (language === 'am') {
             item.title = event?.title
             item.description = event?.description
-            item.hall = event?.sessions[0]?.hallId.hall
+            item.hall = event?.sessions[0]?.hallId.place
         }
         else if (language === 'en') {
             item.title = event?.title_en
             item.description = event?.description_en
-            item.hall = event?.sessions[0]?.hallId?.hall_en
+            item.hall = event?.sessions[0]?.hallId?.place_en
 
         }
         else if (language === 'ru') {
             item.title = event?.title_ru
             item.description = event?.description_ru
-            item.hall = event?.sessions[0]?.hallId?.hall_ru
+            item.hall = event?.sessions[0]?.hallId?.place_ru
         }
         setLanguageData(item)
     }, [language, event])
@@ -69,6 +69,7 @@ export const Single = () => {
             {true ? <Card
                 time={event?.sessions[0]?.time}
                 img={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`}
+                imgLarg={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.largeImage}`}
                 id={id}
                 data={event?.sessions[0]?.date.slice(0, 10)}
                 description={languageData?.description}

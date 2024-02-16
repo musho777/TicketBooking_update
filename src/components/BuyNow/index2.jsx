@@ -260,7 +260,7 @@ export const BuyNow = () => {
         <div className='buyNowWrapper3'>
             <div ref={scrollRef} className='buyNowWrapper2'>
                 <p className='deliverText'>
-                    {t('freeDelivery')}
+                    {/* {t('freeDelivery')} */}
                 </p>
                 <p className='buyNowTitle'>{title}</p>
                 <p className='buyNowDate'>{getSinglPage?.events?.event?.sessions[0]?.date.slice(0, 10)}  /  {getSinglPage?.events?.event?.sessions[0].time}</p>

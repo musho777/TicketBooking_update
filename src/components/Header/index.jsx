@@ -2,7 +2,7 @@ import './style.css'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { ActiveArrowSvg, Arrow1, ArrowSvg, MobileMenu, PhonSvg, Search, SearchMobileSvg, SearchSvg, Translate, WorldSvg } from '../svg'
+import { ActiveArrowSvg, ArrowSvg, MobileMenu, PhonSvg, SearchMobileSvg, SearchSvg, WorldSvg } from '../svg'
 import { ChangeLanguageAction, GetCategory, SearchAction } from '../../services/action/action'
 import { MobileMenuComponent } from '../MobileMenu'
 import { useTranslation } from 'react-i18next'
@@ -13,7 +13,6 @@ export const Header = ({ open, menu }) => {
     const search = useSelector((st) => st.search)
     const getCategory = useSelector((st) => st.getCategory)
     const { language } = useSelector((st) => st.StaticReducer)
-    const [serchInput, setSearchInput] = useState(false)
     const inputRef = useRef(null);
     const [openLanguage, setOpenLanguage] = useState(false)
     const [inputFocus, setINputFocus] = useState(false)
@@ -34,10 +33,8 @@ export const Header = ({ open, menu }) => {
 
     document.body.addEventListener('click', function () {
         setOpenLanguage(false)
-        setSearchInput(false)
         setSearchResult(false)
         setOpenMobileSearch(false)
-
     });
 
     useEffect(() => {
@@ -117,25 +114,25 @@ export const Header = ({ open, menu }) => {
         <div className='header'>
             <div className='MainHeaderDiv'>
                 <div className='MainHeader'>
-                    {!openMobilsSearch && <div onClick={() => navigation('/')}>
+                    {!openMobilsSearch && <div onClick={() => window.location = '/'}>
                         <img className='Logo' src={require('../../assets/logo.png')} />
                     </div>}
                     <div className='textWrapper'>
                         {getCategory.category.map(elm => {
                             let bg = ''
-                            if (elm._id === "65722b047d066ae13510acd7") {
+                            if (elm._id === "65ce7bcc25c566d4e297d2ec") {
                                 bg = '#FF6969'
                             }
-                            else if (elm._id === "657b00c67a91070546630967") {
+                            else if (elm._id === "65ce7c4a25c566d4e297d30b") {
                                 bg = '#D943FF'
                             }
-                            else if (elm._id === "6581e2425bf51638abd3f9ee") {
-                                bg = '#11AEF4'
-                            }
-                            else if (elm._id === "6581e26c5bf51638abd3f9f8") {
+                            // else if (elm._id === "65ce7e9f25c566d4e297d47c") {
+                            //     bg = '#11AEF4'
+                            // }
+                            else if (elm._id === "65ce7d9d25c566d4e297d3f3") {
                                 bg = '#FFCE00'
                             }
-                            else if (elm._id === "65bb8ba6c2c47b9c4c2e5ef9") {
+                            else if (elm._id === "65ce7e9f25c566d4e297d47c") {
                                 bg = '#4DCF5F'
                             }
 
@@ -151,7 +148,7 @@ export const Header = ({ open, menu }) => {
                                 title = elm.name_ru
                             }
                             return <div className='CateogryName'>
-                                <p onClick={() => navigation(`/Category/${elm.name}/${elm?._id}`)} className='Headertext'>{title}</p>
+                                <p onClick={() => navigation(`/Category/${elm?.name}/${elm?._id}`)} className='Headertext'>{title}</p>
                                 <div
                                     className={id == elm?._id ? 'activeHeader' : 'notActiveHeader'}
 

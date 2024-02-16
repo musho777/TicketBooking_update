@@ -33,7 +33,7 @@ export const Footer = ({ menu }) => {
                     <div className='footerColumnsWrapperDiv'>
                         <p className='footerColumnsTitle'>{t('Contactus')}</p>
                         <div className='footerColumnsInfo'>
-                            <p id={'footerColumnsInfo'}>{Event_reducer.feedback.phone}</p>
+                            <p id={'footerColumnsInfo'}>{Event_reducer.feedback?.phone}</p>
                             <p id={'footerColumnsInfo'}>info@shinetickets.com</p>
                         </div>
                     </div>
@@ -78,7 +78,7 @@ export const Footer = ({ menu }) => {
                         <div className='footerColumnsWrapperDivMObile'>
                             <p className='footerColumnsTitle'>{t('Contactus')}</p>
                             <div className='footerColumnsInfo'>
-                                <p>{Event_reducer.feedback.phone}</p>
+                                <p>{Event_reducer.feedback?.phone}</p>
                                 <p>info@shinetickets.com</p>
                             </div>
                         </div>
@@ -109,7 +109,7 @@ export const Footer = ({ menu }) => {
                                 } else if (language === 'ru') {
                                     title = elm.name_ru
                                 }
-                                return <p onClick={() => window.location = `/Category/${elm.name}/${elm?._id}`}>
+                                return <p onClick={() => window.location = `/Category/${elm?.name}/${elm?._id}`}>
                                     {title}
                                 </p>
                             })}

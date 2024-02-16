@@ -495,7 +495,6 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
                     encodedIssuerId,
                     "1"
                 )
-
                 document.getElementById('telcellForm').innerHTML = `
                 <form id='form' style={{ margin: "20px" }} target="_blank" action="https://telcellmoney.am/invoices" method="POST">
                     <input type="hidden" name="action" value="PostInvoice" />
@@ -559,7 +558,7 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
                 }
             </div>
             <div className='BuyNowBody'>
-                <p className='FreeDelivery'>{t('freeDelivery')}</p>
+                {/* <p className='FreeDelivery'>{t('freeDelivery')}</p> */}
                 <div className='InputTextareWrapper'>
                     <div className='InputWrapperBuy'>
                         <input
@@ -618,7 +617,7 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
                     </div>
                     <p className={selectPay == 2 && 'activeSelectedBuy'}>{t('Youwillreceive')}</p>
                 </div>
-                <div className='selectPay' onClick={() => {
+                {/* <div className='selectPay' onClick={() => {
                     setDelivery(true)
                     Select(3)
                 }} >
@@ -630,7 +629,7 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
                     </div>
                     <p className={selectPay == 3 && 'activeSelectedBuy'}>{t('Shippingisfree')}</p>
 
-                </div>
+                </div> */}
                 <div className='BuyEndWrapper'>
                     <div className='BuyEnd'>
                         <div className='ReadAndAgree'>

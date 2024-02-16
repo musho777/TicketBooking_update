@@ -107,8 +107,8 @@ export const BuyTickets = () => {
 
     const [total, setTotal] = useState(0)
     const [value, setValue] = useState({
-        scale: 0.13,
-        translation: { x: 70, y: 25 }
+        scale: 0.206,
+        translation: { x: 0, y: 0 }
     });
 
 

@@ -83,10 +83,8 @@ export const AllEventss = () => {
         dispatch(SubCategory())
         setActiveButton('Բոլորը')
         setSubcategoryId('')
-        dispatch(GetHall())
         setHallId('')
         setSelectedDate([{ startDate: '', endDate: '', key: 'selection' }])
-        // dispatch(GetRandomEvents(1))
     }, [])
 
     useEffect(() => {

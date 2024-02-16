@@ -31,10 +31,10 @@ export const MobileMenuComponent = ({ setOpen }) => {
                     {getCategory.category.map(elm => {
                         let div = ''
                         let bg = ''
-                        if (elm._id === "65722b047d066ae13510acd7") {
+                        if (elm._id === "65ce7bcc25c566d4e297d2ec") {
                             div = <RedSvg />
                         }
-                        else if (elm._id === "657b00c67a91070546630967") {
+                        else if (elm._id === "65ce7c4a25c566d4e297d30b") {
                             bg = '#D943FF'
                             div = <TetreSvg />
 
@@ -44,7 +44,7 @@ export const MobileMenuComponent = ({ setOpen }) => {
                             div = <BlueSvg />
 
                         }
-                        else if (elm._id === "6581e26c5bf51638abd3f9f8") {
+                        else if (elm._id === "65ce7dbd25c566d4e297d437") {
                             bg = '#FFCE00'
                             div = <OrangeSvg />
 
@@ -80,7 +80,7 @@ export const MobileMenuComponent = ({ setOpen }) => {
                 <div className='ButtonWrapperHeader'>
                     <button
                         onClick={() => {
-                            window.location.href = `tel:${feedback.phone}`
+                            window.location.href = `tel:${feedback?.phone}`
                         }}
                         className='phonNumber'>
                         <PhonSvg />

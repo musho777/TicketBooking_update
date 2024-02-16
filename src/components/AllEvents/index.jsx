@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { EachTicket } from "../EachTicket"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { GetParonyanEvents, GetRandomEvents } from "../../services/action/action"
+import { GetRandomEvents } from "../../services/action/action"
 import { ShowAllButton } from '../Button/ShowAllButton'
 
 export const ALLEvents = () => {
@@ -12,8 +12,9 @@ export const ALLEvents = () => {
     const events = useSelector((st) => st.getRandomEvents)
 
     useEffect(() => {
+        console.log('22')
         dispatch(GetRandomEvents(1))
-    }, [dispatch])
+    }, [])
 
     return (
         <div>
@@ -43,9 +44,9 @@ export const ALLEvents = () => {
                                 title={elm?.title}
                                 title_ru={elm?.title_ru}
                                 title_en={elm?.title_en}
-                                category_en={elm?.category.name_en}
-                                category_ru={elm?.category.name_ru}
-                                category={elm?.category.name}
+                                category_en={elm?.category?.name_en}
+                                category_ru={elm?.category?.name_ru}
+                                category={elm?.category?.name}
                                 // time={elm?.sessions[0]?.time}
                                 image={`${process.env.REACT_APP_IMAGE}/${elm.largeImage}`}
                                 date={`${day}-${month}-${dateObject.getFullYear()}, ${elm.sessions[0]?.time}`}

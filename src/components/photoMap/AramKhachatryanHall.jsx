@@ -1464,6 +1464,7 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading }) =>
 
 
     const getPrice = (y, i, x, parterre, amphitheater, lodge) => {
+        console.log(i)
         setPosition({ x, y })
         let item = seansArr.find((elm) => elm.id === i)
         setActiveTicket({
@@ -1518,7 +1519,7 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading }) =>
 
     useEffect(() => {
         const image = new Image()
-        image.src = require('../../assets/Aram.png')
+        image.src = require('../../assets/Aram-w.png')
 
         image.onload = () => {
             const canvas = document.createElement('canvas')
@@ -1554,6 +1555,18 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading }) =>
                 className="zoomable-image"
                 alt='' src={require('../../assets/Aram.png')} />
             {coordinatesState.map((e, i) => {
+                let top = 0
+                let left = 0
+                let roted = -16
+                if ((i >= 93 && i <= 112) || (i <= 94 && i >= 77)) {
+                    top = 6
+                    left = 8
+                }
+                if (i == 102 && i == 104 && i == 106 && i == 108) {
+                    top = 6
+                    left = 8
+                    roted = 18
+                }
                 return <button
                     key={i}
                     onMouseOver={() => {
@@ -1562,10 +1575,9 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading }) =>
                     }}
                     style={
                         {
-                            top: e?.y - 1,
-                            left: e?.x - 10,
-                            // backgroundColor: e.active && 'green'
-                            backgroundColor: tickets.find((elm) => elm.seatId == e.id) && 'green'
+                            transform: [{ rotate: `${roted}deg` }],
+                            top: e?.y - top, left: e?.x - left,
+                            backgroundColor: tickets.find((elm) => elm.seatId == e.id) && 'green',
                         }
                     }
                     id='seatStyleAram'
@@ -1586,7 +1598,7 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading }) =>
                         // addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
                     }}
                 >
-                    <svg width="55" height="55" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="20" height="20" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0.854736 5.0903H1.58107V7.19807H0.854736V5.0903Z" fill="#1E4751" />
                         <path d="M1.64802 7.19516H0.787724C0.701558 7.19516 0.631714 7.1253 0.631714 7.03914V6.91943C0.631714 6.83325 0.701558 6.7634 0.787724 6.7634H1.64801C1.73417 6.7634 1.80402 6.83326 1.80402 6.91943V7.03914C1.80402 7.12532 1.73419 7.19516 1.64802 7.19516ZM4.41895 5.0903H5.14534V7.19807H4.41895V5.0903Z" fill="#1E4751" />
                         <path d="M5.08444 4.61259H0.915588V0.915744C0.915588 0.410009 1.3256 0 1.83133 0H4.16871C4.67443 0 5.08444 0.410009 5.08444 0.915744V4.61259Z" fill="#F43B45" />

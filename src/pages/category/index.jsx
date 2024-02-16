@@ -38,7 +38,6 @@ export const Category = () => {
 
 
     useEffect(() => {
-        dispatch(GetHall())
         setData([])
         setPage(1)
     }, [])
@@ -74,7 +73,7 @@ export const Category = () => {
         setSubcategoryId('')
         setHallId('')
         setSelectedDate([{ startDate: '', endDate: '', key: 'selection' }])
-        if (id == '65722b047d066ae13510acd7') {
+        if (id == '65ce7bcc25c566d4e297d2ec') {
             setBaner(
                 <div className='CategoryBaner'>
                     <div id='C' className='CategoryBanerFon' >
@@ -86,7 +85,7 @@ export const Category = () => {
                 </div>
             )
         }
-        else if (id == '65bb8bddc2c47b9c4c2e5f3a') {
+        else if (id == '65ce7dbd25c566d4e297d437') {
             setBaner(
                 <div className='CategoryBaner'>
                     <div id='O' className='CategoryBanerFon' >
@@ -98,7 +97,7 @@ export const Category = () => {
                 </div>
             )
         }
-        else if (id == '6581e26c5bf51638abd3f9f8') {
+        else if (id == '65ce7d9d25c566d4e297d3f3') {
             setBaner(
                 <div className='CategoryBaner'>
                     <div id='K' className='CategoryBanerFon' >
@@ -110,7 +109,7 @@ export const Category = () => {
                 </div>
             )
         }
-        else if (id == '657b00c67a91070546630967') {
+        else if (id == '65ce7c4a25c566d4e297d30b') {
             setBaner(
                 <div className='CategoryBaner'>
                     <div id='T' className='CategoryBanerFon' >
@@ -122,7 +121,7 @@ export const Category = () => {
                 </div>
             )
         }
-        else if (id == '65bb8ba6c2c47b9c4c2e5ef9') {
+        else if (id == '65ce7e9f25c566d4e297d47c') {
             setBaner(
                 <div className='CategoryBaner'>
                     <div id='A' className='CategoryBanerFon' >

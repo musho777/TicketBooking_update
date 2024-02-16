@@ -22,6 +22,8 @@ export const Main = () => {
     const dispatch = useDispatch()
     const general = useSelector((st) => st.general)
     const { getWeekEvent } = useSelector((st) => st)
+    const topEvents = useSelector((st) => st.topEvents)
+
 
     const BuyTickets = () => {
 
@@ -145,12 +147,13 @@ export const Main = () => {
 
 
     useEffect(() => {
+        localStorage.setItem('orderId', '')
         dispatch(GetGenerealEvents())
         dispatch(GetAllAds())
-        dispatch(GetParoninaSinglHallSeats())
+        // dispatch(GetParoninaSinglHallSeats())
         dispatch(WeekEvetntApi())
-        dispatch(GetParoninaSinglHallSeats())
-        dispatch(GetParonyanEvents())
+        // dispatch(GetParoninaSinglHallSeats())
+        // dispatch(GetParonyanEvents())
     }, [])
         ;
 

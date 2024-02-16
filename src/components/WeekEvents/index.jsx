@@ -28,14 +28,14 @@ export const WeekEvents = () => {
                         <WeekCard
                             date={elm.date}
                             time={elm.time}
-                            id={elm.eventId._id}
+                            id={elm.eventId?._id}
                             hall={elm?.hallId?.hall}
-                            hall_en={elm.hallId.hall_en}
-                            hall_ru={elm.hallId.hall_ru}
-                            title={elm.eventId.title}
-                            title_en={elm.eventId.title_en}
-                            title_ru={elm.eventId.title_ru}
-                            img={`${process.env.REACT_APP_IMAGE}/${elm.eventId.image}`}
+                            hall_en={elm.hallId?.hall_en}
+                            hall_ru={elm.hallId?.hall_ru}
+                            title={elm.eventId?.title}
+                            title_en={elm.eventId?.title_en}
+                            title_ru={elm.eventId?.title_ru}
+                            img={`${process.env.REACT_APP_IMAGE}/${elm.eventId?.image}`}
                         />
                     </div>
                     // }

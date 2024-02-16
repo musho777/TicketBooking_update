@@ -19,7 +19,8 @@ export const Card = ({
     onClick,
     isParonyan,
     seans,
-    setActiveSeans
+    setActiveSeans,
+    imgLarg
 }) => {
     const { t } = useTranslation();
     const [data1, setData1] = useState(seans)
@@ -47,11 +48,29 @@ export const Card = ({
         }
     }, [])
 
+    const [windowSize, setWindowSize] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight
+    });
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowSize({
+                width: window.innerWidth,
+                height: window.innerHeight
+            });
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
 
     return <div style={{ height: hight }} className='SinglCaruselItem'>
         <div ref={divRef} className='SinglBanerDiv' >
             <div className='SiglBanerImg2'>
-                <img className='SiglBanerImg2' src={img} />
+                <img className='SiglBanerImg2' src={windowSize.width > 960 ? img : imgLarg} />
                 {data1?.length && <div className='SeansCaelndar'>
                     <div onClick={(e) => {
                         e.stopPropagation()

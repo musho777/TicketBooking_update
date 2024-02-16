@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 // import Carousel from 'react-elastic-carousel'
 import { EachTopEvent } from '../EachTopEvent'
 import 'react-alice-carousel/lib/alice-carousel.css'
-import { GetTopEvents } from '../../services/action/action'
 // import Slider from 'infinite-react-carousel';
 import Carousel from 'react-grid-carousel'
 export const CardSlider = ({ data }) => {

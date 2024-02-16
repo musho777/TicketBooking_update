@@ -14,7 +14,7 @@ export const CategoryTicket = ({ image, date, location, price, genre, onClick, d
         }
         else if (language === 'en') {
             item.title = data?.title_en
-            item.categorName = data.category.name_en
+            item.categorName = data.category?.name_en
         }
         else if (language === 'ru') {
             item.title = data?.title_ru

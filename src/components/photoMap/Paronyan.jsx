@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/action'
 import { MD5 } from 'crypto-js'
 import axios from 'axios'
+import { ParonyanSvg } from './ParonyanSvg'
 
 const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, places }) => {
     const dispatch = useDispatch()
@@ -28,36 +29,36 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
         });
     };
 
-    const GetEventSeat = async () => {
-        const keys = "hYDepOnSarMi";
-        const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
-        const requestType = "getRow";
-        const params = {
-            group_id: grupID,
-            timeline_id: Timeline,
-            event_id: id,
-        };
-        const sortedParams = Object.fromEntries(Object.entries(params).sort());
-        sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
+    // const GetEventSeat = async () => {
+    //     const keys = "hYDepOnSarMi";
+    //     const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
+    //     const requestType = "getRow";
+    //     const params = {
+    //         group_id: grupID,
+    //         timeline_id: Timeline,
+    //         event_id: id,
+    //     };
+    //     const sortedParams = Object.fromEntries(Object.entries(params).sort());
+    //     sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
 
-        const options = {
-            method: 'POST',
-            url: `https://api.haytoms.am/sync/${secretKey}/${requestType}`,
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            data: JSON.stringify(sortedParams),
-        };
+    //     const options = {
+    //         method: 'POST',
+    //         url: `https://api.haytoms.am/sync/${secretKey}/${requestType}`,
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json',
+    //         },
+    //         data: JSON.stringify(sortedParams),
+    //     };
 
-        const response = await axios(options)
-        setSeatArr(response.data.data?.Levels)
+    //     const response = await axios(options)
+    //     setSeatArr(response.data.data?.Levels)
 
-    }
+    // }
 
-    useEffect(() => {
-        GetEventSeat()
-    }, [open])
+    // useEffect(() => {
+    //     GetEventSeat()
+    // }, [open])
 
 
     useEffect(() => {
@@ -626,7 +627,10 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
             <img
                 style={{ paddingTop: pading, paddingLeft: pading }}
                 className="zoomable-image"
-                alt='' src={require('../../assets/ParonyanMec.png')} />
+                alt='' src={require('../../assets/ParonyanMec.png')}
+
+            />
+
             {coordinatesState?.map((e, i) => {
                 let index = seansArr.findIndex((el) => el.id == i)
                 if (seansArr[index]?.price)
