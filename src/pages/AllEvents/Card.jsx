@@ -34,6 +34,7 @@ export const Card = ({
             return text;
         }
     }
+    console.log(category)
     const { t } = useTranslation();
     const [languageData, setLanguageData] = useState({ title: '', location: '', categorName: '', hall })
     const { language } = useSelector((st) => st.StaticReducer)
@@ -42,20 +43,23 @@ export const Card = ({
     useEffect(() => {
         let item = { ...languageData }
         if (language === 'am') {
-            item.title = data?.title
+            item.title = data?.
+                eventId.title
             item.location = location
             item.categorName = category?.name
             item.hall = hall
         }
         else if (language === 'en') {
-            item.title = data?.title_en
+            item.title = data?.
+                eventId.title
             item.location = location_en
             item.categorName = category?.name_en
             item.hall = hall_en
 
         }
         else if (language === 'ru') {
-            item.title = data?.title_ru
+            item.title = data?.
+                eventId.title
             item.location = location_ru
             item.categorName = category?.name_ru
             item.hall = hall_ru

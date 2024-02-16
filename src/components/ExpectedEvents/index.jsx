@@ -18,9 +18,11 @@ export const ExpectedEvents = () => {
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const { t } = useTranslation()
     return <div className='ExpectedEvents'>
-        <div className='EventTitle'>
-            <h2>{t('ՍՊԱՍՎՈՂ ՄԻՋՈՑԱՌՈՒՄՆԵՐ')}</h2>
-        </div>
+        {getExpectedEvents?.events.length > 0 &&
+            <div className='EventTitle'>
+                <h2>{t('ՍՊԱՍՎՈՂ ՄԻՋՈՑԱՌՈՒՄՆԵՐ')}</h2>
+            </div>
+        }
         <div className='CardDiv'>
             {getExpectedEvents?.events?.map((elm, i) => {
                 let month = ''

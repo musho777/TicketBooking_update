@@ -459,8 +459,13 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
 
 
     useEffect(() => {
-        setSeansArr(JSON.parse(places[0]))
+        console.log(places.length, 'places')
+        if (places.length > 0) {
+            setSeansArr(JSON.parse(places[0]))
+        }
     }, [places])
+
+    console.log(seansArr, 'seabs')
 
     // useEffect(() => {
     //     let item = [...seansArr]
@@ -594,7 +599,7 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
 
     useEffect(() => {
         const image = new Image()
-        image.src = require('../../assets/ParonyanMec.png')
+        image.src = require('../../assets/ParonyanMec1.jpg')
 
         image.onload = () => {
             const canvas = document.createElement('canvas')
@@ -627,13 +632,13 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
             <img
                 style={{ paddingTop: pading, paddingLeft: pading }}
                 className="zoomable-image"
-                alt='' src={require('../../assets/ParonyanMec.png')}
+                alt='' src={require('../../assets/ParonyanMec1.jpg')}
 
             />
 
             {coordinatesState?.map((e, i) => {
                 let index = seansArr.findIndex((el) => el.id == i)
-                if (seansArr[index]?.price)
+                if (seansArr[index]?.price > 0)
                     return <button
                         key={i}
                         onMouseOver={() => {

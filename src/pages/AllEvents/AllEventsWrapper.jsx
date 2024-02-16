@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { Card } from "./Card";
 
 export const AllEventsWrapper = ({ loading, data, setPage, page, showButton }) => {
-    console.log('111')
     const { t } = useTranslation()
     var months = [
         "January", "February", "March", "April", "May", "June",
@@ -19,9 +18,7 @@ export const AllEventsWrapper = ({ loading, data, setPage, page, showButton }) =
         <div id='CategoryCardWrapper' className="TopEventWrapper">
             {
                 data.length > 0 && data.map((elm, i) => {
-                    console.log(elm, 'elm')
-                    const dateObject = new Date(elm.sessions
-                    [0]?.date);
+                    const dateObject = new Date(elm?.date);
                     let day = dateObject.getDate();
                     if (day <= 9) {
                         day = `0${day}`
@@ -33,29 +30,27 @@ export const AllEventsWrapper = ({ loading, data, setPage, page, showButton }) =
                         month1 = `0${month1 + 1}`
                     }
                     var currentDayOfWeek = daysOfWeek[dateObject.getDay()];
-                    if (elm.sessions.length > 0) {
-                        return <Card
-                            key={i}
-                            day={day}
-                            time={elm.time}
-                            id={elm._id}
-                            image={`${process.env.REACT_APP_IMAGE}/${elm.largeImage}`}
-                            title={elm.title}
-                            year={year}
-                            month1={month1}
-                            category={elm.category}
-                            location={elm?.location}
-                            location_en={elm?.hallId?.location_en}
-                            location_ru={elm?.hallId?.location_ru}
-                            hall={elm.hallId?.place}
-                            hall_en={elm.hallId?.place_en}
-                            hall_ru={elm.hallId?.place_ru}
-                            months={months[month]}
-                            currentDayOfWeek={currentDayOfWeek}
-                            data={elm}
-                            price={`${elm?.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
-                        />
-                    }
+                    return <Card
+                        key={i}
+                        day={day}
+                        time={elm.time}
+                        id={elm.eventId._id}
+                        image={`${process.env.REACT_APP_IMAGE}/${elm.eventId
+                            .largeImage}`}
+                        year={year}
+                        month1={month1}
+                        category={elm.eventId.category}
+                        location={elm?.location}
+                        location_en={elm?.hallId?.location_en}
+                        location_ru={elm?.hallId?.location_ru}
+                        hall={elm.hallId?.place}
+                        hall_en={elm.hallId?.place_en}
+                        hall_ru={elm.hallId?.place_ru}
+                        months={months[month]}
+                        currentDayOfWeek={currentDayOfWeek}
+                        data={elm}
+                        price={`${elm?.priceStart} - ${elm?.priceEnd} AMD`}
+                    />
                     // }
                     // else {
                     //     const matchResult = elm.ParonyanTime.match(/(\d+)([\s\S]*?)(<div[\s\S]*?<\/div>)([\s\S]*?)(\d+:\d+)/);

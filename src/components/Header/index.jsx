@@ -187,29 +187,29 @@ export const Header = ({ open, menu }) => {
                                         let name = ''
                                         let description = ''
                                         if (language == 'am') {
-                                            name = elm.title
+                                            name = elm.eventId.title
                                             description = elm.description
                                         }
                                         else if (language == 'ru') {
-                                            name = elm.title_ru
+                                            name = elm.eventId.title_ru
                                             description = elm.description_ru
 
                                         }
                                         else {
-                                            name = elm.title_en
+                                            name = elm.eventId.title_en
                                             description = elm.description_en
 
                                         }
                                         return <div
-                                            onClick={() => window.location = `/single/${elm?._id}`}
+                                            onClick={() => window.location = `/single/${elm?.eventId._id}`}
                                         >
                                             <div className='SearchResultDiv'>
                                                 <div className='SearchResultDivInfo'>
                                                     <p>{truncateText(name)}</p>
-                                                    <p className='SearchResultDivInfoMount'>{elm.sessions[0]?.date.slice(0, 10)}</p>
+                                                    <p className='SearchResultDivInfoMount'>{elm.date.slice(0, 10)}</p>
                                                 </div>
                                                 <div className='SearchResultDivInfoPrice'>
-                                                    <p>{elm.sessions[0]?.priceStart}-{elm.sessions[0]?.priceEnd} AMD</p>
+                                                    <p>{elm?.priceStart}-{elm.priceEnd} AMD</p>
 
                                                 </div>
                                             </div>
@@ -307,27 +307,27 @@ export const Header = ({ open, menu }) => {
                                             let name = ''
                                             let description = ''
                                             if (language == 'am') {
-                                                name = elm.title
+                                                name = elm.eventId.title
                                                 description = elm.description
                                             }
                                             else if (language == 'ru') {
-                                                name = elm.title_ru
+                                                name = elm.eventId.title_ru
                                                 description = elm.description_ru
 
                                             }
                                             else {
-                                                name = elm.title_en
+                                                name = elm.eventId.title_en
                                                 description = elm.description_en
 
                                             }
-                                            return <div onClick={() => window.location = `/single/${elm?._id}`}>
+                                            return <div onClick={() => window.location = `/single/${elm?.eventId._id}`}>
                                                 <div className='SearchResultDiv'>
                                                     <div className='SearchResultDivInfo'>
                                                         <p>{truncateText(name)}</p>
-                                                        <p className='SearchResultDivInfoMount'>{elm.sessions[0]?.date.slice(0, 10)}</p>
+                                                        <p className='SearchResultDivInfoMount'>{elm?.date.slice(0, 10)}</p>
                                                     </div>
                                                     <div className='SearchResultDivInfoPrice'>
-                                                        <p>{elm.sessions[0]?.priceStart}-{elm.sessions[0]?.priceEnd}  AMD</p>
+                                                        <p>{elm?.priceStart}-{elm?.priceEnd} AMD</p>
                                                     </div>
                                                 </div>
                                                 <div className='SearchResultDivLine' />

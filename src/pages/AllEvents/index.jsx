@@ -98,6 +98,7 @@ export const AllEventss = () => {
             combinedArray = data
         }
         if (events.events.events?.length > 0) {
+            console.log(events.events.events, 'events.events.events')
             combinedArray = item.concat(events.events.events);
         }
         setData(combinedArray)
@@ -201,6 +202,8 @@ export const AllEventss = () => {
             return text;
         }
     }
+    console.log(events.events.events
+        , 'events.')
     return (
         <div className='CategoryScreen'>
             {events?.loading && page == 1 ?
@@ -223,7 +226,6 @@ export const AllEventss = () => {
                                         e.preventDefault()
                                         e.stopPropagation()
                                         setOpenCalendar(true)
-                                        setOpenCalendar(false)
                                     }
                                     } className='CalendarDivCalendar'>
                                         <p>{date}</p>

@@ -12,7 +12,6 @@ export const ALLEvents = () => {
     const events = useSelector((st) => st.getRandomEvents)
 
     useEffect(() => {
-        console.log('22')
         dispatch(GetRandomEvents(1))
     }, [])
 

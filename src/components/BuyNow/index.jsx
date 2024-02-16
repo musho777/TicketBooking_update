@@ -380,7 +380,11 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
 
     function handlePurchase() {
         setLoading(true)
-        axios.post(`${process.env.REACT_APP_HOSTNAME}/registerPayment`, { amount: total * 100 })
+        axios.post(`${process.env.REACT_APP_HOSTNAME}/registerPayment`, {
+            amount: total * 100,
+            tickets: tickets.tickets,
+            sessionId: tickets.tickets[0].sessionId,
+        })
             .then(res => {
                 if (res?.data?.success) {
                     setLoading(false)

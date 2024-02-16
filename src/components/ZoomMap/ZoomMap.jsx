@@ -12,7 +12,6 @@ export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent,
         setValue(newValue);
     };
 
-    console.log(event?.sessions[0]?.hallId?._id)
     return (
         <MapInteractionCSS
             value={value}
