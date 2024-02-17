@@ -7,7 +7,7 @@ import { ChangeLanguageAction, GetCategory, SearchAction } from '../../services/
 import { MobileMenuComponent } from '../MobileMenu'
 import { useTranslation } from 'react-i18next'
 
-export const Header = ({ open, menu }) => {
+export const Header = () => {
     const dispatch = useDispatch()
     const navigation = useNavigate()
     const search = useSelector((st) => st.search)
@@ -148,7 +148,7 @@ export const Header = ({ open, menu }) => {
                                 title = elm.name_ru
                             }
                             return <div className='CateogryName'>
-                                <p onClick={() => navigation(`/Category/${elm?.name}/${elm?._id}`)} className='Headertext'>{title}</p>
+                                <p onClick={() => window.location = `/Category/${elm?.name}/${elm?._id}`} className='Headertext'>{title}</p>
                                 <div
                                     className={id == elm?._id ? 'activeHeader' : 'notActiveHeader'}
 
@@ -352,7 +352,3 @@ export const Header = ({ open, menu }) => {
         </div >
     )
 }
-
-// <div>
-// <p>{t('NothingFound')}</p>
-// </div>

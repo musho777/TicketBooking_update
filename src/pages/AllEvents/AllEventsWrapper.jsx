@@ -34,7 +34,7 @@ export const AllEventsWrapper = ({ loading, data, setPage, page, showButton }) =
                         key={i}
                         day={day}
                         time={elm.time}
-                        id={elm.eventId._id}
+                        id={elm.eventId?._id}
                         image={`${process.env.REACT_APP_IMAGE}/${elm.eventId
                             .largeImage}`}
                         year={year}

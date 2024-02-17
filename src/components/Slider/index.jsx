@@ -147,19 +147,18 @@ export const Carusel = () => {
         }
         setData(item)
     }, [general.events, language, windowSize])
+
+
     return (
         <div>
-            {/* <div>
-                <BanerRightSvg />
-            </div> */}
             <AliceCarousel
                 disableButtonsControls={true}
-                autoPlay={data.length > 1}
+                autoPlay={true}
                 mouseTracking
                 items={data}
-                infinite={data.length > 1}
+                infinite={true}
                 touchMoveDefaultEvents
-                autoPlayInterval={5500}
+                autoPlayInterval={3500}
             />
         </div>
     );

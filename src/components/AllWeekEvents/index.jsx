@@ -8,7 +8,6 @@ import { useParams } from 'react-router-dom'
 import { CategoryMenu } from '../../components/CategoryMenu'
 import { Calendar } from '../../components/Calendar'
 import { ClearFiltr, Emoji, EmojiM } from '../../components/svg'
-import { ExpectedEvents } from '../../components/ExpectedEvents'
 import { AllEventsWrapper } from '../../pages/AllEvents/AllEventsWrapper'
 
 export const AllWeekEvents = () => {

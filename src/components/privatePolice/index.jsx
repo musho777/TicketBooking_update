@@ -3,8 +3,8 @@ import './style.css'
 export const PrivatePolice = () => {
     const { language } = useSelector((st) => st.StaticReducer)
     if (language == 'am') {
-        return <div>
-            <h1 style={{ textAlign: 'center', margin: '40px 0' }}>Privacy Policy</h1>
+        return <div className='container'>
+            <h1 style={{ textAlign: 'center', margin: '10px 0' }}>Privacy Policy</h1>
             <div>
                 1. Ներածություն
             </div>
@@ -110,8 +110,8 @@ export const PrivatePolice = () => {
         </div>
     }
     else if (language == 'en') {
-        return <div>
-            <h1 style={{ textAlign: 'center', margin: '40px 0' }}>Privacy Policy</h1>
+        return <div className='container'>
+            <h1 style={{ textAlign: 'center', margin: '10px 0' }}>Privacy Policy</h1>
             <div>
                 1. Introduction
             </div>
@@ -213,8 +213,8 @@ export const PrivatePolice = () => {
         </div>
     }
     else {
-        return <div>
-            <h1 style={{ textAlign: 'center', margin: '40px 0' }}>Privacy Policy</h1>
+        return <div className='container'>
+            <h1 style={{ textAlign: 'center', margin: '10px 0' }}>Privacy Policy</h1>
             <div>
                 1. Введение
             </div>

@@ -25,7 +25,7 @@ export const Footer = ({ menu }) => {
                 <div className='footerColumns'>
                     <img src={require('../../assets/logo2.png')} />
                     <p className=''>
-                        {t('SHINETICKETSLLC')}
+                        {t('SHINETICKETSLLC')} <span onClick={() => window.location = ('PrivacyPolicy')}>{t('SHINETICKETSLLC2')}</span> {t('SHINETICKETSLLC1')}
 
                     </p>
                 </div>

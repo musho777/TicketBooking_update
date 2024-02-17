@@ -36,7 +36,7 @@ export const BuyTickets = () => {
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const handleZoomIn = () => {
         setValue({
-            scale: value.scale + 0.01,
+            scale: value.scale + 0.1,
             translation: value.translation
 
         })
@@ -113,9 +113,9 @@ export const BuyTickets = () => {
 
 
     const handleZoomOut = () => {
-        if (value.scale - 0.01 > 0.01)
+        if (value.scale - 0.1 > 0.1)
             setValue({
-                scale: value.scale - 0.01,
+                scale: value.scale - 0.1,
                 translation: value.translation
             })
     };

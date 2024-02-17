@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import './styles.css'
 export const CategoryType = ({ type, name }) => {
-    console.log(type, 'tipe')
     const [color, setColoer] = useState('#4DCF5F')
     useEffect(() => {
         if (type === "65ce7bcc25c566d4e297d2ec") {

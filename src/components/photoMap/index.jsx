@@ -5,12 +5,12 @@ import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/act
 import { PuffLoader } from 'react-spinners'
 import { padding } from '@mui/system'
 
-const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventId, pading }) => {
+const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, sessionID, eventId, pading, setPosition, setActiveTicket, activeTicket, value }) => {
 
     const dispatch = useDispatch()
     const [coordinatesState, setCoordinatesState] = useState([])
-    const [activeTicket, setActiveTicket] = useState({})
-    const [position, setPosition] = useState({ x: '', y: '' })
+    // const [activeTicket, setActiveTicket] = useState({})
+    // const [position, setPosition] = useState({ x: '', y: '' })
     const [showModal, setShowModal] = useState(false)
     const [activeButton, setActiveButton] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -508,13 +508,22 @@ const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventI
                             setShowModal(false)
                             setActiveButton(null)
                         }}
-                        onClick={() => addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)}
+                        onClick={() => {
+                            if (windowSize.width > 768) {
+                                addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                            }
+                        }
+                        }
                         onTouchStart={() => {
-                            getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
-                            setActiveButton(i)
+                            if (windowSize.width < 768) {
+                                getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                                setActiveButton(i)
+                            }
                         }}
                         onTouchEnd={() => {
-                            addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                            if (windowSize.width < 768) {
+                                addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                            }
                         }}
                     >
                         {e.price == '15000' && !tickets.find((elm) => elm.seatId == e.id) &&
@@ -647,7 +656,15 @@ const PhotoCoordinatesByColor = ({ scale, secion, soldTickets, sessionID, eventI
             {
                 showModal &&
                 <div
-                    style={{ top: position.y - 150, left: position.x - 130, position: 'absolute' }} className='parter'>
+                    onMouseOver={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        setShowModal(true)
+                    }}
+                    style={{
+                        top: position.y - (120 + (
+                            (value.scale < 0.69) && 20 / value.scale)), left: position.x - 150, position: 'absolute', transform: `scale(${1 / (value.scale + 0.3)})`
+                    }} className='parter'>
                     <p className='Teatertext'>շարք {activeTicket.row}</p>
                     <p className='Teatertext'>տեղ {activeTicket.seat}</p>
                     <p className='Teatertext'>{activeTicket.price} դրամ</p>

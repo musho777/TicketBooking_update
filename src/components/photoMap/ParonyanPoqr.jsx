@@ -5,7 +5,7 @@ import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/act
 import { MD5 } from 'crypto-js'
 import axios from 'axios'
 
-const ParonyanPoqr = ({ grupID, eventId, Timeline, secion, id, sessionID, pading, open }) => {
+const ParonyanPoqr = ({ grupID, eventId, Timeline, secion, id, sessionID, pading, open, value }) => {
     const dispatch = useDispatch()
     const [coordinatesState, setCoordinatesState] = useState([])
     const [activeTicket, setActiveTicket] = useState({})
@@ -350,7 +350,7 @@ const ParonyanPoqr = ({ grupID, eventId, Timeline, secion, id, sessionID, pading
             })}
 
             {showModal &&
-                <div style={{ top: position.y, left: position.x, position: 'absolute' }} className='parter'>
+                <div style={{ top: position.y, left: position.x, position: 'absolute', value, transform: `scale(${1 / (value.scale + 0.5)})` }} className='parter'>
                     <p className='Teatertext'>շարք {activeTicket.row}</p>
                     <p className='Teatertext'>տեղ {activeTicket.seat}</p>
                     <p className='Teatertext'>{activeTicket.price} դրամ</p>

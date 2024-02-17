@@ -24,16 +24,15 @@ export const TopEventsComponent = () => {
         setData(combinedArray)
     }, [topEvents.events])
 
-
     var months = [
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     return <div>
-        <div className='EventTitle'>
+        {data?.length > 0 && <div className='EventTitle'>
             <h2>{t('TopEvents')}</h2>
-        </div>
+        </div>}
         <div className="TopEventWrapper">
             {
                 data?.length > 0 && data?.map((elm, i) => {

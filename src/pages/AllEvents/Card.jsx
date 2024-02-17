@@ -34,7 +34,6 @@ export const Card = ({
             return text;
         }
     }
-    console.log(category)
     const { t } = useTranslation();
     const [languageData, setLanguageData] = useState({ title: '', location: '', categorName: '', hall })
     const { language } = useSelector((st) => st.StaticReducer)

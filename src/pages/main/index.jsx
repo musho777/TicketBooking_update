@@ -5,11 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { Carusel } from '../../components/Slider'
 import { ALLEvents } from '../../components/AllEvents'
 import { useDispatch, useSelector } from 'react-redux'
-import { CardSlider } from '../../components/CardSlider'
-import { SearchEvent } from '../../components/SearchEvent'
 import { BuyTicketFromParonyan, GetAllAds, GetGenerealEvents, GetParoninaSinglHallSeats, GetParonyanEvents, GetSinglParonyan, WeekEvetntApi } from '../../services/action/action'
-import { HP85 } from '../../components/Halls/HP85'
-import { CartPopup } from '../../components/popup/cart'
 import { MD5 } from 'crypto-js'
 import { ExpectedEvents } from '../../components/ExpectedEvents'
 import { WeekEvents } from '../../components/WeekEvents'
@@ -168,7 +164,9 @@ export const Main = () => {
 
         <div className='mainPage'>
             <div className='container'>
-                <Carusel />
+                {general?.events?.length > 0 &&
+                    <Carusel />
+                }
                 <TopEventsComponent />
             </div>
             {

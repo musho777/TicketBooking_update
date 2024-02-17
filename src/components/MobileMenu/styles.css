@@ -23,6 +23,7 @@
     display: flex;
     justify-content: center;
     gap: 30px;
+    flex-direction: column;
 }
 
 .Menu {
@@ -63,6 +64,15 @@
 .Menu>p {
     display: none;
     padding: 0 20px;
+}
+
+@media screen and (min-width: 768px) {
+    .Menu {
+        /* width: 100%; */
+        width: auto;
+        width: 210px;
+        padding: 20px;
+    }
 }
 
 @media screen and (max-width: 768px) {

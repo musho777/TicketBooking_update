@@ -609,7 +609,7 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
                     </div>
                     <p className={selectPay == 1 && 'activeSelectedBuy'}>{t('Youwillreceive')}</p>
                 </div>
-                <div className='selectPay' onClick={() => {
+                {/* <div className='selectPay' onClick={() => {
                     Select(2)
                     setDelivery(false)
                 }}>
@@ -620,7 +620,7 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
                         <img alt='' width={65} height={34} src={require('../../assets/TelCell.png')} />
                     </div>
                     <p className={selectPay == 2 && 'activeSelectedBuy'}>{t('Youwillreceive')}</p>
-                </div>
+                </div> */}
                 {/* <div className='selectPay' onClick={() => {
                     setDelivery(true)
                     Select(3)

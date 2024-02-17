@@ -1,6 +1,6 @@
 import './style.css'
 import { useEffect } from 'react'
-import { Cart, CloseIcon } from '../../svg'
+import { CloseIcon } from '../../svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { RemoveAllTickets } from '../../../services/action/action'
 

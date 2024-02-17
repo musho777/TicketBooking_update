@@ -3,16 +3,17 @@ import { useEffect } from "react"
 import { EachTicket } from "../EachTicket"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { GetRandomEvents } from "../../services/action/action"
+import { GetAllEvents2, GetRandomEvents } from "../../services/action/action"
 import { ShowAllButton } from '../Button/ShowAllButton'
 
 export const ALLEvents = () => {
     const dispatch = useDispatch()
     const { t } = useTranslation()
-    const events = useSelector((st) => st.getRandomEvents)
+    const events = useSelector((st) => st.getAllEventes)
+
 
     useEffect(() => {
-        dispatch(GetRandomEvents(1))
+        dispatch(GetAllEvents2(1))
     }, [])
 
     return (
@@ -21,8 +22,8 @@ export const ALLEvents = () => {
                 <h2>{t('AllEvents')}</h2>
             </div>
             <div className="Allevents">
-                {events?.events?.length > 0 && events?.events?.map((elm, i) => {
-                    const dateObject = new Date(elm?.sessions[0]?.date)
+                {events.events?.events?.length > 0 && events.events?.events?.map((elm, i) => {
+                    const dateObject = new Date(elm?.date)
                     let day = dateObject.getDate()
                     let month = dateObject.getMonth() + 1
                     if (day <= 9) {
@@ -31,25 +32,25 @@ export const ALLEvents = () => {
                     if (month <= 9) {
                         month = `0${month}`
                     }
-                    if (elm?.sessions?.length > 0 && i < 8) {
+                    if (i < 9) {
                         return (
                             <EachTicket
                                 key={i}
-                                id={elm?._id}
-                                onClick={() => window.location = `/Single/${elm?._id}`}
-                                location={elm?.sessions[0]?.hallId?.location}
-                                location_en={elm?.sessions[0]?.hallId?.location_en}
-                                location_ru={elm?.sessions[0]?.hallId?.location_ru}
-                                title={elm?.title}
-                                title_ru={elm?.title_ru}
-                                title_en={elm?.title_en}
-                                category_en={elm?.category?.name_en}
-                                category_ru={elm?.category?.name_ru}
-                                category={elm?.category?.name}
+                                id={elm.eventId._id}
+                                onClick={() => window.location = `/Single/${elm.eventId._id}`}
+                                location={elm?.hallId?.location}
+                                location_en={elm?.hallId?.location_en}
+                                location_ru={elm?.hallId?.location_ru}
+                                title={elm.eventId?.title}
+                                title_ru={elm.eventId?.title_ru}
+                                title_en={elm.eventId?.title_en}
+                                category_en={elm?.eventId?.category?.name_en}
+                                category_ru={elm?.eventId?.category?.name_ru}
+                                category={elm?.eventId?.category?.name}
                                 // time={elm?.sessions[0]?.time}
-                                image={`${process.env.REACT_APP_IMAGE}/${elm.largeImage}`}
-                                date={`${day}-${month}-${dateObject.getFullYear()}, ${elm.sessions[0]?.time}`}
-                                price={`${elm?.sessions[0]?.priceStart} - ${elm?.sessions[0]?.priceEnd} AMD`}
+                                image={`${process.env.REACT_APP_IMAGE}/${elm.eventId?.largeImage}`}
+                                date={`${day}-${month}-${dateObject.getFullYear()}, ${elm?.time}`}
+                                price={`${elm?.priceStart} - ${elm?.priceEnd} AMD`}
                             />
                         )
                     }

@@ -81,7 +81,7 @@ export const Category = () => {
                             <p>{t('CONCERT')}</p>
                         </div>
                     </div>
-                    <img src={require('../../assets/Concert.png')} />
+                    <img src={require('../../assets/Concert.webp')} />
                 </div>
             )
         }
@@ -93,7 +93,7 @@ export const Category = () => {
                             <p>{t('OPERA')}</p>
                         </div>
                     </div>
-                    <img src={require('../../assets/Opera.png')} />
+                    <img src={require('../../assets/Opera.webp')} />
                 </div>
             )
         }
@@ -105,7 +105,7 @@ export const Category = () => {
                             <p>{t('CINEMA')}</p>
                         </div>
                     </div>
-                    <img src={require('../../assets/Cinema.png')} />
+                    <img src={require('../../assets/Cinema.webp')} />
                 </div>
             )
         }
@@ -117,7 +117,7 @@ export const Category = () => {
                             <p>{t('THEATRE')}</p>
                         </div>
                     </div>
-                    <img src={require('../../assets/Teater.png')} />
+                    <img src={require('../../assets/Teater.webp')} />
                 </div>
             )
         }
@@ -129,7 +129,7 @@ export const Category = () => {
                             <p>ՍՊՈՐՏ</p>
                         </div>
                     </div>
-                    <img src={require('../../assets/Oter.png')} />
+                    <img src={require('../../assets/Oter.webp')} />
                 </div>
             )
         }
@@ -309,20 +309,20 @@ export const Category = () => {
                                     setHeight(!height)
                                     setOpenCalendar(false)
                                 }} className='CalendarDivCalendar'>
-                                    <p>{hallName ? truncateText(hallName) : truncateText(hallDefaultName)}</p>
+                                    <p>{hallName ? (hallName) : (hallDefaultName)}</p>
                                     <div style={{ height: height ? 200 : 0 }} className='CalendarDivCalendaR'>
                                         <div
                                             onClick={() => {
                                                 setHallId('')
                                                 setHallName(hallDefaultName)
                                             }}
-                                            className='getCategoryDiv'>{truncateText(hallDefaultName)}</div>
+                                            className='getCategoryDiv'>{(hallDefaultName)}</div>
                                         {height && getCategory.hall.map((elm, i) => {
                                             if (language == 'en') {
                                                 return <div onClick={() => {
                                                     setHallId(elm._id)
                                                     setHallName(elm.hall_en)
-                                                }} className='getCategoryDiv'>{truncateText(elm.hall_en)}</div>
+                                                }} className='getCategoryDiv'>{(elm.hall_en)}</div>
                                             }
                                             else if (language == 'am') {
                                                 return <div
@@ -330,7 +330,7 @@ export const Category = () => {
                                                         setHallId(elm._id)
                                                         setHallName(elm.hall)
                                                     }}
-                                                    className='getCategoryDiv'>{truncateText(elm.hall)}</div>
+                                                    className='getCategoryDiv'>{(elm.hall)}</div>
                                             }
                                             else if (language == 'ru') {
                                                 return <div
@@ -338,7 +338,7 @@ export const Category = () => {
                                                         setHallId(elm._id)
                                                         setHallName(elm.hall_ru)
                                                     }}
-                                                    className='getCategoryDiv'>{truncateText(elm.hall_ru)}</div>
+                                                    className='getCategoryDiv'>{(elm.hall_ru)}</div>
                                             }
                                         })}
                                     </div>

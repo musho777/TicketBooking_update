@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import 'react-date-range/dist/theme/default.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { GetAllEvents, GetAllEvents2, GetHall, SubCategory } from '../../services/action/action'
+import { GetAllEvents2, GetHall, SubCategory } from '../../services/action/action'
 import { CategoryMenu } from '../../components/CategoryMenu'
 import { Calendar } from '../../components/Calendar'
 import { ClearFiltr, Emoji, EmojiM } from '../../components/svg'
@@ -43,7 +43,6 @@ export const AllEventss = () => {
     }, [getCategory])
 
     useEffect(() => {
-        dispatch(GetHall())
         let date = new Date(selectedDate[0].endDate)
         let startDate = new Date(selectedDate[0].startDate)
         let statDate = ''
@@ -56,17 +55,17 @@ export const AllEventss = () => {
         }
         if (subcategoryId == '') {
             dispatch(GetAllEvents2(page, {
-                subcategory: '',
+                categoryId: '',
                 date: {
                     startDate: statDate,
                     endDate
-                }, hall: hallId
+                }, hallId: hallId
             }))
         }
         else {
             dispatch(GetAllEvents2(page, {
                 category: subcategoryId,
-                // subcategory: 'all',
+                categoryId: subcategoryId,
                 date: {
                     startDate: statDate,
                     endDate
@@ -79,6 +78,7 @@ export const AllEventss = () => {
     useEffect(() => {
         setData([])
         setPage(1)
+        dispatch(GetHall())
         window.scrollTo({ top: 0, behavior: 'smooth' });
         dispatch(SubCategory())
         setActiveButton('Բոլորը')
@@ -98,7 +98,6 @@ export const AllEventss = () => {
             combinedArray = data
         }
         if (events.events.events?.length > 0) {
-            console.log(events.events.events, 'events.events.events')
             combinedArray = item.concat(events.events.events);
         }
         setData(combinedArray)
@@ -202,118 +201,119 @@ export const AllEventss = () => {
             return text;
         }
     }
-    console.log(events.events.events
-        , 'events.')
     return (
         <div className='CategoryScreen'>
-            {events?.loading && page == 1 ?
-                <div className='loading'>
-                    <PuffLoader color="#FEE827" />
-                </div> :
-                <div id='CategoryScreen1' className='container'>
-                    <div onClick={() => ClearFunction()} className='ClearFilterDiv'>
-                        {(hallId || selectedDate[0].startDate) && <div className='ClearFilter'>
-                            <p>{t('Cancel')}</p>
-                            <ClearFiltr />
-                        </div>}
-                    </div>
-                    <div className='FilterDiv'>
-                        <div className='CalendarDiv'>
-                            <div >
-                                <p className='FilterDivTitle'>{t('Date')}</p>
-                                <div className='CalendarWrapper'>
-                                    <div onClick={(e) => {
-                                        e.preventDefault()
-                                        e.stopPropagation()
-                                        setOpenCalendar(true)
-                                    }
-                                    } className='CalendarDivCalendar'>
-                                        <p>{date}</p>
-                                    </div>
-                                    <div className='CalendarDiV'>
-                                        {openCalendar && <Calendar
-                                            selectedDate={selectedDate}
-                                            setSelectedDate={(e) => setSelectedDate(e)}
-                                            close={() => dispatch(openCalendar(false))}
-                                        />}
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <p className='FilterDivTitle'>{t('Place1')}</p>
-                                <div style={{ borderBottomLeftRadius: height && 0, borderBottomRightRadius: height && 0 }} onClick={(e) => {
+
+            <div id='CategoryScreen1' className='container'>
+                <div onClick={() => ClearFunction()} className='ClearFilterDiv'>
+                    {(hallId || selectedDate[0].startDate) && <div className='ClearFilter'>
+                        <p>{t('Cancel')}</p>
+                        <ClearFiltr />
+                    </div>}
+                </div>
+                <div className='FilterDiv'>
+                    <div className='CalendarDiv'>
+                        <div >
+                            <p className='FilterDivTitle'>{t('Date')}</p>
+                            <div className='CalendarWrapper'>
+                                <div onClick={(e) => {
                                     e.preventDefault()
                                     e.stopPropagation()
-                                    setHeight(!height)
-                                }} className='CalendarDivCalendar'>
-                                    <p>{hallName ? truncateText(hallName) : truncateText(hallDefaultName)}</p>
-                                    <div style={{ height: height ? 200 : 0 }} className='CalendarDivCalendaR'>
-                                        <div
-                                            onClick={() => {
-                                                setHallId('')
-                                                setHallName(hallDefaultName)
-                                            }}
-                                            className='getCategoryDiv'>{truncateText(hallDefaultName)}</div>
-                                        {height && getCategory?.hall.map((elm, i) => {
-                                            if (language == 'en') {
-                                                return <div onClick={() => {
-                                                    setHallId(elm?._id)
-                                                    setHallName(elm?.hall_en)
-                                                }} className='getCategoryDiv'>{truncateText(elm?.hall_en)}</div>
-                                            }
-                                            else if (language == 'am') {
-                                                return <div
-                                                    onClick={() => {
-                                                        setHallId(elm?._id)
-                                                        setHallName(elm?.hall)
-                                                    }}
-                                                    className='getCategoryDiv'>{truncateText(elm?.hall)}</div>
-                                            }
-                                            else if (language == 'ru') {
-                                                return <div
-                                                    onClick={() => {
-                                                        setHallId(elm?._id)
-                                                        setHallName(elm?.hall_ru)
-                                                    }}
-                                                    className='getCategoryDiv'>{truncateText(elm?.hall_ru)}</div>
-                                            }
-                                        })}
-                                    </div>
+                                    setOpenCalendar(true)
+                                }
+                                } className='CalendarDivCalendar'>
+                                    <p>{date}</p>
+                                </div>
+                                <div className='CalendarDiV'>
+                                    {openCalendar && <Calendar
+                                        selectedDate={selectedDate}
+                                        setSelectedDate={(e) => setSelectedDate(e)}
+                                        close={() => dispatch(openCalendar(false))}
+                                    />}
                                 </div>
                             </div>
                         </div>
-                        <div className='FilterDivButton'>
-                            {getSubCategory.length > 0 && <p className='FilterDivTitle'>{t('Genre')}</p>}
-                            <div >
-                                {getSubCategory.length > 0 &&
-                                    <button
+                        <div>
+                            <p className='FilterDivTitle'>{t('Place1')}</p>
+                            <div style={{ borderBottomLeftRadius: height && 0, borderBottomRightRadius: height && 0 }} onClick={(e) => {
+                                e.preventDefault()
+                                e.stopPropagation()
+                                setHeight(!height)
+                            }} className='CalendarDivCalendar'>
+                                <p>{hallName ? (hallName) : (hallDefaultName)}</p>
+                                <div style={{ height: height ? 200 : 0 }} className='CalendarDivCalendaR'>
+                                    <div
                                         onClick={() => {
-                                            setActiveButton('Բոլորը')
-                                            setSubcategoryId('')
-                                        }} id={activeButton == 'Բոլորը' && 'active'} className='SubCategoryButton'
-                                    >
-                                        {t('All')}
-                                    </button>}
-                                {getSubCategory?.map((elm, i) => {
-                                    let name = ''
-                                    if (language === 'am') {
-                                        name = elm?.name
-                                    }
-                                    else if (language === 'en') {
-                                        name = elm?.name_en
-                                    }
-                                    else if (language === 'ru') {
-                                        name = elm?.name_ru
-                                    }
-                                    return <button onClick={() => {
+                                            setHallId('')
+                                            setHallName(hallDefaultName)
+                                        }}
+                                        className='getCategoryDiv'>{(hallDefaultName)}</div>
+                                    {height && getCategory?.hall.map((elm, i) => {
+                                        if (language == 'en') {
+                                            return <div onClick={() => {
+                                                setHallId(elm?._id)
+                                                setHallName(elm?.hall_en)
+                                            }} className='getCategoryDiv'>{(elm?.hall_en)}</div>
+                                        }
+                                        else if (language == 'am') {
+                                            return <div
+                                                onClick={() => {
+                                                    setHallId(elm?._id)
+                                                    setHallName(elm?.hall)
+                                                }}
+                                                className='getCategoryDiv'>{(elm?.hall)}</div>
+                                        }
+                                        else if (language == 'ru') {
+                                            return <div
+                                                onClick={() => {
+                                                    setHallId(elm?._id)
+                                                    setHallName(elm?.hall_ru)
+                                                }}
+                                                className='getCategoryDiv'>{(elm?.hall_ru)}</div>
+                                        }
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='FilterDivButton'>
+                        {getSubCategory.length > 0 && <p className='FilterDivTitle'>{t('Genre')}</p>}
+                        <div >
+                            {getSubCategory.length > 0 &&
+                                <button
+                                    onClick={() => {
+                                        setActiveButton('Բոլորը')
+                                        setSubcategoryId('')
+                                    }} id={activeButton == 'Բոլորը' && 'active'} className='SubCategoryButton'
+                                >
+                                    {t('All')}
+                                </button>}
+                            {getSubCategory?.map((elm, i) => {
+                                let name = ''
+                                if (language === 'am') {
+                                    name = elm?.name
+                                }
+                                else if (language === 'en') {
+                                    name = elm?.name_en
+                                }
+                                else if (language === 'ru') {
+                                    name = elm?.name_ru
+                                }
+                                return <button
+                                    disabled={events?.loading}
+                                    onClick={() => {
                                         setActiveButton(elm?.name)
                                         setSubcategoryId(elm?._id)
                                     }} id={activeButton == elm?.name && 'active'} className='SubCategoryButton'>{name}</button>
-                                })}
-                            </div>
-
+                            })}
                         </div>
+
                     </div>
+                </div>
+                {events?.loading && page == 1 ?
+                    <div className='loading'>
+                        <PuffLoader color="#FEE827" />
+                    </div> :
                     <div className='CategoryScreen1Div'>
                         <AllEventsWrapper loading={events.loading} showButton={page < events.events.totalPages} setPage={(e) => setPage(e)} page={page} data={data} />
                         {!events.events.events?.length > 0 && !events.loading &&
@@ -328,11 +328,8 @@ export const AllEventss = () => {
                             </div>
                         }
                     </div>
-                </div>
-            }
-            {/* <div className='container'>
-                <ExpectedEvents />
-            </div> */}
+                }
+            </div>
         </div>
     )
 }
