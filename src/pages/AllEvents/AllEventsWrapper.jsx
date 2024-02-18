@@ -15,7 +15,7 @@ export const AllEventsWrapper = ({ loading, data, setPage, page, showButton }) =
         <div className='EventTitle'>
             <h2>{t('AllEvents')}</h2>
         </div>
-        <div id='CategoryCardWrapper' className="TopEventWrapper">
+        <div id='CategoryCardWrapper' className="AllTopEventWrapper">
             {
                 data.length > 0 && data.map((elm, i) => {
                     const dateObject = new Date(elm?.date);

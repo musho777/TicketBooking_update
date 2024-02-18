@@ -199,6 +199,7 @@ export const Category = () => {
             combinedArray = data
         }
         if (events.events.sessions?.length > 0) {
+            console.log('111')
             combinedArray = item.concat(events.events.sessions);
         }
         setData(combinedArray)
@@ -250,21 +251,6 @@ export const Category = () => {
             setHallDefaultName('All halls')
         }
     }
-    function truncateText(text) {
-        if (text?.length > 13 && window.innerWidth > 768) {
-
-
-            return text.substring(0, 10) + '...';
-
-        }
-        else if (text?.length > 30 && window.innerWidth < 768) {
-            return text.substring(0, 30) + '...';
-        }
-        else {
-            return text;
-        }
-    }
-
     return (
         <div className='CategoryScreen'>
             <div className='CategoryScreenBaner'>

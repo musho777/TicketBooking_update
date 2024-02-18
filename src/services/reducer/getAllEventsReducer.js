@@ -1,6 +1,6 @@
 const store = {
     events: [],
-    loading: true,
+    loading: false,
     error: '',
     hall: []
 }

@@ -112,6 +112,16 @@ export const BuyTickets = () => {
     });
 
 
+    useEffect(() => {
+        if (event?.sessions[0]?.hallId?._id == '65ce79ca603a99ef4d2ba0a3') {
+            setValue({
+                scale: 0.206,
+                translation: { x: 100, y: 0 }
+            })
+        }
+    }, [event])
+
+
     const handleZoomOut = () => {
         if (value.scale - 0.1 > 0.1)
             setValue({
@@ -251,8 +261,7 @@ export const BuyTickets = () => {
                         getSinglPage={getSinglPage}
                         paronyanSeans={paronyanSeans}
                         open={open}
-                        isParonyanEvent={getSinglPage.events?.event
-                            ?.isParonyanEvent}
+                        isParonyanEvent={getSinglPage.events?.event?.isParonyanEvent}
                     />
                 </div>
             </div>

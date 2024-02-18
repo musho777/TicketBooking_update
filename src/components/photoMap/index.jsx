@@ -39,7 +39,7 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
 
 
 
-    const getPrice = (y, i, x, price, row, id, parterre, amphitheater, lodge) => {
+    const getPrice = (y, i, x, price, row, id, parterre, amphitheater, lodge, section) => {
         setPosition({ x, y })
         let seat = 0
         const result = coordinatesState.filter((elm) => elm.y === y);
@@ -73,19 +73,27 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
             amphitheater: amphitheater,
             lodge: lodge,
             eventId: eventId,
+            section: section
         })
         setShowModal(true)
     }
 
 
-    const addTicket = (y, i, x, price, row, id, parterre, amphitheater, lodge) => {
+    const addTicket = (y, i, x, price, row, id, parterre, amphitheater, lodge, section) => {
         let data = [...coordinatesState]
         let seat = 0
         const result = coordinatesState.filter((elm) => elm.y === y);
         const index = result.findIndex((elm) => elm.x === x)
         seat = result.length - (result.length - index - 1)
         let item = {}
-        data[i].active = !data[i].active
+        let data1 = [...tickets]
+        if (data1.findIndex((elm) => elm.seatId == i) < 0) {
+            data[i].active = true
+        }
+        else {
+            data[i].active = false
+        }
+        // data[i].active = !data[i].active
         if (windowSize.width <= 768) {
             setShowModal(true)
             setTimeout(() => {
@@ -101,6 +109,7 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
                 amphitheater: amphitheater,
                 lodge: lodge,
                 eventId: eventId,
+                section: section,
             }
         }
         else {
@@ -126,7 +135,6 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
             canvas.height = image.height
             const ctx = canvas.getContext('2d')
             ctx.drawImage(image, 0, 0, image.width, image.height)
-
             const imageData = ctx.getImageData(0, 0, image.width, image.height)
             const pixelData = imageData.data
             const coordinates = []
@@ -488,7 +496,7 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
                     return <button
                         key={i}
                         onMouseOver={() => {
-                            getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                            getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section)
                             setActiveButton(i)
                         }}
                         style={
@@ -510,19 +518,19 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
                         }}
                         onClick={() => {
                             if (windowSize.width > 768) {
-                                addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                                addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section)
                             }
                         }
                         }
                         onTouchStart={() => {
-                            if (windowSize.width < 768) {
+                            if (windowSize.width <= 768) {
                                 getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
                                 setActiveButton(i)
                             }
                         }}
                         onTouchEnd={() => {
-                            if (windowSize.width < 768) {
-                                addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                            if (windowSize.width <= 768) {
+                                addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section)
                             }
                         }}
                     >
@@ -657,9 +665,10 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
                 showModal &&
                 <div
                     onMouseOver={(e) => {
-                        e.preventDefault()
-                        e.stopPropagation()
                         setShowModal(true)
+                    }}
+                    onMouseLeave={() => {
+                        setShowModal(false)
                     }}
                     style={{
                         top: position.y - (120 + (

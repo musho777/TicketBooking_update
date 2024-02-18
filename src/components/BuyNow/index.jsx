@@ -7,7 +7,6 @@ import axios from 'axios'
 import { PuffLoader } from 'react-spinners'
 import CryptoJS, { MD5 } from 'crypto-js'
 import { Buffer } from "buffer"
-import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { useTranslation } from 'react-i18next'
 import InputMask from 'react-input-mask';
@@ -415,7 +414,9 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
                     }, 3000)
                 }
                 else {
-                    window.open(`/`)
+                    alert(t('Pleasetryagainlater'))
+                    setLoading(false)
+                    // window.open(`/`)
                 }
             })
             .catch((error) => {

@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ActiveArrowSvg, ArrowSvg, MobileMenu, PhonSvg, SearchMobileSvg, SearchSvg, WorldSvg } from '../svg'
-import { ChangeLanguageAction, GetCategory, SearchAction } from '../../services/action/action'
+import { ChangeLanguageAction, GetCategory, GetFeedback, SearchAction } from '../../services/action/action'
 import { MobileMenuComponent } from '../MobileMenu'
 import { useTranslation } from 'react-i18next'
 
@@ -12,6 +12,8 @@ export const Header = () => {
     const navigation = useNavigate()
     const search = useSelector((st) => st.search)
     const getCategory = useSelector((st) => st.getCategory)
+    const events = useSelector((st) => st.getAllEventes)
+
     const { language } = useSelector((st) => st.StaticReducer)
     const inputRef = useRef(null);
     const [openLanguage, setOpenLanguage] = useState(false)
@@ -20,10 +22,10 @@ export const Header = () => {
     const [openMenuMobile, setOpenMenuMobile] = useState(false)
     const [searchResult, setSearchResult] = useState(false)
     const [searchResultData, setSearchResultDAta] = useState(false)
+
+    const [disable, setDisable] = useState(false)
     const { t } = useTranslation()
-
     const searchRef = useRef()
-
 
     const feedback = useSelector(st => st.Event_reducer.feedback)
     const [openMobilsSearch, setOpenMobileSearch] = useState(false)
@@ -38,13 +40,15 @@ export const Header = () => {
     });
 
     useEffect(() => {
+        setDisable(!events.loading)
+    }, [events.loading])
+
+    useEffect(() => {
         if (openMenuMobile) {
             document.body.style.overflow = 'hidden';
         }
         else {
             document.body.style.overflow = 'scroll';
-
-
         }
     }, [openMenuMobile])
 
@@ -72,7 +76,8 @@ export const Header = () => {
 
     useEffect(() => {
         dispatch(GetCategory())
-    }, [dispatch])
+        dispatch(GetFeedback())
+    }, [])
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -126,9 +131,6 @@ export const Header = () => {
                             else if (elm._id === "65ce7c4a25c566d4e297d30b") {
                                 bg = '#D943FF'
                             }
-                            // else if (elm._id === "65ce7e9f25c566d4e297d47c") {
-                            //     bg = '#11AEF4'
-                            // }
                             else if (elm._id === "65ce7d9d25c566d4e297d3f3") {
                                 bg = '#FFCE00'
                             }
@@ -148,7 +150,11 @@ export const Header = () => {
                                 title = elm.name_ru
                             }
                             return <div className='CateogryName'>
-                                <p onClick={() => window.location = `/Category/${elm?.name}/${elm?._id}`} className='Headertext'>{title}</p>
+                                <p onClick={() => {
+                                    disable &&
+                                        navigation(`/Category/${elm?.name}/${elm?._id}`)
+                                }
+                                } className='Headertext'>{title}</p>
                                 <div
                                     className={id == elm?._id ? 'activeHeader' : 'notActiveHeader'}
 

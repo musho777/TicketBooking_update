@@ -18,12 +18,6 @@ export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent,
             onChange={handleChange}
             maxScale={1.5}
         >
-            {/* <div
-                style={{ top: position.y - 150, left: position.x - 130, position: 'absolute' }} className='parter'>
-                <p className='Teatertext'>շարք {activeTicket.row}</p>
-                <p className='Teatertext'>տեղ {activeTicket.seat}</p>
-                <p className='Teatertext'>{activeTicket.price} դրամ</p>
-            </div> */}
             {(event?.sessions[0]?.hallId?._id === '65ce79a7603a99ef4d2ba0a1' && !isParonyanEvent) &&
 
                 <PhotoCoordinatesByColor
@@ -69,9 +63,11 @@ export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent,
                 event?.sessions[0]?.hallId?._id == '65ce7a13603a99ef4d2ba0a7' &&
                 <Paronyan
                     value={value}
+                    eventId={getSinglPage.events.event?._id}
                     soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets}
                     grupID={getSinglPage.events?.event?.ParonyanGroup_id}
                     Timeline={paronyanSeans}
+                    sessionID={getSinglPage.events.event?.sessions[0]._id}
                     id={getSinglPage?.events?.event?.ParonyanEventId}
                     open={open}
                     activeTicket={activeTicket}

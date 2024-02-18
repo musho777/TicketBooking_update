@@ -28,6 +28,17 @@
     flex-direction: column;
 }
 
+.AllTopEventWrapper {
+    flex-wrap: wrap;
+    display: flex;
+    gap: 2.66%;
+}
+
+.AllTopEventWrapper>div {
+    margin-bottom: 2.66%;
+}
+
+
 #AllEventsInfo {
     height: 100%;
 }
@@ -143,4 +154,41 @@
 
 .rdrDefinedRangesWrapper {
     display: none;
+}
+
+@media screen and (min-width: 1440px) {
+    .AllTopEventWrapper {
+        gap: 5%;
+    }
+
+    .AllTopEventWrapper>div {
+        margin-bottom: 5%;
+    }
+}
+
+@media screen and (min-width:1330px) and (max-width: 1550px) {
+    .AllTopEventWrapper {
+        gap: calc((100% - 1040px) / 3);
+    }
+
+}
+
+@media screen and (min-width:905px) and (max-width: 1330px) {
+    .AllTopEventWrapper {
+        gap: calc((100% - 780px) / 2);
+    }
+
+    #AllEventsWrapperCard {
+        width: 260px !important;
+    }
+}
+
+@media screen and (max-width: 904px) {
+    .AllTopEventWrapper {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-y: scroll;
+        padding: 15px 0;
+    }
+
 }

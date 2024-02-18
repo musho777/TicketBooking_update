@@ -102,16 +102,6 @@ export const SearchAction = (search) => {
     }
 }
 
-export const EventValidity = () => {
-    return (dispatch) => {
-        axios.get(`${process.env.REACT_APP_HOSTNAME}/eventValidity`)
-            .then((r) => {
-                dispatch(eventValidity(r.data?.valid))
-            })
-            .catch((error) => {
-            })
-    }
-}
 
 export const GetAllEvents = (page, data) => {
 

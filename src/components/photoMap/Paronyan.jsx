@@ -66,461 +66,13 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
         };
     }, []);
 
-    // const [seansArr, setSeansArr] = useState([
-    //     { "id": 645, "price": "", "row": 1, "seat": 1, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 643, "price": "", "row": 1, "seat": 2, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 641, "price": "", "row": 1, "seat": 3, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 639, "price": "", "row": 1, "seat": 4, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 637, "price": "", "row": 1, "seat": 5, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 635, "price": "", "row": 1, "seat": 6, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 634, "price": "", "row": 1, "seat": 7, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 633, "price": "", "row": 1, "seat": 8, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 632, "price": "", "row": 1, "seat": 9, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 631, "price": "", "row": 1, "seat": 10, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 630, "price": "", "row": 1, "seat": 11, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 636, "price": "", "row": 1, "seat": 12, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 638, "price": "", "row": 1, "seat": 13, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 640, "price": "", "row": 1, "seat": 14, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 642, "price": "", "row": 1, "seat": 15, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 644, "price": "", "row": 1, "seat": 16, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 646, "price": "", "row": 1, "seat": 17, "LevelId": 1, "balcony": true, "active": false },
-
-
-    //     { "id": 628, "price": "", "row": 2, "seat": 1, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 626, "price": "", "row": 2, "seat": 2, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 624, "price": "", "row": 2, "seat": 3, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 622, "price": "", "row": 2, "seat": 4, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 620, "price": "", "row": 2, "seat": 5, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 618, "price": "", "row": 2, "seat": 6, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 616, "price": "", "row": 2, "seat": 7, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 614, "price": "", "row": 2, "seat": 8, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 612, "price": "", "row": 2, "seat": 9, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 611, "price": "", "row": 2, "seat": 10, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 610, "price": "", "row": 2, "seat": 11, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 609, "price": "", "row": 2, "seat": 12, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 608, "price": "", "row": 2, "seat": 13, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 607, "price": "", "row": 2, "seat": 14, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 613, "price": "", "row": 2, "seat": 15, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 615, "price": "", "row": 2, "seat": 16, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 617, "price": "", "row": 2, "seat": 17, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 619, "price": "", "row": 2, "seat": 18, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 621, "price": "", "row": 2, "seat": 19, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 623, "price": "", "row": 2, "seat": 20, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 625, "price": "", "row": 2, "seat": 21, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 627, "price": "", "row": 2, "seat": 22, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 629, "price": "", "row": 2, "seat": 23, "LevelId": 1, "balcony": true, "active": false },
-
-
-    //     { "id": 606, "price": "", "row": 3, "seat": 1, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 604, "price": "", "row": 3, "seat": 2, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 602, "price": "", "row": 3, "seat": 3, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 600, "price": "", "row": 3, "seat": 4, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 598, "price": "", "row": 3, "seat": 5, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 596, "price": "", "row": 3, "seat": 6, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 594, "price": "", "row": 3, "seat": 7, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 592, "price": "", "row": 3, "seat": 8, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 590, "price": "", "row": 3, "seat": 9, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 588, "price": "", "row": 3, "seat": 10, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 587, "price": "", "row": 3, "seat": 11, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 586, "price": "", "row": 3, "seat": 12, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 585, "price": "", "row": 3, "seat": 13, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 584, "price": "", "row": 3, "seat": 14, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 583, "price": "", "row": 3, "seat": 15, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 589, "price": "", "row": 3, "seat": 16, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 591, "price": "", "row": 3, "seat": 17, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 593, "price": "", "row": 3, "seat": 18, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 595, "price": "", "row": 3, "seat": 19, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 597, "price": "", "row": 3, "seat": 20, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 599, "price": "", "row": 3, "seat": 21, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 601, "price": "", "row": 3, "seat": 22, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 603, "price": "", "row": 3, "seat": 23, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 605, "price": "", "row": 3, "seat": 24, "LevelId": 1, "balcony": true, "active": false },
-
-
-    //     { "id": 582, "price": "", "row": 4, "seat": 1, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 580, "price": "", "row": 4, "seat": 2, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 578, "price": "", "row": 4, "seat": 3, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 576, "price": "", "row": 4, "seat": 4, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 574, "price": "", "row": 4, "seat": 5, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 572, "price": "", "row": 4, "seat": 6, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 570, "price": "", "row": 4, "seat": 7, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 568, "price": "", "row": 4, "seat": 8, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 566, "price": "", "row": 4, "seat": 9, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 564, "price": "", "row": 4, "seat": 10, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 563, "price": "", "row": 4, "seat": 11, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 562, "price": "", "row": 4, "seat": 12, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 561, "price": "", "row": 4, "seat": 13, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 560, "price": "", "row": 4, "seat": 14, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 559, "price": "", "row": 4, "seat": 15, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 565, "price": "", "row": 4, "seat": 16, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 567, "price": "", "row": 4, "seat": 17, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 569, "price": "", "row": 4, "seat": 18, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 571, "price": "", "row": 4, "seat": 19, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 573, "price": "", "row": 4, "seat": 20, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 575, "price": "", "row": 4, "seat": 21, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 577, "price": "", "row": 4, "seat": 22, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 579, "price": "", "row": 4, "seat": 23, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 581, "price": "", "row": 4, "seat": 24, "LevelId": 1, "balcony": true, "active": false },
-
-    //     { "id": 558, "price": "", "row": 5, "seat": 1, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 556, "price": "", "row": 5, "seat": 2, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 554, "price": "", "row": 5, "seat": 3, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 552, "price": "", "row": 5, "seat": 4, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 550, "price": "", "row": 5, "seat": 5, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 548, "price": "", "row": 5, "seat": 6, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 546, "price": "", "row": 5, "seat": 7, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 544, "price": "", "row": 5, "seat": 8, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 542, "price": "", "row": 5, "seat": 9, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 540, "price": "", "row": 5, "seat": 10, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 539, "price": "", "row": 5, "seat": 11, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 538, "price": "", "row": 5, "seat": 12, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 537, "price": "", "row": 5, "seat": 13, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 536, "price": "", "row": 5, "seat": 14, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 535, "price": "", "row": 5, "seat": 15, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 541, "price": "", "row": 5, "seat": 16, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 543, "price": "", "row": 5, "seat": 17, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 545, "price": "", "row": 5, "seat": 18, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 547, "price": "", "row": 5, "seat": 19, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 549, "price": "", "row": 5, "seat": 20, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 551, "price": "", "row": 5, "seat": 21, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 553, "price": "", "row": 5, "seat": 22, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 555, "price": "", "row": 5, "seat": 23, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 557, "price": "", "row": 5, "seat": 24, "LevelId": 1, "balcony": true, "active": false },
-
-    //     { "id": 534, "price": "", "row": 6, "seat": 1, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 532, "price": "", "row": 6, "seat": 2, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 530, "price": "", "row": 6, "seat": 3, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 528, "price": "", "row": 6, "seat": 4, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 526, "price": "", "row": 6, "seat": 5, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 524, "price": "", "row": 6, "seat": 6, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 522, "price": "", "row": 6, "seat": 7, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 520, "price": "", "row": 6, "seat": 8, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 518, "price": "", "row": 6, "seat": 9, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 516, "price": "", "row": 6, "seat": 10, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 514, "price": "", "row": 6, "seat": 11, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 512, "price": "", "row": 6, "seat": 12, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 510, "price": "", "row": 6, "seat": 13, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 509, "price": "", "row": 6, "seat": 14, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 511, "price": "", "row": 6, "seat": 15, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 513, "price": "", "row": 6, "seat": 16, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 515, "price": "", "row": 6, "seat": 17, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 517, "price": "", "row": 6, "seat": 18, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 519, "price": "", "row": 6, "seat": 19, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 521, "price": "", "row": 6, "seat": 20, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 523, "price": "", "row": 6, "seat": 21, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 525, "price": "", "row": 6, "seat": 22, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 527, "price": "", "row": 6, "seat": 23, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 529, "price": "", "row": 6, "seat": 24, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 531, "price": "", "row": 6, "seat": 25, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 533, "price": "", "row": 6, "seat": 26, "LevelId": 1, "balcony": true, "active": false },
-
-    //     { "id": 508, "price": "", "row": 7, "seat": 1, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 506, "price": "", "row": 7, "seat": 2, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 504, "price": "", "row": 7, "seat": 3, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 502, "price": "", "row": 7, "seat": 4, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 500, "price": "", "row": 7, "seat": 5, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 498, "price": "", "row": 7, "seat": 6, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 496, "price": "", "row": 7, "seat": 7, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 494, "price": "", "row": 7, "seat": 8, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 492, "price": "", "row": 7, "seat": 9, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 490, "price": "", "row": 7, "seat": 10, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 488, "price": "", "row": 7, "seat": 11, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 486, "price": "", "row": 7, "seat": 12, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 484, "price": "", "row": 7, "seat": 13, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 483, "price": "", "row": 7, "seat": 14, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 485, "price": "", "row": 7, "seat": 15, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 487, "price": "", "row": 7, "seat": 16, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 489, "price": "", "row": 7, "seat": 17, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 491, "price": "", "row": 7, "seat": 18, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 493, "price": "", "row": 7, "seat": 19, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 495, "price": "", "row": 7, "seat": 20, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 497, "price": "", "row": 7, "seat": 21, "LevelId": 1, "balcony": true, "active": false },
-
-    //     { "id": 499, "price": "", "row": 7, "seat": 22, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 501, "price": "", "row": 7, "seat": 23, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 503, "price": "", "row": 7, "seat": 24, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 505, "price": "", "row": 7, "seat": 25, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 507, "price": "", "row": 7, "seat": 26, "LevelId": 1, "balcony": true, "active": false },
-
-
-    //     { "id": 482, "price": "", "row": 8, "seat": 1, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 480, "price": "", "row": 8, "seat": 2, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 478, "price": "", "row": 8, "seat": 3, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 476, "price": "", "row": 8, "seat": 4, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 474, "price": "", "row": 8, "seat": 5, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 472, "price": "", "row": 8, "seat": 6, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 470, "price": "", "row": 8, "seat": 7, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 468, "price": "", "row": 8, "seat": 8, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 466, "price": "", "row": 8, "seat": 9, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 464, "price": "", "row": 8, "seat": 10, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 462, "price": "", "row": 8, "seat": 11, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 460, "price": "", "row": 8, "seat": 12, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 458, "price": "", "row": 8, "seat": 13, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 457, "price": "", "row": 8, "seat": 14, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 459, "price": "", "row": 8, "seat": 15, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 461, "price": "", "row": 8, "seat": 16, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 463, "price": "", "row": 8, "seat": 17, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 465, "price": "", "row": 8, "seat": 18, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 467, "price": "", "row": 8, "seat": 19, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 469, "price": "", "row": 8, "seat": 20, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 471, "price": "", "row": 8, "seat": 21, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 473, "price": "", "row": 8, "seat": 22, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 475, "price": "", "row": 8, "seat": 23, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 477, "price": "", "row": 8, "seat": 24, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 479, "price": "", "row": 8, "seat": 25, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 481, "price": "", "row": 8, "seat": 26, "LevelId": 1, "balcony": true, "active": false },
-
-
-    //     { "id": 456, "price": "", "row": 9, "seat": 1, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 454, "price": "", "row": 9, "seat": 2, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 452, "price": "", "row": 9, "seat": 3, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 450, "price": "", "row": 9, "seat": 4, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 448, "price": "", "row": 9, "seat": 5, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 446, "price": "", "row": 9, "seat": 6, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 444, "price": "", "row": 9, "seat": 7, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 442, "price": "", "row": 9, "seat": 8, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 440, "price": "", "row": 9, "seat": 9, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 438, "price": "", "row": 9, "seat": 10, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 436, "price": "", "row": 9, "seat": 11, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 434, "price": "", "row": 9, "seat": 12, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 432, "price": "", "row": 9, "seat": 13, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 431, "price": "", "row": 9, "seat": 14, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 433, "price": "", "row": 9, "seat": 15, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 435, "price": "", "row": 9, "seat": 16, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 437, "price": "", "row": 9, "seat": 17, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 439, "price": "", "row": 9, "seat": 18, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 441, "price": "", "row": 9, "seat": 19, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 443, "price": "", "row": 9, "seat": 20, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 445, "price": "", "row": 9, "seat": 21, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 447, "price": "", "row": 9, "seat": 22, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 449, "price": "", "row": 9, "seat": 23, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 451, "price": "", "row": 9, "seat": 24, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 453, "price": "", "row": 9, "seat": 25, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 455, "price": "", "row": 9, "seat": 26, "LevelId": 1, "balcony": true, "active": false },
-
-
-    //     { "id": 430, "price": "", "row": 10, "seat": 1, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 428, "price": "", "row": 10, "seat": 2, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 426, "price": "", "row": 10, "seat": 3, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 424, "price": "", "row": 10, "seat": 4, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 422, "price": "", "row": 10, "seat": 5, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 420, "price": "", "row": 10, "seat": 6, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 418, "price": "", "row": 10, "seat": 7, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 416, "price": "", "row": 10, "seat": 8, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 414, "price": "", "row": 10, "seat": 9, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 412, "price": "", "row": 10, "seat": 10, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 410, "price": "", "row": 10, "seat": 11, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 408, "price": "", "row": 10, "seat": 12, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 406, "price": "", "row": 10, "seat": 13, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 405, "price": "", "row": 10, "seat": 14, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 407, "price": "", "row": 10, "seat": 15, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 409, "price": "", "row": 10, "seat": 16, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 411, "price": "", "row": 10, "seat": 17, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 413, "price": "", "row": 10, "seat": 18, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 415, "price": "", "row": 10, "seat": 19, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 417, "price": "", "row": 10, "seat": 20, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 419, "price": "", "row": 10, "seat": 21, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 421, "price": "", "row": 10, "seat": 22, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 423, "price": "", "row": 10, "seat": 23, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 425, "price": "", "row": 10, "seat": 24, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 427, "price": "", "row": 10, "seat": 25, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 429, "price": "", "row": 10, "seat": 26, "LevelId": 1, "balcony": true, "active": false },
-
-
-    //     { "id": 404, "price": "", "row": 11, "seat": 1, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 402, "price": "", "row": 11, "seat": 2, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 400, "price": "", "row": 11, "seat": 3, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 398, "price": "", "row": 11, "seat": 4, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 396, "price": "", "row": 11, "seat": 5, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 394, "price": "", "row": 11, "seat": 6, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 392, "price": "", "row": 11, "seat": 7, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 390, "price": "", "row": 11, "seat": 8, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 388, "price": "", "row": 11, "seat": 9, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 386, "price": "", "row": 11, "seat": 10, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 384, "price": "", "row": 11, "seat": 11, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 382, "price": "", "row": 11, "seat": 12, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 380, "price": "", "row": 11, "seat": 13, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 379, "price": "", "row": 11, "seat": 14, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 381, "price": "", "row": 11, "seat": 15, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 383, "price": "", "row": 11, "seat": 16, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 385, "price": "", "row": 11, "seat": 17, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 387, "price": "", "row": 11, "seat": 18, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 389, "price": "", "row": 11, "seat": 19, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 391, "price": "", "row": 11, "seat": 20, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 393, "price": "", "row": 11, "seat": 21, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 395, "price": "", "row": 11, "seat": 22, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 397, "price": "", "row": 11, "seat": 23, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 399, "price": "", "row": 11, "seat": 24, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 401, "price": "", "row": 11, "seat": 25, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 403, "price": "", "row": 11, "seat": 26, "LevelId": 1, "balcony": true, "active": false },
-
-
-    //     { "id": 378, "price": "", "row": 12, "seat": 1, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 376, "price": "", "row": 12, "seat": 2, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 374, "price": "", "row": 12, "seat": 3, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 372, "price": "", "row": 12, "seat": 4, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 370, "price": "", "row": 12, "seat": 5, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 368, "price": "", "row": 12, "seat": 6, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 366, "price": "", "row": 12, "seat": 7, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 364, "price": "", "row": 12, "seat": 8, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 362, "price": "", "row": 12, "seat": 9, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 360, "price": "", "row": 12, "seat": 10, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 358, "price": "", "row": 12, "seat": 11, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 356, "price": "", "row": 12, "seat": 12, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 354, "price": "", "row": 12, "seat": 13, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 353, "price": "", "row": 12, "seat": 14, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 355, "price": "", "row": 12, "seat": 15, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 357, "price": "", "row": 12, "seat": 16, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 359, "price": "", "row": 12, "seat": 17, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 361, "price": "", "row": 12, "seat": 18, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 363, "price": "", "row": 12, "seat": 19, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 365, "price": "", "row": 12, "seat": 20, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 367, "price": "", "row": 12, "seat": 21, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 369, "price": "", "row": 12, "seat": 22, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 371, "price": "", "row": 12, "seat": 23, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 373, "price": "", "row": 12, "seat": 24, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 375, "price": "", "row": 12, "seat": 25, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 377, "price": "", "row": 12, "seat": 26, "LevelId": 1, "balcony": true, "active": false },
-
-    //     { "id": 352, "price": "", "row": 13, "seat": 1, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 350, "price": "", "row": 13, "seat": 2, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 348, "price": "", "row": 13, "seat": 3, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 346, "price": "", "row": 13, "seat": 4, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 344, "price": "", "row": 13, "seat": 5, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 342, "price": "", "row": 13, "seat": 6, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 340, "price": "", "row": 13, "seat": 7, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 338, "price": "", "row": 13, "seat": 8, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 336, "price": "", "row": 13, "seat": 9, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 334, "price": "", "row": 13, "seat": 10, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 332, "price": "", "row": 13, "seat": 11, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 330, "price": "", "row": 13, "seat": 12, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 328, "price": "", "row": 13, "seat": 13, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 327, "price": "", "row": 13, "seat": 14, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 329, "price": "", "row": 13, "seat": 15, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 331, "price": "", "row": 13, "seat": 16, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 333, "price": "", "row": 13, "seat": 17, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 335, "price": "", "row": 13, "seat": 18, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 337, "price": "", "row": 13, "seat": 19, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 339, "price": "", "row": 13, "seat": 20, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 341, "price": "", "row": 13, "seat": 21, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 343, "price": "", "row": 13, "seat": 22, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 345, "price": "", "row": 13, "seat": 23, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 347, "price": "", "row": 13, "seat": 24, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 349, "price": "", "row": 13, "seat": 25, "LevelId": 1, "balcony": true, "active": false },
-    //     { "id": 351, "price": "", "row": 13, "seat": 26, "LevelId": 1, "balcony": true, "active": false },
-
-    //     { "id": 326, "price": "", "row": 1, "seat": 1, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 324, "price": "", "row": 1, "seat": 2, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 322, "price": "", "row": 1, "seat": 3, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 320, "price": "", "row": 1, "seat": 4, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 318, "price": "", "row": 1, "seat": 5, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 316, "price": "", "row": 1, "seat": 6, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 314, "price": "", "row": 1, "seat": 7, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 312, "price": "", "row": 1, "seat": 8, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 310, "price": "", "row": 1, "seat": 9, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 308, "price": "", "row": 1, "seat": 10, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 307, "price": "", "row": 1, "seat": 11, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 306, "price": "", "row": 1, "seat": 12, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 305, "price": "", "row": 1, "seat": 13, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 309, "price": "", "row": 1, "seat": 14, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 311, "price": "", "row": 1, "seat": 15, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 313, "price": "", "row": 1, "seat": 16, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 315, "price": "", "row": 1, "seat": 17, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 317, "price": "", "row": 1, "seat": 18, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 319, "price": "", "row": 1, "seat": 19, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 321, "price": "", "row": 1, "seat": 20, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 323, "price": "", "row": 1, "seat": 21, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 325, "price": "", "row": 1, "seat": 22, "LevelId": 2, "balcony": true, "active": false },
-
-    //     { "id": 304, "price": "", "row": 2, "seat": 1, "LevelId": 2, "balcony": true, "active": false }, { "id": 302, "price": "", "row": 2, "seat": 2, "LevelId": 2, "balcony": true, "active": false }, { "id": 300, "price": "", "row": 2, "seat": 3, "LevelId": 2, "balcony": true, "active": false }, { "id": 298, "price": "", "row": 2, "seat": 4, "LevelId": 2, "balcony": true, "active": false }, { "id": 296, "price": "", "row": 2, "seat": 5, "LevelId": 2, "balcony": true, "active": false }, { "id": 294, "price": "", "row": 2, "seat": 6, "LevelId": 2, "balcony": true, "active": false }, { "id": 292, "price": "", "row": 2, "seat": 7, "LevelId": 2, "balcony": true, "active": false }, { "id": 290, "price": "", "row": 2, "seat": 8, "LevelId": 2, "balcony": true, "active": false }, { "id": 288, "price": "", "row": 2, "seat": 9, "LevelId": 2, "balcony": true, "active": false }, { "id": 286, "price": "", "row": 2, "seat": 10, "LevelId": 2, "balcony": true, "active": false }, { "id": 285, "price": "", "row": 2, "seat": 11, "LevelId": 2, "balcony": true, "active": false }, { "id": 284, "price": "", "row": 2, "seat": 12, "LevelId": 2, "balcony": true, "active": false }, { "id": 283, "price": "", "row": 2, "seat": 13, "LevelId": 2, "balcony": true, "active": false }, { "id": 287, "price": "", "row": 2, "seat": 14, "LevelId": 2, "balcony": true, "active": false }, { "id": 289, "price": "", "row": 2, "seat": 15, "LevelId": 2, "balcony": true, "active": false }, { "id": 291, "price": "", "row": 2, "seat": 16, "LevelId": 2, "balcony": true, "active": false }, { "id": 293, "price": "", "row": 2, "seat": 17, "LevelId": 2, "balcony": true, "active": false }, { "id": 295, "price": "", "row": 2, "seat": 18, "LevelId": 2, "balcony": true, "active": false }, { "id": 297, "price": "", "row": 2, "seat": 19, "LevelId": 2, "balcony": true, "active": false }, { "id": 299, "price": "", "row": 2, "seat": 20, "LevelId": 2, "balcony": true, "active": false }, { "id": 301, "price": "", "row": 2, "seat": 21, "LevelId": 2, "balcony": true, "active": false }, { "id": 303, "price": "", "row": 2, "seat": 22, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 282, "price": "", "row": 3, "seat": 1, "LevelId": 2, "balcony": true, "active": false }, { "id": 280, "price": "", "row": 3, "seat": 2, "LevelId": 2, "balcony": true, "active": false }, { "id": 278, "price": "", "row": 3, "seat": 3, "LevelId": 2, "balcony": true, "active": false }, { "id": 276, "price": "", "row": 3, "seat": 4, "LevelId": 2, "balcony": true, "active": false }, { "id": 274, "price": "", "row": 3, "seat": 5, "LevelId": 2, "balcony": true, "active": false }, { "id": 272, "price": "", "row": 3, "seat": 6, "LevelId": 2, "balcony": true, "active": false }, { "id": 270, "price": "", "row": 3, "seat": 7, "LevelId": 2, "balcony": true, "active": false }, { "id": 268, "price": "", "row": 3, "seat": 8, "LevelId": 2, "balcony": true, "active": false }, { "id": 266, "price": "", "row": 3, "seat": 9, "LevelId": 2, "balcony": true, "active": false }, { "id": 264, "price": "", "row": 3, "seat": 10, "LevelId": 2, "balcony": true, "active": false }, { "id": 263, "price": "", "row": 3, "seat": 11, "LevelId": 2, "balcony": true, "active": false }, { "id": 262, "price": "", "row": 3, "seat": 12, "LevelId": 2, "balcony": true, "active": false }, { "id": 261, "price": "", "row": 3, "seat": 13, "LevelId": 2, "balcony": true, "active": false }, { "id": 265, "price": "", "row": 3, "seat": 14, "LevelId": 2, "balcony": true, "active": false }, { "id": 267, "price": "", "row": 3, "seat": 15, "LevelId": 2, "balcony": true, "active": false }, { "id": 269, "price": "", "row": 3, "seat": 16, "LevelId": 2, "balcony": true, "active": false }, { "id": 271, "price": "", "row": 3, "seat": 17, "LevelId": 2, "balcony": true, "active": false }, { "id": 273, "price": "", "row": 3, "seat": 18, "LevelId": 2, "balcony": true, "active": false }, { "id": 275, "price": "", "row": 3, "seat": 19, "LevelId": 2, "balcony": true, "active": false }, { "id": 277, "price": "", "row": 3, "seat": 20, "LevelId": 2, "balcony": true, "active": false }, { "id": 279, "price": "", "row": 3, "seat": 21, "LevelId": 2, "balcony": true, "active": false }, { "id": 281, "price": "", "row": 3, "seat": 22, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 260, "price": "", "row": 4, "seat": 1, "LevelId": 2, "balcony": true, "active": false }, { "id": 258, "price": "", "row": 4, "seat": 2, "LevelId": 2, "balcony": true, "active": false }, { "id": 256, "price": "", "row": 4, "seat": 3, "LevelId": 2, "balcony": true, "active": false }, { "id": 254, "price": "", "row": 4, "seat": 4, "LevelId": 2, "balcony": true, "active": false }, { "id": 252, "price": "", "row": 4, "seat": 5, "LevelId": 2, "balcony": true, "active": false }, { "id": 250, "price": "", "row": 4, "seat": 6, "LevelId": 2, "balcony": true, "active": false }, { "id": 248, "price": "", "row": 4, "seat": 7, "LevelId": 2, "balcony": true, "active": false }, { "id": 246, "price": "", "row": 4, "seat": 8, "LevelId": 2, "balcony": true, "active": false }, { "id": 244, "price": "", "row": 4, "seat": 9, "LevelId": 2, "balcony": true, "active": false }, { "id": 242, "price": "", "row": 4, "seat": 10, "LevelId": 2, "balcony": true, "active": false }, { "id": 241, "price": "", "row": 4, "seat": 11, "LevelId": 2, "balcony": true, "active": false }, { "id": 240, "price": "", "row": 4, "seat": 12, "LevelId": 2, "balcony": true, "active": false }, { "id": 239, "price": "", "row": 4, "seat": 13, "LevelId": 2, "balcony": true, "active": false }, { "id": 243, "price": "", "row": 4, "seat": 14, "LevelId": 2, "balcony": true, "active": false }, { "id": 245, "price": "", "row": 4, "seat": 15, "LevelId": 2, "balcony": true, "active": false }, { "id": 247, "price": "", "row": 4, "seat": 16, "LevelId": 2, "balcony": true, "active": false }, { "id": 249, "price": "", "row": 4, "seat": 17, "LevelId": 2, "balcony": true, "active": false }, { "id": 251, "price": "", "row": 4, "seat": 18, "LevelId": 2, "balcony": true, "active": false }, { "id": 253, "price": "", "row": 4, "seat": 19, "LevelId": 2, "balcony": true, "active": false }, { "id": 255, "price": "", "row": 4, "seat": 20, "LevelId": 2, "balcony": true, "active": false }, { "id": 257, "price": "", "row": 4, "seat": 21, "LevelId": 2, "balcony": true, "active": false }, { "id": 259, "price": "", "row": 4, "seat": 22, "LevelId": 2, "balcony": true, "active": false },
-
-
-
-    //     { "id": 238, "price": "", "row": 5, "seat": 1, "LevelId": 2, "balcony": true, "active": false }, { "id": 236, "price": "", "row": 5, "seat": 2, "LevelId": 2, "balcony": true, "active": false }, { "id": 234, "price": "", "row": 5, "seat": 3, "LevelId": 2, "balcony": true, "active": false }, { "id": 232, "price": "", "row": 5, "seat": 4, "LevelId": 2, "balcony": true, "active": false }, { "id": 230, "price": "", "row": 5, "seat": 5, "LevelId": 2, "balcony": true, "active": false }, { "id": 228, "price": "", "row": 5, "seat": 6, "LevelId": 2, "balcony": true, "active": false }, { "id": 226, "price": "", "row": 5, "seat": 7, "LevelId": 2, "balcony": true, "active": false }, { "id": 224, "price": "", "row": 5, "seat": 8, "LevelId": 2, "balcony": true, "active": false }, { "id": 222, "price": "", "row": 5, "seat": 9, "LevelId": 2, "balcony": true, "active": false }, { "id": 220, "price": "", "row": 5, "seat": 10, "LevelId": 2, "balcony": true, "active": false }, { "id": 219, "price": "", "row": 5, "seat": 11, "LevelId": 2, "balcony": true, "active": false }, { "id": 218, "price": "", "row": 5, "seat": 12, "LevelId": 2, "balcony": true, "active": false }, { "id": 217, "price": "", "row": 5, "seat": 13, "LevelId": 2, "balcony": true, "active": false }, { "id": 221, "price": "", "row": 5, "seat": 14, "LevelId": 2, "balcony": true, "active": false }, { "id": 223, "price": "", "row": 5, "seat": 15, "LevelId": 2, "balcony": true, "active": false }, { "id": 225, "price": "", "row": 5, "seat": 16, "LevelId": 2, "balcony": true, "active": false }, { "id": 227, "price": "", "row": 5, "seat": 17, "LevelId": 2, "balcony": true, "active": false }, { "id": 229, "price": "", "row": 5, "seat": 18, "LevelId": 2, "balcony": true, "active": false }, { "id": 231, "price": "", "row": 5, "seat": 19, "LevelId": 2, "balcony": true, "active": false }, { "id": 233, "price": "", "row": 5, "seat": 20, "LevelId": 2, "balcony": true, "active": false }, { "id": 235, "price": "", "row": 5, "seat": 21, "LevelId": 2, "balcony": true, "active": false }, { "id": 237, "price": "", "row": 5, "seat": 22, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 216, "price": "", "row": 6, "seat": 1, "LevelId": 2, "balcony": true, "active": false }, { "id": 214, "price": "", "row": 6, "seat": 2, "LevelId": 2, "balcony": true, "active": false }, { "id": 212, "price": "", "row": 6, "seat": 3, "LevelId": 2, "balcony": true, "active": false }, { "id": 210, "price": "", "row": 6, "seat": 4, "LevelId": 2, "balcony": true, "active": false }, { "id": 208, "price": "", "row": 6, "seat": 5, "LevelId": 2, "balcony": true, "active": false }, { "id": 206, "price": "", "row": 6, "seat": 6, "LevelId": 2, "balcony": true, "active": false }, { "id": 204, "price": "", "row": 6, "seat": 7, "LevelId": 2, "balcony": true, "active": false }, { "id": 202, "price": "", "row": 6, "seat": 8, "LevelId": 2, "balcony": true, "active": false }, { "id": 200, "price": "", "row": 6, "seat": 9, "LevelId": 2, "balcony": true, "active": false }, { "id": 198, "price": "", "row": 6, "seat": 10, "LevelId": 2, "balcony": true, "active": false }, { "id": 197, "price": "", "row": 6, "seat": 11, "LevelId": 2, "balcony": true, "active": false }, { "id": 196, "price": "", "row": 6, "seat": 12, "LevelId": 2, "balcony": true, "active": false }, { "id": 195, "price": "", "row": 6, "seat": 13, "LevelId": 2, "balcony": true, "active": false }, { "id": 199, "price": "", "row": 6, "seat": 14, "LevelId": 2, "balcony": true, "active": false }, { "id": 201, "price": "", "row": 6, "seat": 15, "LevelId": 2, "balcony": true, "active": false }, { "id": 203, "price": "", "row": 6, "seat": 16, "LevelId": 2, "balcony": true, "active": false }, { "id": 205, "price": "", "row": 6, "seat": 17, "LevelId": 2, "balcony": true, "active": false }, { "id": 207, "price": "", "row": 6, "seat": 18, "LevelId": 2, "balcony": true, "active": false }, { "id": 209, "price": "", "row": 6, "seat": 19, "LevelId": 2, "balcony": true, "active": false }, { "id": 211, "price": "", "row": 6, "seat": 20, "LevelId": 2, "balcony": true, "active": false }, { "id": 213, "price": "", "row": 6, "seat": 21, "LevelId": 2, "balcony": true, "active": false }, { "id": 215, "price": "", "row": 6, "seat": 22, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 194, "price": "", "row": 7, "seat": 1, "LevelId": 2, "balcony": true, "active": false }, { "id": 193, "price": "", "row": 7, "seat": 2, "LevelId": 2, "balcony": true, "active": false }, { "id": 192, "price": "", "row": 7, "seat": 3, "LevelId": 2, "balcony": true, "active": false }, { "id": 191, "price": "", "row": 7, "seat": 4, "LevelId": 2, "balcony": true, "active": false }, { "id": 190, "price": "", "row": 7, "seat": 5, "LevelId": 2, "balcony": true, "active": false }, { "id": 189, "price": "", "row": 7, "seat": 6, "LevelId": 2, "balcony": true, "active": false }, { "id": 188, "price": "", "row": 7, "seat": 7, "LevelId": 2, "balcony": true, "active": false }, { "id": 187, "price": "", "row": 7, "seat": 8, "LevelId": 2, "balcony": true, "active": false }, { "id": 186, "price": "", "row": 7, "seat": 9, "LevelId": 2, "balcony": true, "active": false }, { "id": 185, "price": "", "row": 7, "seat": 10, "LevelId": 2, "balcony": true, "active": false }, { "id": 184, "price": "", "row": 7, "seat": 11, "LevelId": 2, "balcony": true, "active": false }, { "id": 183, "price": "", "row": 7, "seat": 12, "LevelId": 2, "balcony": true, "active": false }, { "id": 182, "price": "", "row": 7, "seat": 13, "LevelId": 2, "balcony": true, "active": false }, { "id": 181, "price": "", "row": 7, "seat": 14, "LevelId": 2, "balcony": true, "active": false }, { "id": 180, "price": "", "row": 7, "seat": 15, "LevelId": 2, "balcony": true, "active": false }, { "id": 179, "price": "", "row": 7, "seat": 16, "LevelId": 2, "balcony": true, "active": false }, { "id": 178, "price": "", "row": 7, "seat": 17, "LevelId": 2, "balcony": true, "active": false }, { "id": 177, "price": "", "row": 7, "seat": 18, "LevelId": 2, "balcony": true, "active": false }, { "id": 176, "price": "", "row": 7, "seat": 19, "LevelId": 2, "balcony": true, "active": false }, { "id": 175, "price": "", "row": 7, "seat": 20, "LevelId": 2, "balcony": true, "active": false }, { "id": 174, "price": "", "row": 7, "seat": 21, "LevelId": 2, "balcony": true, "active": false }, { "id": 173, "price": "", "row": 7, "seat": 22, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 172, "price": "", "row": 8, "seat": 1, "LevelId": 2, "balcony": true, "active": false }, { "id": 171, "price": "", "row": 8, "seat": 2, "LevelId": 2, "balcony": true, "active": false }, { "id": 170, "price": "", "row": 8, "seat": 3, "LevelId": 2, "balcony": true, "active": false }, { "id": 169, "price": "", "row": 8, "seat": 4, "LevelId": 2, "balcony": true, "active": false }, { "id": 168, "price": "", "row": 8, "seat": 5, "LevelId": 2, "balcony": true, "active": false }, { "id": 167, "price": "", "row": 8, "seat": 6, "LevelId": 2, "balcony": true, "active": false }, { "id": 166, "price": "", "row": 8, "seat": 7, "LevelId": 2, "balcony": true, "active": false }, { "id": 165, "price": "", "row": 8, "seat": 8, "LevelId": 2, "balcony": true, "active": false }, { "id": 164, "price": "", "row": 8, "seat": 9, "LevelId": 2, "balcony": true, "active": false }, { "id": 163, "price": "", "row": 8, "seat": 10, "LevelId": 2, "balcony": true, "active": false }, { "id": 162, "price": "", "row": 8, "seat": 11, "LevelId": 2, "balcony": true, "active": false }, { "id": 161, "price": "", "row": 8, "seat": 12, "LevelId": 2, "balcony": true, "active": false }, { "id": 160, "price": "", "row": 8, "seat": 13, "LevelId": 2, "balcony": true, "active": false }, { "id": 159, "price": "", "row": 8, "seat": 14, "LevelId": 2, "balcony": true, "active": false }, { "id": 158, "price": "", "row": 8, "seat": 15, "LevelId": 2, "balcony": true, "active": false }, { "id": 157, "price": "", "row": 8, "seat": 16, "LevelId": 2, "balcony": true, "active": false }, { "id": 156, "price": "", "row": 8, "seat": 17, "LevelId": 2, "balcony": true, "active": false }, { "id": 155, "price": "", "row": 8, "seat": 18, "LevelId": 2, "balcony": true, "active": false }, { "id": 154, "price": "", "row": 8, "seat": 19, "LevelId": 2, "balcony": true, "active": false }, { "id": 153, "price": "", "row": 8, "seat": 20, "LevelId": 2, "balcony": true, "active": false }, { "id": 152, "price": "", "row": 8, "seat": 21, "LevelId": 2, "balcony": true, "active": false }, { "id": 151, "price": "", "row": 8, "seat": 22, "LevelId": 2, "balcony": true, "active": false }, { "id": 150, "price": "", "row": 8, "seat": 23, "LevelId": 2, "balcony": true, "active": false }, { "id": 149, "price": "", "row": 8, "seat": 24, "LevelId": 2, "balcony": true, "active": false }, { "id": 148, "price": "", "row": 8, "seat": 25, "LevelId": 2, "balcony": true, "active": false },
-    //     { "id": 147, "price": "", "row": 1, "seat": 1, "LevelId": 3, "balcony": true, "active": false }, { "id": 146, "price": "", "row": 1, "seat": 2, "LevelId": 3, "balcony": true, "active": false }, { "id": 145, "price": "", "row": 1, "seat": 3, "LevelId": 3, "balcony": true, "active": false }, { "id": 144, "price": "", "row": 1, "seat": 4, "LevelId": 3, "balcony": true, "active": false }, { "id": 143, "price": "", "row": 1, "seat": 5, "LevelId": 3, "balcony": true, "active": false }, { "id": 142, "price": "", "row": 1, "seat": 6, "LevelId": 3, "balcony": true, "active": false }, { "id": 141, "price": "", "row": 1, "seat": 7, "LevelId": 3, "balcony": true, "active": false }, { "id": 140, "price": "", "row": 1, "seat": 8, "LevelId": 3, "balcony": true, "active": false }, { "id": 139, "price": "", "row": 1, "seat": 9, "LevelId": 3, "balcony": true, "active": false }, { "id": 138, "price": "", "row": 1, "seat": 10, "LevelId": 3, "balcony": true, "active": false }, { "id": 137, "price": "", "row": 1, "seat": 11, "LevelId": 3, "balcony": true, "active": false }, { "id": 136, "price": "", "row": 1, "seat": 12, "LevelId": 3, "balcony": true, "active": false }, { "id": 135, "price": "", "row": 1, "seat": 13, "LevelId": 3, "balcony": true, "active": false }, { "id": 134, "price": "", "row": 1, "seat": 14, "LevelId": 3, "balcony": true, "active": false }, { "id": 133, "price": "", "row": 1, "seat": 15, "LevelId": 3, "balcony": true, "active": false }, { "id": 132, "price": "", "row": 1, "seat": 16, "LevelId": 3, "balcony": true, "active": false }, { "id": 131, "price": "", "row": 1, "seat": 17, "LevelId": 3, "balcony": true, "active": false }, { "id": 130, "price": "", "row": 1, "seat": 18, "LevelId": 3, "balcony": true, "active": false }, { "id": 129, "price": "", "row": 1, "seat": 19, "LevelId": 3, "balcony": true, "active": false }, { "id": 128, "price": "", "row": 1, "seat": 20, "LevelId": 3, "balcony": true, "active": false }, { "id": 127, "price": "", "row": 1, "seat": 21, "LevelId": 3, "balcony": true, "active": false }, { "id": 126, "price": "", "row": 1, "seat": 22, "LevelId": 3, "balcony": true, "active": false }, { "id": 125, "price": "", "row": 1, "seat": 23, "LevelId": 3, "balcony": true, "active": false }, { "id": 124, "price": "", "row": 1, "seat": 24, "LevelId": 3, "balcony": true, "active": false }, { "id": 123, "price": "", "row": 1, "seat": 25, "LevelId": 3, "balcony": true, "active": false }, { "id": 122, "price": "", "row": 1, "seat": 26, "LevelId": 3, "balcony": true, "active": false }, { "id": 121, "price": "", "row": 1, "seat": 27, "LevelId": 3, "balcony": true, "active": false },
-    //     { "id": 120, "price": "", "row": 2, "seat": 1, "LevelId": 3, "balcony": true, "active": false }, { "id": 119, "price": "", "row": 2, "seat": 2, "LevelId": 3, "balcony": true, "active": false }, { "id": 118, "price": "", "row": 2, "seat": 3, "LevelId": 3, "balcony": true, "active": false }, { "id": 117, "price": "", "row": 2, "seat": 4, "LevelId": 3, "balcony": true, "active": false }, { "id": 116, "price": "", "row": 2, "seat": 5, "LevelId": 3, "balcony": true, "active": false }, { "id": 115, "price": "", "row": 2, "seat": 6, "LevelId": 3, "balcony": true, "active": false }, { "id": 114, "price": "", "row": 2, "seat": 7, "LevelId": 3, "balcony": true, "active": false }, { "id": 113, "price": "", "row": 2, "seat": 8, "LevelId": 3, "balcony": true, "active": false }, { "id": 112, "price": "", "row": 2, "seat": 9, "LevelId": 3, "balcony": true, "active": false }, { "id": 111, "price": "", "row": 2, "seat": 10, "LevelId": 3, "balcony": true, "active": false }, { "id": 110, "price": "", "row": 2, "seat": 11, "LevelId": 3, "balcony": true, "active": false }, { "id": 109, "price": "", "row": 2, "seat": 12, "LevelId": 3, "balcony": true, "active": false }, { "id": 108, "price": "", "row": 2, "seat": 13, "LevelId": 3, "balcony": true, "active": false }, { "id": 107, "price": "", "row": 2, "seat": 14, "LevelId": 3, "balcony": true, "active": false }, { "id": 106, "price": "", "row": 2, "seat": 15, "LevelId": 3, "balcony": true, "active": false }, { "id": 105, "price": "", "row": 2, "seat": 16, "LevelId": 3, "balcony": true, "active": false }, { "id": 104, "price": "", "row": 2, "seat": 17, "LevelId": 3, "balcony": true, "active": false }, { "id": 103, "price": "", "row": 2, "seat": 18, "LevelId": 3, "balcony": true, "active": false }, { "id": 102, "price": "", "row": 2, "seat": 19, "LevelId": 3, "balcony": true, "active": false }, { "id": 101, "price": "", "row": 2, "seat": 20, "LevelId": 3, "balcony": true, "active": false }, { "id": 100, "price": "", "row": 2, "seat": 21, "LevelId": 3, "balcony": true, "active": false }, { "id": 99, "price": "", "row": 2, "seat": 22, "LevelId": 3, "balcony": true, "active": false }, { "id": 98, "price": "", "row": 2, "seat": 23, "LevelId": 3, "balcony": true, "active": false }, { "id": 97, "price": "", "row": 2, "seat": 24, "LevelId": 3, "balcony": true, "active": false }, { "id": 96, "price": "", "row": 2, "seat": 25, "LevelId": 3, "balcony": true, "active": false }, { "id": 95, "price": "", "row": 2, "seat": 26, "LevelId": 3, "balcony": true, "active": false }, { "id": 94, "price": "", "row": 2, "seat": 27, "LevelId": 3, "balcony": true, "active": false },
-    //     { "id": 93, "price": "", "row": 3, "seat": 1, "LevelId": 3, "balcony": true, "active": false }, { "id": 92, "price": "", "row": 3, "seat": 2, "LevelId": 3, "balcony": true, "active": false }, { "id": 91, "price": "", "row": 3, "seat": 3, "LevelId": 3, "balcony": true, "active": false }, { "id": 90, "price": "", "row": 3, "seat": 4, "LevelId": 3, "balcony": true, "active": false }, { "id": 89, "price": "", "row": 3, "seat": 5, "LevelId": 3, "balcony": true, "active": false }, { "id": 88, "price": "", "row": 3, "seat": 6, "LevelId": 3, "balcony": true, "active": false }, { "id": 87, "price": "", "row": 3, "seat": 7, "LevelId": 3, "balcony": true, "active": false }, { "id": 86, "price": "", "row": 3, "seat": 8, "LevelId": 3, "balcony": true, "active": false }, { "id": 85, "price": "", "row": 3, "seat": 9, "LevelId": 3, "balcony": true, "active": false }, { "id": 84, "price": "", "row": 3, "seat": 10, "LevelId": 3, "balcony": true, "active": false }, { "id": 83, "price": "", "row": 3, "seat": 11, "LevelId": 3, "balcony": true, "active": false }, { "id": 82, "price": "", "row": 3, "seat": 12, "LevelId": 3, "balcony": true, "active": false }, { "id": 81, "price": "", "row": 3, "seat": 13, "LevelId": 3, "balcony": true, "active": false }, { "id": 80, "price": "", "row": 3, "seat": 14, "LevelId": 3, "balcony": true, "active": false }, { "id": 79, "price": "", "row": 3, "seat": 15, "LevelId": 3, "balcony": true, "active": false }, { "id": 78, "price": "", "row": 3, "seat": 16, "LevelId": 3, "balcony": true, "active": false }, { "id": 77, "price": "", "row": 3, "seat": 17, "LevelId": 3, "balcony": true, "active": false }, { "id": 76, "price": "", "row": 3, "seat": 18, "LevelId": 3, "balcony": true, "active": false }, { "id": 75, "price": "", "row": 3, "seat": 19, "LevelId": 3, "balcony": true, "active": false }, { "id": 74, "price": "", "row": 3, "seat": 20, "LevelId": 3, "balcony": true, "active": false }, { "id": 73, "price": "", "row": 3, "seat": 21, "LevelId": 3, "balcony": true, "active": false }, { "id": 72, "price": "", "row": 3, "seat": 22, "LevelId": 3, "balcony": true, "active": false }, { "id": 71, "price": "", "row": 3, "seat": 23, "LevelId": 3, "balcony": true, "active": false }, { "id": 70, "price": "", "row": 3, "seat": 24, "LevelId": 3, "balcony": true, "active": false }, { "id": 69, "price": "", "row": 3, "seat": 25, "LevelId": 3, "balcony": true, "active": false }, { "id": 68, "price": "", "row": 3, "seat": 26, "LevelId": 3, "balcony": true, "active": false },
-    //     { "id": 67, "price": "", "row": 4, "seat": 1, "LevelId": 3, "balcony": true, "active": false }, { "id": 66, "price": "", "row": 4, "seat": 2, "LevelId": 3, "balcony": true, "active": false }, { "id": 65, "price": "", "row": 4, "seat": 3, "LevelId": 3, "balcony": true, "active": false }, { "id": 64, "price": "", "row": 4, "seat": 4, "LevelId": 3, "balcony": true, "active": false }, { "id": 63, "price": "", "row": 4, "seat": 5, "LevelId": 3, "balcony": true, "active": false }, { "id": 62, "price": "", "row": 4, "seat": 6, "LevelId": 3, "balcony": true, "active": false }, { "id": 61, "price": "", "row": 4, "seat": 7, "LevelId": 3, "balcony": true, "active": false }, { "id": 60, "price": "", "row": 4, "seat": 8, "LevelId": 3, "balcony": true, "active": false }, { "id": 59, "price": "", "row": 4, "seat": 9, "LevelId": 3, "balcony": true, "active": false }, { "id": 58, "price": "", "row": 4, "seat": 10, "LevelId": 3, "balcony": true, "active": false }, { "id": 57, "price": "", "row": 4, "seat": 11, "LevelId": 3, "balcony": true, "active": false }, { "id": 56, "price": "", "row": 4, "seat": 12, "LevelId": 3, "balcony": true, "active": false }, { "id": 55, "price": "", "row": 4, "seat": 13, "LevelId": 3, "balcony": true, "active": false }, { "id": 54, "price": "", "row": 4, "seat": 14, "LevelId": 3, "balcony": true, "active": false }, { "id": 53, "price": "", "row": 4, "seat": 15, "LevelId": 3, "balcony": true, "active": false }, { "id": 52, "price": "", "row": 4, "seat": 16, "LevelId": 3, "balcony": true, "active": false },
-    //     { "id": 51, "price": "", "row": 5, "seat": 1, "LevelId": 3, "balcony": true, "active": false }, { "id": 50, "price": "", "row": 5, "seat": 2, "LevelId": 3, "balcony": true, "active": false }, { "id": 49, "price": "", "row": 5, "seat": 3, "LevelId": 3, "balcony": true, "active": false }, { "id": 48, "price": "", "row": 5, "seat": 4, "LevelId": 3, "balcony": true, "active": false }, { "id": 47, "price": "", "row": 5, "seat": 5, "LevelId": 3, "balcony": true, "active": false }, { "id": 46, "price": "", "row": 5, "seat": 6, "LevelId": 3, "balcony": true, "active": false }, { "id": 45, "price": "", "row": 5, "seat": 7, "LevelId": 3, "balcony": true, "active": false }, { "id": 44, "price": "", "row": 5, "seat": 8, "LevelId": 3, "balcony": true, "active": false }, { "id": 43, "price": "", "row": 5, "seat": 9, "LevelId": 3, "balcony": true, "active": false }, { "id": 42, "price": "", "row": 5, "seat": 10, "LevelId": 3, "balcony": true, "active": false }, { "id": 41, "price": "", "row": 5, "seat": 11, "LevelId": 3, "balcony": true, "active": false }, { "id": 40, "price": "", "row": 5, "seat": 12, "LevelId": 3, "balcony": true, "active": false }, { "id": 39, "price": "", "row": 5, "seat": 13, "LevelId": 3, "balcony": true, "active": false }, { "id": 38, "price": "", "row": 5, "seat": 14, "LevelId": 3, "balcony": true, "active": false },
-    //     { "id": 23, "price": "", "row": 1, "seat": 1, "LevelId": 4, "balcony": true, "active": false }, { "id": 22, "price": "", "row": 1, "seat": 2, "LevelId": 4, "balcony": true, "active": false }, { "id": 21, "price": "", "row": 1, "seat": 3, "LevelId": 4, "balcony": true, "active": false }, { "id": 20, "price": "", "row": 1, "seat": 4, "LevelId": 4, "balcony": true, "active": false }, { "id": 19, "price": "", "row": 1, "seat": 5, "LevelId": 4, "balcony": true, "active": false }, { "id": 18, "price": "", "row": 1, "seat": 6, "LevelId": 4, "balcony": true, "active": false }, { "id": 17, "price": "", "row": 1, "seat": 7, "LevelId": 4, "balcony": true, "active": false }, { "id": 16, "price": "", "row": 1, "seat": 8, "LevelId": 4, "balcony": true, "active": false }, { "id": 15, "price": "", "row": 1, "seat": 9, "LevelId": 4, "balcony": true, "active": false }, { "id": 14, "price": "", "row": 1, "seat": 10, "LevelId": 4, "balcony": true, "active": false }, { "id": 13, "price": "", "row": 1, "seat": 11, "LevelId": 4, "balcony": true, "active": false }, { "id": 12, "price": "", "row": 1, "seat": 12, "LevelId": 4, "balcony": true, "active": false }, { "id": 11, "price": "", "row": 1, "seat": 13, "LevelId": 4, "balcony": true, "active": false }, { "id": 10, "price": "", "row": 1, "seat": 14, "LevelId": 4, "balcony": true, "active": false }, { "id": 9, "price": "", "row": 1, "seat": 15, "LevelId": 4, "balcony": true, "active": false }, { "id": 8, "price": "", "row": 1, "seat": 16, "LevelId": 4, "balcony": true, "active": false }, { "id": 7, "price": "", "row": 1, "seat": 17, "LevelId": 4, "balcony": true, "active": false }, { "id": 6, "price": "", "row": 1, "seat": 18, "LevelId": 4, "balcony": true, "active": false }, { "id": 5, "price": "", "row": 1, "seat": 19, "LevelId": 4, "balcony": true, "active": false }, { "id": 4, "price": "", "row": 1, "seat": 20, "LevelId": 4, "balcony": true, "active": false }, { "id": 3, "price": "", "row": 1, "seat": 21, "LevelId": 4, "balcony": true, "active": false }, { "id": 2, "price": "", "row": 1, "seat": 22, "LevelId": 4, "balcony": true, "active": false }, { "id": 1, "price": "", "row": 1, "seat": 23, "LevelId": 4, "balcony": true, "active": false }, { "id": 0, "price": "", "row": 1, "seat": 24, "LevelId": 4, "balcony": true, "active": false },
-    //     { "id": 24, "price": "", "row": 1, "seat": 1, "LevelId": 5, "balcony": true, "active": false }, { "id": 34, "price": "", "row": 1, "seat": 2, "LevelId": 5, "balcony": true, "active": false }, { "id": 35, "price": "", "row": 1, "seat": 3, "LevelId": 5, "balcony": true, "active": false }, { "id": 32, "price": "", "row": 1, "seat": 4, "LevelId": 5, "balcony": true, "active": false }, { "id": 30, "price": "", "row": 1, "seat": 5, "LevelId": 5, "balcony": true, "active": false }, { "id": 28, "price": "", "row": 1, "seat": 5, "LevelId": 6, "balcony": true, "active": false }, { "id": 26, "price": "", "row": 1, "seat": 7, "LevelId": 5, "balcony": true, "active": false },
-    //     { "id": 37, "price": "", "row": 1, "seat": 1, "LevelId": 6, "balcony": true, "active": false }, { "id": 36, "price": "", "row": 1, "seat": 2, "LevelId": 6, "balcony": true, "active": false }, { "id": 33, "price": "", "row": 1, "seat": 3, "LevelId": 6, "balcony": true, "active": false }, { "id": 31, "price": "", "row": 1, "seat": 4, "LevelId": 6, "balcony": true, "active": false }, { "id": 29, "price": "", "row": 1, "seat": 5, "LevelId": 6, "balcony": true, "active": false }, { "id": 27, "price": "", "row": 1, "seat": 6, "LevelId": 6, "balcony": true, "active": false }, { "id": 25, "price": "", "row": 1, "seat": 7, "LevelId": 6, "balcony": true, "active": false }
-    // ])
-
     const [seansArr, setSeansArr] = useState([])
-
 
     useEffect(() => {
         if (places.length > 0) {
             setSeansArr(JSON.parse(places[0]))
         }
     }, [places])
-
-    // useEffect(() => {
-    //     let item = [...seansArr]
-    //     seatArr?.map((elm, i) => {
-    //         if (elm?.LevelId == 6) {
-    //             elm.Places?.map((el, i) => {
-    //                 let index = item.findIndex((e) => (e.row == el.Row && e.seat == el.Seat && e?.LevelId == 6))
-    //                 if (item[index]) {
-    //                     item[index].active = el?.active
-    //                     item[index].price = el?.Price
-    //                 }
-    //             })
-    //         }
-    //         else if (elm?.LevelId == 5) {
-    //             elm.Places?.map((el, i) => {
-    //                 let index = item.findIndex((e) => (e?.row == el?.Row && e?.seat == el?.Seat && e?.LevelId == 5))
-    //                 if (item[index]) {
-    //                     item[index].active = el?.active
-    //                     item[index].price = el?.Price
-    //                 }
-    //             })
-    //         }
-    //         else if (elm?.LevelId == 4) {
-    //             elm.Places?.map((el, i) => {
-    //                 let index = item.findIndex((e) => (e.row == el.Row && e.seat == el.Seat && e?.LevelId == 4))
-    //                 if (item[index]) {
-    //                     item[index].active = el?.active
-    //                     item[index].price = el?.Price
-    //                 }
-    //             })
-    //         }
-    //         else if (elm?.LevelId == 3) {
-    //             elm.Places?.map((el, i) => {
-    //                 let index = item.findIndex((e) => (e.row == el.Row && e.seat == el.Seat && e?.LevelId == 3))
-    //                 if (item[index]) {
-    //                     item[index].active = el?.active
-    //                     item[index].price = el?.Price
-    //                 }
-    //             })
-    //         }
-    //         else if (elm?.LevelId == 2) {
-    //             elm.Places?.map((el, i) => {
-    //                 let index = item.findIndex((e) => (e.row == el.Row && e.seat == el.Seat && e?.LevelId == 2))
-    //                 if (item[index]) {
-    //                     item[index].active = el?.active
-    //                     item[index].price = el?.Price
-    //                 }
-    //             })
-    //         }
-    //         else if (elm?.LevelId == 1) {
-    //             elm.Places?.map((el, i) => {
-    //                 let index = item.findIndex((e) => (e.row == el.Row && e.seat == el.Seat && e?.LevelId == 1))
-    //                 if (item[index]) {
-    //                     item[index].active = el?.active
-    //                     item[index].price = el?.Price
-    //                 }
-    //             })
-    //         }
-    //     })
-    //     setSeansArr(item)
-    // }, [seatArr])
 
 
     const [data, setData] = useState([])
@@ -553,9 +105,16 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
         setShowModal(true)
     }
 
-    const addTicket = (i, price, id, parterre, amphitheater, lodge) => {
+    const addTicket = (i) => {
         let data = [...coordinatesState]
-        data[i].active = !data[i]?.active
+        let data1 = [...tickets]
+        if (data1.findIndex((elm) => elm.seatId == i) < 0) {
+            data[i].active = true
+        }
+        else {
+            data[i].active = false
+        }
+        // data[i].active = !data[i]?.active
         let item = {}
         let temp = seansArr.find((elm) => elm.id === i)
         if (windowSize.width <= 768) {
@@ -668,14 +227,15 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
                             }
                             }
                             onTouchStart={() => {
-                                if (windowSize.width < 768) {
+                                if (windowSize.width <= 768) {
                                     getPrice(e.y, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
                                     setActiveButton(i)
+                                    addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
                                 }
                             }}
                             onTouchEnd={() => {
-                                if (windowSize.width < 768) {
-                                    addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
+                                if (windowSize.width <= 768) {
+                                    // addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
                                 }
                             }}
                         >
@@ -693,10 +253,17 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
             })}
 
             {showModal &&
-                <div style={{
-                    top: position.y - (150 + (
-                        (value.scale < 0.69) && 20 / value.scale)), left: position.x, position: 'absolute', transform: `scale(${1 / (value.scale + 0.3)})`
-                }} className='parter'>
+                <div
+                    onMouseOver={(e) => {
+                        setShowModal(true)
+                    }}
+                    onMouseLeave={() => {
+                        setShowModal(false)
+                    }}
+                    style={{
+                        top: position.y - (150 + (
+                            (value.scale < 0.69) && 20 / value.scale)), left: position.x, position: 'absolute', transform: `scale(${1 / (value.scale + 0.3)})`
+                    }} className='parter'>
                     <p className='Teatertext'>շարք {activeTicket.row}</p>
                     <p className='Teatertext'>տեղ {activeTicket.seat}</p>
                     <p className='Teatertext'>{activeTicket.price} դրամ</p>

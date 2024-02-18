@@ -18,14 +18,29 @@ export const Footer = ({ menu }) => {
         dispatch(GetFeedback())
     }, [dispatch])
 
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+
+
+    const handleEmailButtonClick = () => {
+        const recipient = 'info@shinetickets.com';
+        const subject = '';
+        const body = '';
+        const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoUrl;
+    };
 
     return (
         <div className='footerWrapper'>
             <div className='container' id='footerWrapperDiv'>
                 <div className='footerColumns'>
-                    <img src={require('../../assets/logo2.png')} />
+                    <img onClick={() => scrollToTop()} src={require('../../assets/logo2.png')} />
                     <p className=''>
-                        {t('SHINETICKETSLLC')} <span onClick={() => window.location = ('PrivacyPolicy')}>{t('SHINETICKETSLLC2')}</span> {t('SHINETICKETSLLC1')}
+                        {t('SHINETICKETSLLC')} <span className='PrivacyPolicySpan' onClick={() => window.location = ('PrivacyPolicy')}>{t('SHINETICKETSLLC2')}</span> {t('SHINETICKETSLLC1')}
 
                     </p>
                 </div>
@@ -33,8 +48,8 @@ export const Footer = ({ menu }) => {
                     <div className='footerColumnsWrapperDiv'>
                         <p className='footerColumnsTitle'>{t('Contactus')}</p>
                         <div className='footerColumnsInfo'>
-                            <p id={'footerColumnsInfo'}>{Event_reducer.feedback?.phone}</p>
-                            <p id={'footerColumnsInfo'}>info@shinetickets.com</p>
+                            <p onClick={() => window.location.href = `tel:${Event_reducer.feedback?.phone}`} id={'footerColumnsInfo'}>{Event_reducer.feedback?.phone}</p>
+                            <p onClick={() => handleEmailButtonClick()} id={'footerColumnsInfo'}>info@shinetickets.com</p>
                         </div>
                     </div>
                     <div className='footerColumnsWrapperDiv'>
@@ -78,8 +93,8 @@ export const Footer = ({ menu }) => {
                         <div className='footerColumnsWrapperDivMObile'>
                             <p className='footerColumnsTitle'>{t('Contactus')}</p>
                             <div className='footerColumnsInfo'>
-                                <p>{Event_reducer.feedback?.phone}</p>
-                                <p>info@shinetickets.com</p>
+                                <p onClick={() => window.location.href = `tel:${Event_reducer.feedback?.phone}`}>{Event_reducer.feedback?.phone}</p>
+                                <p onClick={() => handleEmailButtonClick()}>info@shinetickets.com</p>
                             </div>
                         </div>
                         <div className='footerColumnsWrapperDiv'>
@@ -118,7 +133,7 @@ export const Footer = ({ menu }) => {
 
                 </div>
                 <div className='footerColumns'>
-                    <img src={require('../../assets/logo2.png')} />
+                    <img onClick={() => scrollToTop()} src={require('../../assets/logo2.png')} />
                     <p className=''>
                         {t('SHINETICKETSLLC')}
                     </p>

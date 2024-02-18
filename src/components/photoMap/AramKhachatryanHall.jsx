@@ -82,7 +82,14 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading, valu
 
     const addTicket = (i, price, id, parterre, amphitheater, lodge) => {
         let data = [...coordinatesState]
-        data[i].active = !data[i].active
+        // data[i].active = !data[i].active
+        let data1 = [...tickets]
+        if (data1.findIndex((elm) => elm.seatId == i) < 0) {
+            data[i].active = true
+        }
+        else {
+            data[i].active = false
+        }
         let item = {}
         let temp = seansArr.find((elm) => elm.id === i)
         if (windowSize.width <= 768) {
@@ -290,14 +297,25 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading, valu
                                 setShowModal(false)
                                 setActiveButton(null)
                             }}
-                            onClick={() => addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)}
+                            onClick={() => {
+                                if (windowSize.width > 768) {
+
+                                    addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
+                                }
+                            }
+                            }
                             onTouchStart={() => {
-                                getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
-                                setActiveButton(i)
-                                addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
+                                if (windowSize.width <= 768) {
+                                    addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
+                                    getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                                    setActiveButton(i)
+                                }
                             }}
                             onTouchEnd={() => {
-                                // addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                                if (windowSize.width <= 768) {
+                                    // addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
+                                    // addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                                }
                             }}
                         >
                             <svg width="20" height="20" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -319,6 +337,9 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading, valu
                 <div
                     onMouseEnter={() => {
                         setShowModal(true)
+                    }}
+                    onMouseLeave={() => {
+                        setShowModal(false)
                     }}
                     style={{
                         top: position.y - 130 - (
