@@ -73,7 +73,7 @@ export const Single = () => {
                 id={id}
                 data={event?.sessions[0]?.date.slice(0, 10)}
                 description={languageData?.description}
-                title={truncateText(languageData?.title)}
+                title={languageData?.title}
                 priceEnd={`${event?.sessions[0]?.priceEnd} AMD`}
                 priceStart={`${event?.sessions[0]?.priceStart} -`}
                 hall={languageData?.hall}

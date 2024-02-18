@@ -463,47 +463,6 @@ export const GetSinglParonyan = () => {
 
 // }
 
-export const BuyTicketFromParonyan = () => {
-    const keys = "hYDepOnSarMi";
-    const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
-    const requestType = "buyTickets";
-    const params = {
-        group_id: "12",
-        timeline_id: "6749",
-        event_id: "422",
-    };
-
-    const sortedParams = Object.fromEntries(Object.entries(params).sort());
-    sortedParams.data = {
-        data: [
-            {
-                "LevelId": '2',
-                "Places": [
-                    {
-                        "Row": '1',
-                        "Seat": '21'
-                    }
-                ]
-            },
-        ]
-    }
-    sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
-
-    const options = {
-        method: 'POST',
-        url: `https://api.haytoms.am/sync/${secretKey}/${requestType}`,
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-        },
-        data: JSON.stringify(sortedParams),
-    };
-
-    return async (dispatch) => {
-        const response = await axios(options)
-    }
-}
-
 export const WeekEvetntApi = () => {
     return (dispatch) => {
         dispatch(StartWeekEvents())
