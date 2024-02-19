@@ -1,7 +1,7 @@
 import './style.css'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { CreateCurrentTicket, GetCurrentTicket, RemoveTicketsAction, StatusSuccessAction } from '../../services/action/action'
+import { CreateCurrentTicket, StatusSuccessAction } from '../../services/action/action'
 import { CheckSvg, CheckedSvg, MobileSvg, SelectSvg, SelectedSvg } from '../svg'
 import axios from 'axios'
 import { PuffLoader } from 'react-spinners'
@@ -143,71 +143,6 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
     }, [language, getSinglPage])
 
 
-    const BuyParonyanEvents = (res) => {
-
-        if (selectPay === 3) {
-            localStorage.setItem('orderId', res)
-
-            dispatch(CreateCurrentTicket({
-                tickets: tickets.tickets,
-                buyerName: name,
-                buyerEmail: email,
-                buyerPhone: number,
-                isParonyanEvent: true,
-                deliveryLocation: address,
-                // paronyanOrderId: data.data.id,
-                sessionId: null,
-                buyerNotes: additional,
-                orderId: res,
-                eventId: event_id,
-                paymentMethod: 'CASH',
-                delivery,
-                // qrData: JSON.parse(data.data.map).data,
-
-            }, res, selectPay))
-        }
-        else if (selectPay === 2) {
-            localStorage.setItem('orderId', res)
-            dispatch(CreateCurrentTicket({
-                tickets: tickets.tickets,
-                buyerName: name,
-                buyerEmail: email,
-                buyerPhone: number,
-                isParonyanEvent: true,
-                deliveryLocation: address,
-                // paronyanOrderId: data.data.id,
-                sessionId: null,
-                buyerNotes: additional,
-                orderId: res,
-                eventId: event_id,
-                paymentMethod: 'Telcell',
-                delivery,
-                // qrData: JSON.parse(data.data.map).data,
-
-            }, res, selectPay))
-        }
-        else {
-            localStorage.setItem('orderId', res?.data?.orderId)
-
-            dispatch(CreateCurrentTicket({
-                tickets: tickets.tickets,
-                buyerName: name,
-                buyerEmail: email,
-                buyerPhone: number,
-                isParonyanEvent: true,
-                deliveryLocation: address,
-                // paronyanOrderId: data.data.id,
-                sessionId: null,
-                buyerNotes: additional,
-                orderId: res?.data?.orderId,
-                eventId: event_id,
-                paymentMethod: 'CREDIT CARD',
-                delivery,
-                // qrData: JSON.parse(data.data.map).data,
-
-            }, res, selectPay))
-        }
-    }
 
     const backBookTikets = () => {
         const keys = "hYDepOnSarMi";
@@ -272,35 +207,23 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
             amount: total * 100,
             tickets: tickets.tickets,
             sessionId: tickets.tickets[0].sessionId,
+            buyerName: name,
+            buyerEmail: email,
+            buyerPhone: number,
+            deliveryLocation: address,
+            isParonyanEvent: false,
+            buyerNotes: additional,
+            paymentMethod: 'CREDIT CARD',
+            delivery,
         })
             .then(res => {
                 if (res?.data?.success) {
                     setLoading(false)
                     localStorage.setItem('orderId', res?.data?.orderId)
-                    if (!isParonyanEvent) {
-                        dispatch(CreateCurrentTicket({
-                            tickets: tickets.tickets,
-                            buyerName: name,
-                            buyerEmail: email,
-                            buyerPhone: number,
-                            deliveryLocation: address,
-                            sessionId: tickets.tickets[0].sessionId,
-                            isParonyanEvent: false,
-                            buyerNotes: additional,
-                            orderId: res?.data?.orderId,
-                            paymentMethod: 'CREDIT CARD',
-                            delivery,
-                        }))
-                        window.open(`${res?.data?.formUrl}`, { target: '_blank' })
-
-                    }
-
-                    else {
-                        BuyParonyanEvents(res)
-                    }
-                    setTimeout(() => {
-                        dispatch(StatusSuccessAction())
-                    }, 3000)
+                    window.location.href = res?.data?.formUrl
+                    // setTimeout(() => {
+                    //     dispatch(StatusSuccessAction())
+                    // }, 3000)
                 }
                 else {
                     alert(t('Pleasetryagainlater'))
@@ -356,22 +279,17 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
         ) {
             if (selectPay === 2) {
                 setLoading(true)
-                if (isParonyanEvent) {
-                    BuyParonyanEvents(issuerId)
-                }
-                else {
-                    dispatch(CreateCurrentTicket({
-                        tickets: tickets.tickets,
-                        buyerName: name,
-                        buyerEmail: email,
-                        buyerPhone: number,
-                        deliveryLocation: address,
-                        sessionId: tickets.tickets[0].sessionId,
-                        paymentMethod: 'Telcell',
-                        buyerNotes: additional,
-                        orderId: issuerId,
-                    }))
-                }
+                dispatch(CreateCurrentTicket({
+                    tickets: tickets.tickets,
+                    buyerName: name,
+                    buyerEmail: email,
+                    buyerPhone: number,
+                    deliveryLocation: address,
+                    sessionId: tickets.tickets[0].sessionId,
+                    paymentMethod: 'Telcell',
+                    buyerNotes: additional,
+                    orderId: issuerId,
+                }))
                 setLoading(false)
 
                 function getTelcellSecurityCode(shop_key, issuer, currency, price, product, issuer_id, valid_days) {
@@ -407,25 +325,19 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
 
 
             else if (selectPay === 3) {
-                if (isParonyanEvent) {
-                    BuyParonyanEvents(issuerId)
-                }
-                else {
-                    dispatch(CreateCurrentTicket({
-                        tickets: tickets.tickets,
-                        buyerName: name,
-                        buyerEmail: email,
-                        buyerPhone: number,
-                        deliveryLocation: address,
-                        sessionId: tickets.tickets[0].sessionId,
-                        buyerNotes: additional,
-                        orderId: issuerId,
-                        paymentMethod: 'CASH',
-                        delivery: true,
-                    }))
-                    localStorage.setItem('orderId', issuerId)
-                }
-
+                dispatch(CreateCurrentTicket({
+                    tickets: tickets.tickets,
+                    buyerName: name,
+                    buyerEmail: email,
+                    buyerPhone: number,
+                    deliveryLocation: address,
+                    sessionId: tickets.tickets[0].sessionId,
+                    buyerNotes: additional,
+                    orderId: issuerId,
+                    paymentMethod: 'CASH',
+                    delivery: true,
+                }))
+                localStorage.setItem('orderId', issuerId)
             }
             else {
                 handlePurchase()

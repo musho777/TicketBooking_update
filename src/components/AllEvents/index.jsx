@@ -10,7 +10,14 @@ export const ALLEvents = () => {
     const dispatch = useDispatch()
     const { t } = useTranslation()
     const events = useSelector((st) => st.getAllEventes)
-
+    function truncateText(text) {
+        if (text?.length > 15) {
+            return text.substring(0, 14) + '...';
+        }
+        else {
+            return text;
+        }
+    }
 
     useEffect(() => {
         dispatch(GetAllEvents2(1))
@@ -41,9 +48,9 @@ export const ALLEvents = () => {
                                 location={elm?.hallId?.location}
                                 location_en={elm?.hallId?.location_en}
                                 location_ru={elm?.hallId?.location_ru}
-                                title={elm.eventId?.title}
-                                title_ru={elm.eventId?.title_ru}
-                                title_en={elm.eventId?.title_en}
+                                title={truncateText(elm.eventId?.title)}
+                                title_ru={truncateText(elm.eventId?.title_ru)}
+                                title_en={truncateText(elm.eventId?.title_en)}
                                 category_en={elm?.eventId?.category?.name_en}
                                 category_ru={elm?.eventId?.category?.name_ru}
                                 category={elm?.eventId?.category?.name}

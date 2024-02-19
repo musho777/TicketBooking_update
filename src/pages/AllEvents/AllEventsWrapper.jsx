@@ -1,4 +1,3 @@
-import { TopEvents } from "../../components/TopEvents/TopEvents"
 import { ShowAllButton } from "../../components/Button/ShowAllButton"
 import { useTranslation } from "react-i18next";
 import { Card } from "./Card";

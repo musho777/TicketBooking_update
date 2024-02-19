@@ -236,7 +236,7 @@ export const CreateCurrentTicket = (data, res, selectPay) => {
         axios.post(`${process.env.REACT_APP_HOSTNAME}/createCurrentTicket`, data).then((r) => {
             if (r.data.success) {
                 if (selectPay === 1) {
-                    window.open(`${res?.data?.formUrl}`, { target: '_blank' })
+                    window.open(`${res?.data?.formUrl}`)
                 }
                 dispatch(SuccessCreatTicket(r))
             }
@@ -251,21 +251,20 @@ export const CreateCurrentTicket = (data, res, selectPay) => {
 }
 
 
-export const GetCurrentTicket = () => {
-    return (dispatch) => {
-        axios.post(`${process.env.REACT_APP_HOSTNAME}/getCurrentTicket`, { orderId: localStorage.getItem('orderId') })
-            .then(res => {
-                if (res.data.success) {
-                    dispatch(ButTickets(res.data.ticket, res.data.ticket.isParonyanEvent))
-                }
-            })
-            .catch((error) => {
-            })
-    }
-}
+// export const GetCurrentTicket = () => {
+//     return (dispatch) => {
+//         axios.post(`${process.env.REACT_APP_HOSTNAME}/getCurrentTicket`, { orderId: localStorage.getItem('orderId') })
+//             .then(res => {
+//                 if (res.data.success) {
+//                     dispatch(ButTickets(res.data.ticket))
+//                 }
+//             })
+//             .catch((error) => {
+//             })
+//     }
+// }
 
 export const StatusSuccessAction = () => {
-    // window.location.reload()
     return {
         type: "StatusSuccessAction",
     }
@@ -297,69 +296,13 @@ export const ClearDataBuy = () => {
 }
 
 
-export const ButTickets = (data, isParonyanEvent) => {
+export const BuyTickets = (data) => {
     return (dispatch) => {
         axios.post(`${process.env.REACT_APP_HOSTNAME}/buyTicket`, data)
             .then(r => {
-                if (r.data.success) {
-                    // if (isParonyanEvent) {
-                    //     const keys = "hYDepOnSarMi";
-                    //     const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
-                    //     const requestType = "buyTickets";
-
-                    //     const params = {
-                    //         group_id: 12,
-                    //         timeline_id: data.ParonyanTimeline,
-                    //         event_id: data.ParonyanEventId,
-                    //     };
-
-                    //     const sortedParams = Object.keys(params).sort().reduce((acc, key) => {
-                    //         acc[key] = params[key];
-                    //         return acc;
-                    //     }, {});
-
-                    //     sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
-                    //     let data = { 'data': [] }
-                    //     data.tickets.tickets.map((e, i) => {
-                    //         let index = data.data.findIndex(el => el.LevelId = e.LevelId)
-                    //         if (index < 0) {
-                    //             data.data?.push({
-                    //                 "LevelId": e.LevelId,
-                    //                 "Places": []
-                    //             })
-                    //         }
-                    //         data.data.map((elm, i) => {
-                    //             if (elm.LevelId == e.LevelId) {
-                    //                 elm.Places.push({
-                    //                     "Row": e.row,
-                    //                     "Seat": e.seat
-                    //                 })
-                    //             }
-                    //         })
-                    //     })
-                    //     sortedParams.data = JSON.stringify(data);
-
-                    //     const options = {
-                    //         method: 'POST',
-                    //         headers: {
-                    //             'Content-Type': 'application/json',
-                    //             'Accept': 'application/json'
-                    //         },
-                    //         body: JSON.stringify(sortedParams)
-                    //     };
-
-                    //     fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
-                    //         .then(response => response.json())
-                    //         .then(data => {
-                    //         })
-                    //         .catch(error => {
-                    //             console.error('Error:', error);
-                    //         });
-                    // }
-
-                    // localStorage.clear()
-                    // window.location = '/'
-                }
+                localStorage.removeItem('orderId')
+                // if (r.data.success) {
+                // }
             })
             .catch((error) => {
             })

@@ -252,24 +252,24 @@ export const AllEventss = () => {
                                         if (language == 'en') {
                                             return <div onClick={() => {
                                                 setHallId(elm?._id)
-                                                setHallName(elm?.hall_en)
-                                            }} className='getCategoryDiv'>{(elm?.hall_en)}</div>
+                                                setHallName(`${elm.place_en} ${elm?.hall_en}`)
+                                            }} className='getCategoryDiv'>{(`${elm.place_en} ${elm?.hall_en} `)}</div>
                                         }
                                         else if (language == 'am') {
                                             return <div
                                                 onClick={() => {
                                                     setHallId(elm?._id)
-                                                    setHallName(elm?.hall)
+                                                    setHallName(`${elm.place} ${elm?.hall}`)
                                                 }}
-                                                className='getCategoryDiv'>{(elm?.hall)}</div>
+                                                className='getCategoryDiv'>{`${elm.place} ${elm?.hall}`}</div>
                                         }
                                         else if (language == 'ru') {
                                             return <div
                                                 onClick={() => {
                                                     setHallId(elm?._id)
-                                                    setHallName(elm?.hall_ru)
+                                                    setHallName(`${elm.place_ru} ${elm?.hall_ru}`)
                                                 }}
-                                                className='getCategoryDiv'>{(elm?.hall_ru)}</div>
+                                                className='getCategoryDiv'>{`${elm.place_ru} ${elm?.hall_ru}`}</div>
                                         }
                                     })}
                                 </div>

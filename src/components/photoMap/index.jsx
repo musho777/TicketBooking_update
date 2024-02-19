@@ -9,7 +9,6 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
 
     const dispatch = useDispatch()
     const [coordinatesState, setCoordinatesState] = useState([])
-    // const [activeTicket, setActiveTicket] = useState({})
     // const [position, setPosition] = useState({ x: '', y: '' })
     const [showModal, setShowModal] = useState(false)
     const [activeButton, setActiveButton] = useState(null)
@@ -39,7 +38,8 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
 
 
 
-    const getPrice = (y, i, x, price, row, id, parterre, amphitheater, lodge, section) => {
+    const getPrice = (y, i, x, price, row, id, parterre, amphitheater, lodge, section, row2) => {
+        console.log(i)
         setPosition({ x, y })
         let seat = 0
         const result = coordinatesState.filter((elm) => elm.y === y);
@@ -63,6 +63,7 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
             index = index + 41
         }
         seat = result.length - (result.length - index - 1)
+        console.log(row2)
         setActiveTicket({
             row: row,
             price: price,
@@ -73,13 +74,15 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
             amphitheater: amphitheater,
             lodge: lodge,
             eventId: eventId,
-            section: section
+            section: section,
+            row2: row2
         })
         setShowModal(true)
     }
 
 
-    const addTicket = (y, i, x, price, row, id, parterre, amphitheater, lodge, section) => {
+    const addTicket = (y, i, x, price, row, id, parterre, amphitheater, lodge, section, row2) => {
+        console.log(row2, 'row2')
         let data = [...coordinatesState]
         let seat = 0
         const result = coordinatesState.filter((elm) => elm.y === y);
@@ -94,6 +97,7 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
             data[i].active = false
         }
         // data[i].active = !data[i].active
+        console.log(row2)
         if (windowSize.width <= 768) {
             setShowModal(true)
             setTimeout(() => {
@@ -110,12 +114,15 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
                 lodge: lodge,
                 eventId: eventId,
                 section: section,
+                row2: row2,
+
             }
         }
         else {
             item = activeTicket
         }
         if (data[i].active) {
+
             dispatch(SetTicketsAction(item))
         }
         else {
@@ -291,15 +298,15 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
                         }
                         else if (y === 493 || y === 497) {
                             row = 14
-                            row2 = 6
+                            row2 = 7
                         }
                         else if (y === 441) {
                             row = 15
-                            row2 = 7
+                            row2 = 8
                         }
                         else if (y === 385) {
                             row = 16
-                            row2 = 8
+                            row2 = 9
                         }
                         else if (y === 329 || y === 330) {
                             row = 17
@@ -462,7 +469,7 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
                             price = rows[0].price
                         }
                         let sold = soldTickets.findIndex((elm) => elm.id == id)
-                        coordinates.push({ x, y, active: false, id: coordinates.length, row: row, section: section, price: price, sold: sold >= 0, id: id, parterre: parterre, amphitheater: amphitheater, lodge: lodge })
+                        coordinates.push({ x, y, active: false, id: coordinates.length, row: row, section: section, price: price, sold: sold >= 0, id: id, parterre: parterre, amphitheater: amphitheater, lodge: lodge, row2 })
                     }
                 }
             }
@@ -496,7 +503,7 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
                     return <button
                         key={i}
                         onMouseOver={() => {
-                            getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section)
+                            getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section, e.row2)
                             setActiveButton(i)
                         }}
                         style={
@@ -518,19 +525,19 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
                         }}
                         onClick={() => {
                             if (windowSize.width > 768) {
-                                addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section)
+                                addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section, e.row2)
                             }
                         }
                         }
                         onTouchStart={() => {
                             if (windowSize.width <= 768) {
-                                getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                                getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section, e.row2)
                                 setActiveButton(i)
                             }
                         }}
                         onTouchEnd={() => {
                             if (windowSize.width <= 768) {
-                                addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section)
+                                addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section, e.row2)
                             }
                         }}
                     >

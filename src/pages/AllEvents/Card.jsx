@@ -27,8 +27,8 @@ export const Card = ({
     year
 }) => {
     function truncateText(text) {
-        if (text?.length > 15) {
-            return text.substring(0, 14) + '...';
+        if (text?.length > 24) {
+            return text.substring(0, 24) + '...';
         }
         else {
             return text;

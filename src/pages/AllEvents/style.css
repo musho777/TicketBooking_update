@@ -11,8 +11,8 @@
     width: 100%;
     height: 63%;
     border-radius: 10px;
-    object-fit: cover;
     transition: 1000ms;
+    object-fit: contain;
 }
 
 #AllEventsWrapperCard {
@@ -53,7 +53,7 @@
 
 .AllEventsCardWrapperInfoTitle {
     font-family: "Montserratarm-Bold", sans-serif;
-    font-size: 20px;
+    font-size: 15px;
     color: #FFCE00;
 }
 

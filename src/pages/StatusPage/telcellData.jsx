@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { ClearDataBuy, ClearStatusAction, GetCurrentTicket } from '../../services/action/action'
+import { BuyTickets, ClearDataBuy, ClearStatusAction } from '../../services/action/action'
 import { PuffLoader } from 'react-spinners'
 
 export const StatusACBA = () => {
@@ -11,8 +11,11 @@ export const StatusACBA = () => {
         if (!localStorage.getItem('orderId')) {
             window.location = '/'
         } else {
-            dispatch(GetCurrentTicket())
+            dispatch(BuyTickets({ orderId: localStorage.getItem('orderId') }))
             setLoading(false)
+            // setTimeout(() => {
+            //     localStorage.removeItem('orderId')
+            // }, 3000)
         }
         dispatch(ClearStatusAction())
         dispatch(ClearDataBuy())
@@ -28,7 +31,7 @@ export const StatusACBA = () => {
         < div className='successPage' >
             <img src={require('../../assets/success.png')} alt='' />
             <h1>Շուտով կստանաք տոմսերը ձեր նշած էլ. հասցեին,</h1>
-            <h1>Խնդրում ենք էջը չփակել</h1>
+            {/* <h1>Խնդրում ենք էջը չփակել</h1> */}
         </div >
     </div >
 } 
