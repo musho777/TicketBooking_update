@@ -11,8 +11,8 @@ export const ALLEvents = () => {
     const { t } = useTranslation()
     const events = useSelector((st) => st.getAllEventes)
     function truncateText(text) {
-        if (text?.length > 15) {
-            return text.substring(0, 14) + '...';
+        if (text?.length > 43) {
+            return text.substring(0, 43) + '...';
         }
         else {
             return text;
@@ -48,6 +48,12 @@ export const ALLEvents = () => {
                                 location={elm?.hallId?.location}
                                 location_en={elm?.hallId?.location_en}
                                 location_ru={elm?.hallId?.location_ru}
+                                hall={elm?.hallId?.hall}
+                                hall_en={elm?.hallId?.hall_en}
+                                hall_ru={elm?.hallId?.hall_ru}
+                                place={elm?.hallId?.place}
+                                place_en={elm?.hallId?.place_en}
+                                plave_ru={elm?.hallId?.place_ru}
                                 title={truncateText(elm.eventId?.title)}
                                 title_ru={truncateText(elm.eventId?.title_ru)}
                                 title_en={truncateText(elm.eventId?.title_en)}
@@ -56,7 +62,7 @@ export const ALLEvents = () => {
                                 category={elm?.eventId?.category?.name}
                                 // time={elm?.sessions[0]?.time}
                                 image={`${process.env.REACT_APP_IMAGE}/${elm.eventId?.largeImage}`}
-                                date={`${day}-${month}-${dateObject.getFullYear()}, ${elm?.time}`}
+                                date={`${day}.${month} ${elm?.time}`}
                                 price={`${elm?.priceStart} - ${elm?.priceEnd} AMD`}
                             />
                         )

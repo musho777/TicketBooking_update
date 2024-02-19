@@ -2,15 +2,11 @@ import { useTranslation } from "react-i18next"
 import { WeekCard } from "./card"
 import { ShowAllButton } from "../Button/ShowAllButton"
 import { LeftSvg, RightSvg } from "../svg"
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { WeekEvetntApi } from "../../services/action/action"
+import { useSelector } from "react-redux"
 
 export const WeekEvents = () => {
     const { t } = useTranslation()
-    const dispatch = useDispatch()
     const { getWeekEvent } = useSelector((st) => st)
-
 
     return <div className="WeekEvents">
         <div className="container">
@@ -32,6 +28,9 @@ export const WeekEvents = () => {
                             hall={elm?.hallId?.hall}
                             hall_en={elm.hallId?.hall_en}
                             hall_ru={elm.hallId?.hall_ru}
+                            place={elm.hallId.place}
+                            place_en={elm.hallId.place_en}
+                            place_ru={elm.hallId.place_ru}
                             title={elm.eventId?.title}
                             title_en={elm.eventId?.title_en}
                             title_ru={elm.eventId?.title_ru}

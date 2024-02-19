@@ -41,6 +41,7 @@
     .button {
         width: 148px;
         min-width: 120px !important;
+        font-size: 13px !important;
     }
 
     .ShowAllButton {

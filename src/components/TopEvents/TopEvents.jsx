@@ -23,11 +23,14 @@ export const TopEvents = ({
     time,
     currentDayOfWeek,
     type = true,
-    time2
+    time2,
+    place,
+    place_en,
+    place_ru
 }) => {
     function truncateText(text) {
-        if (text?.length > 23) {
-            return text.substring(0, 25) + '...';
+        if (text?.length > 43) {
+            return text.substring(0, 43) + '...';
         }
         else {
             return text;
@@ -42,7 +45,7 @@ export const TopEvents = ({
         }
     }
     const { t } = useTranslation();
-    const [languageData, setLanguageData] = useState({ title: '', location: '', categorName: '', hall })
+    const [languageData, setLanguageData] = useState({ title: '', location: '', categorName: '', hall: '', place: '' })
     const { language } = useSelector((st) => st.StaticReducer)
     const dispatch = useDispatch()
     const navigation = useNavigate()
@@ -53,19 +56,21 @@ export const TopEvents = ({
             item.location = location
             item.categorName = category?.name
             item.hall = hall
+            item.place = place
         }
         else if (language === 'en') {
             item.title = data?.title_en
             item.location = location_en
             item.categorName = category?.name_en
             item.hall = hall_en
-
+            item.place = place_en
         }
         else if (language === 'ru') {
             item.title = data?.title_ru
             item.location = location_ru
             item.categorName = category?.name_ru
             item.hall = hall_ru
+            item.place = place_ru
         }
         setLanguageData(item)
     }, [language])
@@ -111,7 +116,7 @@ export const TopEvents = ({
                 <p className='TopEventsTime'>{time}</p>
             </div>
             <div>
-                <p className='TopEventsInfoPlace'>{languageData.hall}</p>
+                <p className='TopEventsInfoPlace'>{languageData.place} {languageData.hall}</p>
             </div>
             <div className='TopEventsInfoLine' />
             <div className='TopEventsDiv'>

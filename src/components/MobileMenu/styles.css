@@ -121,6 +121,7 @@
     .ButtonWrapperHeader {
         justify-content: flex-start;
         padding: 0 20px;
+        width: 140px;
     }
 
     .MobielLanguage {

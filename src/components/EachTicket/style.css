@@ -64,7 +64,7 @@
     color: #FFCE00;
     font-family: "Montserratarm-Bold", sans-serif;
 
-    font-size: 20px;
+    font-size: 17px;
     font-style: normal;
     /* line-height: 25px; */
 }
@@ -72,7 +72,7 @@
 .TicketData {
     color: #FFF;
     font-family: Montserrat;
-    font-size: 20px;
+    font-size: 15px;
     font-style: normal;
     font-weight: 600;
     /* line-height: 30px; */
@@ -87,7 +87,7 @@
 .TicketTeater>p {
     color: #FFF;
     font-family: "Montserrat arm";
-    font-size: 14px;
+    font-size: 11px;
     font-style: normal;
     font-weight: 600;
     /* font-family: "Montserratarm-Bold", sans-serif; */
@@ -138,11 +138,11 @@
     }
 
     .ticketTitle {
-        font-size: 25px;
+        font-size: 14px;
     }
 
     .TicketData {
-        font-size: 17px;
+        font-size: 13px;
     }
 
     .TicketTeater {
@@ -150,8 +150,7 @@
     }
 
     .TicketTeater>p {
-        font-size: 17px;
-
+        font-size: 11px;
     }
 
     .TicketPrice {

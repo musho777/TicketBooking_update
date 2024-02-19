@@ -22,7 +22,7 @@ export const Single = () => {
         "July", "August", "September", "October", "November", "December"
     ];
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const [languageData, setLanguageData] = useState({ title: '', description: '', hall: '' })
+    const [languageData, setLanguageData] = useState({ title: '', description: '', hall: '', place: '' })
     function truncateText(text) {
         if (text?.length > 23) {
             return text.substring(0, 30) + '...';
@@ -40,17 +40,19 @@ export const Single = () => {
             item.title = event?.title
             item.description = event?.description
             item.hall = event?.sessions[0]?.hallId.place
+            item.place = event?.sessions[0]?.hallId.hall
         }
         else if (language === 'en') {
             item.title = event?.title_en
             item.description = event?.description_en
             item.hall = event?.sessions[0]?.hallId?.place_en
-
+            item.place = event?.sessions[0]?.hallId.hall_en
         }
         else if (language === 'ru') {
             item.title = event?.title_ru
             item.description = event?.description_ru
             item.hall = event?.sessions[0]?.hallId?.place_ru
+            item.place = event?.sessions[0]?.hallId.hall_ru
         }
         setLanguageData(item)
     }, [language, event])
@@ -66,44 +68,29 @@ export const Single = () => {
     }
     return (
         <div id='singlPage' className='container'>
-            {true ? <Card
+            <Card
                 time={event?.sessions[0]?.time}
                 img={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`}
                 imgLarg={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.largeImage}`}
                 id={id}
-                data={event?.sessions[0]?.date.slice(0, 10)}
+                data={event?.sessions[0]?.date}
                 description={languageData?.description}
                 title={languageData?.title}
                 priceEnd={`${event?.sessions[0]?.priceEnd} AMD`}
                 priceStart={`${event?.sessions[0]?.priceStart} -`}
                 hall={languageData?.hall}
+                place={languageData?.place}
                 onClick={() => window.location = `/BuyTickets/${id}`}
                 largImage={
                     getSinglPage.events.event?.largeImage ? `${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.largeImage}` :
                         `${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`
 
                 }
-            /> :
-                <div>
-                    <Card
-                        img={getSinglPage?.events.event?.ParonyanImg}
-                        id={getSinglPage.events.event.id}
-                        data={getSinglPage.events.event.ParonyanTime}
-                        isParonyan={true}
-                        description={
-                            getSinglPage.events.event?.ParonyanText?.replace(/<\/?p>/g, '')
-                        }
-                        seans={getSinglPage.events.event.ParonyanTimeline}
-                        title={truncateText(getSinglPage.events.event.ParonyanName)}
-                        priceEnd={''}
-                        priceStart={''}
-                        setActiveSeans={(e) => setActiveSeans(e)}
-                        hall={getSinglPage.events.event.ParonyanGroup_name}
-                        largImage={getSinglPage.events.event.ParonyanImg}
-                        onClick={() => window.location = `/BuyTickets/${id}:${activSeans}`}
-                    />
-                </div>
-            }
+            />
+            {languageData?.description?.length > 0 && <div className='DescriptionDiv'>
+                <p className='descriptionDiv2Title'>նկարագրություն</p>
+                <p>{languageData?.description}</p>
+            </div>}
             <div className='RecDiv2'>
                 {
                     recomended?.length > 0 &&

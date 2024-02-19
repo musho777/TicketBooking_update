@@ -240,9 +240,7 @@
         font-size: 12px;
     }
 
-    .BanerButton>p {
-        color: #24005C;
-    }
+
 
     .BanerImg {
         height: 100%;
@@ -250,6 +248,7 @@
 
     .BanerDivInfoPlace {
         width: 100%;
+        font-size: 13px;
     }
 
     .BanerLocation {

@@ -47,6 +47,7 @@ export const Carusel = () => {
             let seeMore = ''
             let primera = ''
             let BuyNow = ''
+            let place = ''
             general?.events?.length > 0 && general?.events?.map((elm, i) => {
                 if (language === 'am') {
                     title = elm.eventId.title
@@ -55,6 +56,7 @@ export const Carusel = () => {
                     seeMore = 'տեսնել ավելին'
                     BuyNow = 'Գնիր հիմա'
                     hall = elm?.hallId?.place
+                    place = elm.hallId.hall
                 }
                 else if (language === 'en') {
                     title = elm.eventId.title_en
@@ -63,7 +65,7 @@ export const Carusel = () => {
                     seeMore = 'see more'
                     BuyNow = 'Buy Now'
                     hall = elm.hallId?.place_en
-
+                    place = elm.hallId.hall_en
                 }
                 else if (language === 'ru') {
                     title = elm.eventId.title_ru
@@ -72,7 +74,7 @@ export const Carusel = () => {
                     seeMore = 'узнать больше'
                     BuyNow = 'Купить сейчас'
                     hall = elm.hallId?.place_ru
-
+                    place = elm.hallId.hall_ru
                 }
                 const dateObject = new Date(elm?.date)
                 let dayOfWeek = dateObject.getDate()
@@ -106,7 +108,7 @@ export const Carusel = () => {
                                     </div>
                                     <div className='BanerLocation'>
                                         <LocationSvg />
-                                        <p className='BanerDivInfoPlace'>{hall}</p>
+                                        <p className='BanerDivInfoPlace'>{hall} {place}</p>
                                     </div>
                                 </div>
                                 <p className='BanerTitle'>{title}</p>
@@ -117,12 +119,11 @@ export const Carusel = () => {
                                     </div>
                                     <div className='BanerLocation'>
                                         <LocationSvg />
-                                        <p className='BanerDivInfoPlace'>{hall}</p>
+                                        <p className='BanerDivInfoPlace'>{hall} {place}</p>
                                     </div>
                                 </div>
                                 <div className='BanerTextDiv'>
-                                    <p className='BanerText'>{description}</p>
-                                    {/* <p className='BanerText'>Լյուդովիկո Էյնաուդի, Հանս Ցիմեր, Մաքս Ռիխտեր, Օլավյուր Արնալդս, Էնյա</p> */}
+                                    {/* <p className='BanerText'>{description}</p> */}
                                 </div>
 
                                 <p className='BanerPrice'>{elm.priceStart}-{elm.priceEnd} AMD</p>

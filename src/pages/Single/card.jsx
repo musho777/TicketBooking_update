@@ -20,7 +20,8 @@ export const Card = ({
     isParonyan,
     seans,
     setActiveSeans,
-    imgLarg
+    imgLarg,
+    place
 }) => {
     const { t } = useTranslation();
     const [data1, setData1] = useState(seans)
@@ -29,6 +30,7 @@ export const Card = ({
     const divRef = useRef()
     const [hight, setHeight] = useState(0)
     const [openSeans, setOpenSeans] = useState(false)
+    const [date, setDate] = useState()
     const dispatch = useDispatch()
     document.body.addEventListener('click', function () {
         setOpenSeans(false)
@@ -46,6 +48,16 @@ export const Card = ({
             dispatch(ActiveSeans(data1[0].id))
             setActiveSeans(data1[0].id)
         }
+        let date = new Date(data)
+        let day = date.getDate()
+        let mount = date.getMonth() + 1
+        if (day < 10) {
+            day = `0${day}`
+        }
+        if (mount < 10) {
+            mount = `0${mount}`
+        }
+        setDate(`${day}-${mount}`)
     }, [])
 
     const [windowSize, setWindowSize] = useState({
@@ -65,7 +77,6 @@ export const Card = ({
 
         return () => window.removeEventListener('resize', handleResize);
     }, []);
-
 
     return <div style={{ height: hight }} className='SinglCaruselItem'>
         <div ref={divRef} className='SinglBanerDiv' >
@@ -119,27 +130,23 @@ export const Card = ({
                         <p className='SinglPrimerap'>{t('Primera')}</p>
                         {isParonyan ?
                             <p id="paronyan" className='SinglPrimeraDate' dangerouslySetInnerHTML={{ __html: data }} /> :
-                            <p className='SinglPrimeraDate'>{data} {time}</p>
+                            <p className='SinglPrimeraDate'>{date} {time}</p>
                         }
                     </div>
                     <div className='SinglBanerLocation'>
                         <LocationSvg />
-                        <p className='SinglBanerDivInfoPlace'>{hall}</p>
+                        <p className='SinglBanerDivInfoPlace'>{hall} {place}</p>
                     </div>
                 </div>
                 <div>
                     <p className='SinglBanerTitle'>{title}</p>
-                    <div className='SinglBanerTextDiv'>
-                        <p className='SinglBanerText'>{description}</p>
-                    </div>
                 </div>
                 <div className='SinglBanerPrimeraMobile'>
                     <div className='Primera'>
                         <p className='Primerap'>{t('Primera')}</p>
                         {isParonyan ?
                             <p id="paronyan" className='PrimeraDate' dangerouslySetInnerHTML={{ __html: data }} /> :
-                            // <p className='PrimeraDate'>{data} {time}</p> 
-                            <p className='PrimeraDate'>{data} {time}</p>
+                            <p className='PrimeraDate'>{date} {time}</p>
                         }
                     </div>
                     <div className='BanerLocation'>
@@ -153,15 +160,9 @@ export const Card = ({
                         <Button
                             onClick={onClick}
                             title={t('BuyNow')} />
-                        {description?.length > 100 && <p onClick={() => setShowAll(!showAll)}>{t('seeMore')}</p>}
                     </div>
                 </div>
-                <div className='descriptionDiv'>
-                    <p className='descriptionDiv2Title'>նկարագրություն</p>
-                    <p className='descriptionDiv2Text'>
-                        {showAll ? description : description?.slice(0, 100)}{(!showAll && description?.length > 100) && '...'}
-                    </p>
-                </div>
+
             </div>
             {data1?.length > 0 && <div className='SeansDiv'>
                 {data1?.map((elm, i) => {
@@ -197,9 +198,5 @@ export const Card = ({
             src={largImage}
             alt='#'
         />
-        <div className='descriptionDiv2'>
-            {/* <p >նկարագրություն</p> */}
-            <p>  {showAll ? description : description?.slice(0, 100)}{(!showAll && description?.length > 100) && '...'}</p>
-        </div>
     </div>
 }

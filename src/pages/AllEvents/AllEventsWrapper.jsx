@@ -45,6 +45,10 @@ export const AllEventsWrapper = ({ loading, data, setPage, page, showButton }) =
                         hall={elm.hallId?.place}
                         hall_en={elm.hallId?.place_en}
                         hall_ru={elm.hallId?.place_ru}
+                        place={elm.hallId?.hall}
+                        place_ru={elm.hallId?.hall_ru}
+                        place_en={elm.hallId?.hall_en}
+
                         months={months[month]}
                         currentDayOfWeek={currentDayOfWeek}
                         data={elm}

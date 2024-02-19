@@ -12,13 +12,17 @@ export const WeekCard = ({
     time,
     date,
     img,
-    id
+    id,
+    place_en,
+    place,
+    place_ru
 }) => {
-    const [languageData, setLanguageData] = useState({ title: '', location: '', hall: '' })
+    const [languageData, setLanguageData] = useState({ title: '', location: '', hall: '', place: '' })
     const { language } = useSelector((st) => st.StaticReducer)
-    function truncateText(text) {
+    const [dateTime, setDate] = useState('')
+    function truncateText(text, lang = 10) {
         if (text?.length > 13) {
-            return text.substring(0, 10) + '...';
+            return text.substring(0, lang) + '...';
         } else {
             return text;
         }
@@ -26,18 +30,33 @@ export const WeekCard = ({
 
     useEffect(() => {
         let item = { ...languageData }
+        let datee = new Date(date)
+        let day = datee.getDate()
+        let mount = datee.getMonth() + 1
+        if (day < 10) {
+            day = `0${day}`
+        }
+        if (mount < 10) {
+            mount = `0${mount}`
+        }
+        setDate(`${day}.${mount}`)
+
+
         if (language === 'am') {
             item.title = title
             item.hall = hall
+            item.place = place
         }
         else if (language === 'en') {
             item.title = title_en
             item.hall = hall_en
+            item.place = place_en
 
         }
         else if (language === 'ru') {
             item.title = title_ru
             item.hall = hall_ru
+            item.place = place_ru
         }
         setLanguageData(item)
     }, [language])
@@ -50,9 +69,9 @@ export const WeekCard = ({
         <div className='WeekcardIfno'>
             <p className='WeekcardIfnoTitle'>{truncateText(languageData.title)}</p>
             <p className='WeekCardDate'>
-                {date?.slice(0, 10)} {time}
+                {dateTime} {time}
             </p>
-            <p className='WeekCardPlace'>{truncateText(languageData.hall)}</p>
+            <p className='WeekCardPlace'>{truncateText(languageData.hall)} {truncateText(languageData.place, 30)}</p>
         </div>
         <div className='WeekcardLine' />
         <div className='WeekcardLineSvg'>

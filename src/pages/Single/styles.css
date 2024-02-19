@@ -166,6 +166,17 @@
     position: relative;
 }
 
+.DescriptionDiv {
+    display: block;
+    margin-top: 20px;
+}
+
+.DescriptionDiv>p {
+    font-family: "Montserratarm-Regular", sans-serif;
+    font-size: 14px;
+    color: #24005C;
+}
+
 .SinglBanerButton>p {
     color: #FEE827;
     font-family: "Montserratarm-Regular", sans-serif;
@@ -360,6 +371,10 @@
 
 
 @media screen and (max-width: 690px) {
+    .DescriptionDiv {
+        font-size: 13px;
+    }
+
     .SeansDivMobile {
         width: 280px;
         height: 100%;
@@ -448,7 +463,7 @@
     }
 
     .SinglBanerPrice {
-        font-size: 23px;
+        font-size: 18px;
     }
 
     .SinglBanerDiv {
@@ -456,9 +471,8 @@
     }
 
     .SinglBanerTitle {
-        line-height: 30px !important;
         margin-bottom: 5px;
-        font-size: 28px;
+        font-size: 20px;
     }
 
     .SiglBanerImg2 {
@@ -511,10 +525,10 @@
     }
 
     .SinglBanerPrimeraMobile {
-        gap: 15px;
+        gap: 10px;
         display: flex;
         flex-direction: column;
-        margin: 15px 0;
+        margin: 13px 0;
     }
 
     .RecDiv {

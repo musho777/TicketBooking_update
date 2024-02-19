@@ -79,9 +79,9 @@ export const Footer = ({ menu }) => {
                             <div onClick={() => window.open(`${Event_reducer.feedback?.facebook}`, "_blank")}>
                                 <FbSvg />
                             </div>
-                            <div onClick={() => window.open(`${Event_reducer.feedback?.twitter}`, "_blank")}>
+                            {/* <div onClick={() => window.open(`${Event_reducer.feedback?.twitter}`, "_blank")}>
                                 <TwitterSvg />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -106,9 +106,9 @@ export const Footer = ({ menu }) => {
                                 <div onClick={() => window.open(`${Event_reducer.feedback?.facebook}`, "_blank")}>
                                     <FbSvg />
                                 </div>
-                                <div onClick={() => window.open(`${Event_reducer.feedback?.twitter}`, "_blank")}>
+                                {/* <div onClick={() => window.open(`${Event_reducer.feedback?.twitter}`, "_blank")}>
                                     <TwitterSvg />
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

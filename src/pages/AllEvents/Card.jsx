@@ -24,45 +24,48 @@ export const Card = ({
     type = true,
     time2,
     month1,
-    year
+    year,
+    place,
+    place_en,
+    place_ru
 }) => {
-    function truncateText(text) {
-        if (text?.length > 24) {
-            return text.substring(0, 24) + '...';
+    function truncateText(text, leng = 24) {
+        if (text?.length > leng) {
+            return text.substring(0, leng) + '...';
         }
         else {
             return text;
         }
     }
     const { t } = useTranslation();
-    const [languageData, setLanguageData] = useState({ title: '', location: '', categorName: '', hall })
+    const [languageData, setLanguageData] = useState({ title: '', location: '', categorName: '', hall: '', place: '' })
     const { language } = useSelector((st) => st.StaticReducer)
     const dispatch = useDispatch()
     const navigation = useNavigate()
     useEffect(() => {
         let item = { ...languageData }
         if (language === 'am') {
-            item.title = data?.
-                eventId.title
+            item.title = data?.eventId.title
             item.location = location
             item.categorName = category?.name
             item.hall = hall
+            item.place = place
         }
         else if (language === 'en') {
-            item.title = data?.
-                eventId.title
+            item.title = data?.eventId.title
             item.location = location_en
             item.categorName = category?.name_en
             item.hall = hall_en
-
+            item.place = place_en
         }
         else if (language === 'ru') {
-            item.title = data?.
-                eventId.title
+            item.title = data?.eventId.title
             item.location = location_ru
             item.categorName = category?.name_ru
             item.hall = hall_ru
+            item.place = place_ru
         }
+        console.log(item)
         setLanguageData(item)
     }, [language])
 
@@ -107,13 +110,13 @@ export const Card = ({
                 <p className='TopEventsTime'>{time}</p>
             </div>
             <div>
-                <p className='TopEventsInfoPlace'>{languageData?.hall}</p>
+                <p className='TopEventsInfoPlace'>{languageData?.hall} {languageData.place}</p>
             </div>
             <div className='TopEventsInfoLine' />
             <div className='TopEventsDiv'>
                 <div className='TopEventsDivDiv'>
                     <p className='TopEventsTeaterName'>{languageData?.location}</p>
-                    <p className='TopEventsName'>{truncateText(languageData?.title)}</p>
+                    <p className='TopEventsName'>{truncateText(languageData?.title, 40)}</p>
                 </div>
                 <p className='TopEventsPrice'>{price}</p>
             </div>
@@ -127,9 +130,9 @@ export const Card = ({
         <div className='AllEventsCardWrapper'>
             <img src={image} />
             <div className='AllEventsCardWrapperInfo'>
-                <p className='AllEventsCardWrapperInfoTitle'>{truncateText(languageData.title)}</p>
+                <p className='AllEventsCardWrapperInfoTitle'>{truncateText(languageData.title, 43)}</p>
                 <p className='AllEventsCardWrapperInfoTitleDate'>{day}.{month1}.{year} {time}</p>
-                <p className='AllEventsCardWrapperInfoTitleDateTeter'>{languageData?.hall}</p>
+                <p className='AllEventsCardWrapperInfoTitleDateTeter'>{languageData?.hall}  {languageData.place}</p>
             </div>
         </div>
     </div>

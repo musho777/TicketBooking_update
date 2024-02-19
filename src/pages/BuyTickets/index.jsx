@@ -19,10 +19,11 @@ export const BuyTickets = () => {
     const getSinglPage = useSelector((st) => st.getSinglPage)
     let { recomended } = getSinglPage?.events
     const { language } = useSelector((st) => st.StaticReducer)
-    const [data, setData] = useState({ name: '', description: '', hall: '' })
+    const [data, setData] = useState({ name: '', description: '', hall: '', place: '' })
     let { event } = getSinglPage?.events
     const [open, setOpen] = useState(false)
     const [paronyanSeans, setParonyanSeans] = useState('')
+    const [date, setDate] = useState()
     const [id, setId] = useState('')
     useEffect(() => {
         const parts = ids.id.split(':');
@@ -41,67 +42,7 @@ export const BuyTickets = () => {
 
         })
     };
-    const returnTickets = () => {
 
-        const keys = "hYDepOnSarMi";
-        const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
-        const requestType = "backTickets";
-        const params = {
-            group_id: "12",
-            timeline_id: paronyanSeans,
-            event_id: getSinglPage?.events?.event?.ParonyanEventId,
-            order_id: "442"
-        };
-
-        const sortedParams = Object.keys(params).sort().reduce((acc, key) => {
-            acc[key] = params[key];
-            return acc;
-        }, {});
-
-        sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
-
-        const data = {
-            "data": [
-                {
-                    "LevelId": "3",
-                    "Places": [
-                        {
-                            "Row": "1",
-                            "Seat": "1"
-                        },
-                        {
-                            "Row": "1",
-                            "Seat": "2"
-                        },
-                    ]
-                },
-            ]
-        };
-        sortedParams.data = JSON.stringify(data);
-
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(sortedParams)
-        };
-
-        fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
-            .then(response => response.json())
-            .then(data => {
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
-
-
-    useEffect(() => {
-        returnTickets()
-    }, [])
 
     const tickets = useSelector((st) => st.tiketsForBuy)
 
@@ -119,6 +60,17 @@ export const BuyTickets = () => {
                 translation: { x: 100, y: 0 }
             })
         }
+        let date = new Date(event?.sessions[0]?.date)
+        let mount = date.getMonth() + 1
+        let day = date.getDate()
+        if (mount < 10) {
+            mount = `0${mount}`
+        }
+        if (day < 10) {
+            day = `0${day}`
+        }
+        setDate(`${day}.${mount}`)
+        console.log(mount)
     }, [event])
 
 
@@ -151,16 +103,21 @@ export const BuyTickets = () => {
                 item.name = getSinglPage?.events?.event?.title
                 item.description = getSinglPage.events.event?.description
                 item.hall = getSinglPage.events.event?.sessions[0]?.hallId?.hall
+                item.place = getSinglPage.events.event?.sessions[0]?.hallId?.place
             }
             else if (language === 'ru') {
                 item.name = getSinglPage.events.event?.title_ru
                 item.description = getSinglPage.events.event?.description_ru
                 item.hall = getSinglPage.events.event?.sessions[0]?.hallId.hall_ru
+                item.place = getSinglPage.events.event?.sessions[0]?.hallId?.place_ru
+
             }
             else if (language === 'en') {
                 item.name = getSinglPage.events.event?.title_en
                 item.description = getSinglPage.events.event?.description_en
                 item.hall = getSinglPage.events.event?.sessions[0]?.hallId.hall_en
+                item.place = getSinglPage.events.event?.sessions[0]?.hallId?.place_en
+
             }
             setData(item)
         }
@@ -188,7 +145,6 @@ export const BuyTickets = () => {
             type='openBuy'
             setOpen={() => {
                 setOpen(false)
-                // backBookTikets()
             }}
         >
             <BuyNow
@@ -199,49 +155,41 @@ export const BuyTickets = () => {
                 grupID={getSinglPage.events?.event?.ParonyanGroup_id}
                 open={open} />
         </CartPopup >}
+        <div className='ticketPrice'>
+            <div style={{ backgroundColor: '#ee9dd6' }}>10000</div>
+            <div style={{ backgroundColor: '#18ff00' }}>15000</div>
+            <div style={{ backgroundColor: "#79caff" }}>20000</div>
+            <div style={{ backgroundColor: "#ff8d24" }}>25000</div>
+            <div style={{ backgroundColor: "#dee362" }}>30000</div>
+            <div style={{ backgroundColor: "#7d4e5a" }}>35000</div>
+            <div style={{ backgroundColor: "#930b92" }}>40000</div>
+            <div style={{ backgroundColor: "#5c99d4" }}>45000</div>
+            <div style={{ backgroundColor: '#f43b45' }}>50000</div>
+        </div>
         <div className='BuyTicketsWrapper'>
-            {!getSinglPage.events?.event
-                ?.isParonyanEvent ?
 
-                <div className='BuyTicketsCard' id='mobileBuyTicketsCard'>
-                    <img src={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`} />
-                    <div className='BuyTicketsCardInfo'>
-                        <div>
-                            <p className='BuyTicketTitle'>{data?.name}</p>
-                            <p className='BuyTickeDescription'>{truncateText(data?.description)}</p>
-                        </div>
-                        <div className='BuyTicketDate'>
-                            <CalendarSvg1 />
-                            <p className='BuyTicketDateMonth'>{new Date(getSinglPage.events.event?.sessions[0]?.date).getDate()}.{new Date(getSinglPage.events.event?.sessions[0]?.date).getMonth() + 1}.{new Date(getSinglPage.events.event?.sessions[0]?.date).getFullYear()} </p>
-                            <div></div>
-                            <p className='BuyTicketDateTime'>{getSinglPage.events.event?.sessions[0]?.time}</p>
-                        </div>
-                        <div className='BuyTicketDateLocation'>
-                            <LocationSvg1 />
-                            <p>{data.hall}</p>
-                        </div>
+            <div className='BuyTicketsCard' id='mobileBuyTicketsCard'>
+                <img src={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`} />
+                <div className='BuyTicketsCardInfo'>
+                    <div>
+                        <p className='BuyTicketTitle'>{data?.name}</p>
+                        {/* <p className='BuyTickeDescription'>{truncateText(data?.description)}</p> */}
                     </div>
-                </div> :
-                <div className='BuyTicketsCard' id='mobileBuyTicketsCard'>
-                    <img src={getSinglPage.events.event.ParonyanImg} />
-                    <div className='BuyTicketsCardInfo'>
-                        <div>
-                            <p className='BuyTicketTitle'>{truncateText(getSinglPage.events.event.ParonyanName)}</p>
-                            <p className='BuyTickeDescription'>{truncateText(getSinglPage.events.event?.ParonyanText?.replace(/<\/?p>/g, ''))}</p>
-                        </div>
-                        <div className='BuyTicketDate'>
-                            <CalendarSvg1 />
-                            <p id="paronyan" className='BuyTicketDateMonth' dangerouslySetInnerHTML={{ __html: getSinglPage.events.event?.ParonyanTime }} />
-                            <div></div>
-                        </div>
-                        <div className='BuyTicketDateLocation'>
-                            <LocationSvg1 />
-                            <p>{getSinglPage.events.event.ParonyanGroup_name}</p>
-
-                        </div>
+                    <div className='BuyTicketDate'>
+                        <CalendarSvg1 />
+                        <p className='BuyTicketDateMonth'>
+                            {date}
+                        </p>
+                        <div></div>
+                        <p className='BuyTicketDateTime'>{getSinglPage.events.event?.sessions[0]?.time}</p>
+                    </div>
+                    <div className='BuyTicketDateLocation'>
+                        <LocationSvg1 />
+                        <p>{data.place} {data.hall}</p>
                     </div>
                 </div>
-            }
+            </div>
+
             <div className='HallWrapper'>
                 <div className="zoom-controls">
                     <button onClick={handleZoomIn}>+</button>
@@ -265,135 +213,82 @@ export const BuyTickets = () => {
                     />
                 </div>
             </div>
-            {!getSinglPage.events?.event
-                ?.isParonyanEvent ?
+            <div className='ticketPriceMobile'>
+                <div style={{ backgroundColor: '#ee9dd6' }}>10000</div>
+                <div style={{ backgroundColor: '#18ff00' }}>15000</div>
+                <div style={{ backgroundColor: "#79caff" }}>20000</div>
+                <div style={{ backgroundColor: "#ff8d24" }}>25000</div>
+                <div style={{ backgroundColor: "#dee362" }}>30000</div>
+                <div style={{ backgroundColor: "#7d4e5a" }}>35000</div>
+                <div style={{ backgroundColor: "#930b92" }}>40000</div>
+                <div style={{ backgroundColor: "#5c99d4" }}>45000</div>
+                <div style={{ backgroundColor: '#f43b45' }}>50000</div>
+            </div>
 
-                <div className='BuyTicketsCardWrapper'>
-                    <div className='BuyTicketsCard'>
-                        <img src={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`} />
-                        <div className='BuyTicketsCardInfo'>
+            <div className='BuyTicketsCardWrapper'>
+                <div className='BuyTicketsCard'>
+                    <img src={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`} />
+                    <div className='BuyTicketsCardInfo'>
+                        <div>
+                            <p className='BuyTicketTitle'>{data.name}</p>
+                            {/* <p className='BuyTickeDescription'>{truncateText(data.description)}</p> */}
+                        </div>
+                        <div className='BuyTicketDate'>
                             <div>
-                                <p className='BuyTicketTitle'>{data.name}</p>
-                                <p className='BuyTickeDescription'>{truncateText(data.description)}</p>
+                                <CalendarSvg1 />
                             </div>
-                            <div className='BuyTicketDate'>
-                                <div>
-                                    <CalendarSvg1 />
-                                </div>
-                                <p className='BuyTicketDateMonth'>{new Date(getSinglPage.events.event?.sessions[0]?.date).getDate()}.{new Date(getSinglPage.events.event?.sessions[0]?.date).getMonth() + 1}.{new Date(getSinglPage.events.event?.sessions[0]?.date).getFullYear()} </p>
-                                <div className='LineBuyTicketDate'></div>
-                                <p className='BuyTicketDateTime'>{getSinglPage.events.event?.sessions[0]?.time}</p>
-                            </div>
-                            <div className='BuyTicketDateLocation'>
-                                <LocationSvg1 />
-                                <p>{data.hall}</p>
-                            </div>
+                            <p className='BuyTicketDateMonth'>   {date} </p>
+                            <div className='LineBuyTicketDate'></div>
+                            <p className='BuyTicketDateTime'>{getSinglPage.events.event?.sessions[0]?.time}</p>
                         </div>
-                    </div>
-                    <div className='Tickets'>
-                        <div className='TicketsHeader'>
-                            <p>{t('Ticket')}</p>
-                            <p>{t('Price')}</p>
-                        </div>
-                        <div className='TicketBody'>
-                            {
-                                tickets?.tickets?.map((elm, i) => {
-                                    return <div className='TikcetsWrapper'>
-                                        <div className='TicketDiv'>
-                                            <div className='TicketInfoo'>
-                                                <p>{elm?.parterre && t('Parterre')} {elm?.lodge && t('Lodge')} {elm?.amphitheater && t('Amphitheater')} {elm?.stage && 'Stage'}</p>
-                                                <div>
-                                                    <p>{t('Line')}: <span>{elm.row}</span></p>
-                                                    <p>{t('Place')}: <span>
-                                                        {elm.seat}
-                                                    </span></p>
-                                                </div>
-                                            </div>
-                                            <p className='TicketPrcie'>{elm.price} AMD</p>
-                                            <div className='ClewarTicet' onClick={() => dispatch(RemoveTicketsAction(elm))}>
-                                                <ClearSvg />
-                                            </div>
-                                        </div>
-                                    </div>
-                                })
-                            }
-
-
-                            <div className='TotalPrice'>
-                                <p className='Totalp'>{t('TOTALLY')}</p>
-                                <p className='ToatalPricep'>{total} AMD</p>
-                            </div>
-                            <div className='totalLine' />
-                            <div className='BuyTicketButtonWrapper'>
-                                <button
-                                    disabled={tickets?.tickets?.length == 0}
-                                    className={tickets?.tickets?.length == 0 && 'disableButton'} onClick={() => setOpen(true)}>{t('Next')}</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> : <div className='BuyTicketsCardWrapper'>
-                    <div className='BuyTicketsCard'>
-                        <img src={getSinglPage.events.event.ParonyanImg} />
-                        <div className='BuyTicketsCardInfo'>
-                            <div>
-                                <p className='BuyTicketTitle'>{truncateText(getSinglPage.events.event.ParonyanName)}</p>
-                                <p className='BuyTickeDescription'>{truncateText(getSinglPage.events.event?.ParonyanText?.replace(/<\/?p>/g, ''))}</p>
-                            </div>
-                            <div className='BuyTicketDate'>
-                                <div>
-                                    <CalendarSvg1 />
-                                </div>
-                                <p id="paronyan" className='BuyTicketDateMonth' dangerouslySetInnerHTML={{ __html: getSinglPage.events.event.ParonyanTime }} />
-                            </div>
-                            <div className='BuyTicketDateLocation'>
-                                <LocationSvg1 />
-                                <p>{getSinglPage.events.event.ParonyanGroup_name}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='Tickets'>
-                        <div className='TicketsHeader'>
-                            <p>{t('Ticket')}</p>
-                            <p>{t('Price')}</p>
-                        </div>
-                        <div className='TicketBody'>
-                            {
-                                tickets?.tickets?.map((elm, i) => {
-                                    return <div className='TikcetsWrapper'>
-                                        <div className='TicketDiv'>
-                                            <div className='TicketInfoo'>
-                                                <p>{elm?.parterre && t('Parterre')} {elm?.lodge && t('Lodge')} {elm?.amphitheater && t('Amphitheater')} {elm?.stage && 'Stage'}</p>
-                                                <div>
-                                                    <p>{t('Line')}: <span>{elm.row}</span></p>
-                                                    <p>{t('Place')}: <span>
-                                                        {elm.seat}
-                                                    </span></p>
-                                                </div>
-                                            </div>
-                                            <p className='TicketPrcie'>{elm.price} AMD</p>
-                                            <div className='ClewarTicet' onClick={() => dispatch(RemoveTicketsAction(elm))}>
-                                                <ClearSvg />
-                                            </div>
-                                        </div>
-                                    </div>
-                                })
-                            }
-
-
-                            <div className='TotalPrice'>
-                                <p className='Totalp'>{t('TOTALLY')}</p>
-                                <p className='ToatalPricep'>{total} AMD</p>
-                            </div>
-                            <div className='totalLine' />
-                            <div className='BuyTicketButtonWrapper'>
-                                <button
-                                    disabled={tickets?.tickets?.length == 0}
-                                    className={tickets?.tickets?.length == 0 && 'disableButton'} onClick={() => setOpen(true)}>{t('Next')}</button>
-                            </div>
+                        <div className='BuyTicketDateLocation'>
+                            <LocationSvg1 />
+                            <p>{data.place}  {data.hall}</p>
                         </div>
                     </div>
                 </div>
-            }
+                <div className='Tickets'>
+                    <div className='TicketsHeader'>
+                        <p>{t('Ticket')}</p>
+                        <p>{t('Price')}</p>
+                    </div>
+                    <div className='TicketBody'>
+                        {
+                            tickets?.tickets?.map((elm, i) => {
+                                return <div className='TikcetsWrapper'>
+                                    <div className='TicketDiv'>
+                                        <div className='TicketInfoo'>
+                                            <p>{elm?.parterre && t('Parterre')} {elm?.lodge && t('Lodge')} {elm?.amphitheater && t('Amphitheater')} {elm?.stage && 'Stage'}</p>
+                                            <div>
+                                                <p>{t('Line')}: <span>{elm.row}</span></p>
+                                                <p>{t('Place')}: <span>
+                                                    {elm.seat}
+                                                </span></p>
+                                            </div>
+                                        </div>
+                                        <p className='TicketPrcie'>{elm.price} AMD</p>
+                                        <div className='ClewarTicet' onClick={() => dispatch(RemoveTicketsAction(elm))}>
+                                            <ClearSvg />
+                                        </div>
+                                    </div>
+                                </div>
+                            })
+                        }
+
+
+                        <div className='TotalPrice'>
+                            <p className='Totalp'>{t('TOTALLY')}</p>
+                            <p className='ToatalPricep'>{total} AMD</p>
+                        </div>
+                        <div className='totalLine' />
+                        <div className='BuyTicketButtonWrapper'>
+                            <button
+                                disabled={tickets?.tickets?.length == 0}
+                                className={tickets?.tickets?.length == 0 && 'disableButton'} onClick={() => setOpen(true)}>{t('Next')}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div>
             {
@@ -430,3 +325,4 @@ export const BuyTickets = () => {
         </div>
     </div >
 }
+

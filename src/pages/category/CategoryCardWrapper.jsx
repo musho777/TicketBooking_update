@@ -28,10 +28,14 @@ export const CategoryCardWrapper = ({ loading, data, setPage, page, showButton, 
                             location={elm?.hallId?.location}
                             location_en={elm?.eventId?.hallId?.location_en}
                             location_ru={elm?.eventId?.hallId?.location_ru}
-                            hall={elm.hallId.hall}
                             time={elm.time}
+                            hall={elm.hallId.hall}
                             hall_en={elm.hallId.hall_en}
                             hall_ru={elm.hallId.hall_ru}
+                            place={elm.hallId.place}
+                            place_en={elm.hallId.place_en}
+                            place_ru={elm.hallId.place_ru}
+
                             months={months[month]}
                             currentDayOfWeek={currentDayOfWeek}
                             data={elm.eventId}
