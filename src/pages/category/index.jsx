@@ -199,7 +199,6 @@ export const Category = () => {
             combinedArray = data
         }
         if (events.events.sessions?.length > 0) {
-            console.log('111')
             combinedArray = item.concat(events.events.sessions);
         }
         setData(combinedArray)

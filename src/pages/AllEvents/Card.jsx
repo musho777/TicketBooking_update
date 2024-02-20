@@ -65,7 +65,6 @@ export const Card = ({
             item.hall = hall_ru
             item.place = place_ru
         }
-        console.log(item)
         setLanguageData(item)
     }, [language])
 

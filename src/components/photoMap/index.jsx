@@ -3,9 +3,8 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/action'
 import { PuffLoader } from 'react-spinners'
-import { padding } from '@mui/system'
 
-const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, sessionID, eventId, pading, setPosition, setActiveTicket, activeTicket, value }) => {
+const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, sessionID, eventId, pading, setPosition, setActiveTicket, activeTicket, value, isInteracting }) => {
 
     const dispatch = useDispatch()
     const [coordinatesState, setCoordinatesState] = useState([])
@@ -39,7 +38,6 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
 
 
     const getPrice = (y, i, x, price, row, id, parterre, amphitheater, lodge, section, row2) => {
-        console.log(i)
         setPosition({ x, y })
         let seat = 0
         const result = coordinatesState.filter((elm) => elm.y === y);
@@ -63,7 +61,6 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
             index = index + 41
         }
         seat = result.length - (result.length - index - 1)
-        console.log(row2)
         setActiveTicket({
             row: row,
             price: price,
@@ -82,7 +79,6 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
 
 
     const addTicket = (y, i, x, price, row, id, parterre, amphitheater, lodge, section, row2) => {
-        console.log(row2, 'row2')
         let data = [...coordinatesState]
         let seat = 0
         const result = coordinatesState.filter((elm) => elm.y === y);
@@ -97,7 +93,6 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
             data[i].active = false
         }
         // data[i].active = !data[i].active
-        console.log(row2)
         if (windowSize.width <= 768) {
             setShowModal(true)
             setTimeout(() => {
@@ -503,8 +498,10 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
                     return <button
                         key={i}
                         onMouseOver={() => {
-                            getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section, e.row2)
-                            setActiveButton(i)
+                            if (!isInteracting) {
+                                getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section, e.row2)
+                                setActiveButton(i)
+                            }
                         }}
                         style={
                             {
@@ -524,19 +521,18 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
                             setActiveButton(null)
                         }}
                         onClick={() => {
-                            if (windowSize.width > 768) {
+                            if (windowSize.width > 768 && !isInteracting) {
                                 addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section, e.row2)
                             }
-                        }
-                        }
+                        }}
                         onTouchStart={() => {
-                            if (windowSize.width <= 768) {
+                            if (windowSize.width <= 768 && !isInteracting) {
                                 getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section, e.row2)
                                 setActiveButton(i)
                             }
                         }}
                         onTouchEnd={() => {
-                            if (windowSize.width <= 768) {
+                            if (windowSize.width <= 768 && !isInteracting) {
                                 addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section, e.row2)
                             }
                         }}

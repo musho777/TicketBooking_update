@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/action'
 
-const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, places, value, soldTickets }) => {
+const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, places, value, soldTickets, isInteracting }) => {
     const dispatch = useDispatch()
     const [coordinatesState, setCoordinatesState] = useState([])
     const [activeTicket, setActiveTicket] = useState({})
@@ -77,7 +77,7 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
 
     const [data, setData] = useState([])
 
-    const getPrice = (y, i, x, parterre, amphitheater, lodge) => {
+    const getPrice = (y, i, x) => {
         let temp = [...data]
         if (temp.findIndex((el) => el.id == i) == -1) {
             temp.push({ "id": i, "price": "", "row": 1, "seat": temp.length + 1, LevelId: 6, balcony: true, active: false },)
@@ -197,8 +197,10 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
                         return <button
                             key={i}
                             onMouseOver={() => {
-                                getPrice(e.y, i, e.x, e.parterre, e.amphitheater, e.lodge)
-                                setActiveButton(i)
+                                if (!isInteracting) {
+                                    getPrice(e.y, i, e.x, e.parterre, e.amphitheater, e.lodge)
+                                    setActiveButton(i)
+                                }
                             }}
                             style={
                                 {
@@ -221,20 +223,20 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
                                 setActiveButton(null)
                             }}
                             onClick={() => {
-                                if (windowSize.width > 768) {
+                                if (windowSize.width > 768 && !isInteracting) {
                                     addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
                                 }
                             }
                             }
                             onTouchStart={() => {
-                                if (windowSize.width <= 768) {
+                                if (windowSize.width <= 768 && !isInteracting) {
                                     getPrice(e.y, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
                                     setActiveButton(i)
-                                    addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
                                 }
                             }}
                             onTouchEnd={() => {
                                 if (windowSize.width <= 768) {
+                                    addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
                                     // addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
                                 }
                             }}

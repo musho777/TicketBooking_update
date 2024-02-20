@@ -43,6 +43,7 @@ export const BuyTickets = () => {
         })
     };
 
+    console.log(id)
 
     const tickets = useSelector((st) => st.tiketsForBuy)
 
@@ -70,7 +71,6 @@ export const BuyTickets = () => {
             day = `0${day}`
         }
         setDate(`${day}.${mount}`)
-        console.log(mount)
     }, [event])
 
 
@@ -155,7 +155,7 @@ export const BuyTickets = () => {
                 grupID={getSinglPage.events?.event?.ParonyanGroup_id}
                 open={open} />
         </CartPopup >}
-        <div className='ticketPrice'>
+        {id == '65d21c1851424e16acf107d4' && <div className='ticketPrice'>
             <div style={{ backgroundColor: '#ee9dd6' }}>10000</div>
             <div style={{ backgroundColor: '#18ff00' }}>15000</div>
             <div style={{ backgroundColor: "#79caff" }}>20000</div>
@@ -165,7 +165,7 @@ export const BuyTickets = () => {
             <div style={{ backgroundColor: "#930b92" }}>40000</div>
             <div style={{ backgroundColor: "#5c99d4" }}>45000</div>
             <div style={{ backgroundColor: '#f43b45' }}>50000</div>
-        </div>
+        </div>}
         <div className='BuyTicketsWrapper'>
 
             <div className='BuyTicketsCard' id='mobileBuyTicketsCard'>
@@ -213,7 +213,7 @@ export const BuyTickets = () => {
                     />
                 </div>
             </div>
-            <div className='ticketPriceMobile'>
+            {id == '65d21c1851424e16acf107d4' && <div className='ticketPriceMobile'>
                 <div style={{ backgroundColor: '#ee9dd6' }}>10000</div>
                 <div style={{ backgroundColor: '#18ff00' }}>15000</div>
                 <div style={{ backgroundColor: "#79caff" }}>20000</div>
@@ -223,7 +223,7 @@ export const BuyTickets = () => {
                 <div style={{ backgroundColor: "#930b92" }}>40000</div>
                 <div style={{ backgroundColor: "#5c99d4" }}>45000</div>
                 <div style={{ backgroundColor: '#f43b45' }}>50000</div>
-            </div>
+            </div>}
 
             <div className='BuyTicketsCardWrapper'>
                 <div className='BuyTicketsCard'>
