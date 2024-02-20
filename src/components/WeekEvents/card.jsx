@@ -61,7 +61,7 @@ export const WeekCard = ({
         setLanguageData(item)
     }, [language])
     return <div onClick={() => {
-        window.location = `/Single/${id}`
+        window.location = `/Single/${id}/${title}`
     }} className='WeekCard'>
         <div className='WeekCardImg'>
             <img src={img} />

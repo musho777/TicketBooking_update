@@ -26,7 +26,8 @@ export const TopEvents = ({
     time2,
     place,
     place_en,
-    place_ru
+    place_ru,
+    title
 }) => {
     function truncateText(text) {
         if (text?.length > 43) {
@@ -91,10 +92,10 @@ export const TopEvents = ({
                     type: 'paronyan'
                 }
             }))
-            navigation(`/Single/${id}`)
+            navigation(`/Single/${id}/${title}`)
         }
         else {
-            window.location = `/Single/${id}`
+            window.location = `/Single/${id}/${title}`
         }
 
     }

@@ -129,7 +129,7 @@ export const Carusel = () => {
                                 <p className='BanerPrice'>{elm.priceStart}-{elm.priceEnd} AMD</p>
                                 <div className='BanerButton'>
                                     <Button onClick={() => window.location = `/BuyTickets/${elm?.eventId?._id}`} title={BuyNow} />
-                                    <p onClick={() => window.location = `/Single/${elm?.eventId?._id}`}>{seeMore}</p>
+                                    <p onClick={() => window.location = `/Single/${elm?.eventId?._id}/${elm?.eventId?.title}`}>{seeMore}</p>
                                 </div>
                             </div>
                         </div>

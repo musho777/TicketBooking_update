@@ -27,7 +27,8 @@ export const Card = ({
     year,
     place,
     place_en,
-    place_ru
+    place_ru,
+    title
 }) => {
     function truncateText(text, leng = 24) {
         if (text?.length > leng) {
@@ -84,10 +85,10 @@ export const Card = ({
                     type: 'paronyan'
                 }
             }))
-            navigation(`/Single/${id}`)
+            navigation(`/Single/${id}/${title}`)
         }
         else {
-            window.location = `/Single/${id}`
+            window.location = `/Single/${id}/${title}`
         }
 
     }

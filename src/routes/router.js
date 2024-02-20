@@ -19,7 +19,7 @@ export const Router = () => {
                 <Route path="/" element={<Layout />}>
                     <Route path="/" element={<Main />} />
                     <Route path="/Category/:id/:id" element={<Category />} />
-                    <Route path="/Single/:id" element={<Single />} />
+                    <Route path="/Single/:id/:title" element={<Single />} />
                     <Route path="/PrivacyPolicy" element={<PrivatePolice />} />
                     <Route path="/StatusPage " element={<StatusPage />} />
                     <Route path="/Reject" element={<StatusPageReject />} />

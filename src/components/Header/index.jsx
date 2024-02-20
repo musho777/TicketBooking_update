@@ -207,7 +207,7 @@ export const Header = () => {
 
                                         }
                                         return <div
-                                            onClick={() => window.location = `/single/${elm?.eventId._id}`}
+                                            onClick={() => window.location = `/single/${elm?.eventId._id}/${elm?.eventId?.title}`}
                                         >
                                             <div className='SearchResultDiv'>
                                                 <div className='SearchResultDivInfo'>
@@ -326,7 +326,7 @@ export const Header = () => {
                                                 description = elm.description_en
 
                                             }
-                                            return <div onClick={() => window.location = `/single/${elm?.eventId._id}`}>
+                                            return <div onClick={() => window.location = `/single/${elm?.eventId._id}/${elm?.eventId?.title}`}>
                                                 <div className='SearchResultDiv'>
                                                     <div className='SearchResultDivInfo'>
                                                         <p>{truncateText(name)}</p>
