@@ -11,7 +11,7 @@ export const StatusACBA = () => {
         if (!localStorage.getItem('orderId')) {
             window.location = '/'
         } else {
-            dispatch(BuyTickets({ orderId: localStorage.getItem('orderId') }))
+            // dispatch(BuyTickets({ orderId: localStorage.getItem('orderId') }))
             setLoading(false)
             // setTimeout(() => {
             //     localStorage.removeItem('orderId')

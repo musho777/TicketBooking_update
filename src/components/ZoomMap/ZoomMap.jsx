@@ -11,13 +11,10 @@ export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent,
     const handleChange = (newValue) => {
         setIsInteracting(true)
         setValue(newValue);
-
-
         setIsInteracting(true)
     };
     useEffect(() => {
-        const interactionTimeout = 500; // Adjust as needed
-
+        const interactionTimeout = 250; // Adjust as needed
         let timeoutId;
         if (isInteracting) {
             timeoutId = setTimeout(() => {
@@ -30,7 +27,7 @@ export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent,
         return () => {
             clearTimeout(timeoutId);
         };
-    }, [isInteracting]);
+    }, [isInteracting, setValue]);
 
 
 

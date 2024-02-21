@@ -84,7 +84,14 @@
     flex-direction: column;
 }
 
-.InputWeapper>p {
+.DeliveryInputWeapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.InputWeapper>p,
+.DeliveryInputWeapper>p {
     height: 5px;
     color: red;
     font-size: 12px;
@@ -200,6 +207,10 @@
 @media screen and (max-width: 768px) {
     .BuyNowHeaderTitle {
         font-size: 21px;
+    }
+
+    .InputWeapper {
+        width: 100%;
     }
 
     .FreeDelivery {

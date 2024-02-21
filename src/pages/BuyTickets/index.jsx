@@ -43,8 +43,6 @@ export const BuyTickets = () => {
         })
     };
 
-    console.log(id)
-
     const tickets = useSelector((st) => st.tiketsForBuy)
 
     const [total, setTotal] = useState(0)

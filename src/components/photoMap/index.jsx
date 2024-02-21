@@ -13,7 +13,11 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
     const [activeButton, setActiveButton] = useState(null)
     const [loading, setLoading] = useState(true)
     const { tickets } = useSelector((st) => st.tiketsForBuy)
+    const [click, setClick] = useState(isInteracting)
 
+    useEffect(() => {
+        setClick(isInteracting)
+    }, [isInteracting])
 
     const [windowSize, setWindowSize] = useState({
         width: window.innerWidth,
@@ -498,10 +502,8 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
                     return <button
                         key={i}
                         onMouseOver={() => {
-                            if (!isInteracting) {
-                                getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section, e.row2)
-                                setActiveButton(i)
-                            }
+                            getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section, e.row2)
+                            setActiveButton(i)
                         }}
                         style={
                             {
@@ -521,18 +523,19 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
                             setActiveButton(null)
                         }}
                         onClick={() => {
-                            if (windowSize.width > 768 && !isInteracting) {
+                            if (windowSize.width > 768 && !click) {
                                 addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section, e.row2)
                             }
                         }}
                         onTouchStart={() => {
-                            if (windowSize.width <= 768 && !isInteracting) {
+                            if (windowSize.width <= 768 && !click) {
                                 getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section, e.row2)
                                 setActiveButton(i)
                             }
                         }}
                         onTouchEnd={() => {
-                            if (windowSize.width <= 768 && !isInteracting) {
+                            setClick(false)
+                            if (windowSize.width <= 768 && !click) {
                                 addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section, e.row2)
                             }
                         }}
