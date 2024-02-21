@@ -56,5 +56,6 @@
     "freeDelivery1": "Вызов",
     "Searchforanevent": "Поиск события",
     "DEPARTMENTS": "ОТДЕЛЕНИЯ",
-    "Pleasetryagainlater": "Пожалуйста, повторите попытку позже"
+    "Pleasetryagainlater": "Пожалуйста, повторите попытку позже",
+    "requiredfield": "Обязательное поле*"
 }

@@ -143,64 +143,6 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
     }, [language, getSinglPage])
 
 
-
-    const backBookTikets = () => {
-        const keys = "hYDepOnSarMi";
-        const secretKey = "cyJhbGcieiJIUdzI1Nir9eyJt2xglIyoiQWRdtsg";
-        const requestType = "bookBack";
-
-        const params = {
-            group_id: grupID,
-            timeline_id: paronyanSeans,
-            event_id: event_id,
-        };
-
-        const sortedParams = Object.keys(params).sort().reduce((acc, key) => {
-            acc[key] = params[key];
-            return acc;
-        }, {});
-
-        sortedParams.token = MD5(Object.values(sortedParams).join('|') + '|' + keys).toString();
-        let data = { 'data': [] }
-        tickets.tickets.map((e, i) => {
-            let index = data.data.findIndex(el => el.LevelId = e.LevelId)
-            if (index < 0) {
-                data.data?.push({
-                    "LevelId": e.LevelId,
-                    "Places": []
-                })
-            }
-            data.data.map((elm, i) => {
-                if (elm.LevelId == e.LevelId) {
-                    elm.Places.push({
-                        "Row": e.row,
-                        "Seat": e.seat
-                    })
-                }
-            })
-        })
-        sortedParams.data = JSON.stringify(data);
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(sortedParams)
-        };
-
-        fetch(`https://api.haytoms.am/sync/${secretKey}/${requestType}`, options)
-            .then(response => response.json())
-            .then(data => {
-                localStorage.setItem('orderId', JSON.stringify(data))
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
-
-
     function handlePurchase() {
         setLoading(true)
         axios.post(`${process.env.REACT_APP_HOSTNAME}/registerPayment`, {
@@ -367,21 +309,30 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
                 {/* <p className='FreeDelivery'>{t('freeDelivery')}</p> */}
                 <div className='InputTextareWrapper'>
                     <div className='InputWrapperBuy'>
-                        <input
-                            className='InputsBuy'
-                            placeholder={t('NameSurname')}
-                            id={error.name != '' ? 'errorInut' : 'inout'} value={name} onChange={(e) => setName(e.target.value)} />
-                        <InputMask
-                            className='InputsBuy'
-                            value={number}
-                            mask="+374 (99) 999-999"
-                            placeholder={t('PhoneNumber')}
-                            onChange={e => setNumber(e.target.value)}
-                            id={error.phonNumber != '' ? 'errorInut' : 'inout'}
-                        />
-                        <input
-                            className='InputsBuy'
-                            placeholder={t('Email')} id={error.email != '' ? 'errorInut' : 'inout'} value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <div className='InputWeapper'>
+                            <input
+                                className='InputsBuy'
+                                placeholder={t('NameSurname')}
+                                id={error.name != '' ? 'errorInut' : 'inout'} value={name} onChange={(e) => setName(e.target.value)} />
+                            {error.name && <p>{t('requiredfield')}</p>}
+                        </div>
+                        <div className='InputWeapper'>
+                            <InputMask
+                                className='InputsBuy'
+                                value={number}
+                                mask="+374 (99) 999-999"
+                                placeholder={t('PhoneNumber')}
+                                onChange={e => setNumber(e.target.value)}
+                                id={error.phonNumber != '' ? 'errorInut' : 'inout'}
+                            />
+                            {error.phonNumber && <p>{t('requiredfield')}</p>}
+                        </div>
+                        <div className='InputWeapper'>
+                            <input
+                                className='InputsBuy'
+                                placeholder={t('Email')} id={error.email != '' ? 'errorInut' : 'inout'} value={email} onChange={(e) => setEmail(e.target.value)} />
+                            {error.email && <p>{t('requiredfield')}</p>}
+                        </div>
                     </div>
                     <textarea
                         className='TextareBuy'
@@ -449,10 +400,7 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
                             <a className='textDD' style={error.checked ? { color: 'red' } : { color: '' }} href='https://shinetickets.com/PrivacyPolicy'>{t('Termsandconditions')}</a>
                         </div>
                         <div className='ReadAndAgree'>
-                            <div style={{ marginLeft: 1 }}>
-                                <MobileSvg />
-                            </div>
-                            <p>{Event_reducer.feedback.phone}</p>
+                            {error.checked && <p className='errorp'>{t('requiredfield')}</p>}
                         </div>
                     </div>
                     <button

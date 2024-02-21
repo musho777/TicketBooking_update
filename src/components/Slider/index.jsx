@@ -53,7 +53,7 @@ export const Carusel = () => {
                     title = elm.eventId.title
                     description = elm.eventId?.description
                     primera = 'ՊՐԵՄԻԵՐԱ'
-                    seeMore = 'տեսնել ավելին'
+                    seeMore = 'Տեսնել ավելին'
                     BuyNow = 'Գնիր հիմա'
                     hall = elm?.hallId?.place
                     place = elm.hallId.hall
