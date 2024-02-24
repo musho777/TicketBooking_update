@@ -11,6 +11,7 @@ import { StatusACBA } from '../pages/StatusPage/telcellData.jsx'
 import { BuyTickets } from "../pages/BuyTickets/index.jsx"
 import { AllEventss } from '../pages/AllEvents/index.jsx'
 import { AllWeekEvents } from "../components/AllWeekEvents/index.jsx"
+import { DeliveryStatusPage } from "../pages/StatusPage/DeliveryStatusPage.jsx"
 
 export const Router = () => {
     return (
@@ -27,6 +28,7 @@ export const Router = () => {
                     <Route path="/BuyTickets/:id" element={<BuyTickets />} />
                     <Route path="/allEvents" element={<AllEventss />} />
                     <Route path="/allWeekEvents" element={<AllWeekEvents />} />
+                    <Route path="/DeliveryStatusPage" element={<DeliveryStatusPage />} />
 
                     <Route path='*' element={<Page404 />} />
                 </Route>
@@ -34,4 +36,3 @@ export const Router = () => {
         </BrowserRouter>
     )
 }
-// StatusPage

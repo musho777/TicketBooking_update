@@ -155,25 +155,21 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
             deliveryLocation: address,
             isParonyanEvent: false,
             buyerNotes: additional,
-            paymentMethod: 'CREDIT CARD',
+            paymentMethod: selectPay == '3' ? "CASH" : 'CREDIT CARD',
             delivery,
         })
             .then(res => {
                 if (res?.data?.success) {
                     setLoading(false)
-                    localStorage.setItem('orderId', res?.data?.orderId)
                     window.location.href = res?.data?.formUrl
-                    // setTimeout(() => {
-                    //     dispatch(StatusSuccessAction())
-                    // }, 3000)
+                    if (selectPay == '3') {
+                        window.location = '/DeliveryStatusPage'
+                    }
                 }
                 else {
                     alert(t('Pleasetryagainlater'))
                     setLoading(false)
-                    // window.open(`/`)
                 }
-            })
-            .catch((error) => {
             })
     }
 
@@ -265,22 +261,6 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
                 window.location.reload()
             }
 
-
-            else if (selectPay === 3) {
-                dispatch(CreateCurrentTicket({
-                    tickets: tickets.tickets,
-                    buyerName: name,
-                    buyerEmail: email,
-                    buyerPhone: number,
-                    deliveryLocation: address,
-                    sessionId: tickets.tickets[0].sessionId,
-                    buyerNotes: additional,
-                    orderId: issuerId,
-                    paymentMethod: 'CASH',
-                    delivery: true,
-                }))
-                localStorage.setItem('orderId', issuerId)
-            }
             else {
                 handlePurchase()
             }
@@ -339,9 +319,12 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
                         placeholder={t('Notes')}
                         value={additional} onChange={(e) => setAdditional(e.target.value)} />
                     {delivery &&
-                        <input
-                            placeholder={t('Deliveryaddress')}
-                            className='InputsBuyDelvery' id={error.address != '' ? 'errorInut' : 'inout'} value={address} onChange={(e) => setAddress(e.target.value)} />
+                        <div className='InputWeapperDelivery'>
+                            <input
+                                placeholder={t('Deliveryaddress')}
+                                className='InputsBuyDelvery' id={error.address != '' ? 'errorInut' : 'inout'} value={address} onChange={(e) => setAddress(e.target.value)} />
+                            {error.address && <p>{t('requiredfield')}</p>}
+                        </div>
                     }
                 </div>
                 <div className='selectPay' onClick={() => {
@@ -374,7 +357,7 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
                     </div>
                     <p className={selectPay == 2 && 'activeSelectedBuy'}>{t('Youwillreceive')}</p>
                 </div> */}
-                {/* <div className='selectPay' onClick={() => {
+                <div className='selectPay' onClick={() => {
                     setDelivery(true)
                     Select(3)
                 }} >
@@ -386,7 +369,7 @@ export const BuyNow = ({ open, isParonyanEvent, paronyanSeans, event_id, grupID 
                     </div>
                     <p className={selectPay == 3 && 'activeSelectedBuy'}>{t('Shippingisfree')}</p>
 
-                </div> */}
+                </div>
                 <div className='BuyEndWrapper'>
                     <div className='BuyEnd'>
                         <div className='ReadAndAgree'>

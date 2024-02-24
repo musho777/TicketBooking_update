@@ -84,6 +84,12 @@
     flex-direction: column;
 }
 
+.InputWeapperDelivery {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .DeliveryInputWeapper {
     width: 100%;
     display: flex;
@@ -91,7 +97,7 @@
 }
 
 .InputWeapper>p,
-.DeliveryInputWeapper>p {
+.InputWeapperDelivery>p {
     height: 5px;
     color: red;
     font-size: 12px;
