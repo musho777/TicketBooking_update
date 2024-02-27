@@ -102,24 +102,8 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
             setTimeout(() => {
                 setShowModal(false)
             }, 5000)
-            item = {
-                row: row,
-                price: price,
-                seat,
-                seatId: i,
-                sessionId: sessionID,
-                parterre: parterre,
-                amphitheater: amphitheater,
-                lodge: lodge,
-                eventId: eventId,
-                section: section,
-                row2: row2,
-
-            }
         }
-        else {
-            item = activeTicket
-        }
+        item = activeTicket
         if (data[i].active) {
 
             dispatch(SetTicketsAction(item))
@@ -528,14 +512,14 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
                             }
                         }}
                         onTouchStart={() => {
-                            if (windowSize.width <= 768 && !click) {
+                            if (!click) {
                                 getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section, e.row2)
                                 setActiveButton(i)
                             }
                         }}
                         onTouchEnd={() => {
                             setClick(false)
-                            if (windowSize.width <= 768 && !click) {
+                            if (!click) {
                                 addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge, e.section, e.row2)
                             }
                         }}

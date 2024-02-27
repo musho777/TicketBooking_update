@@ -60,15 +60,18 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading, valu
     // }, [secion])
 
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState('')
 
-    const getPrice = (y, i, x, parterre, amphitheater, lodge) => {
+    const getPrice = (y, i, x) => {
         let temp = [...data]
-        // if (temp.findIndex((el) => el.id == i) == -1) {
-        //     temp.push({ "id": i, "price": "", "row": 1, "seat": temp.length + 1, LevelId: 6, balcony: true, active: false },)
-        // }
+        if (temp.findIndex((el) => el.id == i) == -1) {
+            temp.push({ "id": i, "price": "", "row": 1, "seat": temp.length + 1, LevelId: 6, balcony: true, active: false },)
+        }
+
 
         setData(temp)
+
+        console.log(temp)
 
         setPosition({ x, y })
         let item = seansArr.find((elm) => elm.id === i)
@@ -87,7 +90,7 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading, valu
         setShowModal(true)
     }
 
-    const addTicket = (i, price, id, parterre, amphitheater, lodge) => {
+    const addTicket = (i) => {
         let data = [...coordinatesState]
         // data[i].active = !data[i].active
         let data1 = [...tickets]
@@ -104,22 +107,22 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading, valu
             setTimeout(() => {
                 setShowModal(false)
             }, 5000)
-            item = {
-                row: temp.row,
-                price: temp.price,
-                seat: temp.seat,
-                seatId: i,
-                sessionId: sessionID,
-                parterre: temp.parterre,
-                amphitheater: temp.amphitheater,
-                lodge: temp.lodge,
-                eventId: eventId,
-                stage: item.stage,
-            }
+            // item = {
+            //     row: temp.row,
+            //     price: temp.price,
+            //     seat: temp.seat,
+            //     seatId: i,
+            //     sessionId: sessionID,
+            //     parterre: temp.parterre,
+            //     amphitheater: temp.amphitheater,
+            //     lodge: temp.lodge,
+            //     eventId: eventId,
+            //     stage: item.stage,
+            // }
         }
         else {
-            item = activeTicket
         }
+        item = activeTicket
         if (data[i].active) {
             dispatch(SetTicketsAction(item))
         }
@@ -170,116 +173,107 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading, valu
                 let top = -15
                 let left = 10
                 let roted = -75
-                // if (i == 219 || i == 212 || i == 204 || i == 196) {
-                //     top = -15
-                //     left = -5
-                //     roted = -75
-                // }
-                // if (i == 86 || i == 82 || i == 77 || i == 73) {
-                //     top = -9
-                //     left = -4
-                //     roted = -40
-                // }
-                // if (i == 219 || i == 212 || i == 204 || i == 196 || i == 86 || i == 82 || i == 77 || i == 73)
-                if (i == 529 || i == 523 || i == 519 || i == 531 || i == 434 || i == 428 || i == 421 || i == 416) {
-                    top = -6
-                    left = -8
-                    roted = -10
-                }
-
-                if (i == 579 || i == 590 || i == 597 || i == 606) {
-                    top = -30
-                    left = -5
-                    roted = 15
-                }
-                if (i == 181 || i == 173 || i == 166 || i == 160) {
-                    top = -16
+                if (e.x >= 358 && e.x <= 566 && e.y >= 1772 && e.y <= 1956) {
+                    top = -15
                     left = -4
-                    roted = -72
-                }
-                if (i == 70 || i == 67 || i == 64 || i == 60) {
-                    top = -5
-                    left = -7
-                    roted = -15
-                }
-                if (i == 97 || i == 104 || i == 111 || i == 117) {
-                    top = -26
-                    left = 2
-                    roted = 40
-                }
-
-                if (i == 219 || i == 212 || i == 204 || i == 196) {
-                    top = -16
-                    left = -3
                     roted = -70
                 }
-                if (i == 1025 || i == 1043 || i == 1037 || i == 1032) {
-                    top = -6
-                    left = -8
-                    roted = -15
+                else if ((e.x >= 386 && (e.x != 627 && e.x != 620 && e.x != 642 && e.x != 653 && e.x != 648 && e.x != 649 && e.x != 664)) && e.x <= 667 && e.y <= 1780 && (e.y > 1487 || e.y == 1475)) {
+                    if (e.x != 627 || e.x != 620 || e.x != 642) {
+                        top = -12
+                        left = -4
+                        roted = -50
+                    }
                 }
-                if (i == 1224 || i == 1210 || i == 1197) {
-                    top = -15
-                    left = -3
-                    roted = -72
-                }
-                if (i == 1230) {
-                    top = -6
-                    left = 20
-                    roted = -72
-                }
-
-                if (i == 1049) {
+                else if (e.x >= 500 && e.x <= 879 && e.y >= 1269 && e.y <= 1648) {
                     top = -5
+                    left = -7
+                    roted = -20
+                }
+                else if (e.x >= 954 && (e.x <= 1332 && e.x != 1267 && e.x != 1284 && e.x != 1295 && e.x != 1311 && e.x != 1300 && e.x != 1317 && e.x != 1328 && e.x != 1309 && e.x != 1325 && e.x != 1329) && e.y >= 1267 && (e.y <= 1646 && e.y != 1596 && e.y != 1579 && e.y != 1613 && e.y != 1630 && e.y != 1622 && e.y != 1596 && e.y != 1639)) {
+                    top = -3
+                    left = -13
+                    roted = 20
+                }
+                else if (e.x >= 1166 && (e.x <= 1435) && e.y >= 1372 && e.y <= 1773 && (e.x != 1424)) {
+                    top = -4
                     left = -18
                     roted = 50
                 }
-                if (i == 1083 || i == 1103 || i == 1119) {
-                    top = -13
-                    left = 10
-                    roted = 50
+                else if (e.x >= 1272 && e.x <= 1473 && e.y >= 1765 && e.y <= 1937) {
+                    top = -8
+                    left = -24
+                    roted = 70
                 }
-                if (i == 1219 || i == 1205 || i == 1185) {
-                    top = -5
-                    left = 20
-                    roted = -73
+                else if (e.x >= 148 && e.x <= 473 && e.y >= 1172 && e.y <= 1408) {
+                    top = -7
+                    left = -6
+                    roted = -30
                 }
-                if (i == 1198) {
-                    top = -16
-                    left = -5
-                    roted = -73
+                else if (e.x >= 474 && e.x <= 875 && e.y >= 914 && e.y <= 1229) {
+                    top = -4
+                    left = -8
+                    roted = -10
                 }
-                if (i == 837 || i == 856 || i == 866) {
-                    top = -20
-                    left = 28
-                    roted = 16
+                else if (e.x >= 979 && e.x <= 1378 && e.y >= 913 && e.y <= 1220) {
+                    top = -3
+                    left = -12
+                    roted = 10
                 }
-                if (i == 828) {
+
+                else if (e.x >= 979 && e.x <= 1378 && e.y >= 913 && e.y <= 1220) {
+                    top = -3
+                    left = -12
+                    roted = 10
+                }
+                else if (e.x >= 1391 && e.x <= 1704 && e.y >= 1169 && e.y <= 1405) {
+                    top = -3
+                    left = -14
+                    roted = 25
+                }
+
+                else if (e.x >= 190 && e.x <= 315 && e.y >= 776 && e.y <= 1033) {
+                    top = -18
+                    left = -4
+                    roted = -80
+                }
+                else if (e.x >= 213 && e.x <= 367 && e.y >= 471 && e.y <= 709) {
+                    top = -17
+                    left = -4
+                    roted = -70
+                }
+
+                else if (e.x >= 359 && e.x <= 559 && e.y >= 222 && e.y <= 437) {
+                    top = -8
+                    left = -4
+                    roted = -45
+                }
+                else if (e.x >= 640 && e.x <= 875 && e.y >= 96 && e.y <= 238) {
+                    top = -4
+                    left = -8
+                    roted = -10
+                }
+                else if (e.x >= 936 && e.x <= 1220 && e.y >= 96 && e.y <= 230) {
                     top = -4
                     left = -12
-                    roted = 16
+                    roted = 15
                 }
-                if (i == 735 || i == 725 || i == 717 || i == 712) {
-                    top = -12
-                    left = 15
-                    roted = -20
+                else if (e.x >= 1279 && e.x <= 1505 && e.y >= 217 && e.y <= 427) {
+                    top = -4
+                    left = -16
+                    roted = 40
                 }
-                // if (i == 800) {
-                //     top = -17
-                //     left = 15
-                //     roted = -20
-                // }
-                // if (i == 773) {
-                //     top = -8
-                //     left = 16
-                //     roted = -20
-                // }
-                // if (i == 770) {
-                //     top = -10
-                //     left = 18
-                //     roted = -20
-                // }
-                // if (i == 735 || i == 725 || i == 717 || i == 712 || i == 60 || i == 828 || i == 1224 || i == 1210 || i == 1197 || i == 1230 || i == 529 || i == 523 || i == 519 || i == 531 || i == 579 || i == 590 || i == 597 || i == 606 || i == 434 || i == 428 || i == 421 || i == 416 || i == 181 || i == 173 || i == 166 || i == 160 || i == 70 || i == 67 || i == 64 || i == 97 || i == 104 || i == 111 || i == 117 || i == 219 || i == 212 || i == 204 || i == 196 || i == 1043 || i == 1037 || i == 1032 || i == 1025 || i == 1083 || i == 1083 || i == 1103 || i == 1119 || i == 1049 || i == 1219 || i == 1205 || i == 1185 || i == 1198 || i == 837 || i == 856 || i == 866 || i == 828)
+                else if (e.x >= 1477 && e.x <= 1641 && e.y >= 467 && e.y <= 695) {
+                    top = -7
+                    left = -24
+                    roted = 70
+                }
+                else if (e.x >= 1543 && e.x <= 1671 && e.y >= 771 && e.y <= 1028) {
+                    top = -10
+                    left = -25
+                    roted = 90
+                }
+
 
                 if (seansArr.find((e) => e.id == i)?.price && seansArr.find((e) => e.id == i)?.price > 0) {
                     if (soldTickets.findIndex((elm) => elm.id == e.id) < 0) {
@@ -307,13 +301,13 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading, valu
                                 setActiveButton(null)
                             }}
                             onClick={() => {
-                                if (windowSize.width > 768 && !click) {
+                                if (!click) {
                                     addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
                                 }
                             }
                             }
                             onTouchStart={() => {
-                                if (windowSize.width <= 768 && !click) {
+                                if (!click) {
                                     getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
                                     setActiveButton(i)
                                 }
@@ -322,7 +316,7 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading, valu
                                 }
                             }}
                             onTouchEnd={() => {
-                                if (windowSize.width <= 768 && !click) {
+                                if (!click) {
                                     addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
                                     // addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
                                     // addTicket(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
@@ -343,7 +337,8 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading, valu
                                     <path d="M5.12545 5.72473H0.874607C0.740444 5.72473 0.631714 5.61598 0.631714 5.48182V4.89328H5.3683V5.48182C5.3683 5.61598 5.25955 5.72471 5.12545 5.72471V5.72473Z" fill="#345863" />
                                     <path d="M5.37849 5.30899H0.621478C0.38435 5.30899 0.192139 5.11678 0.192139 4.87964C0.192139 4.50413 0.496595 4.19968 0.872117 4.19968H5.12785C5.50343 4.19968 5.80783 4.50413 5.80783 4.87966C5.80783 5.11678 5.61562 5.30899 5.37849 5.30899Z" fill="#FF4A5C" />
                                     <path d="M5.21228 7.19515H4.35201C4.26583 7.19515 4.19598 7.1253 4.19598 7.03913V6.91942C4.19598 6.83324 4.26584 6.7634 4.35201 6.7634H5.21228C5.29844 6.7634 5.3683 6.83325 5.3683 6.91942V7.03913C5.3683 7.12531 5.29843 7.19515 5.21228 7.19515Z" fill="#1E4751" />
-                                </svg>}
+                                </svg>
+                            }
                         </button>
                     }
                 }

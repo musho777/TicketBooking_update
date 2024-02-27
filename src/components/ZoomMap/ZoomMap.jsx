@@ -38,6 +38,11 @@ export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent,
             value={value}
             onChange={handleChange}
             maxScale={1.5}
+            translationBounds={
+                value.scale < 0.7 && {
+                    yMin: -200 / (0.7 - value.scale),
+                    yMax: 1400 / 2
+                }}
         >
             {(event?.sessions[0]?.hallId?._id === '65ce79a7603a99ef4d2ba0a1' && !isParonyanEvent) &&
 
