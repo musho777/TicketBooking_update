@@ -107,20 +107,6 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading, valu
             setTimeout(() => {
                 setShowModal(false)
             }, 5000)
-            // item = {
-            //     row: temp.row,
-            //     price: temp.price,
-            //     seat: temp.seat,
-            //     seatId: i,
-            //     sessionId: sessionID,
-            //     parterre: temp.parterre,
-            //     amphitheater: temp.amphitheater,
-            //     lodge: temp.lodge,
-            //     eventId: eventId,
-            //     stage: item.stage,
-            // }
-        }
-        else {
         }
         item = activeTicket
         if (data[i].active) {

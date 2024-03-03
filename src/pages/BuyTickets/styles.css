@@ -17,6 +17,10 @@
     background: rgba(36, 0, 92, 0.50) !important;
 }
 
+.Ticketdivs {
+    display: none;
+}
+
 .ticketPrice {
     display: flex;
     gap: 20px;
@@ -289,7 +293,50 @@
     display: none;
 }
 
+.TicketCount {
+    display: none;
+}
+
+.Tickets {
+    display: block;
+}
+
+.BuyTicketsCardWrapperDiv {
+    display: block;
+}
+
 @media screen and (max-width: 768px) {
+    .Ticketdivs {
+        display: block;
+        background-color: #24005C;
+        z-index: 3333;
+        position: absolute;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .TicketCount {
+        display: block;
+        position: absolute;
+        top: -10px;
+        right: 0px;
+        color: black;
+        background-color: #FFD14B;
+        border-radius: 50%;
+        width: 22px;
+        height: 22px;
+        font-size: 13px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
     .BuyTicketsWrapper {
         flex-direction: column;
     }
@@ -384,6 +431,19 @@
 
     .BuyTicketButtonWrapper {
         padding: 10px 0;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .BuyTicketButtonWrapper>p {
+        font-size: 16px;
+        color: #24005C;
+        font-family: "Montserratarm-Bold", sans-serif;
+        cursor: pointer;
+    }
+
+    .BuyTicketsCardWrapperDiv {
+        display: none;
     }
 
     .TikcetsWrapper {
@@ -392,5 +452,9 @@
 
     .ClewarTicet {
         right: -10px;
+    }
+
+    .Tickets {
+        margin: 20px 0;
     }
 }
