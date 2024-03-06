@@ -48,17 +48,8 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
     }, [places])
 
 
-    const [data, setData] = useState([])
 
     const getPrice = (y, i, x) => {
-        let temp = [...data]
-        if (temp.findIndex((el) => el.id == i) == -1) {
-            temp.push({ "id": i, "price": "", "row": 1, "seat": temp.length + 1, LevelId: 6, balcony: true, active: false },)
-        }
-
-
-        setData(temp)
-
         setPosition({ x, y })
         let item = seansArr.find((elm) => elm.id === i)
         setActiveTicket({
@@ -72,8 +63,6 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
             stage: item?.stage,
             lodge: item?.lodge,
             eventId: eventId,
-            LevelId: item?.LevelId,
-            timeLine: Timeline,
         })
         setShowModal(true)
     }
@@ -94,26 +83,9 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
             setTimeout(() => {
                 setShowModal(false)
             }, 5000)
-            item = {
-                row: temp?.row,
-                price: temp?.price,
-                seat: temp?.seat,
-                seatId: i,
-                sessionId: sessionID,
-                parterre: temp?.parterre,
-                amphitheater: temp?.amphitheater,
-                lodge: temp?.lodge,
-                eventId: eventId,
-                stage: temp?.stage,
-                LevelId: temp?.LevelId,
-                timeLine: Timeline,
-            }
-
         }
-        else {
-            item = activeTicket
-        }
-        if (data[i]?.active) {
+        item = activeTicket
+        if (data[i].active) {
             dispatch(SetTicketsAction(item))
         }
         else {
@@ -122,6 +94,8 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
         setCoordinatesState(data)
     }
 
+
+    console.log(showModal, activeTicket.row)
     useEffect(() => {
         const image = new Image()
         image.src = require('../../assets/ParonyanMec1.jpg')
@@ -170,6 +144,7 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
                             key={i}
                             onMouseOver={() => {
                                 getPrice(e.y, i, e.x, e.parterre, e.amphitheater, e.lodge)
+
                                 setActiveButton(i)
                             }}
                             style={
@@ -192,21 +167,26 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
                                 setActiveButton(null)
                             }}
                             onClick={() => {
-                                if (windowSize.width > 768 && !click) {
-                                    addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
+                                if (!click) {
+                                    addTicket(i)
                                 }
                             }
                             }
                             onTouchStart={() => {
-                                if (windowSize.width <= 768 && !click) {
-                                    getPrice(e.y, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                                if (!click) {
+                                    getPrice(e.y, i, e.x, e.parterre, e.amphitheater, e.lodge)
                                     setActiveButton(i)
+                                }
+                                if (click) {
+                                    setActiveButton(null)
                                 }
                             }}
                             onTouchEnd={() => {
-                                if (windowSize.width <= 768 && !click) {
-                                    addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
-                                    // addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
+                                if (!click) {
+                                    addTicket(i)
+                                }
+                                if (click) {
+                                    setActiveButton(null)
                                 }
                             }}
                         >
@@ -227,6 +207,7 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
             })}
 
             {showModal &&
+
                 <div
                     onMouseOver={(e) => {
                         setShowModal(true)

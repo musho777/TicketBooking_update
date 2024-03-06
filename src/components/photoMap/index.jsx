@@ -82,7 +82,7 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
     }
 
 
-    const addTicket = (y, i, x, price, row, id, parterre, amphitheater, lodge, section, row2) => {
+    const addTicket = (y, i, x) => {
         let data = [...coordinatesState]
         let seat = 0
         const result = coordinatesState.filter((elm) => elm.y === y);

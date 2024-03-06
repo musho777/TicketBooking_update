@@ -123,7 +123,6 @@ export const BuyTickets = () => {
 
     }, [language, getSinglPage])
 
-    console.log(showTickets)
     if (getSinglPage?.loading) {
         return (
             <div className='loading'>
