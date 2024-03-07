@@ -120,7 +120,7 @@ export const Header = () => {
             <div className='MainHeaderDiv'>
                 <div className='MainHeader'>
                     {!openMobilsSearch && <div onClick={() => window.location = '/'}>
-                        <img className='Logo' src={require('../../assets/logo.png')} />
+                        <img className='Logo' src={require('../../assets/logo.webp')} />
                     </div>}
                     <div className='textWrapper'>
                         {getCategory.category.map(elm => {
