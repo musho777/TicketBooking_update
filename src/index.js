@@ -8,6 +8,10 @@ import reportWebVitals from './reportWebVitals'
 import Reducer from './services/reducer/reducer'
 import { applyMiddleware, legacy_createStore as createStore } from 'redux'
 
+import ReactGA from "react-ga4";
+ReactGA.initialize("G-EJ688S4ZVM");
+
+ReactGA.send({ hitType: "pageview", page: "/my-path", title: "Custom Title" });
 const store = createStore(
   Reducer,
   applyMiddleware(thunk)
