@@ -12,6 +12,7 @@ import { BuyTickets } from "../pages/BuyTickets/index.jsx"
 import { AllEventss } from '../pages/AllEvents/index.jsx'
 import { AllWeekEvents } from "../components/AllWeekEvents/index.jsx"
 import { DeliveryStatusPage } from "../pages/StatusPage/DeliveryStatusPage.jsx"
+import { Qr } from "../pages/Qr/index.jsx"
 
 export const Router = () => {
     return (
@@ -29,6 +30,7 @@ export const Router = () => {
                     <Route path="/allEvents" element={<AllEventss />} />
                     <Route path="/allWeekEvents" element={<AllWeekEvents />} />
                     <Route path="/DeliveryStatusPage" element={<DeliveryStatusPage />} />
+                    <Route path="/Qr" element={<Qr />} />
 
                     <Route path='*' element={<Page404 />} />
                 </Route>
