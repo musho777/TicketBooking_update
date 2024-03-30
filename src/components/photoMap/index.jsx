@@ -14,7 +14,7 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
     const [loading, setLoading] = useState(true)
     const { tickets } = useSelector((st) => st.tiketsForBuy)
     const [click, setClick] = useState(isInteracting)
-
+    console.log(soldTickets.length, '22')
     useEffect(() => {
         setClick(isInteracting)
     }, [isInteracting])
@@ -42,6 +42,7 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
 
 
     const getPrice = (y, i, x, price, row, id, parterre, amphitheater, lodge, section, row2) => {
+        console.log(i)
         setPosition({ x, y })
         let seat = 0
         const result = coordinatesState.filter((elm) => elm.y === y);
@@ -55,7 +56,7 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
         if (y === 1609) {
             index = index + 19
         }
-        if (y === 1617 && index > 9) {
+        if (y === 1617 && index > 18) {
             index = index + 9
         }
         if (y === 493) {

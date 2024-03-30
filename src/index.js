@@ -7,11 +7,14 @@ import ReactDOM from 'react-dom/client'
 import reportWebVitals from './reportWebVitals'
 import Reducer from './services/reducer/reducer'
 import { applyMiddleware, legacy_createStore as createStore } from 'redux'
-
-import ReactGA from "react-ga4";
+import ReactGA from './components/analytics/analytics'
 ReactGA.initialize("G-EJ688S4ZVM");
 
 ReactGA.send({ hitType: "pageview", page: "/my-path", title: "Custom Title" });
+ReactGA.event({
+  category: 'Conversion',
+  action: 'Submit', // You can customize the action as per your requirement
+});
 const store = createStore(
   Reducer,
   applyMiddleware(thunk)

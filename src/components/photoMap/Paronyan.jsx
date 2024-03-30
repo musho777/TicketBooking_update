@@ -95,7 +95,6 @@ const Paronyan = ({ grupID, eventId, Timeline, sessionID, pading, id, open, plac
     }
 
 
-    console.log(showModal, activeTicket.row)
     useEffect(() => {
         const image = new Image()
         image.src = require('../../assets/ParonyanMec1.jpg')

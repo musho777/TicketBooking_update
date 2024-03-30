@@ -151,8 +151,7 @@ export const Header = () => {
                             }
                             return <div className='CateogryName'>
                                 <p onClick={() => {
-                                    disable &&
-                                        navigation(`/Category/${elm?.name}/${elm?._id}`)
+                                    window.location = (`/Category/${elm?.name}/${elm?._id}`)
                                 }
                                 } className='Headertext'>{title}</p>
                                 <div

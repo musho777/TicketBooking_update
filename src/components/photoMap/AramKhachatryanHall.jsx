@@ -71,7 +71,6 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading, valu
 
         setData(temp)
 
-        console.log(temp)
 
         setPosition({ x, y })
         let item = seansArr.find((elm) => elm.id === i)
