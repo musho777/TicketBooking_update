@@ -42,7 +42,6 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
 
 
     const getPrice = (y, i, x, price, row, id, parterre, amphitheater, lodge, section, row2) => {
-        console.log(i)
         setPosition({ x, y })
         let seat = 0
         const result = coordinatesState.filter((elm) => elm.y === y);

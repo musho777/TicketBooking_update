@@ -16,7 +16,6 @@ export const Single = () => {
     const { language } = useSelector((st) => st.StaticReducer)
     let { event } = getSinglPage?.events
     let { recomended } = getSinglPage?.events
-    const [activSeans, setActiveSeans] = useState('')
     var months = [
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -88,7 +87,7 @@ export const Single = () => {
                 }
             />
             {languageData?.description?.length > 0 && <div className='DescriptionDiv'>
-                <p className='descriptionDiv2Title'>նկարագրություն</p>
+                <p className='descriptionDiv2Title'>{t('description')}</p>
                 <p>{languageData?.description}</p>
             </div>}
             <div className='RecDiv2'>

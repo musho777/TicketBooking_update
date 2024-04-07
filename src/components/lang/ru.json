@@ -57,5 +57,6 @@
     "Searchforanevent": "Поиск события",
     "DEPARTMENTS": "ОТДЕЛЕНИЯ",
     "Pleasetryagainlater": "Пожалуйста, повторите попытку позже",
-    "requiredfield": "Обязательное поле*"
+    "requiredfield": "Обязательное поле*",
+    "description": "Описание"
 }

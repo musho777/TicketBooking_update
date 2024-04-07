@@ -18,29 +18,30 @@ export const CategoryCardWrapper = ({ loading, data, setPage, page, showButton, 
                     let month = dateObject?.getMonth();
                     var currentDayOfWeek = daysOfWeek[dateObject?.getDay()];
                     if (elm?.eventId) {
-                        return <TopEvents
-                            key={i}
-                            day={day}
-                            id={elm.eventId._id}
-                            image={`${process.env.REACT_APP_IMAGE}/${elm.eventId?.image}`}
-                            title={elm.title}
-                            category={elm.eventId?.category}
-                            location={elm?.hallId?.location}
-                            location_en={elm?.eventId?.hallId?.location_en}
-                            location_ru={elm?.eventId?.hallId?.location_ru}
-                            time={elm.time}
-                            hall={elm.hallId.hall}
-                            hall_en={elm.hallId.hall_en}
-                            hall_ru={elm.hallId.hall_ru}
-                            place={elm.hallId.place}
-                            place_en={elm.hallId.place_en}
-                            place_ru={elm.hallId.place_ru}
+                        if (elm._id != "65d222f051424e16acf10852")
+                            return <TopEvents
+                                key={i}
+                                day={day}
+                                id={elm.eventId._id}
+                                image={`${process.env.REACT_APP_IMAGE}/${elm.eventId?.image}`}
+                                title={elm.title}
+                                category={elm.eventId?.category}
+                                location={elm?.hallId?.location}
+                                location_en={elm?.eventId?.hallId?.location_en}
+                                location_ru={elm?.eventId?.hallId?.location_ru}
+                                time={elm.time}
+                                hall={elm.hallId.hall}
+                                hall_en={elm.hallId.hall_en}
+                                hall_ru={elm.hallId.hall_ru}
+                                place={elm.hallId.place}
+                                place_en={elm.hallId.place_en}
+                                place_ru={elm.hallId.place_ru}
 
-                            months={months[month]}
-                            currentDayOfWeek={currentDayOfWeek}
-                            data={elm.eventId}
-                            price={`${elm?.priceStart} - ${elm?.priceEnd} AMD`}
-                        />
+                                months={months[month]}
+                                currentDayOfWeek={currentDayOfWeek}
+                                data={elm.eventId}
+                                price={`${elm?.priceStart} - ${elm?.priceEnd} AMD`}
+                            />
                     }
                     else {
                         const matchResult = elm?.ParonyanTime?.match(/(\d+)([\s\S]*?)(<div[\s\S]*?<\/div>)([\s\S]*?)(\d+:\d+)/);
