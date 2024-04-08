@@ -164,7 +164,6 @@ export const BuyTickets = () => {
                 <div className='BuyTicketsCardInfo'>
                     <div>
                         <p className='BuyTicketTitle'>{data?.name}</p>
-                        {/* <p className='BuyTickeDescription'>{truncateText(data?.description)}</p> */}
                     </div>
                     <div className='BuyTicketDate'>
                         <CalendarSvg1 />
@@ -236,7 +235,6 @@ export const BuyTickets = () => {
                         })}>
                             <Restart />
                         </button>
-
                     </div>
                     <div className='Hall'>
                         <ZoomMap

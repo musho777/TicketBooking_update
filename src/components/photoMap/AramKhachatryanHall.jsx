@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/action'
 
-const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID, pading, value, places, isInteracting }) => {
+const AramKhachatryan = ({ eventId, soldTickets, sessionID, pading, value, places, isInteracting }) => {
     const dispatch = useDispatch()
     const [coordinatesState, setCoordinatesState] = useState([])
     const [activeTicket, setActiveTicket] = useState({})

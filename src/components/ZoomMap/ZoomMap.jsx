@@ -14,7 +14,7 @@ export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent,
         setIsInteracting(true)
     };
     useEffect(() => {
-        const interactionTimeout = 250; // Adjust as needed
+        const interactionTimeout = 250;
         let timeoutId;
         if (isInteracting) {
             timeoutId = setTimeout(() => {
@@ -63,7 +63,6 @@ export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent,
                 (event?.sessions[0]?.hallId?._id === '65ce79e5603a99ef4d2ba0a5' && !isParonyanEvent) &&
                 <KarenDemerchyanMec
                     value={value}
-
                     eventId={getSinglPage.events.event?._id} sessionID={getSinglPage.events.event?.sessions[0]._id} soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets} secion={getSinglPage.events.event?.sessions[0]?.price} />
             }
             {
@@ -78,15 +77,6 @@ export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent,
                     secion={getSinglPage.events.event?.sessions[0]?.price}
                 />
             }
-            {/* {
-                getSinglPage?.events?.event?.ParonyanHall_id == "65ce79e5603a99ef4d2ba0a5" &&
-                < ParonyanPoqr
-                    grupID={getSinglPage.events?.event?.ParonyanGroup_id}
-                    Timeline={paronyanSeans}
-                    id={getSinglPage?.events?.event?.ParonyanEventId}
-                    open={open}
-                />
-            } */}
             {
                 event?.sessions[0]?.hallId?._id == '65ce7a13603a99ef4d2ba0a7' &&
                 <Paronyan
