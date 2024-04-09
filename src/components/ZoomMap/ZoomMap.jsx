@@ -38,11 +38,11 @@ export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent,
             value={value}
             onChange={handleChange}
             maxScale={1.5}
-            translationBounds={
-                value.scale < 0.7 && {
-                    yMin: -200 / (0.7 - value.scale),
-                    yMax: 1400 / 2
-                }}
+        // translationBounds={
+        //     value.scale < 0.7 && {
+        //         yMin: -200 / (0.7 - value.scale),
+        //         yMax: 1400 / 2
+        //     }}
         >
             {(event?.sessions[0]?.hallId?._id === '65ce79a7603a99ef4d2ba0a1' && !isParonyanEvent) &&
 
@@ -63,7 +63,13 @@ export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent,
                 (event?.sessions[0]?.hallId?._id === '65ce79e5603a99ef4d2ba0a5' && !isParonyanEvent) &&
                 <KarenDemerchyanMec
                     value={value}
-                    eventId={getSinglPage.events.event?._id} sessionID={getSinglPage.events.event?.sessions[0]._id} soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets} secion={getSinglPage.events.event?.sessions[0]?.price} />
+                    isInteracting={isInteracting}
+                    places={getSinglPage.events?.event?.sessions[0].places}
+                    eventId={getSinglPage.events.event?._id}
+                    sessionID={getSinglPage.events.event?.sessions[0]._id}
+                    soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets}
+                    secion={getSinglPage.events.event?.sessions[0]?.price}
+                />
             }
             {
                 (event?.sessions[0]?.hallId?._id === "65ce79ca603a99ef4d2ba0a3" && !isParonyanEvent) &&

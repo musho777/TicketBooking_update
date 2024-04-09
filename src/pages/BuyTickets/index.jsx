@@ -52,6 +52,14 @@ export const BuyTickets = () => {
         translation: { x: 0, y: 0 }
     });
 
+    function truncateText(text) {
+        if (text?.length > 15) {
+            return text.substring(0, 15) + '...';
+        }
+        else {
+            return text;
+        }
+    }
 
     useEffect(() => {
         if (event?.sessions[0]?.hallId?._id == '65ce79ca603a99ef4d2ba0a3') {
@@ -146,16 +154,18 @@ export const BuyTickets = () => {
                 grupID={getSinglPage.events?.event?.ParonyanGroup_id}
                 open={open} />
         </CartPopup >}
-        {id == '65d21c1851424e16acf107d4' && <div className='ticketPrice'>
-            <div style={{ backgroundColor: '#ee9dd6' }}>10000</div>
-            <div style={{ backgroundColor: '#18ff00' }}>15000</div>
-            <div style={{ backgroundColor: "#79caff" }}>20000</div>
-            <div style={{ backgroundColor: "#ff8d24" }}>25000</div>
-            <div style={{ backgroundColor: "#dee362" }}>30000</div>
-            <div style={{ backgroundColor: "#7d4e5a" }}>35000</div>
-            <div style={{ backgroundColor: "#930b92" }}>40000</div>
-            <div style={{ backgroundColor: "#5c99d4" }}>45000</div>
-            <div style={{ backgroundColor: '#f43b45' }}>50000</div>
+        {id == '66147e0ca8a099b8790eb352' && <div className='ticketPrice'>
+            <div style={{ backgroundColor: '#18ff00' }}>10000</div>
+            <div style={{ backgroundColor: '#ee9dd6' }}>12000</div>
+            <div style={{ backgroundColor: "#79caff" }}>15000</div>
+            <div style={{ backgroundColor: "#ff8d24" }}>16000</div>
+            <div style={{ backgroundColor: "#dee362" }}>18000</div>
+            <div style={{ backgroundColor: "#7d4e5a" }}>20000</div>
+            <div style={{ backgroundColor: '#f43b45' }}>22000</div>
+            <div style={{ backgroundColor: "#5c99d4" }}>25000</div>
+            <div style={{ backgroundColor: "#930b92" }}>30000</div>
+            <div style={{ backgroundColor: "#63c164" }}>45000</div>
+            <div style={{ backgroundColor: "#445485" }}>50000</div>
         </div>}
         <div className='BuyTicketsWrapper'>
 
@@ -163,7 +173,7 @@ export const BuyTickets = () => {
                 <img src={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`} />
                 <div className='BuyTicketsCardInfo'>
                     <div>
-                        <p className='BuyTicketTitle'>{data?.name}</p>
+                        <p className='BuyTicketTitle'>{truncateText(data?.name)}</p>
                     </div>
                     <div className='BuyTicketDate'>
                         <CalendarSvg1 />
@@ -266,16 +276,18 @@ export const BuyTickets = () => {
 
 
 
-            {id == '65d21c1851424e16acf107d4' && <div className='ticketPriceMobile'>
-                <div style={{ backgroundColor: '#ee9dd6' }}>10000</div>
-                <div style={{ backgroundColor: '#18ff00' }}>15000</div>
-                <div style={{ backgroundColor: "#79caff" }}>20000</div>
-                <div style={{ backgroundColor: "#ff8d24" }}>25000</div>
-                <div style={{ backgroundColor: "#dee362" }}>30000</div>
-                <div style={{ backgroundColor: "#7d4e5a" }}>35000</div>
-                <div style={{ backgroundColor: "#930b92" }}>40000</div>
-                <div style={{ backgroundColor: "#5c99d4" }}>45000</div>
-                <div style={{ backgroundColor: '#f43b45' }}>50000</div>
+            {id == '66147e0ca8a099b8790eb352' && <div className='ticketPriceMobile'>
+                <div style={{ backgroundColor: '#18ff00' }}>10000</div>
+                <div style={{ backgroundColor: '#ee9dd6' }}>12000</div>
+                <div style={{ backgroundColor: "#79caff" }}>15000</div>
+                <div style={{ backgroundColor: "#ff8d24" }}>16000</div>
+                <div style={{ backgroundColor: "#dee362" }}>18000</div>
+                <div style={{ backgroundColor: "#7d4e5a" }}>20000</div>
+                <div style={{ backgroundColor: '#f43b45' }}>22000</div>
+                <div style={{ backgroundColor: "#5c99d4" }}>25000</div>
+                <div style={{ backgroundColor: "#930b92" }}>30000</div>
+                <div style={{ backgroundColor: "#63c164" }}>45000</div>
+                <div style={{ backgroundColor: "#445485" }}>50000</div>
             </div>}
             <div className='BuyTicketsCardWrapperDiv'>
                 <div className='BuyTicketsCardWrapper'>
@@ -283,8 +295,7 @@ export const BuyTickets = () => {
                         <img src={`${process.env.REACT_APP_IMAGE}/${getSinglPage.events.event?.image}`} />
                         <div className='BuyTicketsCardInfo'>
                             <div>
-                                <p className='BuyTicketTitle'>{data.name}</p>
-                                {/* <p className='BuyTickeDescription'>{truncateText(data.description)}</p> */}
+                                <p className='BuyTicketTitle'>{truncateText(data?.name)}</p>
                             </div>
                             <div className='BuyTicketDate'>
                                 <div>
@@ -351,27 +362,29 @@ export const BuyTickets = () => {
                     <h2>{t('RecommendTickets')}</h2>
                     <div className='RecDiv'>
                         {recomended.map((elm, i) => {
+                            console.log(elm)
                             const dateObject = new Date(elm.sessions[0]?.date);
                             let day = dateObject.getDate();
                             let month = dateObject.getMonth();
                             var currentDayOfWeek = daysOfWeek[dateObject?.getDay()];
                             if (elm?.sessions.length)
-                                return <TopEvents
-                                    key={i}
-                                    image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
-                                    title={elm?.title}
-                                    category={elm.category}
-                                    location={elm?.sessions[0]?.hallId?.location}
-                                    location_en={elm?.sessions[0]?.hallId?.location_en}
-                                    location_ru={elm?.sessions[0]?.hallId?.location_ru}
-                                    data={elm}
-                                    day={day}
-                                    id={elm._id}
-                                    time={elm?.sessions[0]?.time}
-                                    months={months[month]}
-                                    currentDayOfWeek={currentDayOfWeek}
-                                    price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
-                                />
+                                if (elm._id != "65d21c1851424e16acf107d4")
+                                    return <TopEvents
+                                        key={i}
+                                        image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
+                                        title={elm?.title}
+                                        category={elm.category}
+                                        location={elm?.sessions[0]?.hallId?.location}
+                                        location_en={elm?.sessions[0]?.hallId?.location_en}
+                                        location_ru={elm?.sessions[0]?.hallId?.location_ru}
+                                        data={elm}
+                                        day={day}
+                                        id={elm._id}
+                                        time={elm?.sessions[0]?.time}
+                                        months={months[month]}
+                                        currentDayOfWeek={currentDayOfWeek}
+                                        price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
+                                    />
                         })}
                     </div>
                 </div>

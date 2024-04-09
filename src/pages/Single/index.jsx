@@ -102,22 +102,23 @@ export const Single = () => {
                                 let month = dateObject.getMonth();
                                 var currentDayOfWeek = daysOfWeek[dateObject.getDay()];
                                 if (elm?.sessions?.length)
-                                    return <TopEvents
-                                        key={i}
-                                        id={elm?._id}
-                                        image={`${process.env.REACT_APP_IMAGE}/${elm?.image}`}
-                                        title={elm?.title}
-                                        category={elm?.category}
-                                        day={day}
-                                        location={elm?.sessions[0]?.hallId?.location}
-                                        location_en={elm?.sessions[0]?.hallId?.location_en}
-                                        location_ru={elm?.sessions[0]?.hallId?.location_ru}
-                                        data={elm}
-                                        time={elm?.sessions[0]?.time}
-                                        months={months[month]}
-                                        currentDayOfWeek={currentDayOfWeek}
-                                        price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
-                                    />
+                                    if (elm._id != "65d21c1851424e16acf107d4")
+                                        return <TopEvents
+                                            key={i}
+                                            id={elm?._id}
+                                            image={`${process.env.REACT_APP_IMAGE}/${elm?.image}`}
+                                            title={elm?.title}
+                                            category={elm?.category}
+                                            day={day}
+                                            location={elm?.sessions[0]?.hallId?.location}
+                                            location_en={elm?.sessions[0]?.hallId?.location_en}
+                                            location_ru={elm?.sessions[0]?.hallId?.location_ru}
+                                            data={elm}
+                                            time={elm?.sessions[0]?.time}
+                                            months={months[month]}
+                                            currentDayOfWeek={currentDayOfWeek}
+                                            price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
+                                        />
                             })}
                         </div>
                         {/* <div className="ShowAllButtonWrappr">
