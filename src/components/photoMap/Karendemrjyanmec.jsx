@@ -165,7 +165,6 @@ const Karendemrjyanmec = ({ eventId, soldTickets, sessionID, pading, value, plac
                 }
                 if (seansArr.find((e) => e.id == i)?.price && seansArr.find((e) => e.id == i)?.price > 0) {
                     if (soldTickets.findIndex((elm) => elm.id == e.id) < 0) {
-                        console.log(seansArr.find((e) => e.id == i)?.price)
                         return <button
                             key={i}
                             onMouseOver={() => {

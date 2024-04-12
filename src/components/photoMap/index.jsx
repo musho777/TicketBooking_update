@@ -14,7 +14,6 @@ const PhotoCoordinatesByColor = ({ position, scale, secion, soldTickets, session
     const [loading, setLoading] = useState(true)
     const { tickets } = useSelector((st) => st.tiketsForBuy)
     const [click, setClick] = useState(isInteracting)
-    console.log(soldTickets.length, '22')
     useEffect(() => {
         setClick(isInteracting)
     }, [isInteracting])

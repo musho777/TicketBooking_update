@@ -362,7 +362,6 @@ export const BuyTickets = () => {
                     <h2>{t('RecommendTickets')}</h2>
                     <div className='RecDiv'>
                         {recomended.map((elm, i) => {
-                            console.log(elm)
                             const dateObject = new Date(elm.sessions[0]?.date);
                             let day = dateObject.getDate();
                             let month = dateObject.getMonth();
