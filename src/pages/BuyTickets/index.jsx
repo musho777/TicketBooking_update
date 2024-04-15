@@ -167,6 +167,13 @@ export const BuyTickets = () => {
             <div style={{ backgroundColor: "#63c164" }}>45000</div>
             <div style={{ backgroundColor: "#445485" }}>50000</div>
         </div>}
+        {id == '6617e7f08f4fa9f36077db4b' && <div className='ticketPrice'>
+            <div style={{ backgroundColor: '#18ff00' }}>5000</div>
+            <div style={{ backgroundColor: '#ee9dd6' }}>7000</div>
+            <div style={{ backgroundColor: "#79caff" }}>10000</div>
+            <div style={{ backgroundColor: "#ff8d24" }}>15000</div>
+            <div style={{ backgroundColor: "#dee362" }}>20000</div>
+        </div>}
         <div className='BuyTicketsWrapper'>
 
             <div className='BuyTicketsCard' id='mobileBuyTicketsCard'>
@@ -288,6 +295,13 @@ export const BuyTickets = () => {
                 <div style={{ backgroundColor: "#930b92" }}>30000</div>
                 <div style={{ backgroundColor: "#63c164" }}>45000</div>
                 <div style={{ backgroundColor: "#445485" }}>50000</div>
+            </div>}
+            {id == '6617e7f08f4fa9f36077db4b' && <div className='ticketPriceMobile'>
+                <div style={{ backgroundColor: '#18ff00' }}>5000</div>
+                <div style={{ backgroundColor: '#ee9dd6' }}>7000</div>
+                <div style={{ backgroundColor: "#79caff" }}>10000</div>
+                <div style={{ backgroundColor: "#ff8d24" }}>15000</div>
+                <div style={{ backgroundColor: "#dee362" }}>20000</div>
             </div>}
             <div className='BuyTicketsCardWrapperDiv'>
                 <div className='BuyTicketsCardWrapper'>
