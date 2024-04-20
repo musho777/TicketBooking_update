@@ -150,7 +150,7 @@ export const BuyTickets = () => {
                 isParonyanEvent={getSinglPage.events?.event
                     ?.isParonyanEvent}
                 paronyanSeans={paronyanSeans}
-                event_id={getSinglPage?.events?.event?.ParonyanEventId}
+                event_id={getSinglPage?.events?.event?.paronyanId}
                 grupID={getSinglPage.events?.event?.ParonyanGroup_id}
                 open={open} />
         </CartPopup >}
@@ -164,12 +164,20 @@ export const BuyTickets = () => {
             <div style={{ backgroundColor: '#f43b45' }}>22000</div>
             <div style={{ backgroundColor: "#5c99d4" }}>25000</div>
             <div style={{ backgroundColor: "#930b92" }}>30000</div>
-            <div style={{ backgroundColor: "#63c164" }}>45000</div>
+            <div style={{ backgroundColor: "#63c164" }}>40000</div>
             <div style={{ backgroundColor: "#445485" }}>50000</div>
         </div>}
         {id == '6617e7f08f4fa9f36077db4b' && <div className='ticketPrice'>
             <div style={{ backgroundColor: '#18ff00' }}>5000</div>
             <div style={{ backgroundColor: '#ee9dd6' }}>7000</div>
+            <div style={{ backgroundColor: "#79caff" }}>10000</div>
+            <div style={{ backgroundColor: "#ff8d24" }}>15000</div>
+            <div style={{ backgroundColor: "#dee362" }}>20000</div>
+        </div>}
+        {id == '661d9ca48f4fa9f360782218' && <div className='ticketPrice'>
+            <div style={{ backgroundColor: '#18ff00' }}>5000</div>
+            <div style={{ backgroundColor: '#ee9dd6' }}>7000</div>
+            <div style={{ backgroundColor: "#f43b45" }}>8000</div>
             <div style={{ backgroundColor: "#79caff" }}>10000</div>
             <div style={{ backgroundColor: "#ff8d24" }}>15000</div>
             <div style={{ backgroundColor: "#dee362" }}>20000</div>
@@ -293,12 +301,20 @@ export const BuyTickets = () => {
                 <div style={{ backgroundColor: '#f43b45' }}>22000</div>
                 <div style={{ backgroundColor: "#5c99d4" }}>25000</div>
                 <div style={{ backgroundColor: "#930b92" }}>30000</div>
-                <div style={{ backgroundColor: "#63c164" }}>45000</div>
+                <div style={{ backgroundColor: "#63c164" }}>40000</div>
                 <div style={{ backgroundColor: "#445485" }}>50000</div>
             </div>}
             {id == '6617e7f08f4fa9f36077db4b' && <div className='ticketPriceMobile'>
                 <div style={{ backgroundColor: '#18ff00' }}>5000</div>
                 <div style={{ backgroundColor: '#ee9dd6' }}>7000</div>
+                <div style={{ backgroundColor: "#79caff" }}>10000</div>
+                <div style={{ backgroundColor: "#ff8d24" }}>15000</div>
+                <div style={{ backgroundColor: "#dee362" }}>20000</div>
+            </div>}
+            {id == '661d9ca48f4fa9f360782218' && <div className='ticketPriceMobile'>
+                <div style={{ backgroundColor: '#18ff00' }}>5000</div>
+                <div style={{ backgroundColor: '#ee9dd6' }}>7000</div>
+                <div style={{ backgroundColor: "#f43b45" }}>8000</div>
                 <div style={{ backgroundColor: "#79caff" }}>10000</div>
                 <div style={{ backgroundColor: "#ff8d24" }}>15000</div>
                 <div style={{ backgroundColor: "#dee362" }}>20000</div>

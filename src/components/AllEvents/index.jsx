@@ -44,7 +44,7 @@ export const ALLEvents = () => {
                             <EachTicket
                                 key={i}
                                 id={elm.eventId._id}
-                                onClick={() => window.location = `/Single/${elm.eventId._id}/${elm?.eventId?.title}`}
+                                onClick={() => window.location = `/Single/${elm.eventId._id}:${elm.paronyanTimelineId ? elm.paronyanTimelineId : elm._id}/${elm?.eventId?.title}`}
                                 location={elm?.hallId?.location}
                                 location_en={elm?.hallId?.location_en}
                                 location_ru={elm?.hallId?.location_ru}
@@ -60,7 +60,6 @@ export const ALLEvents = () => {
                                 category_en={elm?.eventId?.category?.name_en}
                                 category_ru={elm?.eventId?.category?.name_ru}
                                 category={elm?.eventId?.category?.name}
-                                // time={elm?.sessions[0]?.time}
                                 image={`${process.env.REACT_APP_IMAGE}/${elm.eventId?.largeImage}`}
                                 date={`${day}.${month} ${elm?.time}`}
                                 price={`${elm?.priceStart} - ${elm?.priceEnd} AMD`}

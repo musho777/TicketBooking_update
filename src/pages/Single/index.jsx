@@ -22,14 +22,6 @@ export const Single = () => {
     ];
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const [languageData, setLanguageData] = useState({ title: '', description: '', hall: '', place: '' })
-    function truncateText(text) {
-        if (text?.length > 23) {
-            return text.substring(0, 30) + '...';
-        }
-        else {
-            return text;
-        }
-    }
     useEffect(() => {
         dispatch(GetSinglPage(id))
     }, [])

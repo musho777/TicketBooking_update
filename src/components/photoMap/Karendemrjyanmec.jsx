@@ -310,7 +310,7 @@ const Karendemrjyanmec = ({ eventId, soldTickets, sessionID, pading, value, plac
                                     <path d="M5.21228 7.19515H4.35201C4.26583 7.19515 4.19598 7.1253 4.19598 7.03913V6.91942C4.19598 6.83324 4.26584 6.7634 4.35201 6.7634H5.21228C5.29844 6.7634 5.3683 6.83325 5.3683 6.91942V7.03913C5.3683 7.12531 5.29843 7.19515 5.21228 7.19515Z" fill="#1E4751" />
                                 </svg>
                             }
-                            {seansArr.find((e) => e.id == i)?.price === '45000' && !tickets.find((elm) => elm.seatId == e.id) &&
+                            {seansArr.find((e) => e.id == i)?.price === '40000' && !tickets.find((elm) => elm.seatId == e.id) &&
 
                                 <svg width="20" height="20" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M0.854736 5.0903H1.58107V7.19807H0.854736V5.0903Z" fill="#1E4751" />
@@ -349,7 +349,7 @@ const Karendemrjyanmec = ({ eventId, soldTickets, sessionID, pading, value, plac
                                 seansArr.find((e) => e.id == i)?.price != '22000' &&
                                 seansArr.find((e) => e.id == i)?.price != '25000' &&
                                 seansArr.find((e) => e.id == i)?.price != '30000' &&
-                                seansArr.find((e) => e.id == i)?.price != '45000' &&
+                                seansArr.find((e) => e.id == i)?.price != '40000' &&
                                 seansArr.find((e) => e.id == i)?.price != '50000' &&
                                 !tickets.find((elm) => elm.seatId == e.id) &&
                                 <svg width="20" height="20" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">

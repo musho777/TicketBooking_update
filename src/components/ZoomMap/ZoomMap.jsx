@@ -95,6 +95,22 @@ export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent,
                     places={getSinglPage.events?.event?.sessions[0].places}
                 />
             }
+            {
+                event?.isParonyanEvent &&
+                <Paronyan
+                    value={value}
+                    isInteracting={isInteracting}
+                    eventId={getSinglPage.events.event?._id}
+                    soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets}
+                    grupID={getSinglPage.events?.event?.ParonyanGroup_id}
+                    sessionID={getSinglPage.events.event?.sessions[0]._id}
+                    id={getSinglPage?.events?.event?.ParonyanEventId}
+                    open={open}
+                    activeTicket={activeTicket}
+                    setActiveTicket={(e) => setActiveTicket(e)}
+                    places={getSinglPage.events?.event?.sessions[0].places}
+                />
+            }
         </MapInteractionCSS>
     );
 };

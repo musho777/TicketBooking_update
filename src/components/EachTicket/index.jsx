@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 import { LocationSvg } from '../svg'
 
 export const EachTicket = ({
-    id, data, marginTrue,
+    data,
+    marginTrue,
     location,
     location_en,
     location_ru,
@@ -24,7 +25,7 @@ export const EachTicket = ({
     hall_en,
     place,
     place_en,
-    place_ru
+    place_ru,
 }) => {
     const [languageData, setLanguageData] = useState({ title: '', location: '', categorName: '', hall: '', place: '' })
     const { language } = useSelector((st) => st.StaticReducer)
@@ -81,13 +82,11 @@ export const EachTicket = ({
                     <p className='TicketData'>{date}</p>
                     <p className='ticketTitle'>{languageData.title}</p>
                     <div>
-
                         <div className='TicketTeater'>
                             <LocationSvg />
                             <p>{languageData.location}</p>
                         </div>
                         <div className='TicketTeater'>
-
                             <p>{languageData.place} {languageData.hall} </p>
                         </div>
                     </div>
