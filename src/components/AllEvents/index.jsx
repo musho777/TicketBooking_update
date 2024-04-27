@@ -43,8 +43,8 @@ export const ALLEvents = () => {
                         return (
                             <EachTicket
                                 key={i}
-                                id={elm.eventId._id}
-                                onClick={() => window.location = `/Single/${elm.eventId._id}:${elm.paronyanTimelineId ? elm.paronyanTimelineId : elm._id}/${elm?.eventId?.title}`}
+                                id={elm._id}
+                                onClick={() => window.location = `/Single/${elm.eventId._id}/${elm?.eventId?.title}`}
                                 location={elm?.hallId?.location}
                                 location_en={elm?.hallId?.location_en}
                                 location_ru={elm?.hallId?.location_ru}

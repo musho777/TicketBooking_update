@@ -6,7 +6,7 @@ import './styles.css';
 import { MapInteractionCSS } from 'react-map-interaction';
 import Paronyan from '../photoMap/Paronyan';
 
-export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent, paronyanSeans, open }) => {
+export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent, paronyanSeans, open, price }) => {
     const [isInteracting, setIsInteracting] = useState(false);
     const handleChange = (newValue) => {
         setIsInteracting(true)
@@ -29,9 +29,6 @@ export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent,
         };
     }, [isInteracting, setValue]);
 
-
-
-    const [position, setPosition] = useState({ y: 0, x: 0 })
     const [activeTicket, setActiveTicket] = useState({})
     return (
         <MapInteractionCSS
@@ -40,24 +37,22 @@ export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent,
             maxScale={1.5}
         >
             {(event?.sessions[0]?.hallId?._id === '65ce79a7603a99ef4d2ba0a1' && !isParonyanEvent) &&
-
                 <PhotoCoordinatesByColor
-                    isInteracting={isInteracting}
                     value={value}
+                    price={price}
+                    isInteracting={isInteracting}
+                    places={getSinglPage.events?.event?.sessions[0].places}
                     eventId={getSinglPage.events.event?._id}
                     sessionID={getSinglPage.events.event?.sessions[0]._id}
                     soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets}
                     secion={getSinglPage.events.event?.sessions[0]?.price}
-                    setPosition={(e) => setPosition({ y: e.y, x: e.x })}
-                    activeTicket={activeTicket}
-                    position={position}
-                    setActiveTicket={(e) => setActiveTicket(e)}
                 />
             }
             {
                 (event?.sessions[0]?.hallId?._id === '65ce79e5603a99ef4d2ba0a5' && !isParonyanEvent) &&
                 <KarenDemerchyanMec
                     value={value}
+                    price={price}
                     isInteracting={isInteracting}
                     places={getSinglPage.events?.event?.sessions[0].places}
                     eventId={getSinglPage.events.event?._id}
@@ -70,6 +65,7 @@ export const ZoomMap = ({ event, getSinglPage, value, setValue, isParonyanEvent,
                 (event?.sessions[0]?.hallId?._id === "65ce79ca603a99ef4d2ba0a3" && !isParonyanEvent) &&
                 <AramKhachatryan
                     value={value}
+                    price={price}
                     isInteracting={isInteracting}
                     places={getSinglPage.events?.event?.sessions[0].places}
                     eventId={getSinglPage.events.event?._id}
