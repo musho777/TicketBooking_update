@@ -244,64 +244,64 @@ const AramKhachatryan = ({ eventId, soldTickets, sessionID, pading, value, place
                     roted = 90
                 }
 
-                // if (seansArr.find((e) => e.id == i)?.price && seansArr.find((e) => e.id == i)?.price > 0) {
-                // if (soldTickets.findIndex((elm) => elm.id == e.id) < 0) {
-                return <button
-                    key={i}
-                    onMouseOver={() => {
-                        getPrice(e.y, i, e.x, e.parterre, e.amphitheater, e.lodge)
-                        setActiveButton(i)
-                    }}
-                    style={
-                        {
-                            top: e?.y + top, left: e?.x + left,
-                            backgroundColor: tickets.find((elm) => elm.seatId == e.id) && '#24005C',
-                            transform: ` rotate(${roted}deg)`,
-                        }
-                    }
-                    id='seatStyleAram'
-                    className={[
-                        i == activeButton ? 'activeButton' : '',
-                        e.active ? "addTicketButton" : '']}
-                    onMouseLeave={() => {
-                        setShowModal(false)
-                        setActiveButton(null)
-                    }}
-                    onClick={() => {
-                        if (!click) {
-                            addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
-                        }
-                    }
-                    }
-                    onTouchStart={() => {
-                        if (!click) {
-                            getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
-                            setActiveButton(i)
-                        }
-                        if (click) {
-                            setActiveButton(null)
-                        }
-                    }}
-                    onTouchEnd={() => {
-                        if (!click) {
-                            addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
-                        }
-                        if (click) {
-                            setActiveButton(null)
-                        }
-                    }}
-                >
-                    {
-                        !tickets.find((elm) => elm.seatId == e.id) &&
-                        price.map((el, ind) => {
-                            if (el.price == seansArr.find((e) => e.id == i)?.price && el.active == 1) {
-                                return el.seat
+                if (seansArr.find((e) => e.id == i)?.price && seansArr.find((e) => e.id == i)?.price > 0) {
+                    if (soldTickets.findIndex((elm) => elm.id == e.id) < 0) {
+                        return <button
+                            key={i}
+                            onMouseOver={() => {
+                                getPrice(e.y, i, e.x, e.parterre, e.amphitheater, e.lodge)
+                                setActiveButton(i)
+                            }}
+                            style={
+                                {
+                                    top: e?.y + top, left: e?.x + left,
+                                    backgroundColor: tickets.find((elm) => elm.seatId == e.id) && '#24005C',
+                                    transform: ` rotate(${roted}deg)`,
+                                }
                             }
-                        })
+                            id='seatStyleAram'
+                            className={[
+                                i == activeButton ? 'activeButton' : '',
+                                e.active ? "addTicketButton" : '']}
+                            onMouseLeave={() => {
+                                setShowModal(false)
+                                setActiveButton(null)
+                            }}
+                            onClick={() => {
+                                if (!click) {
+                                    addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
+                                }
+                            }
+                            }
+                            onTouchStart={() => {
+                                if (!click) {
+                                    getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                                    setActiveButton(i)
+                                }
+                                if (click) {
+                                    setActiveButton(null)
+                                }
+                            }}
+                            onTouchEnd={() => {
+                                if (!click) {
+                                    addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
+                                }
+                                if (click) {
+                                    setActiveButton(null)
+                                }
+                            }}
+                        >
+                            {
+                                !tickets.find((elm) => elm.seatId == e.id) &&
+                                price.map((el, ind) => {
+                                    if (el.price == seansArr.find((e) => e.id == i)?.price && el.active == 1) {
+                                        return el.seat
+                                    }
+                                })
+                            }
+                        </button>
                     }
-                </button>
-                // }
-                // }
+                }
             })}
 
             {showModal &&
