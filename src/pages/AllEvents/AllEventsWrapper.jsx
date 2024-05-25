@@ -29,7 +29,7 @@ export const AllEventsWrapper = ({ loading, data, setPage, page, showButton }) =
                         month1 = `0${month1 + 1}`
                     }
                     var currentDayOfWeek = daysOfWeek[dateObject.getDay()];
-                    if (elm._id != "65d222f051424e16acf10852")
+                    if (elm._id != "65d222f051424e16acf10852" && elm._id != "663c09989111f2c4594f12fa")
                         return <Card
                             key={i}
                             day={day}

@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { EachTicket } from "../EachTicket"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { GetAllEvents2, GetRandomEvents } from "../../services/action/action"
+import { GetAllEvents2 } from "../../services/action/action"
 import { ShowAllButton } from '../Button/ShowAllButton'
 
 export const ALLEvents = () => {
@@ -39,7 +39,7 @@ export const ALLEvents = () => {
                     if (month <= 9) {
                         month = `0${month}`
                     }
-                    if (i < 9 && elm._id != "65d222f051424e16acf10852") {
+                    if (i < 9 && elm._id != "65d222f051424e16acf10852" && elm._id != "6623a4dae2a7c6d067e2d78b" && elm._id != "6617eb278f4fa9f36077dbd4" && elm._id != '663c09989111f2c4594f12fa') {
                         return (
                             <EachTicket
                                 key={i}

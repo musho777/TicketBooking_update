@@ -19,25 +19,25 @@ export const WeekEvents = () => {
             </div>
             <div className="WeekCardWrapper">
                 {getWeekEvent.events.map((elm, i) => {
-                    // if (!elm.isParonyanEvent) {
-                    return <div>
-                        <WeekCard
-                            date={elm.date}
-                            time={elm.time}
-                            id={elm.eventId?._id}
-                            hall={elm?.hallId?.hall}
-                            hall_en={elm.hallId?.hall_en}
-                            hall_ru={elm.hallId?.hall_ru}
-                            place={elm.hallId.place}
-                            place_en={elm.hallId.place_en}
-                            place_ru={elm.hallId.place_ru}
-                            title={elm.eventId?.title}
-                            title_en={elm.eventId?.title_en}
-                            title_ru={elm.eventId?.title_ru}
-                            img={`${process.env.REACT_APP_IMAGE}/${elm.eventId?.image}`}
-                        />
-                    </div>
-                    // }
+                    if (elm._id !== "663c09989111f2c4594f12fa") {
+                        return <div>
+                            <WeekCard
+                                date={elm.date}
+                                time={elm.time}
+                                id={elm.eventId?._id}
+                                hall={elm?.hallId?.hall}
+                                hall_en={elm.hallId?.hall_en}
+                                hall_ru={elm.hallId?.hall_ru}
+                                place={elm.hallId.place}
+                                place_en={elm.hallId.place_en}
+                                place_ru={elm.hallId.place_ru}
+                                title={elm.eventId?.title}
+                                title_en={elm.eventId?.title_en}
+                                title_ru={elm.eventId?.title_ru}
+                                img={`${process.env.REACT_APP_IMAGE}/${elm.eventId?.image}`}
+                            />
+                        </div>
+                    }
                     // else {
                     //     const matchResult = elm.ParonyanTime.match(/(\d+)([\s\S]*?)(<div[\s\S]*?<\/div>)([\s\S]*?)(\d+:\d+)/);
                     //     const day = matchResult[1];
