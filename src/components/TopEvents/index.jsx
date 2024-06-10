@@ -40,7 +40,7 @@ export const TopEventsComponent = () => {
                     let day = dateObject.getDate();
                     let month = dateObject.getMonth();
                     var currentDayOfWeek = daysOfWeek[dateObject.getDay()];
-                    if (elm?.sessions?.length > 0)
+                    if (elm?.sessions?.length > 0 && !elm.sessions[0].expired)
                         return <TopEvents
                             key={i}
                             day={day}
@@ -58,11 +58,6 @@ export const TopEventsComponent = () => {
                             price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
                         />
                 })}
-        </div>
-        <div className="ShowAllButtonWrappr">
-            {/* {page != topEvents.events.totalPages &&
-                <ShowAllButton loading={topEvents.loading} onClick={() => setPage(page + 1)} />
-            } */}
         </div>
     </div>
 }

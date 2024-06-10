@@ -94,7 +94,7 @@ export const Single = () => {
                                 let month = dateObject.getMonth();
                                 var currentDayOfWeek = daysOfWeek[dateObject.getDay()];
                                 if (elm?.sessions?.length)
-                                    if (elm._id != "65d21c1851424e16acf107d4")
+                                    if (!elm.sessions[0].expired)
                                         return <TopEvents
                                             key={i}
                                             id={elm?._id}
@@ -113,9 +113,6 @@ export const Single = () => {
                                         />
                             })}
                         </div>
-                        {/* <div className="ShowAllButtonWrappr">
-                            <ShowAllButton />
-                        </div> */}
                     </div>
                 }
             </div>

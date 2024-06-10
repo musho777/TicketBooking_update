@@ -91,59 +91,60 @@ export const Carusel = () => {
                 if (minute < 9) {
                     minute = `0${minute}`
                 }
-                item.push(
-                    <div key={i} className='CaruselItem'>
-                        <div className='BanerDiv' >
-                            <img
-                                className='BanerImg2'
-                                src={windowSize.width > 940 ? `${process.env.REACT_APP_IMAGE}/${elm?.eventId?.image}` :
-                                    `${process.env.REACT_APP_IMAGE}/${elm?.eventId?.largeImage}`
-                                }
-                            />
-                            <div className='BanerDivInfo'>
-                                <div className='BanerPrimera'>
-                                    <div className='Primera'>
-                                        <p className='Primerap'>{primera}</p>
-                                        <p className='PrimeraDate'>{dayOfWeek}-{month} {elm.time}</p>
+                if (!elm.expired)
+                    item.push(
+                        <div key={i} className='CaruselItem'>
+                            <div className='BanerDiv' >
+                                <img
+                                    className='BanerImg2'
+                                    src={windowSize.width > 940 ? `${process.env.REACT_APP_IMAGE}/${elm?.eventId?.image}` :
+                                        `${process.env.REACT_APP_IMAGE}/${elm?.eventId?.largeImage}`
+                                    }
+                                />
+                                <div className='BanerDivInfo'>
+                                    <div className='BanerPrimera'>
+                                        <div className='Primera'>
+                                            <p className='Primerap'>{primera}</p>
+                                            <p className='PrimeraDate'>{dayOfWeek}-{month} {elm.time}</p>
+                                        </div>
+                                        <div className='BanerLocation'>
+                                            <LocationSvg />
+                                            <p className='BanerDivInfoPlace'>{hall} {place}</p>
+                                        </div>
                                     </div>
-                                    <div className='BanerLocation'>
-                                        <LocationSvg />
-                                        <p className='BanerDivInfoPlace'>{hall} {place}</p>
+                                    <p className='BanerTitle'>{title}</p>
+                                    <div className='BanerPrimeraMobile'>
+                                        <div className='Primera'>
+                                            <p className='Primerap'>{primera}</p>
+                                            <p className='PrimeraDate'>{dayOfWeek}-{month} {elm.time}</p>
+                                        </div>
+                                        <div className='BanerLocation'>
+                                            <LocationSvg />
+                                            <p className='BanerDivInfoPlace'>{hall} {place}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <p className='BanerTitle'>{title}</p>
-                                <div className='BanerPrimeraMobile'>
-                                    <div className='Primera'>
-                                        <p className='Primerap'>{primera}</p>
-                                        <p className='PrimeraDate'>{dayOfWeek}-{month} {elm.time}</p>
+                                    <div className='BanerTextDiv'>
+                                        {/* <p className='BanerText'>{description}</p> */}
                                     </div>
-                                    <div className='BanerLocation'>
-                                        <LocationSvg />
-                                        <p className='BanerDivInfoPlace'>{hall} {place}</p>
-                                    </div>
-                                </div>
-                                <div className='BanerTextDiv'>
-                                    {/* <p className='BanerText'>{description}</p> */}
-                                </div>
 
-                                <p className='BanerPrice'>{elm.priceStart}-{elm.priceEnd} AMD</p>
-                                <div className='BanerButton'>
-                                    <Button onClick={() => window.location = `/BuyTickets/${elm?.eventId?._id}`} title={BuyNow} />
-                                    <p onClick={() => window.location = `/Single/${elm?.eventId?._id}/${elm?.eventId?.title}`}>{seeMore}</p>
+                                    <p className='BanerPrice'>{elm.priceStart}-{elm.priceEnd} AMD</p>
+                                    <div className='BanerButton'>
+                                        <Button onClick={() => window.location = `/BuyTickets/${elm?.eventId?._id}`} title={BuyNow} />
+                                        <p onClick={() => window.location = `/Single/${elm?.eventId?._id}/${elm?.eventId?.title}`}>{seeMore}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        {
+                            {
 
-                        }
-                        <img
-                            className='BanerImg'
-                            src={`${process.env.REACT_APP_IMAGE}/${elm?.eventId?.largeImage}`}
-                            alt='#'
-                            onDragStart={handleDragStart}
-                        />
-                    </div>
-                )
+                            }
+                            <img
+                                className='BanerImg'
+                                src={`${process.env.REACT_APP_IMAGE}/${elm?.eventId?.largeImage}`}
+                                alt='#'
+                                onDragStart={handleDragStart}
+                            />
+                        </div>
+                    )
             })
         }
         setData(item)

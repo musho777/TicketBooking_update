@@ -18,7 +18,7 @@ export const CategoryCardWrapper = ({ loading, data, setPage, page, showButton, 
                     let month = dateObject?.getMonth();
                     var currentDayOfWeek = daysOfWeek[dateObject?.getDay()];
                     if (elm?.eventId) {
-                        if (elm._id != "65d222f051424e16acf10852" && elm._id != "663c09989111f2c4594f12fa")
+                        if (!elm.expired)
                             return <TopEvents
                                 key={i}
                                 day={day}

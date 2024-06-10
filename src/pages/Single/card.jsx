@@ -156,11 +156,11 @@ export const Card = ({
                 </div>
                 <div className='SinglPriceDiv'>
                     <p className='SinglBanerPrice'>{priceStart} {priceEnd} </p>
-                    <div className='SinglBanerButton'>
+                    {!data.expired && <div className='SinglBanerButton'>
                         <Button
                             onClick={onClick}
                             title={t('BuyNow')} />
-                    </div>
+                    </div>}
                 </div>
 
             </div>

@@ -599,9 +599,10 @@ export const BuyTickets = () => {
                             </div>
                             <div className='totalLine' />
                             <div className='BuyTicketButtonWrapper'>
-                                <button
+                                {!getSinglPage.events.event?.sessions[0].expired && <button
                                     disabled={tickets?.tickets?.length == 0}
-                                    className={tickets?.tickets?.length == 0 && 'disableButton'} onClick={() => setOpen(true)}>{t('Next')}</button>
+                                    className={tickets?.tickets?.length == 0 && 'disableButton'} onClick={() => setOpen(true)}>{t('Next')}
+                                </button>}
                             </div>
                         </div>
                     </div>
@@ -620,7 +621,7 @@ export const BuyTickets = () => {
                             let month = dateObject.getMonth();
                             var currentDayOfWeek = daysOfWeek[dateObject?.getDay()];
                             if (elm?.sessions.length)
-                                if (elm._id != "65d21c1851424e16acf107d4")
+                                if (!elm.sessions[0].expired)
                                     return <TopEvents
                                         key={i}
                                         image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
