@@ -263,8 +263,8 @@ export const BuyTickets = () => {
 
     useEffect(() => {
         let item = [...price]
-        if (getSinglPage?.events?.event?.sessions[0].places[0]) {
-            JSON.parse(getSinglPage?.events?.event?.sessions[0].places[0]).map((elm, i) => {
+        if (getSinglPage?.events?.event?.sessions[0]?.places[0]) {
+            JSON.parse(getSinglPage?.events?.event?.sessions[0]?.places[0]).map((elm, i) => {
                 if (elm.price > 0 && !item.find(item => item.price === elm.price)) {
                     item.push({
                         price: elm.price,
@@ -279,7 +279,7 @@ export const BuyTickets = () => {
             })
             setPrice(item)
         }
-    }, [getSinglPage?.events?.event?.sessions[0].places[0]])
+    }, [getSinglPage?.events?.event?.sessions[0]?.places[0]])
 
     var months = [
         "January", "February", "March", "April", "May", "June",
@@ -599,7 +599,7 @@ export const BuyTickets = () => {
                             </div>
                             <div className='totalLine' />
                             <div className='BuyTicketButtonWrapper'>
-                                {!getSinglPage.events.event?.sessions[0].expired && <button
+                                {!getSinglPage.events.event?.sessions[0]?.expired && <button
                                     disabled={tickets?.tickets?.length == 0}
                                     className={tickets?.tickets?.length == 0 && 'disableButton'} onClick={() => setOpen(true)}>{t('Next')}
                                 </button>}

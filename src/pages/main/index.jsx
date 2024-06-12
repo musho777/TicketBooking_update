@@ -11,6 +11,7 @@ import { TopEventsComponent } from '../../components/TopEvents'
 
 
 export const Main = () => {
+    console.log("0000")
 
     const dispatch = useDispatch()
     const general = useSelector((st) => st.general)
