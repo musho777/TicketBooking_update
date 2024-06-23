@@ -28,6 +28,7 @@ export const BuyTickets = () => {
     const [showTickets, setShowTickets] = useState(false)
     const [price, setPrice] = useState([])
     const color = ['#18ff00', '#ee9dd6', "#79caff", "#ff8d24", "#dee362", "red", '#f43b45', "#5c99d4", "#930b92", "#63c164", "#445485",]
+    const seatCount = [2, 3, 3, 6, 8, 4, 8, 8]
     const seat = [
         <svg width="20" height="20" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0.854736 5.0903H1.58107V7.19807H0.854736V5.0903Z" fill="#1E4751" />
@@ -310,7 +311,7 @@ export const BuyTickets = () => {
             return text;
         }
     }
-
+    console.log(event?.sessions[0]?.hallId?._id == '66686b083ae6e1f5f5a09aa3')
     useEffect(() => {
         if (event?.sessions[0]?.hallId?._id == '65ce79ca603a99ef4d2ba0a3') {
             setValue({
@@ -423,7 +424,12 @@ export const BuyTickets = () => {
         <div className='ticketPrice'>
             {
                 price.map((elm, i) => {
-                    return <div onClick={() => ChoosePrice(i)} style={{ backgroundColor: color[i] }}>{elm.price}</div>
+                    if (event?.sessions[0]?.hallId?._id == '66686b083ae6e1f5f5a09aa3') {
+                        return <div hall={event?.sessions[0]?.hallId?._id == '66686b083ae6e1f5f5a09aa3'} onClick={() => ChoosePrice(i)} style={{ backgroundColor: color[i] }}>{elm.price} - {seatCount[i]} Անձ</div>
+                    }
+                    else {
+                        return <div hall={event?.sessions[0]?.hallId?._id == '66686b083ae6e1f5f5a09aa3'} onClick={() => ChoosePrice(i)} style={{ backgroundColor: color[i] }}>{elm.price}</div>
+                    }
                 })
             }
             <div onClick={() => ChoosePrice(-1)} style={{ backgroundColor: '#7d4e5a' }}>{t('All')}</div>
@@ -536,7 +542,12 @@ export const BuyTickets = () => {
             <div className='ticketPriceMobile'>
                 {
                     price.map((elm, i) => {
-                        return <div onClick={() => ChoosePrice(i)} style={{ backgroundColor: color[i] }}>{elm.price}</div>
+                        if (event?.sessions[0]?.hallId?._id == '66686b083ae6e1f5f5a09aa3') {
+                            return <div onClick={() => ChoosePrice(i)} style={{ backgroundColor: color[i] }}>{elm.price} {seatCount[i]} Անձ</div>
+                        }
+                        else {
+                            return <div onClick={() => ChoosePrice(i)} style={{ backgroundColor: color[i] }}>{elm.price}</div>
+                        }
                     })
                 }
                 <div onClick={() => ChoosePrice(-1)} style={{ backgroundColor: '#7d4e5a' }}>{t('All')}</div>
