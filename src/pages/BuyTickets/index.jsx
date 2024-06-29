@@ -311,7 +311,6 @@ export const BuyTickets = () => {
             return text;
         }
     }
-    console.log(event?.sessions[0]?.hallId?._id == '66686b083ae6e1f5f5a09aa3')
     useEffect(() => {
         if (event?.sessions[0]?.hallId?._id == '65ce79ca603a99ef4d2ba0a3') {
             setValue({
@@ -485,8 +484,6 @@ export const BuyTickets = () => {
                                 </div>
                             })
                         }
-
-
                         <div className='TotalPrice'>
                             <p className='Totalp'>{t('TOTALLY')}</p>
                             <p className='ToatalPricep'>{total} AMD</p>

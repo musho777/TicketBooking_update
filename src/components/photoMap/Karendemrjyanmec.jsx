@@ -11,6 +11,7 @@ const Karendemrjyanmec = ({ eventId, soldTickets, sessionID, pading, value, plac
     const [showModal, setShowModal] = useState(false)
     const { tickets } = useSelector((st) => st.tiketsForBuy)
     const [click, setClick] = useState(isInteracting)
+    const [opneModal, setOpenModal] = useState(false)
 
     useEffect(() => {
         setClick(isInteracting)
@@ -48,7 +49,31 @@ const Karendemrjyanmec = ({ eventId, soldTickets, sessionID, pading, value, plac
 
 
     const getPrice = (y, i, x) => {
+        console.log(x, y)
+        let temp = [...data]
+        if (temp.findIndex((el) => el.id == i) == -1) {
+            temp.push({
+                "id": i,
+                "price": "",
+                "row": 23,
+                "seat": temp.length + 54,
+                "place": "right tribune",
+                "Sector": 5,
+                "active": false
+            },)
+        }
 
+        // "id": 1081,
+        // "price": "",
+        // "row": 17,
+        // "seat": 12,
+        // "Sector": 2,
+        // "place": "Left tribune",
+        // "active": false
+
+
+
+        setData(temp)
         setPosition({ x, y })
         let item = seansArr.find((elm) => elm.id === i)
         setActiveTicket({
@@ -66,7 +91,7 @@ const Karendemrjyanmec = ({ eventId, soldTickets, sessionID, pading, value, plac
         setShowModal(true)
     }
 
-    const addTicket = (i) => {
+    const addTicket = (i, type = 'denc', price) => {
         let data = [...coordinatesState]
         // data[i].active = !data[i].active
         let data1 = [...tickets]
@@ -84,6 +109,22 @@ const Karendemrjyanmec = ({ eventId, soldTickets, sessionID, pading, value, plac
             }, 5000)
         }
         item = activeTicket
+        // "id": 0,
+        // "price": "",
+        // "row": 0,
+        // "seat": 0,
+        // "place": "danceFloor",
+        // "Sector": 0,
+        // "active": false
+
+        if (type == 'denc') {
+            item.price = price
+            item.id = 0
+            item.row = 0
+            item.seat = 0
+            item.place = 0
+            item.Sector = 0
+        }
         if (data[i].active) {
             dispatch(SetTicketsAction(item))
         }
@@ -92,6 +133,8 @@ const Karendemrjyanmec = ({ eventId, soldTickets, sessionID, pading, value, plac
         }
         setCoordinatesState(data)
     }
+
+    console.log('ticket', tickets)
 
     useEffect(() => {
         const image = new Image()
@@ -129,90 +172,150 @@ const Karendemrjyanmec = ({ eventId, soldTickets, sessionID, pading, value, plac
                 style={{ paddingTop: pading, paddingLeft: pading }}
                 className="zoomable-image"
                 alt='' src={require('../../assets/hamalir7000.png')} />
-            {coordinatesState.map((e, i) => {
-                let top = 0
-                let left = -5
-                let roted = 0
-                if (e.x >= 386 && e.x <= 597 && e.y >= 2233 && e.y <= 2549) {
-                    top = -15
-                    left = 0
-                    roted = -90
-                }
-                else if (e.x >= 951 && e.x <= 952 && e.y >= 2117 && e.y <= 2377) {
-                    top = -15
-                    left = 0
-                    roted = -90
-                }
-                else if (e.x >= 881 && e.x <= 975 && e.y >= 1802 && e.y <= 2063) {
-                    top = -15
-                    left = -0
-                    roted = -90
-                }
-                else if (e.x >= 316 && e.x <= 975 && e.y >= 1855 && e.y <= 2170) {
-                    top = -15
-                    left = -0
-                    roted = -90
-                }
-                else if (e.x >= 905 && e.x <= 975 && e.y >= 1172 && e.y <= 1433) {
-                    top = -15
-                    left = -0
-                    roted = -90
-                }
-                else if (e.x >= 738 && e.y >= 1091 && e.y <= 1387) {
-                    top = -15
-                    left = -0
-                    roted = -90
-                }
-                if (seansArr.find((e) => e.id == i)?.price && seansArr.find((e) => e.id == i)?.price > 0) {
-                    if (soldTickets.findIndex((elm) => elm.id == e.id) < 0) {
-                        return <button
-                            key={i}
-                            onMouseOver={() => {
-                                getPrice(e.y, i, e.x, e.parterre, e.amphitheater, e.lodge)
-                            }}
-                            style={
-                                {
-                                    top: e?.y + top, left: e?.x + left,
-                                    backgroundColor: tickets.find((elm) => elm.seatId == e.id) && '#24005C',
-                                    transform: ` rotate(${roted}deg)`,
-                                }
-                            }
-                            id='seatStyle2'
-                            onMouseLeave={() => {
-                                setShowModal(false)
-                            }}
-                            onClick={() => {
-                                if (!click) {
-                                    addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
-                                }
-                            }
-                            }
-                            onTouchStart={() => {
-                                if (!click) {
-                                    getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
-                                }
-                            }}
-                            onTouchEnd={() => {
-                                if (!click) {
-                                    addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
-                                }
-                            }}
-                        >
-                            {
-                                !tickets.find((elm) => elm.seatId == e.id) &&
-                                price.map((el, ind) => {
-                                    if (el.price == seansArr.find((e) => e.id == i)?.price && el.active == 1) {
-                                        return el.seat
-                                    }
-                                })
-                            }
-                        </button>
+            <button
+                onMouseOver={() => {
+                    getPrice(800, 0, 2000, 'parahraparal')
+                }}
+                onMouseLeave={() => {
+                    setShowModal(false)
+                }}
+                onClick={() => {
+                    if (!click) {
+                        addTicket(1, 'denc', 6000)
                     }
                 }
-            })
+                }
+                onTouchStart={() => {
+                    if (!click) {
+                        getPrice(800, 0, 2000, 'parahraparal')
+                        // getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                    }
+                }}
+                onTouchEnd={() => {
+                    if (!click) {
+                        addTicket(1, 'denc', 6000)
+                        // addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
+                    }
+                }}
+
+                style={{ position: 'absolute', border: 'none', padding: 20, background: 'black', color: 'white', left: 1670, top: 700, fontSize: 50, }}>պարահրապարակ</button>
+            {
+                coordinatesState.map((e, i) => {
+                    let top = 0
+                    let left = -5
+                    let roted = 0
+                    if (e.x >= 1053 && e.x <= 1147 && e.y >= 2104 && e.y <= 2364) {
+                        top = -15
+                        left = 0
+                        roted = -90
+                    }
+                    if ((e.x == 1124 || e.x == 1053 || e.x == 746 || e.x == 676 || e.x == 652 || e.x == 488 || e.x == 442 || e.x == 817 || e.x == 793) && (e.y == 2103 || e.y == 1852 || e.y == 1861 || e.y == 1842 || e.y == 1833)) {
+                        top = -15
+                        left = 0
+                        roted = -90
+                    }
+                    if ((e.x == 1053 && e.y == 1788)) {
+                        top = -15
+                        left = 0
+                        roted = -90
+                    }
+                    else if (e.x >= 512 && e.x <= 745 && e.y >= 2117 && e.y <= 2536) {
+                        top = -15
+                        left = 0
+                        roted = -90
+                    }
+                    else if (e.x >= 1007 && e.x <= 1107 && e.y >= 1789 && e.y <= 2063) {
+                        top = -15
+                        left = -0
+                        roted = -90
+                    }
+                    else if (e.x >= 442 && e.x <= 817 && e.y >= 1842 && e.y <= 2166) {
+                        top = -15
+                        left = -0
+                        roted = -90
+                    }
+
+
+                    else if (e.x >= 1006 && e.x <= 1147 && e.y >= 843 && e.y <= 1104) {
+                        top = -15
+                        left = -0
+                        roted = -90
+                    }
+
+                    else if (e.x >= 536 && e.x <= 606 && e.y >= 690 && e.y <= 1105) {
+                        top = -15
+                        left = -0
+                        roted = -90
+                    }
+                    else if (e.x >= 2725 && e.x <= 2772 && e.y >= 1473 && e.y <= 1733) {
+                        top = -15
+                        left = 4
+                        roted = 90
+                    }
+
+                    else if (e.x >= 3080 && e.x <= 3338 && e.y >= 1427 && e.y <= 1761) {
+                        top = -15
+                        left = 4
+                        roted = 90
+                    }
+
+                    else if (e.x >= 2962 && e.x <= 3276 && e.y >= 1059 && e.y <= 1761) {
+                        top = -15
+                        left = 4
+                        roted = 90
+                    }
+
+                    if (seansArr.find((e) => e.id == i)?.price && seansArr.find((e) => e.id == i)?.price > 0) {
+                        if (soldTickets.findIndex((elm) => elm.id == e.id) < 0) {
+                            return <button
+                                key={i}
+                                onMouseOver={() => {
+                                    getPrice(e.y, i, e.x, e.parterre, e.amphitheater, e.lodge)
+                                }}
+                                style={
+                                    {
+                                        top: e?.y + top, left: e?.x + left,
+                                        backgroundColor: tickets.find((elm) => elm.seatId == e.id) && '#24005C',
+                                        transform: ` rotate(${roted}deg)`,
+                                    }
+                                }
+                                id='seatStyle2'
+                                onMouseLeave={() => {
+                                    setShowModal(false)
+                                }}
+                                onClick={() => {
+                                    if (!click) {
+                                        addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
+                                    }
+                                }
+                                }
+                                onTouchStart={() => {
+                                    if (!click) {
+                                        getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
+                                    }
+                                }}
+                                onTouchEnd={() => {
+                                    if (!click) {
+                                        addTicket(i, e.price, e.id, e.parterre, e.amphitheater, e.lodge)
+                                    }
+                                }}
+                            >
+                                {
+                                    !tickets.find((elm) => elm.seatId == e.id) &&
+                                    price.map((el, ind) => {
+                                        if (el.price == seansArr.find((e) => e.id == i)?.price && el.active == 1) {
+                                            return el.seat
+                                        }
+                                    })
+                                }
+                            </button>
+                        }
+                    }
+                })
             }
 
-            {showModal &&
+            {
+                showModal &&
                 <div
                     onMouseEnter={() => {
                         setShowModal(true)
@@ -229,7 +332,7 @@ const Karendemrjyanmec = ({ eventId, soldTickets, sessionID, pading, value, plac
                     <p className='Teatertext'>{activeTicket.price} դրամ</p>
                 </div>
             }
-        </div>
+        </div >
     )
 }
 export default Karendemrjyanmec
